@@ -4,7 +4,7 @@ import json
 import os
 import re
 import subprocess  # 💡 깃허브 전송을 위한 도구
-from datetime import datetime, timedelta
+from datetime import datetime
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -100,64 +100,27 @@ def parse_agencies(lines: list, agency_names: list) -> dict:
 
 def fetch_mois_schedule(now: datetime) -> dict:
     mois_url = f"https://www.mois.go.kr/mns/a03/selectGpScheduleCalendar.do?cat=90010001&year={now.year}&month={now.month}&day={now.day}"
-    print(f"\n📰 행정안전부 홈페이지 수집 중... ({mois_url})")
-    
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
-    start_of_week = now - timedelta(days=now.weekday())
-    end_of_week = start_of_week + timedelta(days=6)
-    
     try:
         res = requests.get(mois_url, headers=HEADERS, timeout=10, verify=False)
         soup = BeautifulSoup(res.text, "html.parser")
         result = {"행정안전부": {}}
-        
         for li in soup.find_all("li"):
             text = li.get_text(separator=" ", strip=True)
-            
-            # 💡 [탐지기 업그레이드] "4.19" 처럼 생겼으면 주변에 띄어쓰기가 어떻든 싹 다 잡아냅니다!
-            match = re.search(r"(\d+)\s*\.\s*(\d+)[.\s]+(.+)", text)
-            
+            match = re.match(r"^(\d+)\.(\d+)\.\s+(\d{2}:\d{2})\s+(.+)", text)
             if match:
-                month_str, day_str, content = match.groups()
-                
-                try:
-                    event_date = datetime(now.year, int(month_str), int(day_str))
-                    
-                    if start_of_week.date() <= event_date.date() <= end_of_week.date():
-                        date_key = f"{int(month_str)}월 {int(day_str)}일({weekdays[event_date.weekday()]})"
-                        
-                        if date_key not in result["행정안전부"]:
-                            result["행정안전부"][date_key] = []
-                        
-                        clean_content = content.strip()
-                        # 이미 세모(▲)가 있으면 안 붙이고, 없으면 예쁘게 붙여줍니다.
-                        if not clean_content.startswith("▲"):
-                            if re.match(r"^\d{2}:\d{2}", clean_content):
-                                clean_content = f"▲{clean_content}"
-                            else:
-                                clean_content = f"▲ {clean_content}"
-                                
-                        if clean_content not in result["행정안전부"][date_key]:
-                            result["행정안전부"][date_key].append(clean_content)
-                except ValueError:
-                    continue # 이상한 날짜는 패스
-                    
+                month, day, time, event = match.groups()
+                d = datetime(now.year, int(month), int(day))
+                date_key = f"{int(month)}월 {int(day)}일({weekdays[d.weekday()]})"
+                if date_key not in result["행정안전부"]: result["행정안전부"][date_key] = []
+                result["행정안전부"][date_key].append(f"▲{time} {event}")
         return result
-    except Exception as e:
-        print(f"❌ 행정안전부 수집 실패: {e}")
-        return {"행정안전부": {}}
+    except: return {"행정안전부": {}}
 
 def push_to_github(week_key):
     """💡 수집된 데이터를 깃허브에 자동으로 배달합니다."""
     try:
         print("\n🚀 깃허브로 배달을 시작합니다...")
-        
-        # 💡 [추가됨] 변경된 파일이 있는지 먼저 싹 검사합니다!
-        status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
-        if not status.stdout.strip():
-            print("✨ 새로 추가되거나 변경된 일정이 없습니다. (이전과 100% 동일함)")
-            return
-
         subprocess.run(["git", "add", "."], check=True)
         commit_msg = f"Update schedule: {week_key} ({datetime.now().strftime('%Y-%m-%d %H:%M')})"
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
