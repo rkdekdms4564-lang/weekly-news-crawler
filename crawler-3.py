@@ -25,7 +25,6 @@ TARGET_AGENCIES = {
 
 BASE_URL = "https://news.einfomax.co.kr"
 
-# 💡 인포맥스 쿠키 (만료 시 이 부분만 교체하세요)
 MY_COOKIE = "__utma=124704158.256945133.1773035052.1775713264.1775715334.17; __utmz=124704158.1773035052.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.1.256945133.1773035052; _ga_DV8PW0Y6Y0=GS2.1.s1775715333$o20$g1$t1775715334$j59$l0$h0; _gid=GA1.3.825370968.1775633534; __utmc=124704158"
 
 HEADERS = {
@@ -96,7 +95,6 @@ def parse_agencies(lines: list, agency_names: list) -> dict:
 
 def fetch_mois_schedule(now: datetime) -> dict:
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
-    
     start_of_week = now - timedelta(days=now.weekday()) 
     end_of_week = start_of_week + timedelta(days=6)     
     
@@ -114,15 +112,15 @@ def fetch_mois_schedule(now: datetime) -> dict:
             for li in soup.find_all("li"):
                 text = li.get_text(separator=" ", strip=True)
                 
-                # 💡 [정규식 완벽 개선] 내용 안의 숫자를 자르지 않도록 날짜와 요일까지만 정확히 걷어냅니다!
-                match = re.search(r"(\d+)\s*\.\s*(\d+)\s*\.?\s*(?:\([월화수목금토일]\))?\s*(.*)", text)
+                # 💡 [핵심수정] re.match로 맨 앞에 날짜가 오는 진짜 일정만 잡습니다.
+                match = re.match(r"^(\d+)\s*\.\s*(\d+)\s*\.?\s*(?:\([월화수목금토일]\))?\s*(.*)", text)
                 
                 if match:
                     month_str, day_str, content = match.groups()
                     clean_content = content.strip()
                     
-                    # 💡 [핵심 추가] 글자가 텅 비어있으면 (예: 달력 날짜칸) 깔끔하게 패스!
-                    if not clean_content:
+                    # 💡 [필터 1] 한글, 영문, 숫자가 없으면 빈 껍데기로 간주하고 버림 (빈 세모 완벽 차단)
+                    if not re.search(r'[가-힣a-zA-Z0-9]', clean_content):
                         continue
                     
                     try:
@@ -139,8 +137,26 @@ def fetch_mois_schedule(now: datetime) -> dict:
                                     clean_content = f"▲{clean_content}"
                                 else:
                                     clean_content = f"▲ {clean_content}"
+                            
+                            # 💡 [필터 2] 똑똑한 중복 제거 (장관/차관 일정 합치기)
+                            is_dup = False
+                            core_new = re.sub(r'^[▲※\s]+', '', clean_content)
+                            core_new = re.sub(r'^\d{2}:\d{2}\s*', '', core_new).strip()
+                            
+                            for existing in result["행정안전부"][date_key]:
+                                core_ext = re.sub(r'^[▲※\s]+', '', existing)
+                                core_ext = re.sub(r'^\d{2}:\d{2}\s*', '', core_ext).strip()
+                                
+                                # 내용이 겹치면 (예: "12주기 기억식" vs "세월호 12주기 기억식")
+                                if core_new and core_ext and (core_new in core_ext or core_ext in core_new):
+                                    is_dup = True
+                                    # 더 상세하고 긴 내용으로 교체 (시간이 적혀있는 등)
+                                    if len(clean_content) > len(existing):
+                                        result["행정안전부"][date_key].remove(existing)
+                                        result["행정안전부"][date_key].append(clean_content)
+                                    break
                                     
-                            if clean_content not in result["행정안전부"][date_key]:
+                            if not is_dup:
                                 result["행정안전부"][date_key].append(clean_content)
                     except ValueError:
                         continue
