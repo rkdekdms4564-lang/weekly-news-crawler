@@ -4,7 +4,7 @@ import json
 import os
 import re
 import subprocess  # 💡 깃허브 전송을 위한 도구
-from datetime import datetime
+from datetime import datetime, timedelta
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -100,22 +100,52 @@ def parse_agencies(lines: list, agency_names: list) -> dict:
 
 def fetch_mois_schedule(now: datetime) -> dict:
     mois_url = f"https://www.mois.go.kr/mns/a03/selectGpScheduleCalendar.do?cat=90010001&year={now.year}&month={now.month}&day={now.day}"
+    print(f"\n📰 행정안전부 홈페이지 수집 중... ({mois_url})")
+    
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
+    
+    # 💡 [핵심] 이번 주 월요일과 일요일 날짜를 정확히 계산합니다!
+    start_of_week = now - timedelta(days=now.weekday()) # 이번 주 월요일
+    end_of_week = start_of_week + timedelta(days=6)     # 이번 주 일요일
+    
     try:
         res = requests.get(mois_url, headers=HEADERS, timeout=10, verify=False)
         soup = BeautifulSoup(res.text, "html.parser")
         result = {"행정안전부": {}}
+        
         for li in soup.find_all("li"):
             text = li.get_text(separator=" ", strip=True)
-            match = re.match(r"^(\d+)\.(\d+)\.\s+(\d{2}:\d{2})\s+(.+)", text)
+            # 💡 시간 형식이 달라도 무조건 '월. 일. 내용' 구조면 다 잡도록 정규식 완화
+            match = re.match(r"^(\d+)\s*\.\s*(\d+)\s*\.\s*(.+)", text)
+            
             if match:
-                month, day, time, event = match.groups()
-                d = datetime(now.year, int(month), int(day))
-                date_key = f"{int(month)}월 {int(day)}일({weekdays[d.weekday()]})"
-                if date_key not in result["행정안전부"]: result["행정안전부"][date_key] = []
-                result["행정안전부"][date_key].append(f"▲{time} {event}")
+                month_str, day_str, content = match.groups()
+                
+                try:
+                    event_date = datetime(now.year, int(month_str), int(day_str))
+                    
+                    # 💡 이번 주(월~일) 안에 들어가는 일정인지 검사!
+                    if start_of_week.date() <= event_date.date() <= end_of_week.date():
+                        date_key = f"{int(month_str)}월 {int(day_str)}일({weekdays[event_date.weekday()]})"
+                        
+                        if date_key not in result["행정안전부"]:
+                            result["행정안전부"][date_key] = []
+                        
+                        # 시간이 적혀있으면 그대로 붙이고, 없으면 그냥 내용만 붙이기
+                        if re.match(r"^\d{2}:\d{2}", content):
+                            item = f"▲{content}"
+                        else:
+                            item = f"▲ {content}"
+                            
+                        if item not in result["행정안전부"][date_key]:
+                            result["행정안전부"][date_key].append(item)
+                except ValueError:
+                    continue # 날짜 변환 실패 시 무시
+                    
         return result
-    except: return {"행정안전부": {}}
+    except Exception as e:
+        print(f"❌ 행정안전부 수집 실패: {e}")
+        return {"행정안전부": {}}
 
 def push_to_github(week_key):
     """💡 수집된 데이터를 깃허브에 자동으로 배달합니다."""
