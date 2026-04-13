@@ -46,8 +46,14 @@ BOK_SEARCH_URL = "https://news.einfomax.co.kr/news/articleList.html?sc_area=A&vi
 # 2. 핵심 함수 모음
 # ==========================================
 def get_week_key(date: datetime) -> str:
+    """💡 달력 기준(월요일 시작)으로 정확한 주차를 계산하는 함수"""
     month = f"{date.month:02d}"
-    week_of_month = (date.day - 1) // 7 + 1
+    # 이번 달 1일의 요일 구하기 (월:0, 화:1, 수:2 ... 일:6)
+    first_day = date.replace(day=1)
+    # 날짜에 1일의 요일 인덱스를 더해서 달력상의 진짜 주차를 계산
+    adjusted_day = date.day + first_day.weekday()
+    week_of_month = (adjusted_day - 1) // 7 + 1
+    
     return f"{date.year}-{month}-W{week_of_month:02d}"
 
 def get_latest_article_from_search(search_url: str) -> str:
