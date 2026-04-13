@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 import json
 import os
 import re
-import subprocess  # 💡 깃허브 전송을 위한 도구
-from datetime import datetime
+import subprocess
+from datetime import datetime, timedelta  # 💡 [수정됨] timedelta 추가
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -46,14 +46,10 @@ BOK_SEARCH_URL = "https://news.einfomax.co.kr/news/articleList.html?sc_area=A&vi
 # 2. 핵심 함수 모음
 # ==========================================
 def get_week_key(date: datetime) -> str:
-    """💡 달력 기준(월요일 시작)으로 정확한 주차를 계산하는 함수"""
     month = f"{date.month:02d}"
-    # 이번 달 1일의 요일 구하기 (월:0, 화:1, 수:2 ... 일:6)
     first_day = date.replace(day=1)
-    # 날짜에 1일의 요일 인덱스를 더해서 달력상의 진짜 주차를 계산
     adjusted_day = date.day + first_day.weekday()
     week_of_month = (adjusted_day - 1) // 7 + 1
-    
     return f"{date.year}-{month}-W{week_of_month:02d}"
 
 def get_latest_article_from_search(search_url: str) -> str:
@@ -98,29 +94,71 @@ def parse_agencies(lines: list, agency_names: list) -> dict:
             result[current_agency][current_date].append(line)
     return result
 
+# 💡 [수정됨] 행안부 19일 싹쓸이 함수
 def fetch_mois_schedule(now: datetime) -> dict:
-    mois_url = f"https://www.mois.go.kr/mns/a03/selectGpScheduleCalendar.do?cat=90010001&year={now.year}&month={now.month}&day={now.day}"
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
-    try:
-        res = requests.get(mois_url, headers=HEADERS, timeout=10, verify=False)
-        soup = BeautifulSoup(res.text, "html.parser")
-        result = {"행정안전부": {}}
-        for li in soup.find_all("li"):
-            text = li.get_text(separator=" ", strip=True)
-            match = re.match(r"^(\d+)\.(\d+)\.\s+(\d{2}:\d{2})\s+(.+)", text)
-            if match:
-                month, day, time, event = match.groups()
-                d = datetime(now.year, int(month), int(day))
-                date_key = f"{int(month)}월 {int(day)}일({weekdays[d.weekday()]})"
-                if date_key not in result["행정안전부"]: result["행정안전부"][date_key] = []
-                result["행정안전부"][date_key].append(f"▲{time} {event}")
-        return result
-    except: return {"행정안전부": {}}
+    
+    start_of_week = now - timedelta(days=now.weekday()) # 이번 주 월요일
+    end_of_week = start_of_week + timedelta(days=6)     # 이번 주 일요일
+    
+    # 💡 일~토 달력 문제를 해결하기 위해 월요일, 일요일 두 번 찌릅니다
+    target_dates = [start_of_week, end_of_week]
+    result = {"행정안전부": {}}
+    
+    for target in target_dates:
+        mois_url = f"https://www.mois.go.kr/mns/a03/selectGpScheduleCalendar.do?cat=90010001&year={target.year}&month={target.month}&day={target.day}"
+        print(f"\n📰 행안부 홈페이지 찌르는 중... ({target.month}월 {target.day}일 기준)")
+        
+        try:
+            res = requests.get(mois_url, headers=HEADERS, timeout=10, verify=False)
+            soup = BeautifulSoup(res.text, "html.parser")
+            
+            for li in soup.find_all("li"):
+                text = li.get_text(separator=" ", strip=True)
+                
+                # 💡 "4.19(일) 10:00" 등 모든 형태를 잡아내는 강력한 탐지기
+                match = re.search(r"(\d+)\s*\.\s*(\d+)[^\d]*(.*)", text)
+                
+                if match:
+                    month_str, day_str, content = match.groups()
+                    
+                    try:
+                        event_date = datetime(target.year, int(month_str), int(day_str))
+                        
+                        # 이번 주 월~일 사이의 일정만 쏙쏙 담기
+                        if start_of_week.date() <= event_date.date() <= end_of_week.date():
+                            date_key = f"{int(month_str)}월 {int(day_str)}일({weekdays[event_date.weekday()]})"
+                            
+                            if date_key not in result["행정안전부"]:
+                                result["행정안전부"][date_key] = []
+                            
+                            clean_content = content.strip()
+                            if not clean_content.startswith("▲") and not clean_content.startswith("※"):
+                                if re.match(r"^\d{2}:\d{2}", clean_content):
+                                    clean_content = f"▲{clean_content}"
+                                else:
+                                    clean_content = f"▲ {clean_content}"
+                                    
+                            if clean_content not in result["행정안전부"][date_key]:
+                                result["행정안전부"][date_key].append(clean_content)
+                    except ValueError:
+                        continue
+        except Exception as e:
+            print(f"❌ 행정안전부 수집 실패 ({target.day}일 기준): {e}")
+            
+    return result
 
+# 💡 [수정됨] 에러 안 뱉는 똑똑한 배달 함수
 def push_to_github(week_key):
-    """💡 수집된 데이터를 깃허브에 자동으로 배달합니다."""
     try:
         print("\n🚀 깃허브로 배달을 시작합니다...")
+        
+        # 💡 변경된 파일이 있는지 싹 검사
+        status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        if not status.stdout.strip():
+            print("✨ 새로 추가되거나 변경된 일정이 없습니다. (이전과 100% 동일함)")
+            return
+
         subprocess.run(["git", "add", "."], check=True)
         commit_msg = f"Update schedule: {week_key} ({datetime.now().strftime('%Y-%m-%d %H:%M')})"
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
@@ -159,7 +197,7 @@ def main():
             json.dump({"week": week_key, "date": date_str, "agencies": all_agencies}, f, ensure_ascii=False, indent=2)
         print(f"✅ 데이터 저장 완료 ({len(all_agencies)}개 기관)")
         
-        # 💡 수집 종료 후 바로 깃허브 자동 업로드!
+        # 수집 종료 후 바로 깃허브 자동 업로드
         push_to_github(week_key)
     else:
         print("❌ 수집된 데이터가 없습니다.")
