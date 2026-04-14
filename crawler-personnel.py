@@ -53,20 +53,36 @@ def fetch_daum_news_and_summarize(agency, keyword, sd_str, ed_str):
     print(f"🔍 [{agency}] {keyword} 기사 찾는 중...")
     try:
         res = requests.get(url, headers=HEADERS, timeout=10)
+        res.raise_for_status() # 인터넷 연결 에러 방어막
         soup = BeautifulSoup(res.text, "html.parser")
         
-        snippets = [p.get_text(strip=True) for p in soup.select("p.conts_desc")]
-            
+        # 💡 [핵심 수정] Daum의 이름표가 바뀌어도 잡히도록 여러 그물을 동시에 던집니다!
+        snippets = []
+        
+        # 1차 그물: 최신 뉴스 리스트 구조
+        news_items = soup.select("ul.c-list-basic > li, div.wrap_cont, div.cont_info")
+        
+        if news_items:
+            for item in news_items:
+                # 기사 '제목'과 '요약문'을 모두 합쳐서 가져옵니다. (제목에 "[인사]"가 있는지 파악하기 위함)
+                snippets.append(item.get_text(separator=" ", strip=True))
+        else:
+            # 2차 그물: 구조가 완전히 달라도 '뉴스 묶음' 전체를 긁어옵니다.
+            news_section = soup.select_one("#dnsColl, #newsColl")
+            if news_section:
+                snippets.append(news_section.get_text(separator=" ", strip=True))
+                
+        # 그물에 아무것도 안 잡혔을 때
         if not snippets:
+            print(f"  ⚠️ 기사 텍스트를 찾지 못했습니다. (해당 없음 처리)")
             return "해당 없음"
             
         combined_text = "\n".join(snippets)
         
-        # 💡 해당 내용이 없으면 '해당 없음'으로 답하도록 프롬프트 수정
         prompt = f"""
-        다음은 '{agency}'의 '{keyword}'와 관련된 최근 뉴스 기사 요약본들이야.
+        다음은 '{agency}'의 '{keyword}'와 관련된 최근 뉴스 기사 검색 결과야. (제목과 요약문 포함)
         이 내용 중에서 실제 인사 이동이나 부고 내역을 추출해서 아래 형식으로만 대답해줘. 
-        해당 내용이 없거나 전혀 관련 없는 동명이인 등의 기사면 오직 '해당 없음'이라고만 대답해. (설명 추가 절대 금지)
+        해당 내용이 없거나 전혀 관련 없는 기사면 오직 '해당 없음'이라고만 대답해. (설명 추가 절대 금지)
 
         [출력 형식 예시 - 인사]
         ◇ 국장급 승진
@@ -84,7 +100,7 @@ def fetch_daum_news_and_summarize(agency, keyword, sd_str, ed_str):
         response = model.generate_content(prompt)
         result = response.text.strip()
         
-        time.sleep(3) # API 무료 한도(분당 15회) 보호용 3초 대기
+        time.sleep(3) # API 제한 보호용 대기
         
         if not result or "해당 없음" in result:
             return "해당 없음"
