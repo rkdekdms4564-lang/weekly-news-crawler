@@ -62,10 +62,11 @@ def get_search_dates(now: datetime):
 # 4. 네이버 뉴스 API 검색 및 스마트 필터링 + AI 요약
 # ==========================================
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
-    search_query = f"{agency} {keyword}"
+    # 💡 [핵심 최적화 1] 쌍따옴표를 이용해 "[인사] 부처명" 정확한 문구 검색
+    search_query = f'"[{keyword}] {agency}"'
     
-    # 💡 최신 기사 10개만 가볍게 가져오기 (display=10)
-    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=100&sort=sim"
+    # 💡 [핵심 최적화 2] 최신순(sort=date)으로 딱 5개(display=5)만 가져오기
+    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=5&sort=date"
     
     headers = {
         "X-Naver-Client-Id": NAVER_CLIENT_ID,
@@ -89,13 +90,12 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
             if start_date <= pub_date_obj <= end_date:
                 title = BeautifulSoup(item['title'], "html.parser").get_text()
                 
-                # 💡 [핵심 최적화] 기사 제목에 "[인사]" 또는 "[부고]"가 포함된 것만 낚아챕니다!
-                if f"[{keyword}]" in title:
+                # 쌍따옴표 검색으로 이미 걸러졌지만, 혹시 모를 예외를 위해 한 번 더 안전장치
+                if f"[{keyword}]" in title or f"<{keyword}>" in title or f"◆ {keyword}" in title or f"■ {keyword}" in title:
                     desc = BeautifulSoup(item['description'], "html.parser").get_text()
                     snippets.append(f"[제목: {title}] 내용: {desc}")
                 
         if not snippets:
-            # 💡 걸러진 기사가 없다면 제미나이를 호출하지 않고 즉시 종료 (15초 대기 안 함!)
             print(f" ➔ 관련 기사 없음 (패스 ⚡)")
             return "해당 없음"
             
@@ -123,7 +123,7 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
         response = model.generate_content(prompt)
         result = response.text.strip()
         
-        # 제미나이를 '실제로 호출했을 때만' 15초를 쉽니다.
+        # 제미나이를 호출했을 때만 15초 대기
         time.sleep(15) 
         
         if not result or "해당 없음" in result:
