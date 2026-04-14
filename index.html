@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <title>주간 보도계획 및 주요일정</title>
-
-  <meta property="og:title" content="주간 보도계획 및 주요일정">
-  <meta property="og:description" content="금융위·금감원·과기부·방통위·행안부 주간 일정 안내">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rkdekdms4564-lang.github.io/weekly-news-crawler/">
-  
-  <style>
-    /* 여기서부터는 기존 스타일 코드 그대로 두시면 됩니다 */
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>주요 부처 주간 일정 및 인사/부고</title>
+<meta property="og:title" content="주요 부처 주간 일정 및 인사/부고">
+<meta property="og:description" content="경제부처 주간 보도계획 및 일일 인사/부고 모니터링">
+<meta property="og:type" content="website">
+<style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; }
+  
   header { background: #1a3a5c; color: white; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
   .header-title { font-size: 1.15rem; font-weight: 700; }
   .header-sub { font-size: 0.72rem; opacity: 0.7; margin-top: 0.2rem; }
-  .week-selector { display: flex; align-items: center; gap: 0.5rem; }
-  .week-selector label { font-size: 0.8rem; opacity: 0.8; }
-  select#weekSelect { font-family: 'Noto Sans KR', sans-serif; font-size: 0.85rem; background: white; color: #1a3a5c; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-weight: 500; }
+  
+  .tabs { display: flex; background: #fff; border-bottom: 1px solid #ddd; padding: 0 2rem; }
+  .tab-btn { padding: 1rem 2rem; border: none; background: none; font-family: inherit; font-size: 0.95rem; font-weight: 500; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
+  .tab-btn.active { color: #1a3a5c; font-weight: 700; border-bottom: 3px solid #1a3a5c; }
+  
+  .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; justify-content: flex-end; }
+  select { font-family: inherit; font-size: 0.85rem; padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+  
   main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
-  .week-info { font-size: 0.85rem; font-weight: bold; color: #1a3a5c; margin-bottom: 1.2rem; }
-  .agency-section { margin-bottom: 2.5rem; border: 1px solid #c8d4e0; border-radius: 4px; overflow: hidden; }
-  .agency-header { background: #d9d9d9; text-align: center; padding: 0.55rem 1rem; font-size: 0.92rem; font-weight: 700; color: #1a1a1a; border-bottom: 1px solid #b0b8c4; }
-  table { width: 100%; border-collapse: collapse; background: white; }
+  .content-section { display: none; }
+  .content-section.active { display: block; }
+  
+  .agency-section { margin-bottom: 2.5rem; border: 1px solid #c8d4e0; border-radius: 4px; overflow: hidden; background: white;}
+  .agency-header { background: #d9d9d9; padding: 0.55rem 1rem; font-size: 0.92rem; font-weight: 700; color: #1a1a1a; border-bottom: 1px solid #b0b8c4; text-align: center; }
+  table { width: 100%; border-collapse: collapse; }
   tr { border-bottom: 1px solid #e4eaf0; }
-  tr:last-child { border-bottom: none; }
-  td.date-cell { width: 120px; min-width: 100px; padding: 0.65rem 0.9rem; font-size: 0.82rem; font-weight: 700; color: #1a3a5c; background: #f4f7fa; vertical-align: middle; border-right: 1px solid #c8d4e0; white-space: nowrap; text-align: center; }
-  td.items-cell { padding: 0.5rem 1rem; vertical-align: top; }
-  .item { font-size: 0.82rem; line-height: 1.7; padding: 0.1rem 0; display: flex; gap: 0.3rem; }
-  .item-schedule { color: #1a1a1a; }
-  .item-press { color: #555; }
-  .no-item { font-size: 0.82rem; color: #aaa; padding: 0.2rem 0; }
+  td { padding: 0.8rem 1rem; vertical-align: top; font-size: 0.85rem; line-height: 1.6; }
+  td.date-cell { width: 150px; font-weight: 700; color: #1a3a5c; background: #f4f7fa; border-right: 1px solid #c8d4e0; text-align: center; vertical-align: middle; }
+  
+  /* 인사부고 카드 기본 (내용 있음) */
+  .news-card { border-left: 4px solid #1a3a5c; background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .news-agency { font-weight: bold; color: #1a3a5c; margin-bottom: 0.5rem; font-size: 0.9rem;}
+  .news-content { font-size: 0.85rem; white-space: pre-line; line-height: 1.6; }
+  .news-badge { display: inline-block; padding: 0.2rem 0.5rem; background: #e3e8ee; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.5rem; font-weight: bold; color: #333;}
+  
+  /* 인사부고 카드 예외 (해당 없음) */
+  .news-card.empty { border-left: 4px solid #ccc; box-shadow: none; border: 1px solid #eee; border-left: 4px solid #ccc;}
+  .news-card.empty .news-agency { color: #999; }
+  .news-card.empty .news-content { color: #aaa; }
+  
   #status { text-align: center; padding: 4rem 0; font-size: 0.9rem; color: #666; }
 </style>
 </head>
@@ -44,163 +52,130 @@
 
 <header>
   <div>
-    <div class="header-title">주간 보도계획 및 주요일정</div>
-    <div class="header-sub">금융위원회 · 금융감독원 · 과학기술정보통신부 · 방송미디어통신위원회 · 행정안전부</div>
-  </div>
-  <div class="week-selector">
-    <label for="weekSelect">주차 선택</label>
-    <select id="weekSelect"></select>
+    <div class="header-title">주요 부처 모니터링 대시보드</div>
+    <div class="header-sub">주간 보도계획 및 일일 인사/부고 자동화 시스템</div>
   </div>
 </header>
 
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('schedule')">🗓️ 주간 경제부처 일정</button>
+  <button class="tab-btn" onclick="switchTab('personnel')">👤 일일 인사 / 부고</button>
+</div>
+
+<div class="controls" id="controls-schedule">
+  <label style="font-size: 0.85rem;">주차 선택:</label>
+  <select id="weekSelect"></select>
+</div>
+<div class="controls" id="controls-personnel" style="display: none;">
+  <label style="font-size: 0.85rem;">날짜 선택:</label>
+  <select id="dateSelect"></select>
+</div>
+
 <main>
   <div id="status">데이터 불러오는 중...</div>
-  <div id="content"></div>
+  <div id="section-schedule" class="content-section active"></div>
+  <div id="section-personnel" class="content-section"></div>
 </main>
 
 <script>
-const AGENCY_ORDER = [ "금융위원회", "금융감독원", "과학기술정보통신부", "방송미디어통신위원회", "행정안전부" ];
-
-const sel     = document.getElementById("weekSelect");
-const content = document.getElementById("content");
-const status  = document.getElementById("status");
-
-// 💡 2026-04-W02 형식을 "2026년 4월 2주차"로 예쁘게 바꿔주는 마법의 함수!
-function formatWeekLabel(key) {
-  try {
-    const parts = key.split('-');
-    const year = parts[0];
-    const month = parseInt(parts[1], 10);
-    const week = parseInt(parts[2].replace('W', ''), 10);
-    return `${year}년 ${month}월 ${week}주차`;
-  } catch(e) {
-    return key;
-  }
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(`section-${tabId}`).classList.add('active');
+  document.getElementById('controls-schedule').style.display = tabId === 'schedule' ? 'flex' : 'none';
+  document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
 }
 
-async function loadWeekList() {
+async function loadSchedules() {
+  const sel = document.getElementById("weekSelect");
   try {
-    // 💡 깃허브에게 "data 폴더에 무슨 파일 있어?"라고 공식적으로 물어보는 주소입니다.
-    const response = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data");
-    const files = await response.json();
+    const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data");
+    const files = await res.json();
+    const weeks = files.map(f => f.name.replace(".json", "")).filter(n => n.includes("W")).sort().reverse();
     
-    // 1. 파일 목록 중 .json으로 끝나는 것만 골라내기
-    // 2. 파일명에서 .json 글자 지우기 (예: 2026-04-W02)
-    // 3. 최신순으로 정렬하기
-    return files
-      .map(file => file.name)
-      .filter(name => name.endsWith(".json"))
-      .map(name => name.replace(".json", ""))
-      .sort()
-      .reverse();
-  } catch (error) {
-    console.error("파일 목록을 가져오는데 실패했습니다:", error);
-    return [];
-  }
-}
-
-async function loadWeekData(weekKey) {
-  const res = await fetch(`data/${weekKey}.json`);
-  if (!res.ok) throw new Error("파일 없음");
-  return res.json();
-}
-
-function renderAgency(name, dateMap) {
-  const section = document.createElement("div");
-  section.className = "agency-section";
-
-  const header = document.createElement("div");
-  header.className = "agency-header";
-  header.textContent = name;
-  section.appendChild(header);
-
-  const table = document.createElement("table");
-  const dates = Object.keys(dateMap);
-
-  if (dates.length === 0) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td colspan="2" style="padding:0.8rem 1rem; color:#aaa; font-size:0.82rem;">일정 없음</td>`;
-    table.appendChild(tr);
-  } else {
-    dates.forEach(date => {
-      const items = dateMap[date];
-      const tr = document.createElement("tr");
-
-      const tdDate = document.createElement("td");
-      tdDate.className = "date-cell";
-      tdDate.textContent = date;
-      tr.appendChild(tdDate);
-
-      const tdItems = document.createElement("td");
-      tdItems.className = "items-cell";
-
-      if (!items || items.length === 0) {
-        const d = document.createElement("div");
-        d.className = "no-item";
-        d.textContent = "- 특이 일정 없음";
-        tdItems.appendChild(d);
-      } else {
-        items.forEach(item => {
-          const d = document.createElement("div");
-          const isSchedule = item.startsWith("▲");
-          d.className = "item " + (isSchedule ? "item-schedule" : "item-press");
-          d.textContent = item;
-          tdItems.appendChild(d);
-        });
-      }
-      tr.appendChild(tdItems);
-      table.appendChild(tr);
+    weeks.forEach(w => {
+      const opt = document.createElement("option"); opt.value = w; opt.textContent = w; sel.appendChild(opt);
     });
-  }
-  section.appendChild(table);
-  return section;
+    
+    sel.addEventListener("change", async () => {
+      const data = await (await fetch(`data/${sel.value}.json`)).json();
+      const container = document.getElementById("section-schedule");
+      container.innerHTML = "";
+      const agencies = ["금융위원회", "금융감독원", "과학기술정보통신부", "방송미디어통신위원회", "행정안전부"];
+      agencies.forEach(name => {
+        if(!data.agencies[name]) return;
+        let html = `<div class="agency-section"><div class="agency-header">${name}</div><table>`;
+        const dates = Object.keys(data.agencies[name]);
+        if(dates.length === 0) {
+            html += `<tr><td colspan="2" style="text-align:center; color:#999;">일정 없음</td></tr>`;
+        } else {
+            dates.forEach(date => {
+            const items = data.agencies[name][date];
+            html += `<tr><td class="date-cell">${date}</td><td>`;
+            items.forEach(item => html += `<div style="margin-bottom: 4px;">${item}</div>`);
+            html += `</td></tr>`;
+            });
+        }
+        html += `</table></div>`;
+        container.innerHTML += html;
+      });
+    });
+    if(weeks.length > 0) sel.dispatchEvent(new Event("change"));
+  } catch(e) { console.log("일정 없음"); }
 }
 
-async function onWeekChange() {
-  const weekKey = sel.value;
-  if (!weekKey) return;
-
-  content.innerHTML = "";
-  status.style.display = "block";
-  status.textContent = "불러오는 중...";
-
+async function loadPersonnel() {
+  const sel = document.getElementById("dateSelect");
   try {
-    const data = await loadWeekData(weekKey);
-    status.style.display = "none";
-
-    const info = document.createElement("div");
-    info.className = "week-info";
-    // 화면에 표시될 때 예쁜 라벨로 보여줍니다!
-    info.textContent = `📅 ${formatWeekLabel(data.week)}  |  수집일: ${data.date}`;
-    content.appendChild(info);
-
-    const agencies = data.agencies || {};
-    AGENCY_ORDER.forEach(name => {
-      content.appendChild(renderAgency(name, agencies[name] || {}));
+    const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data_personnel");
+    const files = await res.json();
+    const dates = files.filter(f => f.name.endsWith(".json")).map(f => f.name.replace(".json", "")).sort().reverse();
+    
+    dates.forEach(d => {
+      const opt = document.createElement("option"); opt.value = d; opt.textContent = d; sel.appendChild(opt);
     });
-  } catch (e) {
-    status.textContent = "데이터를 불러올 수 없습니다. crawler.py를 먼저 실행하세요.";
-  }
+    
+    sel.addEventListener("change", async () => {
+      const data = await (await fetch(`data_personnel/${sel.value}.json`)).json();
+      const container = document.getElementById("section-personnel");
+      container.innerHTML = `<div style="margin-bottom: 1rem; font-weight: bold; color: #1a3a5c;">수집 기간: ${data.period}</div>`;
+      
+      // 인사 렌더링
+      if(data["인사"] && Object.keys(data["인사"]).length > 0) {
+        container.innerHTML += `<h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 인사</h3>`;
+        for (const [agency, text] of Object.entries(data["인사"])) {
+          const isEmpty = (text === "해당 없음");
+          container.innerHTML += `
+            <div class="news-card ${isEmpty ? 'empty' : ''}">
+              ${isEmpty ? '' : '<div class="news-badge">인사</div>'}
+              <div class="news-agency">[${agency}]</div>
+              <div class="news-content">${text}</div>
+            </div>`;
+        }
+      }
+      
+      // 부고 렌더링
+      if(data["부고"] && Object.keys(data["부고"]).length > 0) {
+        container.innerHTML += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 부고</h3>`;
+        for (const [agency, text] of Object.entries(data["부고"])) {
+          const isEmpty = (text === "해당 없음");
+          container.innerHTML += `
+            <div class="news-card ${isEmpty ? 'empty' : ''}">
+              ${isEmpty ? '' : '<div class="news-badge" style="background:#ffebee; color:#c62828;">부고</div>'}
+              <div class="news-agency">[${agency}]</div>
+              <div class="news-content">${text}</div>
+            </div>`;
+        }
+      }
+    });
+    if(dates.length > 0) sel.dispatchEvent(new Event("change"));
+  } catch(e) { console.log("인사 데이터 없음"); }
 }
 
-async function init() {
-  const weeks = await loadWeekList();
-  if (weeks.length === 0) {
-    status.textContent = "저장된 데이터가 없습니다. crawler.py를 먼저 실행하세요.";
-    return;
-  }
-  weeks.forEach(w => {
-    const opt = document.createElement("option");
-    opt.value = w;
-    // 드롭다운 메뉴에도 예쁜 라벨을 씌워줍니다!
-    opt.textContent = formatWeekLabel(w); 
-    sel.appendChild(opt);
-  });
-  sel.addEventListener("change", onWeekChange);
-  onWeekChange();
-}
-
-init();
+document.getElementById("status").style.display = "none";
+loadSchedules();
+loadPersonnel();
 </script>
 </body>
 </html>
