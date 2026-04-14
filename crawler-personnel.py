@@ -65,7 +65,7 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
     search_query = f"{agency} {keyword}"
     
     # 💡 최신 기사 10개만 가볍게 가져오기 (display=10)
-    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=10&sort=date"
+    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=100&sort=sim"
     
     headers = {
         "X-Naver-Client-Id": NAVER_CLIENT_ID,
