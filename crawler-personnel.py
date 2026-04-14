@@ -11,21 +11,20 @@ import google.generativeai as genai
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ==========================================
-# 1. API 키 금고에서 꺼내오기 (절대 코드에 직접 적지 마세요!)
+# 1. API 키 금고에서 꺼내오기
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 🔑 구글 Gemini 키 불러오기
 try:
     with open(os.path.join(BASE_DIR, "secret.txt"), "r") as f:
         GOOGLE_API_KEY = f.read().strip()
     genai.configure(api_key=GOOGLE_API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash') # 속도/안정성을 위해 1.5-flash 강력 추천!
+    # 💡 gemini-2.5-flash 모델 적용
+    model = genai.GenerativeModel('gemini-2.5-flash')
 except Exception as e:
     print("❌ secret.txt 파일이 없거나 구글 API 키를 읽을 수 없습니다.")
     exit()
 
-# 🔑 네이버 API 키 불러오기
 try:
     with open(os.path.join(BASE_DIR, "secret_naver.txt"), "r") as f:
         naver_keys = f.read().strip().split('\n')
@@ -47,34 +46,33 @@ AGENCIES = [
 DATA_DIR = os.path.join(BASE_DIR, "data_personnel")
 
 # ==========================================
-# 3. 날짜 계산 (월요일은 3일치, 평일은 1일치)
+# 3. 날짜 계산
 # ==========================================
 def get_search_dates(now: datetime):
-    # 시간을 00:00:00부터 23:59:59로 깔끔하게 맞춥니다.
     end_date = now.replace(hour=23, minute=59, second=59)
-    if now.weekday() == 0: # 월요일이면 지난주 금요일 00시부터
+    if now.weekday() == 0: 
         start_date = (now - timedelta(days=3)).replace(hour=0, minute=0, second=0)
-    else: # 평일이면 어제 00시부터
+    else: 
         start_date = (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
         
     period_label = f"{start_date.strftime('%m.%d')} ~ {now.strftime('%m.%d')}"
     return start_date, end_date, period_label
 
 # ==========================================
-# 4. 네이버 뉴스 API 검색 및 AI 요약
+# 4. 네이버 뉴스 API 검색 및 스마트 필터링 + AI 요약
 # ==========================================
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
     search_query = f"{agency} {keyword}"
     
-    # 네이버 뉴스 API 주소 (정확도순이 아닌 최신순(date)으로 최대 50개 호출)
-    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=50&sort=date"
+    # 💡 최신 기사 10개만 가볍게 가져오기 (display=10)
+    url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=10&sort=date"
     
     headers = {
         "X-Naver-Client-Id": NAVER_CLIENT_ID,
         "X-Naver-Client-Secret": NAVER_CLIENT_SECRET
     }
     
-    print(f"🔍 [{agency}] {keyword} 네이버 기사 찾는 중...")
+    print(f"🔍 [{agency}] {keyword} 검색 중...", end="")
     try:
         res = requests.get(url, headers=headers, timeout=10)
         res.raise_for_status()
@@ -82,31 +80,32 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
         
         snippets = []
         for item in data.get('items', []):
-            # 네이버의 날짜 형식(예: Tue, 14 Apr 2026 15:32:00 +0900)을 파이썬 시간으로 변환
             pub_date_str = item['pubDate']
             try:
-                # 맨 뒤의 +0900을 자르고 변환
                 pub_date_obj = datetime.strptime(pub_date_str[:-6], "%a, %d %b %Y %H:%M:%S")
             except:
                 continue
                 
-            # 우리가 원하는 수집 기간(1일~3일) 안에 들어오는 기사만 쏙쏙 뽑기
             if start_date <= pub_date_obj <= end_date:
-                # <b> 태그 등 HTML 찌꺼기 제거
                 title = BeautifulSoup(item['title'], "html.parser").get_text()
-                desc = BeautifulSoup(item['description'], "html.parser").get_text()
-                snippets.append(f"[제목: {title}] 내용: {desc}")
+                
+                # 💡 [핵심 최적화] 기사 제목에 "[인사]" 또는 "[부고]"가 포함된 것만 낚아챕니다!
+                if f"[{keyword}]" in title:
+                    desc = BeautifulSoup(item['description'], "html.parser").get_text()
+                    snippets.append(f"[제목: {title}] 내용: {desc}")
                 
         if not snippets:
+            # 💡 걸러진 기사가 없다면 제미나이를 호출하지 않고 즉시 종료 (15초 대기 안 함!)
+            print(f" ➔ 관련 기사 없음 (패스 ⚡)")
             return "해당 없음"
             
+        print(f" ➔ 찐 기사 발견! (AI 분석 중 🧠)")
         combined_text = "\n".join(snippets)
         
-        # 제미나이에게 지시
         prompt = f"""
-        다음은 네이버 뉴스에서 '{agency}'의 '{keyword}'와 관련된 최근 기사 검색 결과(제목과 내용)야.
+        다음은 네이버 뉴스에서 '{agency}'의 '{keyword}'와 관련된 찐 기사 모음이야.
         이 내용 중에서 실제 인사 이동이나 부고 내역을 추출해서 아래 형식으로만 대답해줘. 
-        해당 내용이 없거나 전혀 관련 없는 동명이인 기사면 오직 '해당 없음'이라고만 대답해. (설명 추가 절대 금지)
+        만약 본문이 비어있거나 에러면 '해당 없음'이라고 해. (설명 추가 절대 금지)
 
         [출력 형식 예시 - 인사]
         ◇ 국장급 승진
@@ -124,7 +123,8 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
         response = model.generate_content(prompt)
         result = response.text.strip()
         
-        time.sleep(4) # 제미나이 API 제한 보호 (4초 대기)
+        # 제미나이를 '실제로 호출했을 때만' 15초를 쉽니다.
+        time.sleep(15) 
         
         if not result or "해당 없음" in result:
             return "해당 없음"
@@ -132,7 +132,7 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date):
         return result
 
     except Exception as e:
-        print(f"❌ 검색 에러 ({agency}): {e}")
+        print(f"❌ 검색 에러: {e}")
         return "해당 없음"
 
 # ==========================================
@@ -154,7 +154,7 @@ def main():
     start_date, end_date, period_label = get_search_dates(now)
     date_key = now.strftime("%Y-%m-%d")
     
-    print(f"📅 네이버 인사/부고 수집 시작 (기간: {period_label})")
+    print(f"📅 네이버 인사/부고 초고속 수집 시작 (기간: {period_label})\n")
     
     final_data = {
         "date": date_key,
