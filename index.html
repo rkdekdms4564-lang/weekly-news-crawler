@@ -45,7 +45,7 @@
   /* 인사부고 카드 기본 (내용 있음) */
   .news-card { border-left: 4px solid #1a3a5c; background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
   .news-agency { font-weight: bold; color: #1a3a5c; margin-bottom: 0.5rem; font-size: 0.9rem;}
-  .news-content { font-size: 0.85rem; white-space: pre-line; line-height: 1.6; }
+  .news-content { font-size: 0.85rem; line-height: 1.6; }
   .news-badge { display: inline-block; padding: 0.2rem 0.5rem; background: #e3e8ee; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.5rem; font-weight: bold; color: #333;}
   
   /* 인사부고 카드 예외 (해당 없음) */
@@ -175,15 +175,23 @@ async function loadPersonnel() {
       const container = document.getElementById("section-personnel");
       container.innerHTML = `<div style="margin-bottom: 1rem; font-weight: bold; color: #1a3a5c;">수집 기간: ${data.period}</div>`;
       
-      // 인사 렌더링
+      // 인사 렌더링 부분
       if(data["인사"] && Object.keys(data["인사"]).length > 0) {
         container.innerHTML += `<h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 인사</h3>`;
         for (const [agency, text] of Object.entries(data["인사"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 💡 색상 제거, 굵기 500 설정, 강제 줄바꿈(<br>) 적용!
-          let formattedText = text.replace(/\n◇/g, '<br><br>◇'); 
-          formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
+          let formattedText = text;
+          if (!isEmpty) {
+            // 1. 실수로 들어온 예시 문구 삭제
+            formattedText = formattedText.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+            // 2. ◇ 앞에 줄바꿈 하나 더 추가 (위아래 여유 공간)
+            formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
+            // 3. ◇ 기호를 굵게(500) 만들기
+            formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
+            // 4. [핵심] JSON의 모든 엔터(\n)를 HTML 줄바꿈 태그(<br>)로 완벽하게 변환!
+            formattedText = formattedText.replace(/\n/g, '<br>');
+          }
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
@@ -194,15 +202,19 @@ async function loadPersonnel() {
         }
       }
       
-      // 부고 렌더링
+      // 부고 렌더링 부분 (인사와 동일하게 적용)
       if(data["부고"] && Object.keys(data["부고"]).length > 0) {
         container.innerHTML += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 부고</h3>`;
         for (const [agency, text] of Object.entries(data["부고"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 부고에도 동일하게 적용
-          let formattedText = text.replace(/\n◇/g, '<br><br>◇');
-          formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
+          let formattedText = text;
+          if (!isEmpty) {
+             formattedText = formattedText.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+             formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
+             formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
+             formattedText = formattedText.replace(/\n/g, '<br>');
+          }
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
