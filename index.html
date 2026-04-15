@@ -186,7 +186,7 @@ async function loadPersonnel() {
           const isEmpty = (text === "해당 없음");
           
           // 💡 핵심 추가: 엔터(\n) 뒤에 오는 ◇ 앞에 엔터를 하나 더(\n\n) 넣어줍니다!
-          const formattedText = text.replace(/◇/g, '<b style="font-weight: 500;">◇</b>').replace(/\n<b/g, '\n\n<b');
+          const formattedText = text.replace(/◇/g, '<b style="font-weight: 600;">◇</b>').replace(/\n<b/g, '\n\n<b');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
@@ -204,7 +204,7 @@ async function loadPersonnel() {
           const isEmpty = (text === "해당 없음");
           
           // 부고 쪽도 혹시 모를 ◇ 기호 대비!
-          const formattedText = text.replace(/◇/g, '<b style="font-weight: 500;">◇</b>').replace(/\n<b/g, '\n\n<b');
+          const formattedText = text.replace(/◇/g, '<b style="font-weight: 600;">◇</b>').replace(/\n<b/g, '\n\n<b');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
