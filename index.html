@@ -32,11 +32,11 @@
   table { width: 100%; border-collapse: collapse; }
   tr { border-bottom: 1px solid #e4eaf0; }
   
-  /* 💡 일정 탭 폰트 크기 및 여백 조정 */
+  /* 일정 탭 폰트 크기 및 여백 조정 */
   td { padding: 0.6rem 1rem; vertical-align: middle; }
   td.date-cell { width: 150px; font-weight: 700; color: #1a3a5c; background: #f4f7fa; border-right: 1px solid #c8d4e0; text-align: center; vertical-align: middle; font-size: 0.85rem; }
   
-  /* 💡 핵심 디자인: 진하게 vs 연하게 완벽 구분 */
+  /* 핵심 디자인: 진하게 vs 연하게 완벽 구분 */
   .item { font-size: 0.85rem; line-height: 1.6; padding: 0.2rem 0; }
   .item-schedule { color: #111827; font-weight: 400; } /* ▲ 일정: 까맣고 진하게 */
   .item-press { color: #6b7280; font-weight: 400; } /* ※ 보도자료: 회색으로 연하게 */
@@ -95,7 +95,6 @@ function switchTab(tabId) {
   document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
 }
 
-// 💡 2026-04-W02 형식을 "2026년 4월 2주차"로 예쁘게 바꿔주는 라벨 함수
 function formatWeekLabel(key) {
  try {
    const parts = key.split('-');
@@ -118,7 +117,7 @@ async function loadSchedules() {
     weeks.forEach(w => {
       const opt = document.createElement("option"); 
       opt.value = w; 
-      opt.textContent = formatWeekLabel(w); // 💡 드롭다운 메뉴도 예쁘게!
+      opt.textContent = formatWeekLabel(w);
       sel.appendChild(opt);
     });
     
@@ -133,7 +132,6 @@ async function loadSchedules() {
         let html = `<div class="agency-section"><div class="agency-header">${name}</div><table>`;
         const dates = Object.keys(data.agencies[name]);
         
-        // 💡 일정이 아예 없을 때 (연한 회색 처리)
         if(dates.length === 0) {
             html += `<tr><td colspan="2" style="text-align:center; padding: 1.5rem; color:#9ca3af; font-size:0.85rem;">이번 주 일정이 없습니다.</td></tr>`;
         } else {
@@ -141,11 +139,9 @@ async function loadSchedules() {
                 const items = data.agencies[name][date];
                 html += `<tr><td class="date-cell">${date}</td><td>`;
                 
-                // 💡 특이 일정이 없을 때 (연한 회색 처리)
                 if (!items || items.length === 0) {
                     html += `<div class="no-item">특이 일정 없음</div>`;
                 } else {
-                    // 💡 ▲ 기호는 진하게, 나머지는 연하게 처리하는 마법!
                     items.forEach(item => {
                         const isSchedule = item.startsWith("▲");
                         const itemClass = isSchedule ? "item-schedule" : "item-press";
@@ -185,9 +181,9 @@ async function loadPersonnel() {
         for (const [agency, text] of Object.entries(data["인사"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 💡 [완벽 수정본] 확실한 700 굵기와 테마색, 그리고 어떤 줄바꿈 상황이든 무조건 띄우는 마법!
-          let formattedText = text.replace(/◇/g, '<strong style="font-weight: 700; color: #1a3a5c;">◇</strong>');
-          formattedText = formattedText.replace(/(\r?\n)\s*(<strong)/g, '$1$1$2');
+          // 💡 색상 제거, 굵기 500 설정, 강제 줄바꿈(<br>) 적용!
+          let formattedText = text.replace(/\n◇/g, '<br><br>◇'); 
+          formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
@@ -204,9 +200,9 @@ async function loadPersonnel() {
         for (const [agency, text] of Object.entries(data["부고"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 부고 쪽도 똑같이 적용
-          let formattedText = text.replace(/◇/g, '<strong style="font-weight: 700; color: #1a3a5c;">◇</strong>');
-          formattedText = formattedText.replace(/(\r?\n)\s*(<strong)/g, '$1$1$2');
+          // 부고에도 동일하게 적용
+          let formattedText = text.replace(/\n◇/g, '<br><br>◇');
+          formattedText = formattedText.replace(/◇/g, '<span style="font-weight: 500;">◇</span>');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
