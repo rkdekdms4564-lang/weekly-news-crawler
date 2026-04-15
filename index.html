@@ -31,8 +31,16 @@
   .agency-header { background: #d9d9d9; padding: 0.55rem 1rem; font-size: 0.92rem; font-weight: 700; color: #1a1a1a; border-bottom: 1px solid #b0b8c4; text-align: center; }
   table { width: 100%; border-collapse: collapse; }
   tr { border-bottom: 1px solid #e4eaf0; }
-  td { padding: 0.8rem 1rem; vertical-align: top; font-size: 0.85rem; line-height: 1.6; }
-  td.date-cell { width: 150px; font-weight: 700; color: #1a3a5c; background: #f4f7fa; border-right: 1px solid #c8d4e0; text-align: center; vertical-align: middle; }
+  
+  /* 💡 일정 탭 폰트 크기 및 여백 조정 */
+  td { padding: 0.6rem 1rem; vertical-align: middle; }
+  td.date-cell { width: 150px; font-weight: 700; color: #1a3a5c; background: #f4f7fa; border-right: 1px solid #c8d4e0; text-align: center; vertical-align: middle; font-size: 0.85rem; }
+  
+  /* 💡 핵심 디자인: 진하게 vs 연하게 완벽 구분 */
+  .item { font-size: 0.85rem; line-height: 1.6; padding: 0.2rem 0; }
+  .item-schedule { color: #111827; font-weight: 500; } /* ▲ 일정: 까맣고 진하게 */
+  .item-press { color: #6b7280; font-weight: 400; } /* ※ 보도자료: 회색으로 연하게 */
+  .no-item { font-size: 0.85rem; color: #9ca3af; padding: 0.2rem 0; font-weight: 400; } /* 일정 없음: 더 연하게 */
   
   /* 인사부고 카드 기본 (내용 있음) */
   .news-card { border-left: 4px solid #1a3a5c; background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -87,6 +95,19 @@ function switchTab(tabId) {
   document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
 }
 
+// 💡 2026-04-W02 형식을 "2026년 4월 2주차"로 예쁘게 바꿔주는 라벨 함수
+function formatWeekLabel(key) {
+ try {
+   const parts = key.split('-');
+   const year = parts[0];
+   const month = parseInt(parts[1], 10);
+   const week = parseInt(parts[2].replace('W', ''), 10);
+   return `${year}년 ${month}월 ${week}주차`;
+ } catch(e) {
+   return key;
+ }
+}
+
 async function loadSchedules() {
   const sel = document.getElementById("weekSelect");
   try {
@@ -95,7 +116,10 @@ async function loadSchedules() {
     const weeks = files.map(f => f.name.replace(".json", "")).filter(n => n.includes("W")).sort().reverse();
     
     weeks.forEach(w => {
-      const opt = document.createElement("option"); opt.value = w; opt.textContent = w; sel.appendChild(opt);
+      const opt = document.createElement("option"); 
+      opt.value = w; 
+      opt.textContent = formatWeekLabel(w); // 💡 드롭다운 메뉴도 예쁘게!
+      sel.appendChild(opt);
     });
     
     sel.addEventListener("change", async () => {
@@ -103,18 +127,32 @@ async function loadSchedules() {
       const container = document.getElementById("section-schedule");
       container.innerHTML = "";
       const agencies = ["금융위원회", "금융감독원", "과학기술정보통신부", "방송미디어통신위원회", "행정안전부"];
+      
       agencies.forEach(name => {
         if(!data.agencies[name]) return;
         let html = `<div class="agency-section"><div class="agency-header">${name}</div><table>`;
         const dates = Object.keys(data.agencies[name]);
+        
+        // 💡 일정이 아예 없을 때 (연한 회색 처리)
         if(dates.length === 0) {
-            html += `<tr><td colspan="2" style="text-align:center; color:#999;">일정 없음</td></tr>`;
+            html += `<tr><td colspan="2" style="text-align:center; padding: 1.5rem; color:#9ca3af; font-size:0.85rem;">이번 주 일정이 없습니다.</td></tr>`;
         } else {
             dates.forEach(date => {
-            const items = data.agencies[name][date];
-            html += `<tr><td class="date-cell">${date}</td><td>`;
-            items.forEach(item => html += `<div style="margin-bottom: 4px;">${item}</div>`);
-            html += `</td></tr>`;
+                const items = data.agencies[name][date];
+                html += `<tr><td class="date-cell">${date}</td><td>`;
+                
+                // 💡 특이 일정이 없을 때 (연한 회색 처리)
+                if (!items || items.length === 0) {
+                    html += `<div class="no-item">특이 일정 없음</div>`;
+                } else {
+                    // 💡 ▲ 기호는 진하게, 나머지는 연하게 처리하는 마법!
+                    items.forEach(item => {
+                        const isSchedule = item.startsWith("▲");
+                        const itemClass = isSchedule ? "item-schedule" : "item-press";
+                        html += `<div class="item ${itemClass}">${item}</div>`;
+                    });
+                }
+                html += `</td></tr>`;
             });
         }
         html += `</table></div>`;
