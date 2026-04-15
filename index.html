@@ -185,8 +185,9 @@ async function loadPersonnel() {
         for (const [agency, text] of Object.entries(data["인사"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 💡 핵심 추가: 엔터(\n) 뒤에 오는 ◇ 앞에 엔터를 하나 더(\n\n) 넣어줍니다!
-          const formattedText = text.replace(/◇/g, '<b style="font-weight: 600;">◇</b>').replace(/\n<b/g, '\n\n<b');
+          // 💡 [완벽 수정본] 확실한 700 굵기와 테마색, 그리고 어떤 줄바꿈 상황이든 무조건 띄우는 마법!
+          let formattedText = text.replace(/◇/g, '<strong style="font-weight: 700; color: #1a3a5c;">◇</strong>');
+          formattedText = formattedText.replace(/(\r?\n)\s*(<strong)/g, '$1$1$2');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
@@ -203,8 +204,9 @@ async function loadPersonnel() {
         for (const [agency, text] of Object.entries(data["부고"])) {
           const isEmpty = (text === "해당 없음");
           
-          // 부고 쪽도 혹시 모를 ◇ 기호 대비!
-          const formattedText = text.replace(/◇/g, '<b style="font-weight: 600;">◇</b>').replace(/\n<b/g, '\n\n<b');
+          // 부고 쪽도 똑같이 적용
+          let formattedText = text.replace(/◇/g, '<strong style="font-weight: 700; color: #1a3a5c;">◇</strong>');
+          formattedText = formattedText.replace(/(\r?\n)\s*(<strong)/g, '$1$1$2');
 
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
