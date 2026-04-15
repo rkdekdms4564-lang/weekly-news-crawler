@@ -184,11 +184,15 @@ async function loadPersonnel() {
         container.innerHTML += `<h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 인사</h3>`;
         for (const [agency, text] of Object.entries(data["인사"])) {
           const isEmpty = (text === "해당 없음");
+          
+          // 💡 핵심 추가: 엔터(\n) 뒤에 오는 ◇ 앞에 엔터를 하나 더(\n\n) 넣어줍니다!
+          const formattedText = text.replace(/\n◇/g, '\n\n◇');
+
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
               ${isEmpty ? '' : '<div class="news-badge">인사</div>'}
               <div class="news-agency">[${agency}]</div>
-              <div class="news-content">${text}</div>
+              <div class="news-content">${formattedText}</div>
             </div>`;
         }
       }
@@ -198,11 +202,15 @@ async function loadPersonnel() {
         container.innerHTML += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 부고</h3>`;
         for (const [agency, text] of Object.entries(data["부고"])) {
           const isEmpty = (text === "해당 없음");
+          
+          // 부고 쪽도 혹시 모를 ◇ 기호 대비!
+          const formattedText = text.replace(/\n◇/g, '\n\n◇');
+
           container.innerHTML += `
             <div class="news-card ${isEmpty ? 'empty' : ''}">
               ${isEmpty ? '' : '<div class="news-badge" style="background:#ffebee; color:#c62828;">부고</div>'}
               <div class="news-agency">[${agency}]</div>
-              <div class="news-content">${text}</div>
+              <div class="news-content">${formattedText}</div>
             </div>`;
         }
       }
