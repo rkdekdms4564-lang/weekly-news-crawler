@@ -188,7 +188,7 @@ async function loadPersonnel() {
             // 2. ◇ 앞에 줄바꿈 하나 더 추가 (위아래 여유 공간)
             formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
             // 3. 💡 ◇ 기호부터 그 줄이 끝날 때까지 모두 잡아서 굵게(500) 만들기!
-            formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 500;">$1</span>');
+            formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
             // 4. JSON의 모든 엔터(\n)를 HTML 줄바꿈 태그(<br>)로 완벽하게 변환!
             formattedText = formattedText.replace(/\n/g, '<br>');
           }
@@ -213,7 +213,7 @@ async function loadPersonnel() {
              formattedText = formattedText.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
              formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
              // 💡 부고 쪽도 똑같이 줄 전체를 잡아서 굵게!
-             formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 500;">$1</span>');
+             formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
              formattedText = formattedText.replace(/\n/g, '<br>');
           }
 
