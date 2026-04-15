@@ -45,24 +45,21 @@ AGENCIES = [
 DATA_DIR = os.path.join(BASE_DIR, "data_personnel")
 
 # ==========================================
-# 3. 날짜 계산 (오늘 검색용 & 어제 파일 찾기용)
+# 3. 날짜 계산 
 # ==========================================
 def get_search_dates(now: datetime):
     end_date = now.replace(hour=23, minute=59, second=59)
-    if now.weekday() == 0: # 월요일
+    if now.weekday() == 0: 
         start_date = (now - timedelta(days=3)).replace(hour=0, minute=0, second=0)
-        prev_file_date = (now - timedelta(days=3)).strftime("%Y-%m-%d") # 지난주 금요일 파일
-    else: # 평일
+    else: 
         start_date = (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
-        prev_file_date = (now - timedelta(days=1)).strftime("%Y-%m-%d") # 어제 파일
         
     period_label = f"{start_date.strftime('%m.%d')} ~ {now.strftime('%m.%d')}"
-    return start_date, end_date, period_label, prev_file_date
+    return start_date, end_date, period_label
 
 # ==========================================
 # 4. 네이버 뉴스 API 검색 및 스마트 필터링 + AI 요약
 # ==========================================
-# 💡 prev_info (어제 수집된 정보) 파라미터가 추가되었습니다!
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_info):
     search_query = f'"[{keyword}] {agency}"'
     url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=5&sort=date"
@@ -100,18 +97,18 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
         print(f" ➔ 찐 기사 발견! (AI 분석 중 🧠)")
         combined_text = "\n".join(snippets)
         
-        # 💡 [핵심 최적화] 제미나이에게 "어제 본 사람은 빼고 알려줘!"라고 강력하게 지시합니다.
+        # 💡 [핵심 최적화] 제미나이에게 최근 이틀 치 데이터를 한 번에 주고 거르게 합니다.
         prompt = f"""
         다음은 네이버 뉴스에서 '{agency}'의 '{keyword}'와 관련된 찐 기사 모음이야.
         이 내용 중에서 실제 인사 이동이나 부고 내역을 추출해서 아래 형식으로만 대답해줘. 
 
         [🔥중요: 중복 제거 지시사항]
-        아래는 어제 이미 보고된 내역이야.
-        <어제 내역 시작>
+        아래는 최근에 이미 보고된 내역이야.
+        <기존 내역 시작>
         {prev_info}
-        <어제 내역 끝>
+        <기존 내역 끝>
         
-        기사 내용에 위 '어제 내역'과 겹치는 사람이나 직책이 있다면 **오늘 결과에서 무조건 제외**해. 오직 "새롭게 추가된 사람"만 추출해야 해.
+        기사 내용에 위 '기존 내역'과 겹치는 사람이나 직책이 있다면 **오늘 결과에서 무조건 제외**해. 오직 "새롭게 추가된 사람"만 추출해야 해.
         중복된 사람을 제외하고 났을 때 남은 사람이 한 명도 없거나, 애초에 관련 없는 기사라면 오직 '해당 없음'이라고만 대답해. (설명 추가 절대 금지)
 
         [출력 형식 예시 - 인사]
@@ -157,20 +154,30 @@ def push_to_github(file_name):
 
 def main():
     now = datetime.now()
-    start_date, end_date, period_label, prev_file_date = get_search_dates(now)
+    start_date, end_date, period_label = get_search_dates(now)
     date_key = now.strftime("%Y-%m-%d")
     
     print(f"📅 네이버 인사/부고 초고속 수집 시작 (기간: {period_label})\n")
     
-    # 💡 어제 만들어진 JSON 파일(기존 데이터)을 몰래 열어서 읽어옵니다.
-    prev_data = None
-    prev_filepath = os.path.join(DATA_DIR, f"{prev_file_date}.json")
-    if os.path.exists(prev_filepath):
-        print(f"📂 어제 날짜({prev_file_date})의 파일을 찾아 중복 필터를 가동합니다!\n")
-        with open(prev_filepath, "r", encoding="utf-8") as f:
-            prev_data = json.load(f)
+    # 💡 [새로운 로직] 최근 최대 2일 치의 기존 데이터를 긁어모읍니다!
+    print("📂 최근 이틀 치 데이터를 찾아 중복 필터를 가동합니다...")
+    prev_data_list = []
+    
+    for i in range(1, 6): # 최근 1일 전부터 5일 전까지 파일이 있는지 탐색
+        check_date_str = (now - timedelta(days=i)).strftime("%Y-%m-%d")
+        filepath = os.path.join(DATA_DIR, f"{check_date_str}.json")
+        if os.path.exists(filepath):
+            with open(filepath, "r", encoding="utf-8") as f:
+                prev_data_list.append(json.load(f))
+            print(f"   ✔️ {check_date_str} 데이터 확보 완료")
+        
+        if len(prev_data_list) == 2: # 2개(이틀 치)를 찾으면 더 이상 찾지 않음
+            break
+
+    if not prev_data_list:
+        print("   (참고) 이전 데이터가 없어 필터 없이 수집합니다.\n")
     else:
-        print(f"📂 어제 날짜({prev_file_date})의 파일이 없어 필터 없이 수집합니다.\n")
+        print()
     
     final_data = {
         "date": date_key,
@@ -180,11 +187,22 @@ def main():
     }
     
     for agency in AGENCIES:
-        # 어제 데이터에서 해당 부처의 기록을 빼옵니다. (없으면 '해당 없음' 처리)
-        prev_insa = prev_data["인사"].get(agency, "해당 없음") if prev_data else "해당 없음"
-        prev_bugo = prev_data["부고"].get(agency, "해당 없음") if prev_data else "해당 없음"
+        # 이틀 치 데이터를 하나의 거대한 텍스트로 합칩니다.
+        prev_insa = ""
+        prev_bugo = ""
         
-        # 기사 검색할 때 어제 기록(prev_insa, prev_bugo)을 같이 넘겨줍니다!
+        for p_data in prev_data_list:
+            insa_text = p_data["인사"].get(agency, "해당 없음")
+            if insa_text != "해당 없음":
+                prev_insa += insa_text + "\n"
+                
+            bugo_text = p_data["부고"].get(agency, "해당 없음")
+            if bugo_text != "해당 없음":
+                prev_bugo += bugo_text + "\n"
+                
+        if not prev_insa.strip(): prev_insa = "해당 없음"
+        if not prev_bugo.strip(): prev_bugo = "해당 없음"
+        
         final_data["인사"][agency] = fetch_naver_news_and_summarize(agency, "인사", start_date, end_date, prev_insa)
         final_data["부고"][agency] = fetch_naver_news_and_summarize(agency, "부고", start_date, end_date, prev_bugo)
             
