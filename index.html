@@ -68,18 +68,25 @@
 </header>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('schedule')">🗓️ 주간 경제부처 일정</button>
-  <button class="tab-btn" onclick="switchTab('personnel')">👤 일일 인사 / 부고</button>
+  <button class="tab-btn active" onclick="switchTab('schedule')"> 주간 경제부처 일정</button>
+  <button class="tab-btn" onclick="switchTab('personnel')"> 일일 인사 / 부고</button>
 </div>
 
 <div class="controls" id="controls-schedule">
   <label style="font-size: 0.85rem;">주차 선택:</label>
   <select id="weekSelect"></select>
 </div>
-<div class="controls" id="controls-personnel" style="display: none;">
-  <label style="font-size: 0.85rem;">날짜 선택:</label>
-  <select id="dateSelect" style="margin-right: 10px;"></select>
-  <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
+
+<div class="controls" id="controls-personnel" style="display: none; justify-content: space-between;">
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <input type="text" id="searchInput" placeholder="이름 검색 (예: 홍길동)" style="padding: 0.4rem; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; width: 160px;" onkeypress="if(event.key === 'Enter') searchPerson()">
+    <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;">🔍 인물 검색</button>
+  </div>
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <label style="font-size: 0.85rem;">날짜 선택:</label>
+    <select id="dateSelect" style="margin-right: 5px;"></select>
+    <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
+  </div>
 </div>
 
 <main>
@@ -174,6 +181,89 @@ function toggleShowAll() {
   // 버튼 누를 때마다 화면 새로 그리기!
   const sel = document.getElementById("dateSelect");
   sel.dispatchEvent(new Event("change"));
+}
+
+// 💡 한 번 불러온 날짜 데이터는 기억해두는 메모리 장치 (속도 향상!)
+let personnelCache = {}; 
+
+async function searchPerson() {
+  const keyword = document.getElementById('searchInput').value.trim();
+  const container = document.getElementById('section-personnel');
+  const sel = document.getElementById("dateSelect");
+  
+  if(!keyword) {
+    alert("검색할 이름을 입력해주세요!");
+    return;
+  }
+  
+  // 검색 중 로딩 화면
+  container.innerHTML = `<div style="text-align:center; padding: 3rem; color:#1a3a5c; font-weight:bold;">🔍 '${keyword}' 님의 발자취를 찾는 중입니다...<br><span style="font-size:0.8rem; color:#666; font-weight:normal;">(데이터가 많을 경우 몇 초 정도 걸릴 수 있습니다)</span></div>`;
+  
+  const dates = Array.from(sel.options).map(opt => opt.value);
+  const searchResults = {}; // 부처별로 결과 담을 바구니
+  const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
+  
+  // 모든 날짜를 뒤지며 검색!
+  for(const d of dates) {
+    if(!personnelCache[d]) {
+      try { personnelCache[d] = await (await fetch(`data_personnel/${d}.json`)).json(); } 
+      catch(e) { continue; }
+    }
+    
+    const data = personnelCache[d];
+    ALL_AGENCIES.forEach(agency => {
+       const insaText = data["인사"]?.[agency] || "해당 없음";
+       const bugoText = data["부고"]?.[agency] || "해당 없음";
+       
+       if(insaText.includes(keyword)) {
+           if(!searchResults[agency]) searchResults[agency] = [];
+           searchResults[agency].push({ date: d, type: '인사', text: insaText });
+       }
+       if(bugoText.includes(keyword)) {
+           if(!searchResults[agency]) searchResults[agency] = [];
+           searchResults[agency].push({ date: d, type: '부고', text: bugoText });
+       }
+    });
+  }
+  
+  // 💡 검색 결과 화면 그리기
+  let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
+                <h3 style="color: #1a3a5c;">✨ '${keyword}' 검색 결과 (부처별 타임라인)</h3>
+                <button onclick="document.getElementById('searchInput').value=''; document.getElementById('dateSelect').dispatchEvent(new Event('change'))" style="padding: 0.4rem 0.8rem; border:1px solid #1a3a5c; color:#1a3a5c; background:#fff; border-radius:4px; cursor:pointer; font-weight:bold;">돌아가기</button>
+              </div>`;
+              
+  const foundAgencies = Object.keys(searchResults);
+  if(foundAgencies.length === 0) {
+     html += `<div class="news-card empty"><div class="news-content" style="text-align:center; color:#999;">검색 결과가 없습니다.</div></div>`;
+  } else {
+     foundAgencies.forEach(agency => {
+        html += `<div class="news-card">
+                   <div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: #1a3a5c;">[${agency}]</div>`;
+        
+        searchResults[agency].forEach(item => {
+            // 기존 줄 굵기 적용
+            let fmt = item.text.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+            fmt = fmt.replace(/\n◇/g, '\n\n◇');
+            fmt = fmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
+            fmt = fmt.replace(/\n/g, '<br>');
+            
+            // 💡 검색한 이름만 노란색 형광펜 칠하기!
+            const regex = new RegExp(keyword, 'g');
+            fmt = fmt.replace(regex, `<mark style="background-color: #ffe066; padding: 0 2px; border-radius: 2px; font-weight: bold;">${keyword}</mark>`);
+            
+            const badgeStyle = item.type === '인사' ? '' : 'background:#ffebee; color:#c62828;';
+            
+            html += `
+              <div style="margin-bottom: 1.5rem; padding-left: 10px; border-left: 3px solid #c8d4e0;">
+                <div style="font-weight:bold; color:#666; font-size:0.85rem; margin-bottom:0.5rem;">📅 ${item.date} <span class="news-badge" style="margin-bottom:0; margin-left:5px; ${badgeStyle}">${item.type}</span></div>
+                <div class="news-content">${fmt}</div>
+              </div>
+            `;
+        });
+        html += `</div>`;
+     });
+  }
+  container.innerHTML = html;
 }
 
 async function loadPersonnel() {
