@@ -8,7 +8,6 @@
 <meta property="og:description" content="경제부처 주간 보도계획 및 일일 인사/부고 모니터링">
 <meta property="og:type" content="website">
 <style>
-  /* 💡 600 굵기 폰트도 정상적으로 불러오도록 추가했습니다! */
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; }
@@ -33,24 +32,19 @@
   table { width: 100%; border-collapse: collapse; }
   tr { border-bottom: 1px solid #e4eaf0; }
   
-  /* 일정 탭 폰트 크기 및 여백 조정 */
   td { padding: 0.6rem 1rem; vertical-align: middle; }
   td.date-cell { width: 150px; font-weight: 700; color: #1a3a5c; background: #f4f7fa; border-right: 1px solid #c8d4e0; text-align: center; vertical-align: middle; font-size: 0.85rem; }
   
-  /* 핵심 디자인: 진하게 vs 연하게 완벽 구분 */
   .item { font-size: 0.85rem; line-height: 1.6; padding: 0.2rem 0; }
-  .item-schedule { color: #111827; font-weight: 400; } /* ▲ 일정: 까맣고 진하게 */
-  .item-press { color: #6b7280; font-weight: 400; } /* ※ 보도자료: 회색으로 연하게 */
-  .no-item { font-size: 0.85rem; color: #9ca3af; padding: 0.2rem 0; font-weight: 400; } /* 일정 없음: 더 연하게 */
+  .item-schedule { color: #111827; font-weight: 400; }
+  .item-press { color: #6b7280; font-weight: 400; }
+  .no-item { font-size: 0.85rem; color: #9ca3af; padding: 0.2rem 0; font-weight: 400; }
   
-  /* 인사부고 카드 기본 (내용 있음) */
   .news-card { border-left: 4px solid #1a3a5c; background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
   .news-agency { font-weight: bold; color: #1a3a5c; margin-bottom: 0.5rem; font-size: 0.9rem;}
-  /* 💡 오류를 일으키던 white-space: pre-line 제거 완료 */
   .news-content { font-size: 0.85rem; line-height: 1.6; }
   .news-badge { display: inline-block; padding: 0.2rem 0.5rem; background: #e3e8ee; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.5rem; font-weight: bold; color: #333;}
   
-  /* 인사부고 카드 예외 (해당 없음) */
   .news-card.empty { border-left: 4px solid #ccc; box-shadow: none; border: 1px solid #eee; border-left: 4px solid #ccc;}
   .news-card.empty .news-agency { color: #999; }
   .news-card.empty .news-content { color: #aaa; }
@@ -169,7 +163,6 @@ async function loadSchedules() {
   } catch(e) { console.log("일정 없음"); }
 }
 
-// 💡 버튼 기능: 모든 부처를 볼지, 업데이트된 부처만 볼지 기억하는 변수
 let showAllAgencies = false; 
 
 function toggleShowAll() {
@@ -178,12 +171,10 @@ function toggleShowAll() {
   btn.textContent = showAllAgencies ? "업데이트 부처만 보기" : "모든 부처 보기";
   btn.style.background = showAllAgencies ? "#e3e8ee" : "#fff";
   
-  // 버튼 누를 때마다 화면 새로 그리기!
   const sel = document.getElementById("dateSelect");
   sel.dispatchEvent(new Event("change"));
 }
 
-// 💡 한 번 불러온 날짜 데이터는 기억해두는 메모리 장치 (속도 향상!)
 let personnelCache = {}; 
 
 async function searchPerson() {
@@ -196,14 +187,36 @@ async function searchPerson() {
     return;
   }
   
-  // 검색 중 로딩 화면
   container.innerHTML = `<div style="text-align:center; padding: 3rem; color:#1a3a5c; font-weight:bold;">🔍 '${keyword}' 님의 발자취를 찾는 중입니다...<br><span style="font-size:0.8rem; color:#666; font-weight:normal;">(데이터가 많을 경우 몇 초 정도 걸릴 수 있습니다)</span></div>`;
   
   const dates = Array.from(sel.options).map(opt => opt.value);
-  const searchResults = {}; // 부처별로 결과 담을 바구니
+  const searchResults = {}; 
   const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
   
-  // 모든 날짜를 뒤지며 검색!
+  // 💡 [핵심 기술] 검색한 사람이 있는 '줄'과 그 위 '제목'만 쏙쏙 뽑아내는 족집게 함수!
+  function extractOnlyPerson(text, searchName) {
+    if(!text || text === "해당 없음") return "";
+    let lines = text.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").split('\n');
+    let filtered = [];
+    let currentHeading = "";
+
+    for(let line of lines) {
+        let tLine = line.trim();
+        if(!tLine) continue;
+
+        if(tLine.startsWith('◇')) {
+            currentHeading = tLine; // 제목(◇ 국장급 승진 등) 기억하기
+        } else if(tLine.includes(searchName)) {
+            // 내가 찾던 사람이 나왔을 때!
+            if(currentHeading && !filtered.includes(currentHeading)) {
+                filtered.push(currentHeading); // 기억해둔 제목 먼저 꺼내놓기
+            }
+            filtered.push(tLine); // 그 사람 내용 꺼내놓기
+        }
+    }
+    return filtered.join('\n');
+  }
+
   for(const d of dates) {
     if(!personnelCache[d]) {
       try { personnelCache[d] = await (await fetch(`data_personnel/${d}.json`)).json(); } 
@@ -216,17 +229,23 @@ async function searchPerson() {
        const bugoText = data["부고"]?.[agency] || "해당 없음";
        
        if(insaText.includes(keyword)) {
-           if(!searchResults[agency]) searchResults[agency] = [];
-           searchResults[agency].push({ date: d, type: '인사', text: insaText });
+           // 통째로 넣는 게 아니라, 족집게 함수로 발라낸 결과만 넣기!
+           const justThatPerson = extractOnlyPerson(insaText, keyword);
+           if(justThatPerson) {
+               if(!searchResults[agency]) searchResults[agency] = [];
+               searchResults[agency].push({ date: d, type: '인사', text: justThatPerson });
+           }
        }
        if(bugoText.includes(keyword)) {
-           if(!searchResults[agency]) searchResults[agency] = [];
-           searchResults[agency].push({ date: d, type: '부고', text: bugoText });
+           const justThatPerson = extractOnlyPerson(bugoText, keyword);
+           if(justThatPerson) {
+               if(!searchResults[agency]) searchResults[agency] = [];
+               searchResults[agency].push({ date: d, type: '부고', text: justThatPerson });
+           }
        }
     });
   }
   
-  // 💡 검색 결과 화면 그리기
   let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
                 <h3 style="color: #1a3a5c;">✨ '${keyword}' 검색 결과 (부처별 타임라인)</h3>
                 <button onclick="document.getElementById('searchInput').value=''; document.getElementById('dateSelect').dispatchEvent(new Event('change'))" style="padding: 0.4rem 0.8rem; border:1px solid #1a3a5c; color:#1a3a5c; background:#fff; border-radius:4px; cursor:pointer; font-weight:bold;">돌아가기</button>
@@ -241,13 +260,11 @@ async function searchPerson() {
                    <div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: #1a3a5c;">[${agency}]</div>`;
         
         searchResults[agency].forEach(item => {
-            // 기존 줄 굵기 적용
-            let fmt = item.text.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+            let fmt = item.text;
             fmt = fmt.replace(/\n◇/g, '\n\n◇');
             fmt = fmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
             fmt = fmt.replace(/\n/g, '<br>');
             
-            // 💡 검색한 이름만 노란색 형광펜 칠하기!
             const regex = new RegExp(keyword, 'g');
             fmt = fmt.replace(regex, `<mark style="background-color: #ffe066; padding: 0 2px; border-radius: 2px; font-weight: bold;">${keyword}</mark>`);
             
@@ -268,7 +285,6 @@ async function searchPerson() {
 
 async function loadPersonnel() {
   const sel = document.getElementById("dateSelect");
-  // 💡 부처 목록 순서대로 고정 (이 순서대로 화면에 나옵니다)
   const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
 
   try {
@@ -286,24 +302,19 @@ async function loadPersonnel() {
       const data = await (await fetch(`data_personnel/${sel.value}.json`)).json();
       const container = document.getElementById("section-personnel");
       
-      // 제목 부분
       container.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: #1a3a5c;">📅 수집 기간: ${data.period}</h3>`;
       
       ALL_AGENCIES.forEach(agency => {
         const insaText = data["인사"][agency] || "해당 없음";
         const bugoText = data["부고"][agency] || "해당 없음";
         
-        // 인사나 부고 둘 중 하나라도 내용이 있으면 '업데이트 된 부처'
         const isUpdate = (insaText !== "해당 없음" || bugoText !== "해당 없음");
         
-        // 💡 필터 마법: "업데이트 부처만 보기" 모드인데 업데이트가 없으면? 화면에 안 그림!
         if (!showAllAgencies && !isUpdate) return;
 
-        // 하나의 부처 박스 시작
         let agencyHtml = `<div class="news-card ${!isUpdate ? 'empty' : ''}">`;
         agencyHtml += `<div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: ${!isUpdate ? '#999' : '#1a3a5c'};">[${agency}]</div>`;
         
-        // --- 인사 섹션 (완벽한 줄 굵기 & 공백 치환 적용됨!) ---
         if (insaText !== "해당 없음") {
           let insaFmt = insaText.replace(/\[출력 형식 예시 - 인사\]/g, "").trim();
           insaFmt = insaFmt.replace(/\n◇/g, '\n\n◇');
@@ -314,7 +325,6 @@ async function loadPersonnel() {
           agencyHtml += `<div class="news-content" style="margin-bottom: 1.5rem;">${insaFmt}</div>`;
         }
 
-        // --- 부고 섹션 ---
         if (bugoText !== "해당 없음") {
           let bugoFmt = bugoText.replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
           bugoFmt = bugoFmt.replace(/\n◇/g, '\n\n◇');
@@ -325,12 +335,10 @@ async function loadPersonnel() {
           agencyHtml += `<div class="news-content">${bugoFmt}</div>`;
         }
         
-        // 인사/부고 둘 다 없을 때 ("모든 부처 보기" 모드일 때만 보임)
         if (!isUpdate) {
           agencyHtml += `<div class="news-content" style="color: #aaa; font-style: italic;">특이 동향 없음</div>`;
         }
 
-        // 부처 박스 닫기
         agencyHtml += `</div>`;
         container.innerHTML += agencyHtml;
       });
