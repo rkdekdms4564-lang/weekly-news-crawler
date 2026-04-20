@@ -8,7 +8,8 @@
 <meta property="og:description" content="경제부처 주간 보도계획 및 일일 인사/부고 모니터링">
 <meta property="og:type" content="website">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  /* 💡 600 굵기 폰트도 정상적으로 불러오도록 추가했습니다! */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; }
   
@@ -45,6 +46,7 @@
   /* 인사부고 카드 기본 (내용 있음) */
   .news-card { border-left: 4px solid #1a3a5c; background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
   .news-agency { font-weight: bold; color: #1a3a5c; margin-bottom: 0.5rem; font-size: 0.9rem;}
+  /* 💡 오류를 일으키던 white-space: pre-line 제거 완료 */
   .news-content { font-size: 0.85rem; line-height: 1.6; }
   .news-badge { display: inline-block; padding: 0.2rem 0.5rem; background: #e3e8ee; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.5rem; font-weight: bold; color: #333;}
   
@@ -76,7 +78,8 @@
 </div>
 <div class="controls" id="controls-personnel" style="display: none;">
   <label style="font-size: 0.85rem;">날짜 선택:</label>
-  <select id="dateSelect"></select>
+  <select id="dateSelect" style="margin-right: 10px;"></select>
+  <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
 </div>
 
 <main>
@@ -159,75 +162,92 @@ async function loadSchedules() {
   } catch(e) { console.log("일정 없음"); }
 }
 
+// 💡 버튼 기능: 모든 부처를 볼지, 업데이트된 부처만 볼지 기억하는 변수
+let showAllAgencies = false; 
+
+function toggleShowAll() {
+  showAllAgencies = !showAllAgencies;
+  const btn = document.getElementById("toggleAllBtn");
+  btn.textContent = showAllAgencies ? "업데이트 부처만 보기" : "모든 부처 보기";
+  btn.style.background = showAllAgencies ? "#e3e8ee" : "#fff";
+  
+  // 버튼 누를 때마다 화면 새로 그리기!
+  const sel = document.getElementById("dateSelect");
+  sel.dispatchEvent(new Event("change"));
+}
+
 async function loadPersonnel() {
   const sel = document.getElementById("dateSelect");
+  // 💡 부처 목록 순서대로 고정 (이 순서대로 화면에 나옵니다)
+  const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실", "국무총리비서실", "금융위원회", "금융감독원"];
+
   try {
     const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data_personnel");
     const files = await res.json();
     const dates = files.filter(f => f.name.endsWith(".json")).map(f => f.name.replace(".json", "")).sort().reverse();
     
-    dates.forEach(d => {
-      const opt = document.createElement("option"); opt.value = d; opt.textContent = d; sel.appendChild(opt);
-    });
+    if (sel.options.length === 0) {
+      dates.forEach(d => {
+        const opt = document.createElement("option"); opt.value = d; opt.textContent = d; sel.appendChild(opt);
+      });
+    }
     
     sel.addEventListener("change", async () => {
       const data = await (await fetch(`data_personnel/${sel.value}.json`)).json();
       const container = document.getElementById("section-personnel");
-      container.innerHTML = `<div style="margin-bottom: 1rem; font-weight: bold; color: #1a3a5c;">수집 기간: ${data.period}</div>`;
       
-      // 인사 렌더링 부분
-      if(data["인사"] && Object.keys(data["인사"]).length > 0) {
-        container.innerHTML += `<h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 인사</h3>`;
-        for (const [agency, text] of Object.entries(data["인사"])) {
-          const isEmpty = (text === "해당 없음");
-          
-          let formattedText = text;
-          if (!isEmpty) {
-            // 1. 실수로 들어온 예시 문구 삭제
-            formattedText = formattedText.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
-            // 2. ◇ 앞에 줄바꿈 하나 더 추가 (위아래 여유 공간)
-            formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
-            // 3. 💡 ◇ 기호부터 그 줄이 끝날 때까지 모두 잡아서 굵게(500) 만들기!
-            formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
-            // 4. JSON의 모든 엔터(\n)를 HTML 줄바꿈 태그(<br>)로 완벽하게 변환!
-            formattedText = formattedText.replace(/\n/g, '<br>');
-          }
-
-          container.innerHTML += `
-            <div class="news-card ${isEmpty ? 'empty' : ''}">
-              ${isEmpty ? '' : '<div class="news-badge">인사</div>'}
-              <div class="news-agency">[${agency}]</div>
-              <div class="news-content">${formattedText}</div>
-            </div>`;
-        }
-      }
+      // 제목 부분
+      container.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: #1a3a5c;">📅 수집 기간: ${data.period}</h3>`;
       
-      // 부고 렌더링 부분 (인사와 동일하게 적용)
-      if(data["부고"] && Object.keys(data["부고"]).length > 0) {
-        container.innerHTML += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">☑️ 주요 부처 부고</h3>`;
-        for (const [agency, text] of Object.entries(data["부고"])) {
-          const isEmpty = (text === "해당 없음");
-          
-          let formattedText = text;
-          if (!isEmpty) {
-             formattedText = formattedText.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
-             formattedText = formattedText.replace(/\n◇/g, '\n\n◇');
-             // 💡 부고 쪽도 똑같이 줄 전체를 잡아서 굵게!
-             formattedText = formattedText.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
-             formattedText = formattedText.replace(/\n/g, '<br>');
-          }
+      ALL_AGENCIES.forEach(agency => {
+        const insaText = data["인사"][agency] || "해당 없음";
+        const bugoText = data["부고"][agency] || "해당 없음";
+        
+        // 인사나 부고 둘 중 하나라도 내용이 있으면 '업데이트 된 부처'
+        const isUpdate = (insaText !== "해당 없음" || bugoText !== "해당 없음");
+        
+        // 💡 필터 마법: "업데이트 부처만 보기" 모드인데 업데이트가 없으면? 화면에 안 그림!
+        if (!showAllAgencies && !isUpdate) return;
 
-          container.innerHTML += `
-            <div class="news-card ${isEmpty ? 'empty' : ''}">
-              ${isEmpty ? '' : '<div class="news-badge" style="background:#ffebee; color:#c62828;">부고</div>'}
-              <div class="news-agency">[${agency}]</div>
-              <div class="news-content">${formattedText}</div>
-            </div>`;
+        // 하나의 부처 박스 시작
+        let agencyHtml = `<div class="news-card ${!isUpdate ? 'empty' : ''}">`;
+        agencyHtml += `<div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: ${!isUpdate ? '#999' : '#1a3a5c'};">[${agency}]</div>`;
+        
+        // --- 인사 섹션 (완벽한 줄 굵기 & 공백 치환 적용됨!) ---
+        if (insaText !== "해당 없음") {
+          let insaFmt = insaText.replace(/\[출력 형식 예시 - 인사\]/g, "").trim();
+          insaFmt = insaFmt.replace(/\n◇/g, '\n\n◇');
+          insaFmt = insaFmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
+          insaFmt = insaFmt.replace(/\n/g, '<br>');
+          
+          agencyHtml += `<div class="news-badge" style="margin-bottom: 0.5rem;">인사</div>`;
+          agencyHtml += `<div class="news-content" style="margin-bottom: 1.5rem;">${insaFmt}</div>`;
         }
-      }
+
+        // --- 부고 섹션 ---
+        if (bugoText !== "해당 없음") {
+          let bugoFmt = bugoText.replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+          bugoFmt = bugoFmt.replace(/\n◇/g, '\n\n◇');
+          bugoFmt = bugoFmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
+          bugoFmt = bugoFmt.replace(/\n/g, '<br>');
+
+          agencyHtml += `<div class="news-badge" style="background:#ffebee; color:#c62828; margin-bottom: 0.5rem;">부고</div>`;
+          agencyHtml += `<div class="news-content">${bugoFmt}</div>`;
+        }
+        
+        // 인사/부고 둘 다 없을 때 ("모든 부처 보기" 모드일 때만 보임)
+        if (!isUpdate) {
+          agencyHtml += `<div class="news-content" style="color: #aaa; font-style: italic;">특이 동향 없음</div>`;
+        }
+
+        // 부처 박스 닫기
+        agencyHtml += `</div>`;
+        container.innerHTML += agencyHtml;
+      });
     });
+    
     if(dates.length > 0) sel.dispatchEvent(new Event("change"));
-  } catch(e) { console.log("인사 데이터 없음"); }
+  } catch(e) { console.log("데이터 로드 에러", e); }
 }
 
 document.getElementById("status").style.display = "none";
