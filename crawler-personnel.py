@@ -39,7 +39,7 @@ except Exception as e:
 AGENCIES = [
     "과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", 
     "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", 
-    "국무조정실", "국무총리비서실", "금융위원회", "금융감독원"
+    "국무조정실·국무총리비서실", "금융위원회", "금융감독원"
 ]
 
 DATA_DIR = os.path.join(BASE_DIR, "data_personnel")
@@ -58,15 +58,21 @@ def get_search_dates(now: datetime):
     return start_date, end_date, period_label
 
 # ==========================================
-# 4. 네이버 뉴스 API 검색 및 스마트 필터링 + AI 요약
+# 4. 네이버 뉴스 API 검색 및 기사 본문 싹쓸이 + AI 요약
 # ==========================================
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_info):
     search_query = f'"[{keyword}] {agency}"'
+    # 💡 넉넉하게 10개까지 검색!
     url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=5&sort=date"
     
     headers = {
         "X-Naver-Client-Id": NAVER_CLIENT_ID,
         "X-Naver-Client-Secret": NAVER_CLIENT_SECRET
+    }
+    
+    # 💡 네이버가 로봇인 줄 알고 막는 것을 방지하기 위해 "나 진짜 사람이야(크롬 브라우저야)!" 하고 속이는 신분증
+    web_headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
     
     print(f"🔍 [{agency}] {keyword} 검색 중...", end="")
@@ -87,19 +93,37 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
                 title = BeautifulSoup(item['title'], "html.parser").get_text()
                 
                 if f"[{keyword}]" in title or f"<{keyword}>" in title or f"◆ {keyword}" in title or f"■ {keyword}" in title:
-                    desc = BeautifulSoup(item['description'], "html.parser").get_text()
-                    snippets.append(f"[제목: {title}] 내용: {desc}")
+                    naver_link = item.get('link', '')
+                    article_body = ""
+                    
+                    # 💡 핵심 로직: 네이버 뉴스 링크(n.news.naver.com)면 직접 들어가서 본문을 통째로 긁어옵니다!
+                    if "n.news.naver.com" in naver_link:
+                        try:
+                            art_res = requests.get(naver_link, headers=web_headers, timeout=5)
+                            art_soup = BeautifulSoup(art_res.text, "html.parser")
+                            # 네이버 뉴스 본문이 담긴 그릇(dic_area) 찾기
+                            body_tag = art_soup.find("article", id="dic_area")
+                            if body_tag:
+                                article_body = body_tag.get_text(separator="\n", strip=True)
+                        except:
+                            pass
+                    
+                    # 본문 긁어오기에 실패했거나 네이버 뉴스가 아니면 아쉬운 대로 미리보기(desc) 사용
+                    if not article_body:
+                        article_body = BeautifulSoup(item['description'], "html.parser").get_text()
+                    
+                    # 제미나이가 읽기 좋게 제목과 본문(최대 3000자)을 묶어서 전달
+                    snippets.append(f"[제목: {title}]\n내용: {article_body[:3000]}")
                 
         if not snippets:
             print(f" ➔ 관련 기사 없음 (패스 ⚡)")
             return "해당 없음"
             
-        print(f" ➔ 찐 기사 발견! (AI 분석 중 🧠)")
-        combined_text = "\n".join(snippets)
+        print(f" ➔ 찐 기사 발견! (본문 확보 완료, AI 분석 중 🧠)")
+        combined_text = "\n\n---\n\n".join(snippets)
         
-        # 💡 [핵심 최적화] 제미나이에게 최근 이틀 치 데이터를 한 번에 주고 거르게 합니다.
         prompt = f"""
-        다음은 네이버 뉴스에서 '{agency}'의 '{keyword}'와 관련된 찐 기사 모음이야.
+        다음은 네이버 뉴스에서 '{agency}'의 '{keyword}'와 관련된 기사 본문 모음이야.
         이 내용 중에서 실제 인사 이동이나 부고 내역을 추출해서 아래 형식으로만 대답해줘. 
 
         [🔥중요: 중복 제거 지시사항]
@@ -126,6 +150,9 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
         
         response = model.generate_content(prompt)
         result = response.text.strip()
+        
+        # AI가 예시 제목을 따라 쓰면 강제로 잘라버리는 방어막
+        result = result.replace("[출력 형식 예시 - 인사]", "").replace("[출력 형식 예시 - 부고]", "").strip()
         
         time.sleep(15) 
         

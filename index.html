@@ -179,7 +179,7 @@ function toggleShowAll() {
 async function loadPersonnel() {
   const sel = document.getElementById("dateSelect");
   // 💡 부처 목록 순서대로 고정 (이 순서대로 화면에 나옵니다)
-  const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실", "국무총리비서실", "금융위원회", "금융감독원"];
+  const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
 
   try {
     const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data_personnel");
