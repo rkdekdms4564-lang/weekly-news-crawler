@@ -10,21 +10,22 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; display: flex; /* 💡 화면을 좌우로 나누기 위해 flex 사용 */ }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; display: flex; overflow-x: hidden; }
   
   /* 💡 왼쪽 사이드바 디자인 */
   .sidebar { 
     width: 260px; 
-    background: #111827; /* 다크 네이비/블랙 느낌 */
+    background: #111827; 
     color: #fff; 
     height: 100vh; 
     position: sticky; 
     top: 0; 
-    transition: width 0.3s ease; 
+    transition: all 0.3s ease; 
     overflow: hidden;
     flex-shrink: 0;
+    z-index: 1000; /* 화면이 좁아졌을 때 맨 위로 올라오게 설정 */
   }
-  .sidebar.collapsed { width: 0; } /* 접혔을 때 너비 0 */
+  .sidebar.collapsed { width: 0; } 
   
   .sidebar-header {
     padding: 1.5rem;
@@ -44,7 +45,7 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: #9ca3af; /* 약간 연한 회색 */
+    color: #9ca3af; 
     font-size: 0.95rem;
     font-weight: 500;
     border-left: 4px solid transparent;
@@ -55,13 +56,13 @@
   .nav-item.active {
     background: #1f2937;
     color: #fff;
-    border-left: 4px solid #3b82f6; /* 파란색 포인트 */
+    border-left: 4px solid #3b82f6; 
     font-weight: 700;
   }
 
   /* 💡 오른쪽 메인 화면 영역 */
   .main-wrapper {
-    flex: 1; /* 남은 공간 모두 차지 */
+    flex: 1; 
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -72,7 +73,9 @@
   .header-title { font-size: 1.15rem; font-weight: 700; }
   .header-sub { font-size: 0.75rem; color: #6b7280; margin-top: 0.2rem; }
   
-  .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e5e7eb; }
+  /* 💡 찌그러짐 방지: flex-wrap 추가 및 버튼 글씨 줄바꿈 금지 */
+  button, label { white-space: nowrap; }
+  .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e5e7eb; flex-wrap: wrap; }
   select { font-family: inherit; font-size: 0.85rem; padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
   
   main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; width: 100%; }
@@ -102,20 +105,27 @@
   .news-card.empty .news-content { color: #aaa; }
   
   #status { text-align: center; padding: 4rem 0; font-size: 0.9rem; color: #666; }
+
+  /* 💡 핵심: 화면이 좁아질 때(노트북 13인치 이하, 태블릿 등) 작동하는 스마트 반응형 디자인 */
+  @media (max-width: 900px) {
+    .sidebar { position: fixed; box-shadow: 4px 0 15px rgba(0,0,0,0.3); } /* 사이드바가 오른쪽 내용을 밀어내지 않고 위로 둥둥 뜸 */
+    .sidebar.collapsed { box-shadow: none; }
+    #controls-personnel { flex-direction: column; align-items: flex-start !important; gap: 1rem; } /* 컨트롤 패널을 위아래로 분리 */
+  }
 </style>
 </head>
 <body>
 
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <span style="font-size: 1.5rem;">📊</span> 모니터링 데스크
+    <span style="font-size: 1.5rem;"></span> 모니터링 데스크
   </div>
   <ul class="nav-menu">
     <li class="nav-item active" id="nav-schedule" onclick="switchTab('schedule')">
-      🗓️ 주간 경제부처 일정
+       주간 경제부처 일정
     </li>
     <li class="nav-item" id="nav-personnel" onclick="switchTab('personnel')">
-      👤 일일 인사 / 부고
+       일일 인사 / 부고
     </li>
   </ul>
 </aside>
@@ -136,11 +146,11 @@
   </div>
 
   <div class="controls" id="controls-personnel" style="display: none; justify-content: space-between;">
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
       <input type="text" id="searchInput" placeholder="이름 검색 (예: 홍길동)" style="padding: 0.4rem; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; width: 160px;" onkeypress="if(event.key === 'Enter') searchPerson()">
-      <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;">🔍 인물 검색</button>
+      <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;"> 인물 검색</button>
     </div>
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
       <label style="font-size: 0.85rem;">날짜 선택:</label>
       <select id="dateSelect" style="margin-right: 5px;"></select>
       <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
@@ -156,6 +166,11 @@
 </div>
 
 <script>
+// 💡 처음 접속 시 화면이 작으면 사이드바를 알아서 접어둡니다!
+if (window.innerWidth < 900) {
+  document.getElementById('sidebar').classList.add('collapsed');
+}
+
 // 💡 사이드바 접기/펴기 기능
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('collapsed');
@@ -163,15 +178,12 @@ function toggleSidebar() {
 
 // 💡 탭(사이드바 메뉴) 전환 기능
 function switchTab(tabId) {
-  // 모든 메뉴 아이템에서 active 제거 후 클릭한 메뉴에 추가
   document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
   document.getElementById(`nav-${tabId}`).classList.add('active');
   
-  // 섹션 전환
   document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`section-${tabId}`).classList.add('active');
   
-  // 컨트롤 패널 전환
   document.getElementById('controls-schedule').style.display = tabId === 'schedule' ? 'flex' : 'none';
   document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
 }
