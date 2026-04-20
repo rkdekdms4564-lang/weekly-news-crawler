@@ -24,7 +24,7 @@
   /* 왼쪽 사이드바 디자인 */
   .sidebar { 
     width: 260px; 
-    background: #111827; 
+    background: #391B1B; /* 🤎 카카오 브라운 */
     color: #fff; 
     height: 100vh; 
     position: sticky; 
@@ -32,19 +32,16 @@
     transition: all 0.3s ease; 
     overflow: hidden;
     flex-shrink: 0;
-    z-index: 1000;
+    z-index: 1000; 
   }
-  .sidebar.collapsed { width: 0; } 
-  
-  /* 💡 사이드바 제목 영역 (X 버튼 추가를 위해 양쪽 끝 정렬) */
   .sidebar-header {
     padding: 1.5rem;
     font-size: 1.2rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 양쪽 끝 정렬 */
-    border-bottom: 1px solid #1f2937;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 은은한 회색 선 */
     white-space: nowrap;
   }
   
@@ -74,11 +71,11 @@
     transition: all 0.2s ease;
     white-space: nowrap;
   }
-  .nav-item:hover { background: #1f2937; color: #fff; }
+  .nav-item:hover { background: #522a2a; color: #fff; } /* 브라운보다 살짝 밝은 톤 */
   .nav-item.active {
-    background: #1f2937;
+    background: #522a2a;
     color: #fff;
-    border-left: 4px solid #3b82f6; 
+    border-left: 4px solid #FAE300; /* 💛 카카오 옐로우 포인트! */
     font-weight: 700;
   }
 
@@ -147,16 +144,16 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <span style="font-size: 1.5rem;">📊</span> 모니터링 데스크
+      <span style="font-size: 1.5rem;"></span> 모니터링 데스크
     </div>
     <button class="close-sidebar-btn" onclick="toggleSidebar()">×</button>
   </div>
   <ul class="nav-menu">
     <li class="nav-item active" id="nav-schedule" onclick="switchTab('schedule')">
-      🗓️ 주간 경제부처 일정
+       주간 경제부처 일정
     </li>
     <li class="nav-item" id="nav-personnel" onclick="switchTab('personnel')">
-      👤 일일 인사 / 부고
+       일일 인사 / 부고
     </li>
   </ul>
 </aside>
@@ -179,7 +176,7 @@
   <div class="controls" id="controls-personnel" style="display: none; justify-content: space-between;">
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
       <input type="text" id="searchInput" placeholder="이름 검색 (예: 홍길동)" style="padding: 0.4rem; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; width: 160px;" onkeypress="if(event.key === 'Enter') searchPerson()">
-      <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;">🔍 인물 검색</button>
+      <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;"> 인물 검색</button>
     </div>
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
       <label style="font-size: 0.85rem;">날짜 선택:</label>
