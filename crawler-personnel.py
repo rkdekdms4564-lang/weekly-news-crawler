@@ -61,8 +61,12 @@ def get_search_dates(now: datetime):
 # 4. 네이버 뉴스 API 검색 및 기사 본문 싹쓸이 + AI 요약
 # ==========================================
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_info):
-    search_query = f'"[{keyword}] {agency}"'
-    # 💡 넉넉하게 10개까지 검색!
+    # 💡 [핵심 수정] 인사와 부고의 검색 방식을 다르게 설정합니다!
+    if keyword == "인사":
+        search_query = f'"[{keyword}] {agency}"' # 인사는 기존처럼 깐깐하게 (완전 일치)
+    else:
+        search_query = f"[{keyword}] {agency}"   # 부고는 헐렁하게 (띄어쓰기 및 중간 단어 허용)
+        
     url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=5&sort=date"
     
     headers = {
@@ -142,7 +146,8 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
         - 홍보담당관 김철수
 
         [출력 형식 예시 - 부고]
-        김철수(행정안전부 주무관) 부친상 = 14일, 서울병원, 발인 16일
+        ※ 현직뿐만 아니라 '전직(전 직책)' 및 그 '가족(부인상, 부친상 등)'의 부고도 절대 누락하지 말고 모두 포함해.
+        김철수(전 행정안전부 주무관) 부친상 = 14일, 서울병원, 발인 16일
 
         기사 내용:
         {combined_text}
@@ -153,8 +158,11 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
         
         # AI가 예시 제목을 따라 쓰면 강제로 잘라버리는 방어막
         result = result.replace("[출력 형식 예시 - 인사]", "").replace("[출력 형식 예시 - 부고]", "").strip()
+
+        # 💡 [여기에 한 줄 추가!] 혹시 모를 AI의 안내문 복사-붙여넣기 헛소리 원천 차단!
+        result = result.replace("※ 현직뿐만 아니라 '전직(전 직책)' 및 그 '가족(부인상, 부친상 등)'의 부고도 절대 누락하지 말고 모두 포함해.", "").strip()
         
-        time.sleep(15) 
+        time.sleep(4) 
         
         if not result or "해당 없음" in result:
             return "해당 없음"
