@@ -186,8 +186,8 @@ def main():
     
     print(f"📅 네이버 인사/부고 초고속 수집 시작 (기간: {period_label})\n")
     
-    # 💡 [새로운 로직] 최근 최대 2일 치의 기존 데이터를 긁어모읍니다!
-    print("📂 최근 이틀 치 데이터를 찾아 중복 필터를 가동합니다...")
+    # 💡 [새로운 로직] 최근 최대 4일 치의 기존 데이터를 긁어모읍니다!
+    print("📂 최근 4일 치 데이터를 찾아 중복 필터를 가동합니다...")
     prev_data_list = []
     
     for i in range(1, 6): # 최근 1일 전부터 5일 전까지 파일이 있는지 탐색
@@ -198,7 +198,8 @@ def main():
                 prev_data_list.append(json.load(f))
             print(f"   ✔️ {check_date_str} 데이터 확보 완료")
         
-        if len(prev_data_list) == 2: # 2개(이틀 치)를 찾으면 더 이상 찾지 않음
+        # 💡 여기 숫자를 2에서 4로 바꿔주세요! (최대 나흘 치 기억력 장착)
+        if len(prev_data_list) == 4: 
             break
 
     if not prev_data_list:
