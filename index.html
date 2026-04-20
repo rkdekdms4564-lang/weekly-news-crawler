@@ -10,20 +10,72 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; display: flex; /* 💡 화면을 좌우로 나누기 위해 flex 사용 */ }
   
-  header { background: #1a3a5c; color: white; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  /* 💡 왼쪽 사이드바 디자인 */
+  .sidebar { 
+    width: 260px; 
+    background: #111827; /* 다크 네이비/블랙 느낌 */
+    color: #fff; 
+    height: 100vh; 
+    position: sticky; 
+    top: 0; 
+    transition: width 0.3s ease; 
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .sidebar.collapsed { width: 0; } /* 접혔을 때 너비 0 */
+  
+  .sidebar-header {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #1f2937;
+    white-space: nowrap;
+  }
+  
+  .nav-menu { list-style: none; margin-top: 1rem; }
+  .nav-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #9ca3af; /* 약간 연한 회색 */
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-item:hover { background: #1f2937; color: #fff; }
+  .nav-item.active {
+    background: #1f2937;
+    color: #fff;
+    border-left: 4px solid #3b82f6; /* 파란색 포인트 */
+    font-weight: 700;
+  }
+
+  /* 💡 오른쪽 메인 화면 영역 */
+  .main-wrapper {
+    flex: 1; /* 남은 공간 모두 차지 */
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header { background: #fff; color: #1a1a1a; padding: 1rem 1.5rem; display: flex; align-items: center; border-bottom: 1px solid #e5e7eb; }
+  .menu-btn { font-size: 1.2rem; background: none; border: none; cursor: pointer; margin-right: 1.5rem; padding: 0.2rem; color: #4b5563; }
   .header-title { font-size: 1.15rem; font-weight: 700; }
-  .header-sub { font-size: 0.72rem; opacity: 0.7; margin-top: 0.2rem; }
+  .header-sub { font-size: 0.75rem; color: #6b7280; margin-top: 0.2rem; }
   
-  .tabs { display: flex; background: #fff; border-bottom: 1px solid #ddd; padding: 0 2rem; }
-  .tab-btn { padding: 1rem 2rem; border: none; background: none; font-family: inherit; font-size: 0.95rem; font-weight: 500; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
-  .tab-btn.active { color: #1a3a5c; font-weight: 700; border-bottom: 3px solid #1a3a5c; }
-  
-  .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; justify-content: flex-end; }
+  .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e5e7eb; }
   select { font-family: inherit; font-size: 0.85rem; padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
   
-  main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+  main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; width: 100%; }
   .content-section { display: none; }
   .content-section.active { display: block; }
   
@@ -54,47 +106,72 @@
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="header-title">주요 부처 모니터링 대시보드</div>
-    <div class="header-sub">주간 보도계획 및 일일 인사/부고 자동화 시스템</div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span style="font-size: 1.5rem;">📊</span> 모니터링 데스크
   </div>
-</header>
+  <ul class="nav-menu">
+    <li class="nav-item active" id="nav-schedule" onclick="switchTab('schedule')">
+      🗓️ 주간 경제부처 일정
+    </li>
+    <li class="nav-item" id="nav-personnel" onclick="switchTab('personnel')">
+      👤 일일 인사 / 부고
+    </li>
+  </ul>
+</aside>
 
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('schedule')"> 주간 경제부처 일정</button>
-  <button class="tab-btn" onclick="switchTab('personnel')"> 일일 인사 / 부고</button>
-</div>
+<div class="main-wrapper">
+  
+  <header>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div>
+      <div class="header-title">주요 부처 모니터링 대시보드</div>
+      <div class="header-sub">주간 보도계획 및 일일 인사/부고 자동화 시스템</div>
+    </div>
+  </header>
 
-<div class="controls" id="controls-schedule">
-  <label style="font-size: 0.85rem;">주차 선택:</label>
-  <select id="weekSelect"></select>
-</div>
-
-<div class="controls" id="controls-personnel" style="display: none; justify-content: space-between;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <input type="text" id="searchInput" placeholder="이름 검색 (예: 홍길동)" style="padding: 0.4rem; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; width: 160px;" onkeypress="if(event.key === 'Enter') searchPerson()">
-    <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;">🔍 인물 검색</button>
+  <div class="controls" id="controls-schedule" style="justify-content: flex-end;">
+    <label style="font-size: 0.85rem;">주차 선택:</label>
+    <select id="weekSelect"></select>
   </div>
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <label style="font-size: 0.85rem;">날짜 선택:</label>
-    <select id="dateSelect" style="margin-right: 5px;"></select>
-    <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
-  </div>
-</div>
 
-<main>
-  <div id="status">데이터 불러오는 중...</div>
-  <div id="section-schedule" class="content-section active"></div>
-  <div id="section-personnel" class="content-section"></div>
-</main>
+  <div class="controls" id="controls-personnel" style="display: none; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <input type="text" id="searchInput" placeholder="이름 검색 (예: 홍길동)" style="padding: 0.4rem; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; width: 160px;" onkeypress="if(event.key === 'Enter') searchPerson()">
+      <button onclick="searchPerson()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #1a3a5c; background: #1a3a5c; color: white; border-radius: 4px; font-weight: bold;">🔍 인물 검색</button>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <label style="font-size: 0.85rem;">날짜 선택:</label>
+      <select id="dateSelect" style="margin-right: 5px;"></select>
+      <button id="toggleAllBtn" onclick="toggleShowAll()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">모든 부처 보기</button>
+    </div>
+  </div>
+
+  <main>
+    <div id="status">데이터 불러오는 중...</div>
+    <div id="section-schedule" class="content-section active"></div>
+    <div id="section-personnel" class="content-section"></div>
+  </main>
+
+</div>
 
 <script>
+// 💡 사이드바 접기/펴기 기능
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+}
+
+// 💡 탭(사이드바 메뉴) 전환 기능
 function switchTab(tabId) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  // 모든 메뉴 아이템에서 active 제거 후 클릭한 메뉴에 추가
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  document.getElementById(`nav-${tabId}`).classList.add('active');
+  
+  // 섹션 전환
   document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`section-${tabId}`).classList.add('active');
+  
+  // 컨트롤 패널 전환
   document.getElementById('controls-schedule').style.display = tabId === 'schedule' ? 'flex' : 'none';
   document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
 }
@@ -193,7 +270,6 @@ async function searchPerson() {
   const searchResults = {}; 
   const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
   
-  // 💡 [핵심 기술] 검색한 사람이 있는 '줄'과 그 위 '제목'만 쏙쏙 뽑아내는 족집게 함수!
   function extractOnlyPerson(text, searchName) {
     if(!text || text === "해당 없음") return "";
     let lines = text.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").split('\n');
@@ -205,13 +281,12 @@ async function searchPerson() {
         if(!tLine) continue;
 
         if(tLine.startsWith('◇')) {
-            currentHeading = tLine; // 제목(◇ 국장급 승진 등) 기억하기
+            currentHeading = tLine; 
         } else if(tLine.includes(searchName)) {
-            // 내가 찾던 사람이 나왔을 때!
             if(currentHeading && !filtered.includes(currentHeading)) {
-                filtered.push(currentHeading); // 기억해둔 제목 먼저 꺼내놓기
+                filtered.push(currentHeading); 
             }
-            filtered.push(tLine); // 그 사람 내용 꺼내놓기
+            filtered.push(tLine); 
         }
     }
     return filtered.join('\n');
@@ -229,7 +304,6 @@ async function searchPerson() {
        const bugoText = data["부고"]?.[agency] || "해당 없음";
        
        if(insaText.includes(keyword)) {
-           // 통째로 넣는 게 아니라, 족집게 함수로 발라낸 결과만 넣기!
            const justThatPerson = extractOnlyPerson(insaText, keyword);
            if(justThatPerson) {
                if(!searchResults[agency]) searchResults[agency] = [];
