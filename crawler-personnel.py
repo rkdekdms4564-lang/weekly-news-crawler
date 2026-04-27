@@ -130,7 +130,7 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
             print(f" ➔ 관련 기사 없음 (패스 ⚡)")
             return "해당 없음"
             
-        print(f" ➔ 찐 기사 발견! (본문 확보 완료, AI 분석 중 🧠)")
+        print(f" ➔ 찐 기사 발견! (본문 확보 완료, AI 분석 중)")
         combined_text = "\n\n---\n\n".join(snippets)
         
         prompt = f"""
@@ -171,6 +171,7 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
         result = result.replace("※ 부고 기사의 경우 기사 원문에 있는 기호(▲, ■ 등)나 기자/언론사 이름(예: 연합뉴스)은 모두 제거해.", "")
         result = result.replace("※ 첫 줄에는 [우리 부처 관계자(소속 및 직책) 상명]을 적고, 두 번째 줄에는 [고인 이름 별세 = 빈소, 발인 일시]를 원문 느낌을 살려서 그대로 적어줘.", "").strip()
         
+        time.sleep(1)
         
         if not result or "해당 없음" in result:
             return "해당 없음"
