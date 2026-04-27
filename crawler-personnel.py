@@ -61,11 +61,18 @@ def get_search_dates(now: datetime):
 # 4. 네이버 뉴스 API 검색 및 기사 본문 싹쓸이 + AI 요약
 # ==========================================
 def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_info):
-    # 💡 [수정] 부고 검색 시 대괄호([])를 빼서 본문에 숨어있는 부처명까지 싹쓸이합니다!
-    if keyword == "인사":
-        search_query = f'"[{keyword}] {agency}"' # 인사는 기존처럼 깐깐하게 유지
+    # 💡 [수정됨] 가운데 점(·)이 있는 부처는 쪼개서 'OR(|)' 조건으로 검색하도록 개선!
+    if '·' in agency:
+        parts = agency.split('·') # ['국무조정실', '국무총리비서실'] 로 쪼갬
+        if keyword == "인사":
+            search_query = f'"[{keyword}] {parts[0]}" | "[{keyword}] {parts[1]}"'
+        else:
+            search_query = f"{keyword} {parts[0]} | {keyword} {parts[1]}"
     else:
-        search_query = f"{keyword} {agency.replace('·', ' ')}" # 부고는 대괄호 삭제!
+        if keyword == "인사":
+            search_query = f'"[{keyword}] {agency}"' 
+        else:
+            search_query = f"{keyword} {agency}"
         
     url = f"https://openapi.naver.com/v1/search/news.json?query={search_query}&display=5&sort=date"
     
