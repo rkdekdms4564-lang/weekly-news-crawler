@@ -1,0 +1,84 @@
+[오늘 주요 이슈]
+
+☑️ 자사 및 계열사 이슈
+
+1️⃣ 카카오 파업 숨은 배경으로 떠오른 'AI 전략 혼선' - 시사저널e
+https://news.google.com/rss/articles/CBMickFVX3lxTE40cFo0Q3BBN0g1NXZjelhQX0xVUUd3bmRPUFdEbm5PbkpZME8xZWNQczZrUUlFbzQ5SWdCR0czSkZwQ1gtZ2pqS0l5QjdsclhLN1ZIUE9TVC1IOGZvVFJZSDdleUNmX2xhSE13LW1ScVNKUdIBdkFVX3lxTE95LUkyaEZ4Nmh4YUppUzl5ZXctSnBQZzF3bUItRUlYcU45V1JUUE8yb1k1TTgtUUxDRkpKM2d6ZUo1bG1jS1I4R0JzUG15VFYyZm52T1MtZW1XOWxrOFBUWnp3V0RXY1lENVFWV1JzY0lhbVpDelE?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(시사저널e)
+카카오 파업의 숨은 배경으로 인공지능(AI) 전략의 혼선이 언급되고 있음.
+
+2️⃣ 깜짝 실적에도 내리막 '카카오'…'본업부활' vs '성장한계' 엇갈린 시선 - 한국경제
+https://news.google.com/rss/articles/CBMiVEFVX3lxTE94Z3dNS043OGxTZ1FUbUV5SnU0WS1Jb25KYmxyclVCT0xvZm52RzhoYzdGQ3BsZjRkbHVzZEU2YVJMbWcwczg1OVhrXzA0RWFUc0ZCRtIBVEFVX3lxTE94Z3dNS043OGxTZ1FUbUV5SnU0WS1Jb25KYmxyclVCT0xvZm52RzhoYzdGQ3BsZjRkbHVzZEU2YVJMbWcwczg1OVhrXzA0RWFUc0ZCRg?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(한국경제)
+카카오가 깜짝 실적을 기록했음에도 주가는 내리막세를 보이고 있으며, 본업 부활에 대한 기대와 성장 한계에 대한 시선이 엇갈리고 있음.
+
+3️⃣ 카카오, 다음 팔고 게임즈 넘기고 모빌리티 검토…AI 올인 본격화 - jabon.co.kr
+https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1KOTMtaUhFNllKbWlna1lQTktaYVJzb3JmOUhfaF9QMHVRbDA0RDdPTWVoVm1RVGFPaUZaSl91d0FzUllsRnVld2lNeUI2VEVSNmVRX0EwZHJKNmRvNWVFcGhHSE1MekE?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(jabon.co.kr)
+카카오가 다음 매각, 카카오게임즈 이관, 카카오모빌리티 매각 검토 등 인공지능(AI) 사업에 전사적인 역량을 집중하고 있음.
+
+4️⃣ ˝네이버·카카오페이 묵은 돈 꿀꺽 못 한다˝... '서민금융지원법' 입법예고:동아경제신문 & daenews.co.kr - 동아경제
+https://news.google.com/rss/articles/CBMiRkFVX3lxTE9UZTlCUHBuUFk5VTJpb28xOUR1WFNnWGNndGk0SHp3MEx0aEFmd3VQWF9iX20yZzNySTJ4MHc1cGdOSFVsSHfSAWJBVV95cUxNM0V0c3U2WjlJTVM4TUNqR3gtYlQ1LUVWQlE1Wnh1Q0R3eTVMakpTNVFWb2xLOWg4WTZCVUtVRDNuNnNrUDdmZDdOMml6ZWt6STk2UVk4ZXNweUtONUVBQ1RXUQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(동아경제)
+네이버페이와 카카오페이 등 빅테크 플랫폼의 선불충전금에 대해 ‘서민금융지원법’이 입법예고되었음.
+
+☑️ 정부/국회
+
+1️⃣ 방미통위, 가짜뉴스에 딥페이크도 잡는다…망법·AI기본법 '투트랙' - v.daum.net
+https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQcjUzWlRER3QyWmJSREQ2NFBfa2RVNmRo0Jza250cWxmYVVSTWp2MWVhUHg0QUZMOTVXU3FQSURnVnNweVVNaTBIVFNRNWs?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(v.daum.net)
+방송통신위원회가 가짜뉴스와 딥페이크에 대응하기 위해 망법 개정안과 인공지능(AI) 기본법을 '투트랙'으로 추진하고 있음.
+
+2️⃣ ‘인공지능 데이터센터 산업 진흥에 관한 특별법’ 제정 - 법률신문
+https://news.google.com/rss/articles/CBMibkFVX3lxTE1HUVI2NXp3a2JSNzhYUzVlbEUyRGdNZVBjS1NoSnNhd1k5V1NHemNta0RLSGRGaDBUNGNnQU5jdG9fWURfdVlPaFFCeFhqWnRiT21IZ0RUSnFBRDE3czJOaVF6Ukx3QmtkQ1BwVnNR0gFyQVVfeXFMTm8tVHV4Mm5OSDFPV3VsX2ZuRnBDVzBZZFc0eGh6UnBJel9TWnZmcXFQQS1vTEEwdEV5c0VobzU4RlNMRlphYWVGRHBaQVp4WlUxTGxfYXdhSGhCU0RNZHNuM1pOQm9Pc084RVJFRGtRVGlB?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(법률신문)
+‘인공지능 데이터센터 산업 진흥에 관한 특별법’이 제정됨.
+
+3️⃣ ｢개인정보 보호법」 개정안 국회 정무위원회 통과 - 인공지능기술 개발을 위한 개인정보 처리의 특례 신설 - 법률신문
+https://news.google.com/rss/articles/CBMibkFVX3lxTE5jeWZMX0ZCYVIteUJIaE85RjE5b1h3M3QxWkt4SmI2ak1GbTg1alZ2MndqSHF0am9lN0NLYUlQTHVEUXJYcl81bERxOV8tY0J2Z0pZOEJzamdiWVA5SGNOSi1rclA5Y0FwenRYRmR30gFyQVVfeXFMUHBOaEF6eXNXNE1XRVQwYXAtb3hlekI4MG5YcG42VUZ5R2htWk1xei12ZkNlU0lmcGViY1ZBdm95Ny0yQktvLTdtbm1NaHlheldraURjSDRYSnBabWRkdjlwcFd3NktjUnJOcDNuRW9jRjlR?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(법률신문)
+｢개인정보 보호법」 개정안이 국회 정무위원회를 통과하여 인공지능(AI) 기술 개발을 위한 개인정보 처리 특례가 신설됨.
+
+4️⃣ ‘미토스 쇼크’에 금융 AX 전환 가속… 금융위, 금융권 망분리 규제 대폭 완화 - 인공지능신문
+https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9QVUxZUWh2Q21lU2JKUTJSa2VrSFJoYi1VbHNVeUVkWmI5Zm55dkUzRHV2NUpBbmY5TENhVTNkRkdlcHkyM1JUaEtYM2hUaFNDOThyNlhGUGV4cHY3VWk5ZzdseDRVNU0?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(인공지능신문)
+‘미토스 쇼크’로 금융 분야의 인공지능 전환(AX)이 가속화되고 있으며, 금융위원회가 금융권 망분리 규제를 대폭 완화함.
+
+5️⃣ 공정거래위원회, 반복 담합 제재 강화 추진 - 법률신문
+https://news.google.com/rss/articles/CBMibkFVX3lxTE5aZGpKYzFVNUVra2dZblUwdFZraFJHU1I4QmhjdzlmaVRjWld0RjZzVmFKZ20tTjZsZ3FuRHVGMTZKbnRaazl5Q0dMNUpVU3hjVHB4QTZQWmdtbmt0SE9nYjJTa01rajIwYURSRDRn0gFyQVVfeXFMT09PcnI4Q2pNc0ZRNy1yOS1Od1ExWUNQdEsyYWNpZEZVLXYxYUpTSnY1eDZTS2ZFQUczZnJHNl9SWkt1czNKSUlJMlJuZWFXN2xOQzNpMXpUOC1qNEpWX0RNa2hvNVlFa2xlMC10ejN6cV9n?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(법률신문)
+공정거래위원회가 반복적으로 발생하는 담합 행위에 대한 제재 강화를 추진하고 있음.
+
+☑️ 경쟁사/해외이슈
+
+1️⃣ 박윤영 KT 대표, 전임자 ‘김영섭표 AICT’와 결별…AI 서비스도 ‘자체 기술’에 무게 - 필드뉴스
+https://news.google.com/rss/articles/CBMibEFVX3lxTE9XeWJrZGJRUVB4QmtBTnAtUF84U19kMzRjVldwWTAtQjN4Rko4SlRWSUFlZ29zNnkzV1I1T0NMMlZCSDVKMTdyUjN1eGJlU1NJaFVyeW5lY2pLY2J4Y242TnNkcFZfR010UER2M9IBbEFVX3lxTE9XeWJrZGJRUVB4QmtBTnAtUF84U19kMzRjVldwWTAtQjN4Rko4SlRWSUFlZ29zNnkzV1I1T0NMMlZCSDVKMTdyUjN1eGJlU1NJaFVyeW5lY2pLY2J4Y242TnNkcFZfR010UER2Mw?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(필드뉴스)
+박윤영 KT 대표가 전임 김영섭 대표의 'AICT' 전략에서 벗어나 인공지능(AI) 서비스 개발에 자체 기술 비중을 높이는 방향으로 전환하고 있음.
+
+2️⃣ [단독]LGU+, AI 데이터센터 2030년 400MW로 키운다 - v.daum.net
+https://news.google.com/rss/articles/CBMiT0FVX3lxTE9RUjdELXpicEo1MHVFU1oyQWlidGlmSVNLdmF4cDBLS1VtLUgweFREVXNDZ3ZMUEc3M3c1cnN2YjNZejVZOEEzMFUwRVhFNk0?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(v.daum.net)
+LG유플러스가 인공지능(AI) 데이터센터의 규모를 2030년까지 400MW로 확대할 계획임.
+
+3️⃣ 우버, 배민 모회사 獨 딜리버리히어로 인수 제안 - 인베스트조선
+https://news.google.com/rss/articles/CBMickFVX3lxTE1Lb0FKdDY0ejIxbXF3bHJUTkVNc3EtMnlmNTllLUliVlJmMFVfWUpFOUpQVHRMNkV0cEJXeTAtMVR1d0FmZHRHMUd2NzRrSlFCQTd5OFV6dmFCQ0staVVLRkxmRERjcXNITE9qVHh3Zzladw?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(인베스트조선)
+우버가 배달의민족 모회사인 독일 딜리버리히어로에 인수를 제안한 것으로 알려졌음.
+
+4️⃣ "EU, 구글에 수천억원 벌금 부과 계획…DMA 벌금 최대" - 연합뉴스
+https://news.google.com/rss/articles/CBMiYAFVX3lxTE11QnpEanJKQ0FOVHNLa21YdWZKVGR5MzVzUGNKNldYd3A5cEp5TzBIa0ZVQlBnZjA2Q0hVZzZaM0hNQmFieVdRZ3YxZGlZVWduM3hBbXFfbkk1Q0pOVW0zbdIBYAFVX3lxTE11QnpEanJKQ0FOVHNLa21YdWZKVGR5MzVzUGNKNldYd3A5cEp5TzBIa0ZVQlBnZjA2Q0hVZzZaM0hNQmFieVdRZ3YxZGlZVWduM3hBbXFfbkk1Q0pOVW0zbQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(연합뉴스)
+유럽연합(EU)이 구글에 수천억 원 규모의 벌금을 부과할 계획이며, 이는 디지털 시장법(DMA) 관련 벌금 중 최대치가 될 것으로 예상됨.
+
+☑️ 산업동향
+
+1️⃣ 산업 현장 파고든 AI…"물류∙신약∙인프라 혁신 나선다" - 한국면세뉴스
+https://news.google.com/rss/articles/CBMiakFVX3lxTFBidzI2ZWVJX1JmTjZ3QzZCc1VoUG5VaXlxSXdGWkRUVnlOcGZJVElBanYyRmNmcmxFNWRPUVB2dmN3ZFhQanhPZE9tWFJmdWpWVjJMRmEycThVSy1rRUtSSUtwWVpzWnkzN0E?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(한국면세뉴스)
+인공지능(AI)이 물류, 신약 개발, 인프라 등 다양한 산업 현장에 적용되어 혁신을 주도하고 있음.
+
+2️⃣ 메인비즈협회, 중국 광동성지회 출범…한·중 중소기업 협력 플랫폼 구축 본격화 - 전자신문
+https://news.google.com/rss/articles/CBMiTkFVX3lxTE9yMDRVUjFZLVpoZkZzLTMyX3A5ZzAtOUlHLXBoMlU1Z29zVUdaaHo2OG55ZTFtcXBvMkdNdjBuNmxhZzJIa0pWUmRFdTZMQQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
+(전자신문)
+메인비즈협회가 중국 광동성지회를 출범하며 한국과 중국 중소기업 간 협력 플랫폼 구축을 본격화하고 있음.
