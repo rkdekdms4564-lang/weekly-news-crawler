@@ -1,84 +1,84 @@
-[오늘 주요 이슈]
+[5월 27일(수) 주요 이슈]
 
 ☑️ 자사 및 계열사 이슈
 
-1️⃣ 카카오 파업 숨은 배경으로 떠오른 'AI 전략 혼선' - 시사저널e
-https://news.google.com/rss/articles/CBMickFVX3lxTE40cFo0Q3BBN0g1NXZjelhQX0xVUUd3bmRPUFdEbm5PbkpZME8xZWNQczZrUUlFbzQ5SWdCR0czSkZwQ1gtZ2pqS0l5QjdsclhLN1ZIUE9TVC1IOGZvVFJZSDdleUNmX2xhSE13LW1ScVNKUdIBdkFVX3lxTE95LUkyaEZ4Nmh4YUppUzl5ZXctSnBQZzF3bUItRUlYcU45V1JUUE8yb1k1TTgtUUxDRkpKM2d6ZUo1bG1jS1I4R0JzUG15VFYyZm52T1MtZW1XOWxrOFBUWnp3V0RXY1lENVFWV1JzY0lhbVpDelE?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(시사저널e)
-카카오 파업의 숨은 배경으로 인공지능(AI) 전략의 혼선이 언급되고 있음.
-
-2️⃣ 깜짝 실적에도 내리막 '카카오'…'본업부활' vs '성장한계' 엇갈린 시선 - 한국경제
-https://news.google.com/rss/articles/CBMiVEFVX3lxTE94Z3dNS043OGxTZ1FUbUV5SnU0WS1Jb25KYmxyclVCT0xvZm52RzhoYzdGQ3BsZjRkbHVzZEU2YVJMbWcwczg1OVhrXzA0RWFUc0ZCRtIBVEFVX3lxTE94Z3dNS043OGxTZ1FUbUV5SnU0WS1Jb25KYmxyclVCT0xvZm52RzhoYzdGQ3BsZjRkbHVzZEU2YVJMbWcwczg1OVhrXzA0RWFUc0ZCRg?oc=5&hl=ko&gl=KR&ceid=KR:ko
+1️⃣ "카카오게임즈, 신작 출시 지연에 적자 확대…목표가↓"-삼성
+https://www.hankyung.com/amp/2026052705696
 (한국경제)
-카카오가 깜짝 실적을 기록했음에도 주가는 내리막세를 보이고 있으며, 본업 부활에 대한 기대와 성장 한계에 대한 시선이 엇갈리고 있음.
+삼성증권은 카카오게임즈의 신작 출시 지연과 기존 게임 매출 감소로 영업 적자가 3개 분기 연속 확대되고 있다고 밝히며, 목표주가를 기존 1만3000원에서 1만원으로 하향하고 투자의견 '중립'을 유지함. 올 2분기 영업손실은 전분기보다 9% 증가한 277억원을 기록할 것으로 예상됨. 실적 개선은 하반기 출시될 2종의 다중접속역할수행게임(MMORPG)에 달려 있으며, 특히 '오딘Q'가 연내 출시될 경우 내년 상반기부터 흑자 전환이 가능할 것으로 전망됨. 주가 반등을 위해서는 유상증자로 인한 주주 지분 희석 효과를 상쇄할 신규 경영진의 성장 전략과 모회사와의 시너지 방안이 제시될 필요가 있음.
 
-3️⃣ 카카오, 다음 팔고 게임즈 넘기고 모빌리티 검토…AI 올인 본격화 - jabon.co.kr
-https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1KOTMtaUhFNllKbWlna1lQTktaYVJzb3JmOUhfaF9QMHVRbDA0RDdPTWVoVm1RVGFPaUZaSl91d0FzUllsRnVld2lNeUI2VEVSNmVRX0EwZHJKNmRvNWVFcGhHSE1MekE?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(jabon.co.kr)
-카카오가 다음 매각, 카카오게임즈 이관, 카카오모빌리티 매각 검토 등 인공지능(AI) 사업에 전사적인 역량을 집중하고 있음.
+2️⃣ 삼성·카카오·현대차까지...주주들 "영업이익 성과급, 상법 질서 붕괴"
+https://news.ikbc.co.kr/article/view/kbc202605270029
+(KBC광주방송)
+주주단체 '대한민국 주주운동본부'는 삼성전자 노사의 '영업이익 연동형 성과급' 합의가 상법을 위반한 위법 행위라고 주장하며 강경 대응을 예고함. 세전 영업이익의 일정 비율을 성과급 재원으로 사전 할당하는 것을 상법상 배당 절차를 거치지 않은 위법 배당이라고 비판하였으며, 회사 자금의 외부 유출은 주주총회 결의 사항이지 노사 교섭 대상이 아니라고 주장함. 또한 주주운동본부는 카카오 노사의 '영업이익 약 10% 수준' 보상안도 상법 질서에 위배된다며, 이사회 비준 시 무효확인 소송 및 손해배상 청구 등 법적 조치를 취할 것이라고 밝힘. 재계 전반으로 확산되는 성과급 연동 요구에 대해 헌법과 상법의 기초 질서를 무너뜨리는 행위라고 우려하며, 정부와 노동당국에 명확한 입장 표명을 요구함.
 
-4️⃣ ˝네이버·카카오페이 묵은 돈 꿀꺽 못 한다˝... '서민금융지원법' 입법예고:동아경제신문 & daenews.co.kr - 동아경제
-https://news.google.com/rss/articles/CBMiRkFVX3lxTE9UZTlCUHBuUFk5VTJpb28xOUR1WFNnWGNndGk0SHp3MEx0aEFmd3VQWF9iX20yZzNySTJ4MHc1cGdOSFVsSHfSAWJBVV95cUxNM0V0c3U2WjlJTVM4TUNqR3gtYlQ1LUVWQlE1Wnh1Q0R3eTVMakpTNVFWb2xLOWg4WTZCVUtVRDNuNnNrUDdmZDdOMml6ZWt6STk2UVk4ZXNweUtONUVBQ1RXUQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(동아경제)
-네이버페이와 카카오페이 등 빅테크 플랫폼의 선불충전금에 대해 ‘서민금융지원법’이 입법예고되었음.
+3️⃣ 카카오 노사 오늘 2차 조정회의…공동파업 분수령
+https://www.yonhapnewstv.co.kr/news/MYH20260527080241rbi
+(연합뉴스TV)
+카카오 노사가 27일 오후 3시 경기지방노동위원회에서 2차 조정 회의를 개최할 예정임. 이 회의 결과에 따라 본사와 주요 계열사들의 공동 파업 여부가 결정될 중대 분수령이 될 것으로 보임. 성과급을 둘러싼 노사 간 입장 차이가 핵심이며, 앞서 5개 법인의 파업 찬반투표는 모두 가결된 상태임. 오늘 조정이 최종 결렬돼 조정 중지 결정이 내려질 경우, 본사까지 합법적 쟁의권을 확보하여 카카오 창사 이래 첫 대규모 공동 총파업으로 이어질 가능성이 제기됨.
+
+4️⃣ 카카오페이손보, 1분기 매출 243억원 '역대 최고'…보험손익 안정세
+https://www.etnews.com/20260527000215
+(전자신문)
+카카오페이손해보험은 올해 1분기 매출 243억원을 달성하여 전년 동기 대비 85.5% 급증하며 분기 기준 역대 최고 매출을 기록함. 보험손익은 전년 동기 -122억원에서 올해 1분기 -91억원으로 개선되어 적자 폭이 축소됨. 이는 기존 해외여행보험 외 영유아보험, 초중생보험, 국내여행보험, 전월세보험, 건강보험, 펫보험 등으로 상품 포트폴리오를 다각화한 결과로 풀이됨. 특히 정기 납입 상품 원수보험료는 올해 1분기 전년 동기 대비 157% 대폭 성장한 66억원을 기록함. 카카오페이손보는 설계사 없이 비대면 영업을 진행하는 디지털 보험사임.
 
 ☑️ 정부/국회
 
-1️⃣ 방미통위, 가짜뉴스에 딥페이크도 잡는다…망법·AI기본법 '투트랙' - v.daum.net
-https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQcjUzWlRER3QyWmJSREQ2NFBfa2RVNmRo0Jza250cWxmYVVSTWp2MWVhUHg0QUZMOTVXU3FQSURnVnNweVVNaTBIVFNRNWs?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(v.daum.net)
-방송통신위원회가 가짜뉴스와 딥페이크에 대응하기 위해 망법 개정안과 인공지능(AI) 기본법을 '투트랙'으로 추진하고 있음.
+1️⃣ 과기정통부 "미토스·GPT-5.5로 해킹 자동화…AI 예방체계 강화"
+https://www.ddaily.co.kr/page/view/2026052710131204887
+(디지털데일리)
+과학기술정보통신부는 '클로드 미토스'와 'GPT-5.5' 등 차세대 인공지능(AI) 모델로 인한 해킹 공격 자동화 가능성에 대응하여 기존 정보보호 종합대책을 개선하고 AI 기반 사이버 위협 대응을 강화할 계획임. 정부는 주요 기업 및 국가·공공기관 시스템 점검, ISMS-P 실효성 강화, 고의 미신고 과태료 및 개인정보 유출 과징금 상향 등을 포함한 종합대책을 추진 중임. 통신·플랫폼 ISMS 인증, 정보통신망법 및 개인정보보호법 개정, 정보보호책임관 상향 등 이행 현황을 공유함. 또한 AI와 양자컴퓨팅 기술에 대응하여 기업 보안 솔루션의 AI 기반 전환을 지원하고 능동적 대응 체계를 구축할 방침이며, 중소기업 대상 SaaS형 AI 보안 서비스 및 보안 관제 지원을 검토하고 민관 협력 체계를 강화하고 있음. 독자적인 AI 보안 역량 확보와 AI 보안 특화 모델 및 에이전트 기술 개발도 지원할 계획임.
 
-2️⃣ ‘인공지능 데이터센터 산업 진흥에 관한 특별법’ 제정 - 법률신문
-https://news.google.com/rss/articles/CBMibkFVX3lxTE1HUVI2NXp3a2JSNzhYUzVlbEUyRGdNZVBjS1NoSnNhd1k5V1NHemNta0RLSGRGaDBUNGNnQU5jdG9fWURfdVlPaFFCeFhqWnRiT21IZ0RUSnFBRDE3czJOaVF6Ukx3QmtkQ1BwVnNR0gFyQVVfeXFMTm8tVHV4Mm5OSDFPV3VsX2ZuRnBDVzBZZFc0eGh6UnBJel9TWnZmcXFQQS1vTEEwdEV5c0VobzU4RlNMRlphYWVGRHBaQVp4WlUxTGxfYXdhSGhCU0RNZHNuM1pOQm9Pc084RVJFRGtRVGlB?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(법률신문)
-‘인공지능 데이터센터 산업 진흥에 관한 특별법’이 제정됨.
+2️⃣ 보이스피싱에 속아 3억원 잃은 피해자 생 마감…인출책 징역 1년
+https://www.yna.co.kr/amp/view/AKR20260527080100055
+(연합뉴스)
+보이스피싱 인출책으로 가담한 A(71)씨가 항소심에서 징역 1년을 선고받음. A씨는 2024년 8월경 보이스피싱 조직에 속은 피해자 B씨가 입금한 3억3천만원 중 2천500만원을 출금하여 조직원에게 전달한 혐의로 기소됨. 피해자 B씨는 보이스피싱으로 돈을 잃은 후 스스로 생을 마감한 것으로 드러남. A씨는 B씨 외에도 다른 피해자 2명으로부터 1억2천여만원을 인출하여 조직원에게 전달한 것으로 밝혀짐. 항소심 재판부는 피고인이 편취한 금액이 1억원 이상이고 피해 복구가 이루어지지 않았으며 피해자 사망이라는 결과가 발생한 점을 고려하여 원심의 형을 유지함.
 
-3️⃣ ｢개인정보 보호법」 개정안 국회 정무위원회 통과 - 인공지능기술 개발을 위한 개인정보 처리의 특례 신설 - 법률신문
-https://news.google.com/rss/articles/CBMibkFVX3lxTE5jeWZMX0ZCYVIteUJIaE85RjE5b1h3M3QxWkt4SmI2ak1GbTg1alZ2MndqSHF0am9lN0NLYUlQTHVEUXJYcl81bERxOV8tY0J2Z0pZOEJzamdiWVA5SGNOSi1rclA5Y0FwenRYRmR30gFyQVVfeXFMUHBOaEF6eXNXNE1XRVQwYXAtb3hlekI4MG5YcG42VUZ5R2htWk1xei12ZkNlU0lmcGViY1ZBdm95Ny0yQktvLTdtbm1NaHlheldraURjSDRYSnBabWRkdjlwcFd3NktjUnJOcDNuRW9jRjlR?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(법률신문)
-｢개인정보 보호법」 개정안이 국회 정무위원회를 통과하여 인공지능(AI) 기술 개발을 위한 개인정보 처리 특례가 신설됨.
+3️⃣ 보이스피싱 대응책 통했다...7개월 연속 피해액 감소
+https://zdnet.co.kr/view?no=20260527172059
+(지디넷코리아)
+지난해 10월부터 올해 4월까지 7개월 연속으로 보이스피싱 건수와 피해액이 감소한 것으로 나타났으며, 문자 스팸도 5년 내 최저 수준으로 줄어든 것으로 밝혀짐. 정부는 이를 지난해 발표된 보이스피싱 근절 종합대책과 방송미디어통신위원회 불법스팸 대응 정책, 민관협업의 효과로 강조함. 정부는 향후 금융위원회에서 보이스피싱 범죄 실형 선고자의 전자금융거래를 제한하고, 과학기술정보통신부에서 외국인 휴대폰 부정개통 방지를 위한 사진 정보 진위 여부에 나설 계획임. 또한 법무부는 범죄 목적 유령 법인 해산, 대검찰청은 범죄수익환수에 집중하며, 지난해 입법과제 중 미처리된 법안의 국회 논의를 지원하고 신종 스캠범죄 대응에도 나설 방침임.
 
-4️⃣ ‘미토스 쇼크’에 금융 AX 전환 가속… 금융위, 금융권 망분리 규제 대폭 완화 - 인공지능신문
-https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9QVUxZUWh2Q21lU2JKUTJSa2VrSFJoYi1VbHNVeUVkWmI5Zm55dkUzRHV2NUpBbmY5TENhVTNkRkdlcHkyM1JUaEtYM2hUaFNDOThyNlhGUGV4cHY3VWk5ZzdseDRVNU0?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(인공지능신문)
-‘미토스 쇼크’로 금융 분야의 인공지능 전환(AX)이 가속화되고 있으며, 금융위원회가 금융권 망분리 규제를 대폭 완화함.
+4️⃣ 주병기 공정위원장 “조사국 신설·237명 증원…쿠팡사태 같은 복합사건 대응”
+https://www.edaily.co.kr/News/Read?newsId=03860566645453184&mediaCodeNo=257
+(이데일리)
+공정거래위원회는 쿠팡 개인정보 유출 사태와 같은 복합형 대형 사건 대응을 위해 대대적인 조직개편을 추진할 계획임. 2005년 폐지된 조사국 기능을 '중점조사기획단' 형태로 부활시키고 경제분석 전담 조직을 신설하여 플랫폼, 민생담합, 대기업집단 사건 대응 역량을 강화할 구상임. 총 237명 규모의 조직·인력 확충 방안이 마련되었으며, 6월 내 직제 개정 절차를 거쳐 올해 4분기부터 본격 가동될 예정임. 중점조사기획단은 국 단위 조직으로 플랫폼, 민생밀접 독과점, 대기업집단 사건 등 구조적·복합 사건을 전담하는 '탄력 조직' 역할을 수행하며, 민생 관련 담합 발생 시 대규모 일괄조사를 진행하는 '기동대' 기능도 맡게 됨. 신설되는 경제분석국은 플랫폼 데이터 독점, 알고리즘 자사우대, 인공지능(AI) 기반 시장 왜곡 등 신유형 경쟁 제한 행위를 분석하는 역할을 수행할 예정임.
 
-5️⃣ 공정거래위원회, 반복 담합 제재 강화 추진 - 법률신문
-https://news.google.com/rss/articles/CBMibkFVX3lxTE5aZGpKYzFVNUVra2dZblUwdFZraFJHU1I4QmhjdzlmaVRjWld0RjZzVmFKZ20tTjZsZ3FuRHVGMTZKbnRaazl5Q0dMNUpVU3hjVHB4QTZQWmdtbmt0SE9nYjJTa01rajIwYURSRDRn0gFyQVVfeXFMT09PcnI4Q2pNc0ZRNy1yOS1Od1ExWUNQdEsyYWNpZEZVLXYxYUpTSnY1eDZTS2ZFQUczZnJHNl9SWkt1czNKSUlJMlJuZWFXN2xOQzNpMXpUOC1qNEpWX0RNa2hvNVlFa2xlMC10ejN6cV9n?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(법률신문)
-공정거래위원회가 반복적으로 발생하는 담합 행위에 대한 제재 강화를 추진하고 있음.
+5️⃣ 안도걸 "디지털자산기본법, 하반기 국회서 속도감 있게 논의할 것"…금융위 "적극 지원" [크립토360]
+https://m.news.nate.com/view/20260527n27128?mid=m02&list=recent&cpcd=
+(네이트)
+국회와 정부는 스테이블코인 제도화 및 디지털자산 2단계 입법 논의에 속도를 낼 방침임. 더불어민주당 안도걸 의원은 디지털자산기본법이 하반기 국회에서 논의될 것이라고 밝히며, 스테이블코인이 디지털 경제 시대의 새로운 화폐 및 결제 네트워크임을 강조함. 금융위원회는 스테이블코인의 제도권 편입을 위해 특정금융정보법 및 외국환거래법 등 불법 활용 방지 체계 마련이 필요하다고 밝혔으며, 국경 간 가상자산 이전 내역 보고가 시작되는 외국환거래법 개정안 통과를 진단함. 금융위는 하반기 디지털자산 2단계 입법 논의를 지원하고, 관행 개선 조치와 금융사 지분 투자 관련 방안도 마련할 것이라고 밝힘.
 
 ☑️ 경쟁사/해외이슈
 
-1️⃣ 박윤영 KT 대표, 전임자 ‘김영섭표 AICT’와 결별…AI 서비스도 ‘자체 기술’에 무게 - 필드뉴스
-https://news.google.com/rss/articles/CBMibEFVX3lxTE9XeWJrZGJRUVB4QmtBTnAtUF84U19kMzRjVldwWTAtQjN4Rko4SlRWSUFlZ29zNnkzV1I1T0NMMlZCSDVKMTdyUjN1eGJlU1NJaFVyeW5lY2pLY2J4Y242TnNkcFZfR010UER2M9IBbEFVX3lxTE9XeWJrZGJRUVB4QmtBTnAtUF84U19kMzRjVldwWTAtQjN4Rko4SlRWSUFlZ29zNnkzV1I1T0NMMlZCSDVKMTdyUjN1eGJlU1NJaFVyeW5lY2pLY2J4Y242TnNkcFZfR010UER2Mw?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(필드뉴스)
-박윤영 KT 대표가 전임 김영섭 대표의 'AICT' 전략에서 벗어나 인공지능(AI) 서비스 개발에 자체 기술 비중을 높이는 방향으로 전환하고 있음.
+1️⃣ 구글, EU서 역대급 과징금 위기…검색시장 지배력 남용 혐의
+http://www.press9.kr/news/articleView.html?idxno=77068
+(PRESS9)
+구글이 유럽연합(EU)에서 검색시장 지배력 남용 혐의로 대규모 과징금 부과 위기에 처함. EU 집행위원회는 구글이 온라인 검색 서비스에서 자사 쇼핑, 호텔, 교통, 금융, 스포츠 등 자사 서비스를 경쟁사보다 우선 노출하여 디지털시장법(DMA)을 위반했는지 여부를 검토 중임. 과징금 규모는 수억 유로에 이를 수 있으며, 공식 발표는 여름 휴가철 이전에 나올 가능성이 있음. 구글은 DMA 준수를 위해 검색 서비스 변경을 적용했다고 주장하나, EU 집행위는 이 조치가 불충분하다고 판단하는 것으로 알려짐. 구글의 AI 검색 개편은 이용자 편의성을 높일 수 있으나, 외부 웹사이트 트래픽을 줄이고 구글 생태계 내 이용자 묶어두기를 강화할 수 있다는 지적도 있음.
 
-2️⃣ [단독]LGU+, AI 데이터센터 2030년 400MW로 키운다 - v.daum.net
-https://news.google.com/rss/articles/CBMiT0FVX3lxTE9RUjdELXpicEo1MHVFU1oyQWlidGlmSVNLdmF4cDBLS1VtLUgweFREVXNDZ3ZMUEc3M3c1cnN2YjNZejVZOEEzMFUwRVhFNk0?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(v.daum.net)
-LG유플러스가 인공지능(AI) 데이터센터의 규모를 2030년까지 400MW로 확대할 계획임.
+2️⃣ 'AI 인재 유출 막아라'…중국, 민간기업에도 출국 제한 적용
+https://www.yonhapnewstv.co.kr/news/AKR20260527161657Lzv
+(연합뉴스TV)
+중국 당국이 인공지능(AI) 인재 유출 방지를 위해 민간기업의 핵심 AI 인재를 대상으로 출국 제한 조치를 시행한 것으로 알려짐. 첨단 AI 연구·개발 참여 핵심 인력은 해외 출국 전 당국의 승인을 받아야 함. 이는 주요 대학 연구자, 핵 과학자, 국유기업 간부 등에 적용되던 출국 제한 조치를 민간 AI 업계 전문가로 확대한 것임. AI 스타트업 창업자, 전문 연구원, 기업 임원 등이 적용 대상이며, 알리바바와 딥시크 등 주요 AI 기업 인력도 포함될 가능성이 있음. 중국 정부는 국가 전략상 중요도를 기준으로 출국 제한 명단을 관리하며, AI 핵심 인재를 국가 전략 자산으로 간주하여 미국의 대중국 AI 견제에 대응하고 핵심 인재 유출을 차단하려는 의도로 분석됨. 중국 정부는 최근 메타의 AI 스타트업 마누스 인수 거래를 불허했으며, 마누스 공동 창업자 2명에게는 출국 금지 조치를 내린 것으로 보도됨.
 
-3️⃣ 우버, 배민 모회사 獨 딜리버리히어로 인수 제안 - 인베스트조선
-https://news.google.com/rss/articles/CBMickFVX3lxTE1Lb0FKdDY0ejIxbXF3bHJUTkVNc3EtMnlmNTllLUliVlJmMFVfWUpFOUpQVHRMNkV0cEJXeTAtMVR1d0FmZHRHMUd2NzRrSlFCQTd5OFV6dmFCQ0staVVLRkxmRERjcXNITE9qVHh3Zzladw?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(인베스트조선)
-우버가 배달의민족 모회사인 독일 딜리버리히어로에 인수를 제안한 것으로 알려졌음.
+3️⃣ 오픈AI, 챗GPT 로그인 장애에 '진땀'…AI 유료 서비스 신뢰도 흔들
+https://zdnet.co.kr/view?no=20260527144008
+(지디넷코리아)
+오픈AI의 '챗GPT'에서 반복적인 로그인 장애가 발생하여 유료 인공지능(AI) 서비스의 신뢰도 문제가 제기됨. 27일에는 미국 연방정부 클라우드 보안 인증 프로그램인 페드램프(FedRAMP) 환경 사용자 중 로그아웃 사용자를 중심으로 챗GPT 로그인 문제가 발생 중임. 모바일 앱에서 대화 목록이 일부만 표시되거나 구독 정보가 정상 반영되지 않는 현상도 나타남. 챗GPT의 로그인 및 접속 장애는 이번이 처음이 아니며, 과거에도 비슷한 문제가 여러 차례 발생하였음. 파일 업로드 및 대화 오류 등 기능 장애도 반복되었으며, 오픈AI는 장애 원인을 공개하지 않은 사례가 많음. 경쟁사인 앤트로픽의 '클로드'도 접속 장애를 겪은 바 있으며, 이는 AI 서비스 이용량 증가에 따른 운영 부담 때문으로 분석됨.
 
-4️⃣ "EU, 구글에 수천억원 벌금 부과 계획…DMA 벌금 최대" - 연합뉴스
-https://news.google.com/rss/articles/CBMiYAFVX3lxTE11QnpEanJKQ0FOVHNLa21YdWZKVGR5MzVzUGNKNldYd3A5cEp5TzBIa0ZVQlBnZjA2Q0hVZzZaM0hNQmFieVdRZ3YxZGlZVWduM3hBbXFfbkk1Q0pOVW0zbdIBYAFVX3lxTE11QnpEanJKQ0FOVHNLa21YdWZKVGR5MzVzUGNKNldYd3A5cEp5TzBIa0ZVQlBnZjA2Q0hVZzZaM0hNQmFieVdRZ3YxZGlZVWduM3hBbXFfbkk1Q0pOVW0zbQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(연합뉴스)
-유럽연합(EU)이 구글에 수천억 원 규모의 벌금을 부과할 계획이며, 이는 디지털 시장법(DMA) 관련 벌금 중 최대치가 될 것으로 예상됨.
+4️⃣ 네이버, AI 인프라 확장 투자 올인...매출·영업익 '사상 최대 경신' 청신호
+https://www.consumernews.co.kr/news/articleView.html?idxno=756276
+(소비자가 만드는 신문)
+네이버는 인공지능(AI) 인프라 확장에 집중 투자하고 있으며, 지난해 CAPEX와 연구개발비는 총 3조5389억 원으로 전년 대비 45.1% 증가함. 올해 1분기에도 CAPEX는 4513억 원, 연구개발비는 6019억 원으로 각각 120%, 20% 증가함. 네이버는 연간 1조 원 수준의 GPU 투자를 통해 AI 인프라를 강화하고 있으며, 지난해 CAPEX의 88%가 서버 및 비품 투자 금액이었음. 세종 데이터센터 2·3단계 구축과 국내 최대 규모 AI 컴퓨팅 클러스터 구축을 완료함. AI 기반 인프라 고도화, 검색 서비스 AI 적용, 커머스 사업 강화 등으로 연구개발을 확장하였으며, 커머스 부문에 적용된 AI 모델 '하이퍼클로바X' 기반 네이버플러스스토어는 매출 성장을 이끌어 지난해 커머스 부문 매출이 3조6884억 원으로 전년 대비 26% 성장함. 네이버는 AI 탭 커머스 사업을 비즈니스 에이전트로 강화하고, AI 서비스에 광고를 접목하여 3분기부터 AI 브리핑 광고, 4분기 중 AI 탭 광고를 도입하여 수익화를 꾀할 예정임. 증권가는 올해 네이버가 매출 13조6868억 원, 영업이익 2조4174억 원을 기록하여 전년 대비 각각 14%, 9% 증가할 것으로 전망함.
 
 ☑️ 산업동향
 
-1️⃣ 산업 현장 파고든 AI…"물류∙신약∙인프라 혁신 나선다" - 한국면세뉴스
-https://news.google.com/rss/articles/CBMiakFVX3lxTFBidzI2ZWVJX1JmTjZ3QzZCc1VoUG5VaXlxSXdGWkRUVnlOcGZJVElBanYyRmNmcmxFNWRPUVB2dmN3ZFhQanhPZE9tWFJmdWpWVjJMRmEycThVSy1rRUtSSUtwWVpzWnkzN0E?oc=5&hl=ko&gl=KR&ceid=KR:ko
-(한국면세뉴스)
-인공지능(AI)이 물류, 신약 개발, 인프라 등 다양한 산업 현장에 적용되어 혁신을 주도하고 있음.
-
-2️⃣ 메인비즈협회, 중국 광동성지회 출범…한·중 중소기업 협력 플랫폼 구축 본격화 - 전자신문
-https://news.google.com/rss/articles/CBMiTkFVX3lxTE9yMDRVUjFZLVpoZkZzLTMyX3A5ZzAtOUlHLXBoMlU1Z29zVUdaaHo2OG55ZTFtcXBvMkdNdjBuNmxhZzJIa0pWUmRFdTZMQQ?oc=5&hl=ko&gl=KR&ceid=KR:ko
+1️⃣ 스테이블코인 시총, 95개국 외환보유액 넘었다…디지털 달러 확산
+https://www.etnews.com/20260527000308
 (전자신문)
-메인비즈협회가 중국 광동성지회를 출범하며 한국과 중국 중소기업 간 협력 플랫폼 구축을 본격화하고 있음.
+달러 연동 스테이블코인의 시가총액이 사상 최대 수준인 3220억달러(약 482조원)를 돌파하며, 이는 테더의 USDT가 절반 이상을 차지하는 규모임. 이 시가총액은 95개국의 외환보유액보다 크며, 현재 14개국만이 더 많은 외환보유액을 보유하고 있음. 스테이블코인은 과거 대기자금 성격에서 해외 송금, 온체인 결제, 디파이, 토큰화 자산 거래 등에서 달러를 대신하는 결제 단위로 확산되고 있음. 이러한 달러 기반 스테이블코인 확산은 은행의 수신 기반 약화 및 중앙은행의 통화정책과 외환관리 부담을 증가시킬 수 있음. 국제결제은행(BIS)과 금융안정위원회(FSB)는 스테이블코인의 국경 간 이동 증가와 관련 리스크에 대해 분석하고 각국에 대비를 권고함. 국내 원화 스테이블코인은 사용처 확보가 중요하며, 달러 스테이블코인이 국내 디지털 금융시장 의존도를 높일 가능성도 있음.
+
+2️⃣ [Inside SK]① 적자 구조 벗어난 티맵, SK 플랫폼의 핵심 데이터 자산으로
+http://www.press9.kr/news/articleView.html?idxno=77080
+(PRESS9)
+티맵모빌리티의 데이터 및 솔루션 부문 매출이 전년 대비 36% 증가하였고, 올해 1분기 일회성 비용을 제외한 상각전영업이익(EBITDA)은 마이너스 38억원으로 손실 폭을 통제함. 이는 소비자 운행 정보를 기업 간 거래(B2B) 솔루션 원자재로 변모시켜 플랫폼 자산 가치를 재정의한 결과임. 글로벌 데이터 모네타이제이션 시장은 2030년 약 24조원 이상으로 성장이 예상되며, 티맵은 2700만 가입자와 하루 평균 500만대 차량 운행 트래픽을 확보하고 있음. 티맵의 이동 데이터는 지주사 SK(주)의 Agentic AI 솔루션과 결합하여 반도체 및 배터리 공장의 물류, 재고 관리를 자동화하는 디지털 팩토리 인프라로 이식됨. 다만, SK의 배터리 및 소재 사업 부문(SK온)이 1분기 4217억원의 영업손실을 기록하는 등 제조 계열사의 자본적 지출이 커 마진율 높은 B2B 데이터 자산의 현금 창출력 확대가 필요한 상황임.
