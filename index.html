@@ -402,114 +402,211 @@ async function loadPersonnel() {
   } catch(e) { console.log("데이터 로드 에러", e); }
 }
 
+const NEWS_DAILY_DIR = "data_news/daily";
 let dailyNewsCache = {};
+
+function parseBriefingText(text) {
+  const categoryOrder = [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ];
+
+  const categories = {};
+  categoryOrder.forEach(name => categories[name] = []);
+
+  const lines = text.split(/\r?\n/);
+  let currentCategory = null;
+  let currentItem = null;
+
+  function flushItem() {
+    if (currentCategory && currentItem) {
+      currentItem.summary = currentItem.summaryLines.join("\n").trim();
+      delete currentItem.summaryLines;
+      if (!categories[currentCategory]) categories[currentCategory] = [];
+      categories[currentCategory].push(currentItem);
+    }
+    currentItem = null;
+  }
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    const categoryMatch = line.match(/^☑️\s*(.+)$/);
+    if (categoryMatch) {
+      flushItem();
+      currentCategory = categoryMatch[1].trim();
+      if (!categories[currentCategory]) categories[currentCategory] = [];
+      continue;
+    }
+
+    const articleMatch = line.match(/^(?:\d+️⃣|🔟|\d+[.)])\s*(.+)$/);
+    if (articleMatch && currentCategory) {
+      flushItem();
+      currentItem = {
+        title: articleMatch[1].trim(),
+        link: "",
+        source: "",
+        summaryLines: []
+      };
+      continue;
+    }
+
+    if (!currentItem) continue;
+
+    if (/^https?:\/\//.test(line)) {
+      currentItem.link = line;
+      continue;
+    }
+
+    const sourceMatch = line.match(/^\((.+)\)$/);
+    if (sourceMatch && !currentItem.source) {
+      currentItem.source = sourceMatch[1].trim();
+      continue;
+    }
+
+    currentItem.summaryLines.push(line);
+  }
+
+  flushItem();
+
+  return {
+    category_order: categoryOrder,
+    categories
+  };
+}
+
+function renderDailyNews(dateKey, parsed) {
+  const container = document.getElementById("section-daily-news");
+  const categories = parsed.categories || {};
+  const order = parsed.category_order || [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ];
+
+  let html = `
+    <div class="briefing-header-row">
+      <h3>📰 일일 뉴스 브리핑: ${escapeHtml(dateKey)}</h3>
+      <div class="briefing-generated">파일: CEO_Morning_Briefing_${escapeHtml(dateKey)}.txt</div>
+    </div>
+  `;
+
+  let hasAny = false;
+
+  order.forEach(categoryName => {
+    const items = categories[categoryName] || [];
+    if (!items.length) return;
+
+    hasAny = true;
+
+    html += `
+      <div class="briefing-category">
+        <div class="briefing-category-header">${escapeHtml(categoryName)}</div>
+    `;
+
+    items.forEach((item, idx) => {
+      const title = escapeHtml(item.title || "제목 없음");
+      const rawLink = item.link || "";
+      const link = escapeHtml(rawLink);
+      const source = escapeHtml(item.source || "");
+      const summary = formatNewsText(item.summary || "");
+
+      html += `
+        <div class="briefing-item">
+          <div class="briefing-title">
+            ${rawLink ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${idx + 1}. ${title}</a>` : `${idx + 1}. ${title}`}
+          </div>
+          <div class="briefing-meta">${source ? `(${source})` : ""}</div>
+          <div class="briefing-summary">${summary || "요약문이 없습니다."}</div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+  });
+
+  if (!hasAny) {
+    html += `<div class="briefing-empty">해당 날짜의 뉴스 데이터가 비어 있습니다.</div>`;
+  }
+
+  container.innerHTML = html;
+}
 
 async function loadDailyNews() {
   const sel = document.getElementById("newsDateSelect");
   const container = document.getElementById("section-daily-news");
 
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data_news`);
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${NEWS_DAILY_DIR}`);
     const files = await res.json();
 
     if (!Array.isArray(files)) {
-      container.innerHTML = `<div class="briefing-empty">아직 data_news 폴더가 없거나 일일 뉴스 데이터가 없습니다.</div>`;
+      container.innerHTML = `<div class="briefing-empty">뉴스 날짜 폴더를 불러오지 못했습니다.</div>`;
       return;
     }
 
     const dates = files
-      .filter(f => f.name.endsWith(".json"))
-      .map(f => f.name.replace(".json", ""))
+      .filter(f => f.type === "dir")
+      .map(f => f.name)
+      .filter(name => /^\d{4}-\d{2}-\d{2}$/.test(name))
       .sort()
       .reverse();
 
     if (dates.length === 0) {
-      container.innerHTML = `<div class="briefing-empty">아직 등록된 일일 뉴스 데이터가 없습니다.</div>`;
+      container.innerHTML = `<div class="briefing-empty">아직 data_news/daily 안에 날짜별 뉴스 폴더가 없습니다.</div>`;
       return;
     }
 
-    if (sel.options.length === 0) {
-      dates.forEach(d => {
-        const opt = document.createElement("option");
-        opt.value = d;
-        opt.textContent = d;
-        sel.appendChild(opt);
-      });
-    }
+    sel.innerHTML = "";
+    dates.forEach(d => {
+      const opt = document.createElement("option");
+      opt.value = d;
+      opt.textContent = d;
+      sel.appendChild(opt);
+    });
 
     sel.addEventListener("change", async () => {
       const dateKey = sel.value;
-      container.innerHTML = `<div class="briefing-empty">일일 뉴스 데이터를 불러오는 중입니다...</div>`;
+      container.innerHTML = `<div class="briefing-empty">뉴스 데이터를 불러오는 중입니다...</div>`;
 
-      if (!dailyNewsCache[dateKey]) {
-        dailyNewsCache[dateKey] = await (await fetch(`data_news/${dateKey}.json`)).json();
-      }
+      try {
+        if (!dailyNewsCache[dateKey]) {
+          const txtPath = `${NEWS_DAILY_DIR}/${dateKey}/CEO_Morning_Briefing_${dateKey}.txt`;
+          const txtRes = await fetch(txtPath);
 
-      const data = dailyNewsCache[dateKey] || {};
-      const categories = data.categories || {};
-      const order = data.category_order || [
-        "자사 및 계열사 이슈",
-        "정부/국회",
-        "경쟁사/해외이슈",
-        "산업동향"
-      ];
+          if (!txtRes.ok) {
+            throw new Error(`${txtPath} 파일을 찾을 수 없습니다.`);
+          }
 
-      let html = `
-        <div class="briefing-header-row">
-          <h3>📰 일일 뉴스 브리핑: ${escapeHtml(data.date || dateKey)}</h3>
-          <div class="briefing-generated">${data.generated_at ? `생성: ${escapeHtml(data.generated_at)}` : ""}</div>
-        </div>
-      `;
+          const text = await txtRes.text();
+          dailyNewsCache[dateKey] = parseBriefingText(text);
+        }
 
-      if (data.header) {
-        html += `<div style="margin-bottom: 1rem; color:#6b7280; font-size:0.85rem;">${escapeHtml(data.header)}</div>`;
-      }
-
-      let hasAny = false;
-
-      order.forEach(categoryName => {
-        const items = categories[categoryName] || [];
-        if (!items.length) return;
-
-        hasAny = true;
-
-        html += `
-          <div class="briefing-category">
-            <div class="briefing-category-header">${escapeHtml(categoryName)}</div>
+        renderDailyNews(dateKey, dailyNewsCache[dateKey]);
+      } catch (e) {
+        console.log("선택한 날짜 뉴스 데이터 로드 에러", e);
+        container.innerHTML = `
+          <div class="briefing-empty">
+            선택한 날짜의 뉴스 본문 TXT를 불러오지 못했습니다.<br>
+            경로 확인: data_news/daily/${escapeHtml(dateKey)}/CEO_Morning_Briefing_${escapeHtml(dateKey)}.txt
+          </div>
         `;
-
-        items.forEach((item, idx) => {
-          const title = escapeHtml(item.title || "제목 없음");
-          const rawLink = item.link || "";
-          const link = escapeHtml(rawLink);
-          const source = escapeHtml(item.source || "");
-          const summary = formatNewsText(item.summary || "");
-
-          html += `
-            <div class="briefing-item">
-              <div class="briefing-title">
-                ${rawLink ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${idx + 1}. ${title}</a>` : `${idx + 1}. ${title}`}
-              </div>
-              <div class="briefing-meta">${source ? `(${source})` : ""}</div>
-              <div class="briefing-summary">${summary || "요약문이 없습니다."}</div>
-            </div>
-          `;
-        });
-
-        html += `</div>`;
-      });
-
-      if (!hasAny) {
-        html += `<div class="briefing-empty">해당 날짜의 뉴스 데이터가 비어 있습니다.</div>`;
       }
-
-      container.innerHTML = html;
     });
 
     sel.dispatchEvent(new Event("change"));
   } catch (e) {
     console.log("뉴스 데이터 로드 에러", e);
-    container.innerHTML = `<div class="briefing-empty">뉴스 데이터를 불러오지 못했습니다.</div>`;
+    container.innerHTML = `
+      <div class="briefing-empty">
+        뉴스 데이터를 불러오지 못했습니다.<br>
+        data_news/daily/YYYY-MM-DD/CEO_Morning_Briefing_YYYY-MM-DD.txt 경로를 확인해주세요.
+      </div>
+    `;
   }
 }
 
