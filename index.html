@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>주요 부처 주간 일정 및 인사/부고</title>
-<meta property="og:title" content="주요 부처 주간 일정 및 인사/부고">
-<meta property="og:description" content="경제부처 주간 보도계획 및 일일 인사/부고 모니터링">
+<title>주요 부처 주간 일정 및 인사/부고/일일 뉴스</title>
+<meta property="og:title" content="주요 부처 주간 일정 및 인사/부고/일일 뉴스">
+<meta property="og:description" content="경제부처 주간 보도계획, 일일 인사/부고 및 일일 뉴스 브리핑 모니터링">
 <meta property="og:type" content="website">
 <style>
   /* 💡 600 굵기 폰트도 정상적으로 불러오도록 추가했습니다! */
@@ -17,8 +17,8 @@
   .header-title { font-size: 1.15rem; font-weight: 700; }
   .header-sub { font-size: 0.72rem; opacity: 0.7; margin-top: 0.2rem; }
   
-  .tabs { display: flex; background: #fff; border-bottom: 1px solid #ddd; padding: 0 2rem; }
-  .tab-btn { padding: 1rem 2rem; border: none; background: none; font-family: inherit; font-size: 0.95rem; font-weight: 500; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
+  .tabs { display: flex; background: #fff; border-bottom: 1px solid #ddd; padding: 0 2rem; overflow-x: auto; }
+  .tab-btn { padding: 1rem 2rem; border: none; background: none; font-family: inherit; font-size: 0.95rem; font-weight: 500; color: #666; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
   .tab-btn.active { color: #1a3a5c; font-weight: 700; border-bottom: 3px solid #1a3a5c; }
   
   .controls { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fff; justify-content: flex-end; }
@@ -54,8 +54,34 @@
   .news-card.empty { border-left: 4px solid #ccc; box-shadow: none; border: 1px solid #eee; border-left: 4px solid #ccc;}
   .news-card.empty .news-agency { color: #999; }
   .news-card.empty .news-content { color: #aaa; }
+
+  /* 일일 뉴스 브리핑 카드 */
+  .briefing-category { margin-bottom: 2rem; background: #fff; border: 1px solid #c8d4e0; border-radius: 4px; overflow: hidden; }
+  .briefing-category-header { background: #d9d9d9; padding: 0.65rem 1rem; font-size: 0.95rem; font-weight: 700; color: #1a1a1a; border-bottom: 1px solid #b0b8c4; text-align: center; }
+  .briefing-item { padding: 1rem 1.2rem; border-bottom: 1px solid #e4eaf0; }
+  .briefing-item:last-child { border-bottom: none; }
+  .briefing-title { font-size: 0.95rem; font-weight: 700; line-height: 1.5; margin-bottom: 0.45rem; color: #1a3a5c; }
+  .briefing-title a { color: #1a3a5c; text-decoration: none; }
+  .briefing-title a:hover { text-decoration: underline; }
+  .briefing-meta { font-size: 0.78rem; color: #6b7280; margin-bottom: 0.55rem; }
+  .briefing-summary { font-size: 0.85rem; line-height: 1.7; color: #333; }
+  .briefing-empty { background: white; border: 1px solid #eee; color: #999; padding: 2rem; text-align: center; border-radius: 4px; }
+  .briefing-header-row { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .briefing-header-row h3 { color: #1a3a5c; font-size: 1.05rem; }
+  .briefing-generated { font-size: 0.78rem; color: #6b7280; }
   
   #status { text-align: center; padding: 4rem 0; font-size: 0.9rem; color: #666; }
+
+  @media (max-width: 720px) {
+    header { padding: 1rem 1.2rem; }
+    .tabs { padding: 0 0.5rem; }
+    .tab-btn { padding: 0.9rem 0.9rem; font-size: 0.86rem; }
+    .controls { padding: 0.9rem 1rem; }
+    #controls-personnel { flex-direction: column; align-items: stretch; }
+    main { padding: 1rem 0.8rem 3rem; }
+    td.date-cell { width: 105px; font-size: 0.78rem; }
+    td { padding: 0.55rem 0.65rem; }
+  }
 </style>
 </head>
 <body>
@@ -63,14 +89,15 @@
 <header>
   <div>
     <div class="header-title">주요 부처 모니터링 대시보드</div>
-    <div class="header-sub">주간 보도계획 및 일일 인사/부고 자동화 시스템</div>
+    <div class="header-sub">주간 보도계획, 일일 인사/부고 및 일일 뉴스 자동화 시스템</div>
     <div class="header-sub">접속이 안될 경우 Prisma Browser 이용을 권장드립니다.</div>
   </div>
 </header>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('schedule')"> 주간 경제부처 일정</button>
-  <button class="tab-btn" onclick="switchTab('personnel')">  일일 인사 / 부고</button>
+  <button class="tab-btn active" onclick="switchTab('schedule', this)"> 주간 경제부처 일정</button>
+  <button class="tab-btn" onclick="switchTab('personnel', this)"> 일일 인사 / 부고</button>
+  <button class="tab-btn" onclick="switchTab('daily-news', this)"> 일일 뉴스</button>
 </div>
 
 <div class="controls" id="controls-schedule">
@@ -90,20 +117,45 @@
   </div>
 </div>
 
+<div class="controls" id="controls-daily-news" style="display: none; justify-content: flex-end;">
+  <label style="font-size: 0.85rem;">날짜 선택:</label>
+  <select id="newsDateSelect"></select>
+</div>
+
 <main>
   <div id="status">데이터 불러오는 중...</div>
   <div id="section-schedule" class="content-section active"></div>
   <div id="section-personnel" class="content-section"></div>
+  <div id="section-daily-news" class="content-section"></div>
 </main>
 
 <script>
-function switchTab(tabId) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+const GITHUB_REPO = "rkdekdms4564-lang/weekly-news-crawler";
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
   document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(`section-${tabId}`).classList.add('active');
+  const targetSection = document.getElementById(`section-${tabId}`);
+  if (targetSection) targetSection.classList.add('active');
+
   document.getElementById('controls-schedule').style.display = tabId === 'schedule' ? 'flex' : 'none';
   document.getElementById('controls-personnel').style.display = tabId === 'personnel' ? 'flex' : 'none';
+  document.getElementById('controls-daily-news').style.display = tabId === 'daily-news' ? 'flex' : 'none';
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function formatNewsText(value) {
+  return escapeHtml(value).replace(/\n/g, "<br>");
 }
 
 function formatWeekLabel(key) {
@@ -121,8 +173,10 @@ function formatWeekLabel(key) {
 async function loadSchedules() {
   const sel = document.getElementById("weekSelect");
   try {
-    const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data");
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data`);
     const files = await res.json();
+    if (!Array.isArray(files)) throw new Error("data 폴더를 찾지 못했습니다.");
+
     const weeks = files.map(f => f.name.replace(".json", "")).filter(n => n.includes("W")).sort().reverse();
     
     weeks.forEach(w => {
@@ -140,7 +194,7 @@ async function loadSchedules() {
       
       agencies.forEach(name => {
         if(!data.agencies[name]) return;
-        let html = `<div class="agency-section"><div class="agency-header">${name}</div><table>`;
+        let html = `<div class="agency-section"><div class="agency-header">${escapeHtml(name)}</div><table>`;
         const dates = Object.keys(data.agencies[name]);
         
         if(dates.length === 0) {
@@ -148,15 +202,16 @@ async function loadSchedules() {
         } else {
             dates.forEach(date => {
                 const items = data.agencies[name][date];
-                html += `<tr><td class="date-cell">${date}</td><td>`;
+                html += `<tr><td class="date-cell">${escapeHtml(date)}</td><td>`;
                 
                 if (!items || items.length === 0) {
                     html += `<div class="no-item">특이 일정 없음</div>`;
                 } else {
                     items.forEach(item => {
+                        const safeItem = escapeHtml(item);
                         const isSchedule = item.startsWith("▲");
                         const itemClass = isSchedule ? "item-schedule" : "item-press";
-                        html += `<div class="item ${itemClass}">${item}</div>`;
+                        html += `<div class="item ${itemClass}">${safeItem}</div>`;
                     });
                 }
                 html += `</td></tr>`;
@@ -167,7 +222,7 @@ async function loadSchedules() {
       });
     });
     if(weeks.length > 0) sel.dispatchEvent(new Event("change"));
-  } catch(e) { console.log("일정 없음"); }
+  } catch(e) { console.log("일정 없음", e); }
 }
 
 // 💡 버튼 기능: 모든 부처를 볼지, 업데이트된 부처만 볼지 기억하는 변수
@@ -198,7 +253,7 @@ async function searchPerson() {
   }
   
   // 검색 중 로딩 화면
-  container.innerHTML = `<div style="text-align:center; padding: 3rem; color:#1a3a5c; font-weight:bold;">🔍 '${keyword}' 님의 발자취를 찾는 중입니다...<br><span style="font-size:0.8rem; color:#666; font-weight:normal;">(데이터가 많을 경우 몇 초 정도 걸릴 수 있습니다)</span></div>`;
+  container.innerHTML = `<div style="text-align:center; padding: 3rem; color:#1a3a5c; font-weight:bold;">🔍 '${escapeHtml(keyword)}' 님의 발자취를 찾는 중입니다...<br><span style="font-size:0.8rem; color:#666; font-weight:normal;">(데이터가 많을 경우 몇 초 정도 걸릴 수 있습니다)</span></div>`;
   
   const dates = Array.from(sel.options).map(opt => opt.value);
   const searchResults = {}; // 부처별로 결과 담을 바구니
@@ -229,7 +284,7 @@ async function searchPerson() {
   
   // 💡 검색 결과 화면 그리기
   let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
-                <h3 style="color: #1a3a5c;"> '${keyword}' 검색 결과 (부처별 타임라인)</h3>
+                <h3 style="color: #1a3a5c;"> '${escapeHtml(keyword)}' 검색 결과 (부처별 타임라인)</h3>
                 <button onclick="document.getElementById('searchInput').value=''; document.getElementById('dateSelect').dispatchEvent(new Event('change'))" style="padding: 0.4rem 0.8rem; border:1px solid #1a3a5c; color:#1a3a5c; background:#fff; border-radius:4px; cursor:pointer; font-weight:bold;">돌아가기</button>
               </div>`;
               
@@ -239,24 +294,26 @@ async function searchPerson() {
   } else {
      foundAgencies.forEach(agency => {
         html += `<div class="news-card">
-                   <div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: #1a3a5c;">[${agency}]</div>`;
+                   <div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: #1a3a5c;">[${escapeHtml(agency)}]</div>`;
         
         searchResults[agency].forEach(item => {
             // 기존 줄 굵기 적용
             let fmt = item.text.replace(/\[출력 형식 예시 - 인사\]/g, "").replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+            fmt = escapeHtml(fmt);
             fmt = fmt.replace(/\n◇/g, '\n\n◇');
             fmt = fmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
             fmt = fmt.replace(/\n/g, '<br>');
             
             // 💡 검색한 이름만 노란색 형광펜 칠하기!
-            const regex = new RegExp(keyword, 'g');
-            fmt = fmt.replace(regex, `<mark style="background-color: #ffe066; padding: 0 2px; border-radius: 2px; font-weight: bold;">${keyword}</mark>`);
+            const safeKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(safeKeyword, 'g');
+            fmt = fmt.replace(regex, `<mark style="background-color: #ffe066; padding: 0 2px; border-radius: 2px; font-weight: bold;">${escapeHtml(keyword)}</mark>`);
             
             const badgeStyle = item.type === '인사' ? '' : 'background:#ffebee; color:#c62828;';
             
             html += `
               <div style="margin-bottom: 1.5rem; padding-left: 10px; border-left: 3px solid #c8d4e0;">
-                <div style="font-weight:bold; color:#666; font-size:0.85rem; margin-bottom:0.5rem;">📅 ${item.date} <span class="news-badge" style="margin-bottom:0; margin-left:5px; ${badgeStyle}">${item.type}</span></div>
+                <div style="font-weight:bold; color:#666; font-size:0.85rem; margin-bottom:0.5rem;">📅 ${escapeHtml(item.date)} <span class="news-badge" style="margin-bottom:0; margin-left:5px; ${badgeStyle}">${escapeHtml(item.type)}</span></div>
                 <div class="news-content">${fmt}</div>
               </div>
             `;
@@ -273,8 +330,10 @@ async function loadPersonnel() {
   const ALL_AGENCIES = ["과학기술정보통신부", "방송미디어통신위원회", "개인정보보호위원회", "공정거래위원회", "행정안전부", "산업통상부", "문화체육관광부", "국무조정실·국무총리비서실", "금융위원회", "금융감독원"];
 
   try {
-    const res = await fetch("https://api.github.com/repos/rkdekdms4564-lang/weekly-news-crawler/contents/data_personnel");
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data_personnel`);
     const files = await res.json();
+    if (!Array.isArray(files)) throw new Error("data_personnel 폴더를 찾지 못했습니다.");
+
     const dates = files.filter(f => f.name.endsWith(".json")).map(f => f.name.replace(".json", "")).sort().reverse();
     
     if (sel.options.length === 0) {
@@ -288,7 +347,7 @@ async function loadPersonnel() {
       const container = document.getElementById("section-personnel");
       
       // 제목 부분
-      container.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: #1a3a5c;">📅 수집 기간: ${data.period}</h3>`;
+      container.innerHTML = `<h3 style="margin-bottom: 1.5rem; color: #1a3a5c;">📅 수집 기간: ${escapeHtml(data.period)}</h3>`;
       
       ALL_AGENCIES.forEach(agency => {
         const insaText = data["인사"][agency] || "해당 없음";
@@ -302,11 +361,12 @@ async function loadPersonnel() {
 
         // 하나의 부처 박스 시작
         let agencyHtml = `<div class="news-card ${!isUpdate ? 'empty' : ''}">`;
-        agencyHtml += `<div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: ${!isUpdate ? '#999' : '#1a3a5c'};">[${agency}]</div>`;
+        agencyHtml += `<div class="news-agency" style="font-size: 1.05rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; color: ${!isUpdate ? '#999' : '#1a3a5c'};">[${escapeHtml(agency)}]</div>`;
         
         // --- 인사 섹션 (완벽한 줄 굵기 & 공백 치환 적용됨!) ---
         if (insaText !== "해당 없음") {
           let insaFmt = insaText.replace(/\[출력 형식 예시 - 인사\]/g, "").trim();
+          insaFmt = escapeHtml(insaFmt);
           insaFmt = insaFmt.replace(/\n◇/g, '\n\n◇');
           insaFmt = insaFmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
           insaFmt = insaFmt.replace(/\n/g, '<br>');
@@ -318,6 +378,7 @@ async function loadPersonnel() {
         // --- 부고 섹션 ---
         if (bugoText !== "해당 없음") {
           let bugoFmt = bugoText.replace(/\[출력 형식 예시 - 부고\]/g, "").trim();
+          bugoFmt = escapeHtml(bugoFmt);
           bugoFmt = bugoFmt.replace(/\n◇/g, '\n\n◇');
           bugoFmt = bugoFmt.replace(/(◇.*)/g, '<span style="font-weight: 600;">$1</span>');
           bugoFmt = bugoFmt.replace(/\n/g, '<br>');
@@ -341,9 +402,121 @@ async function loadPersonnel() {
   } catch(e) { console.log("데이터 로드 에러", e); }
 }
 
+let dailyNewsCache = {};
+
+async function loadDailyNews() {
+  const sel = document.getElementById("newsDateSelect");
+  const container = document.getElementById("section-daily-news");
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data_news`);
+    const files = await res.json();
+
+    if (!Array.isArray(files)) {
+      container.innerHTML = `<div class="briefing-empty">아직 data_news 폴더가 없거나 일일 뉴스 데이터가 없습니다.</div>`;
+      return;
+    }
+
+    const dates = files
+      .filter(f => f.name.endsWith(".json"))
+      .map(f => f.name.replace(".json", ""))
+      .sort()
+      .reverse();
+
+    if (dates.length === 0) {
+      container.innerHTML = `<div class="briefing-empty">아직 등록된 일일 뉴스 데이터가 없습니다.</div>`;
+      return;
+    }
+
+    if (sel.options.length === 0) {
+      dates.forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = d;
+        opt.textContent = d;
+        sel.appendChild(opt);
+      });
+    }
+
+    sel.addEventListener("change", async () => {
+      const dateKey = sel.value;
+      container.innerHTML = `<div class="briefing-empty">일일 뉴스 데이터를 불러오는 중입니다...</div>`;
+
+      if (!dailyNewsCache[dateKey]) {
+        dailyNewsCache[dateKey] = await (await fetch(`data_news/${dateKey}.json`)).json();
+      }
+
+      const data = dailyNewsCache[dateKey] || {};
+      const categories = data.categories || {};
+      const order = data.category_order || [
+        "자사 및 계열사 이슈",
+        "정부/국회",
+        "경쟁사/해외이슈",
+        "산업동향"
+      ];
+
+      let html = `
+        <div class="briefing-header-row">
+          <h3>📰 일일 뉴스 브리핑: ${escapeHtml(data.date || dateKey)}</h3>
+          <div class="briefing-generated">${data.generated_at ? `생성: ${escapeHtml(data.generated_at)}` : ""}</div>
+        </div>
+      `;
+
+      if (data.header) {
+        html += `<div style="margin-bottom: 1rem; color:#6b7280; font-size:0.85rem;">${escapeHtml(data.header)}</div>`;
+      }
+
+      let hasAny = false;
+
+      order.forEach(categoryName => {
+        const items = categories[categoryName] || [];
+        if (!items.length) return;
+
+        hasAny = true;
+
+        html += `
+          <div class="briefing-category">
+            <div class="briefing-category-header">${escapeHtml(categoryName)}</div>
+        `;
+
+        items.forEach((item, idx) => {
+          const title = escapeHtml(item.title || "제목 없음");
+          const rawLink = item.link || "";
+          const link = escapeHtml(rawLink);
+          const source = escapeHtml(item.source || "");
+          const summary = formatNewsText(item.summary || "");
+
+          html += `
+            <div class="briefing-item">
+              <div class="briefing-title">
+                ${rawLink ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${idx + 1}. ${title}</a>` : `${idx + 1}. ${title}`}
+              </div>
+              <div class="briefing-meta">${source ? `(${source})` : ""}</div>
+              <div class="briefing-summary">${summary || "요약문이 없습니다."}</div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+      });
+
+      if (!hasAny) {
+        html += `<div class="briefing-empty">해당 날짜의 뉴스 데이터가 비어 있습니다.</div>`;
+      }
+
+      container.innerHTML = html;
+    });
+
+    sel.dispatchEvent(new Event("change"));
+  } catch (e) {
+    console.log("뉴스 데이터 로드 에러", e);
+    container.innerHTML = `<div class="briefing-empty">뉴스 데이터를 불러오지 못했습니다.</div>`;
+  }
+}
+
 document.getElementById("status").style.display = "none";
 loadSchedules();
 loadPersonnel();
+loadDailyNews();
 </script>
 </body>
 </html>
