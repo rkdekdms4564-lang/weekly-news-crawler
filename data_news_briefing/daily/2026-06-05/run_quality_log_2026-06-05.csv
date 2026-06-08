@@ -1,0 +1,2 @@
+﻿버전,실행일,출력폴더,모델_라벨링,모델_편집,모델_요약,전체_RSS_후보,Gemini_기사라벨_후보,이슈그룹수,Gemini라벨링성공,Gemini라벨링_로컬대체배치,Gemini라벨링_재시도배치,Gemini이슈편집성공,선택이슈수,백업이슈수,최종_자사,최종_정부,최종_경쟁사,최종_산업,최종_경쟁사_국내,최종_경쟁사_해외,본문성공,본문실패_중요이슈_제한포함,제외_총합,본문품질미달_관련성미달,QA결과,최종기사수,실행분
+google_rss_v22_operational_hardening_daily_archive_body_guard,2026-06-05,/Users/hazel.kang/Desktop/주간 보도/data_news_briefing/daily/2026-06-05,gemini-2.5-flash-lite,gemini-2.5-pro,gemini-2.5-flash,2928,320,142,True,0,0,True,13,3,3,5,4,1,3,1,13,0,12469,3,양호,13,16.46

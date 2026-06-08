@@ -1,0 +1,7 @@
+```json
+{
+  "overall": "양호",
+  "warnings": [],
+  "suggested_human_checks": []
+}
+```
