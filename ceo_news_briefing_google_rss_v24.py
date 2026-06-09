@@ -12751,7 +12751,7 @@ import shutil
 V6_VERSION = "google_rss_v22_operational_hardening_daily_archive_body_guard"
 
 V22_RUN_DATE = datetime.now(KST).date().isoformat()
-V22_OUTPUT_ROOT = Path(BASE_DIR) / "data_news_briefing"
+V22_OUTPUT_ROOT = Path(BASE_DIR) / "data_news"
 V22_DAILY_DIR = V22_OUTPUT_ROOT / "daily" / V22_RUN_DATE
 V22_LATEST_DIR = V22_OUTPUT_ROOT / "latest"
 V22_INDEX_DIR = V22_OUTPUT_ROOT / "index"
@@ -12786,7 +12786,7 @@ def v22_latest_path(base, ext):
 
 
 def v22_setup_output_paths(run_date=None):
-    """Set all output paths to data_news_briefing/daily/YYYY-MM-DD and prepare latest/index dirs."""
+    """Set all output paths to data_news/daily/YYYY-MM-DD and prepare latest/index dirs."""
     global V22_RUN_DATE, V22_DAILY_DIR, V22_LATEST_DIR, V22_INDEX_DIR, V22_REVIEW_REQUIRED_TXT
     global OUTPUT_TXT, OUTPUT_SELECTED_CSV, OUTPUT_CANDIDATES_CSV, OUTPUT_RANKED_CSV
     global OUTPUT_SKIPPED_DUP_CSV, OUTPUT_BODY_FAILED_CSV, OUTPUT_RUN_LOG_CSV
@@ -12843,7 +12843,7 @@ def v25_backup_index_files_for_run_date():
     """
     같은 날짜 index 행을 삭제하기 전, 기존 index 파일을 백업한다.
     백업 위치:
-    data_news_briefing/index_backup/YYYY-MM-DD_HHMMSS/
+    data_news/index_backup/YYYY-MM-DD_HHMMSS/
     """
     if not BACKUP_INDEX_BEFORE_REPLACE:
         return
