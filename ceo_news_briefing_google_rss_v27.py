@@ -55,7 +55,7 @@ ENABLE_GEMINI_SELECTION = True
 ENABLE_GEMINI_REPORT = True
 
 # Google News RSS 수집 범위
-RSS_RECENT_DAYS = 1
+RSS_RECENT_DAYS = 2
 STRICT_RSS_TIME_FILTER = True
 RSS_RECENCY_HOURS = 28
 
@@ -1322,7 +1322,14 @@ def is_recent_pubdate(pub_date_text):
         return True
 
     now = datetime.now(KST)
-    start = now - timedelta(hours=RSS_RECENCY_HOURS)
+
+    # 실행 시각과 무관하게 "어제 00:00 KST ~ 현재" 범위를 사용한다.
+    # 예: 6월 10일 16:00 실행 시 6월 9일 00:00부터 수집 대상.
+    start = datetime.combine(
+        now.date() - timedelta(days=1),
+        datetime.min.time(),
+        tzinfo=KST,
+    )
 
     return start <= dt <= now + timedelta(minutes=10)
 
@@ -5365,12 +5372,8 @@ def main():
 [선별 관점: 카카오 대외협력/대관팀의 자아]
 1. 카카오 및 계열사 이슈는 최우선으로 봐. 특히 경영진·임원 이동, 조직개편, 서비스 개편 논란, 노사/임단협/파업, 노동부 진정, 최저임금법, 고용노동부 근로감독, 소송·수사·과징금·개인정보·장애·피싱·지배구조·실적·매각·투자회수는 높게 평가해.
 2. 강제검토=Y 후보는 자사/계열사 기사 중 실제 카카오 주체가 명확하고, 임원·조직 변화, 서비스 개편 후폭풍, 노무·법적 진정, 규제·제재, 장애·보안, M&A·지배구조 등 강한 위험 신호가 함께 있는 기사야. 정부/경쟁사/산업동향은 강제검토가 아니라 기존 랭킹과 기사 가치 중심으로 판단해.
-3. 정부/국회는 한국 정부, 대한민국 국회, 국내 규제기관, 국내 공공기관이 직접 주체인 기사만 골라.
-   예: 공정위, 금융위, 금감원, 과기정통부, 방미통위, 개보위, 행안부, 경찰청, 국회 상임위, 시행령, 입법예고, 가이드라인, 국내 플랫폼/AI/개인정보/디지털자산/스테이블코인/보안 규제.
-   미국, EU, 중국, 일본 등 해외 정부·의회·규제기관의 법안, 정책, 규제, 조사, 제재, 과징금, 가이드라인은 한국 기업에 참고가 되더라도 정부/국회에 넣지 말고 반드시 경쟁사/해외이슈로 넣어.
-   “국내에도 시사점이 있다”, “카카오에도 참고 가능하다”, “국내 플랫폼도 유사 영향 가능성이 있다” 정도의 간접 관련성은 정부/국회 분류 근거가 될 수 없어.
-4. 경쟁사/해외이슈는 네이버·구글·오픈AI·MS·메타·애플·쿠팡·토스·배민·통신3사 등 주요 플레이어의 전략, 규제, 소송, 장애, 보안, AI/플랫폼 변화와,
-   미국·EU·중국·일본 등 해외 정부·의회·규제기관의 빅테크/AI/플랫폼/개인정보/디지털자산 규제 이슈를 포함해.
+3. 정부/국회는 AI, 플랫폼, 디지털자산, 스테이블코인, 개인정보, 보안, 공정위, 금융위, 금감원, 과기정통부, 방미통위, 온플법, 망사용료, 지도반출 등 카카오 사업환경에 영향을 주는 정책·규제 중심으로 골라.
+4. 경쟁사/해외이슈는 네이버·구글·오픈AI·MS·메타·애플·쿠팡·토스·배민·통신3사 등 주요 플레이어의 전략, 규제, 소송, 장애, 보안, AI/플랫폼 변화 위주로 골라.
 5. 산업동향은 정말 구조적 변화가 있는 1~2개만 골라. 단순 인터뷰, 행사, 일반 제품 루머, 개별 범죄사건은 제외해.
 
 [중복/업데이트 판단]
@@ -5385,9 +5388,6 @@ def main():
 4. 타사 이름이나 카카오톡 제보 문구만 들어간 무관한 기사는 제외해.
 5. 주가 지지선, 목표가, 투자의견, 단기 급등락, 밸류에이션, ETF 유출입 등 투자·시황 중심 기사는 제외해. 단, 지분 매각, M&A, 경영권 변동, 규제 제재, 구조조정과 직접 연결된 기업 경영 이벤트는 살릴 수 있어.
 6. 스테이블코인/디지털자산은 가격·종목 전망보다 FIU, 특금법, AML, 가상자산사업자, 개인지갑, 해외이전, 시행령, 감독기준 등 정책·규제 변화가 있는 기사를 우선해.
-7. 정부/국회 카테고리는 한국 정부·대한민국 국회·국내 규제기관·국내 공공기관이 직접 주체인 기사만 허용해.
-   미국·EU·중국·일본 등 해외 정부·의회·규제기관 주체의 정책·규제·조사·제재·가이드라인 기사는 예외 없이 정부/국회에서 제외하고 경쟁사/해외이슈로 분류해.
-   단순히 “한국 기업에도 참고 가능”, “국내 플랫폼에도 시사점”, “카카오 사업에도 간접 영향 가능”이라는 이유로 정부/국회에 넣지 마.
 
 [유연한 카테고리 범위]
 - 자사 및 계열사 이슈: 최소 2개, 최대 7개
@@ -8047,9 +8047,6 @@ def v19_gemini_label_candidates(client, candidates, recent_past_text):
 - 특정 키워드에 집착하지 말고, 기사 본질을 봐.
 - 카카오 직접 리스크: 노무/임단협/파업, 임원·조직개편, 서비스 개편 후폭풍, 장애·보안·개인정보, 소송·수사·제재, 지배구조/M&A/실적 등.
 - 플랫폼 사업자 의무/규제: 카카오가 여러 사업자 중 하나로 포함되더라도 사업자에게 차단·삭제·필터링·공시·보고·자료제출·준수 의무가 생기면 중요하다. 이 경우 보통 정부_국회 카테고리가 맞다.
-- 정부_국회는 한국 정부·대한민국 국회·국내 규제기관·국내 공공기관이 직접 주체인 기사만 해당한다.
-- 미국·EU·중국·일본 등 해외 정부·의회·규제기관의 정책·규제·조사·제재·가이드라인은 정부_국회가 아니라 경쟁사_해외이슈로 분류한다.
-- 해외 정책이 한국 기업에 참고가 되거나 국내 플랫폼에도 시사점이 있다는 정도의 간접 관련성은 정부_국회 분류 근거가 아니다.
 - 홍보/후원/스폰서/이벤트/축제/쿠폰/프로모션은 원칙적으로 제외한다.
 - 개별 범죄·지역 사건·단순 주가전망·오피니언·제품 루머는 제외한다.
 - 같은 사건은 duplicate_group을 같게 붙여라. 예: 카카오 노조 공동파업, 카카오게임즈 공동대표, 플랫폼 유해정보 차단의무.
@@ -8309,12 +8306,9 @@ def v19_gemini_editor_selection(client, ranked_candidates, labels, recent_past_t
 2. 같은 duplicate_group은 원칙적으로 대표 기사 1개만 고른다. 단, 진행 단계가 명확히 다른 자사 노무/소송/규제 업데이트는 최대 2개까지 가능하다.
 3. 카카오 직접 리스크는 우선한다. 단, 같은 노조/카카오게임즈/실적 이슈가 반복되면 대표 기사만 남긴다.
 4. 네이버·카카오·구글 등 여러 사업자에게 새 의무가 생기는 플랫폼 규제 기사는 보통 정부_국회로 넣는다.
-5. 정부_국회는 한국 정부·대한민국 국회·국내 규제기관·국내 공공기관이 직접 주체인 기사만 해당한다.
-6. 미국·EU·중국·일본 등 해외 정부·의회·규제기관의 정책·규제·조사·제재·가이드라인은 정부_국회가 아니라 경쟁사_해외이슈로 분류한다.
-7. 해외 정책이 한국 기업에 참고가 되거나 국내 플랫폼에도 시사점이 있다는 정도의 간접 관련성은 정부_국회 분류 근거가 아니다.
-8. 홍보/후원/스폰서/이벤트/축제/쿠폰/단순 프로모션은 원칙적으로 제외한다.
-9. 일반 금융 제재, 개별 기업 공정위 사건, 개별 범죄·선거사범 등은 카카오 플랫폼 사업환경과 직접 연결될 때만 고른다.
-10. 본문 추출 실패를 대비해 각 카테고리별 backup도 넉넉히 골라라.
+5. 홍보/후원/스폰서/이벤트/축제/쿠폰/단순 프로모션은 원칙적으로 제외한다.
+6. 일반 금융 제재, 개별 기업 공정위 사건, 개별 범죄·선거사범 등은 카카오 플랫폼 사업환경과 직접 연결될 때만 고른다.
+7. 본문 추출 실패를 대비해 각 카테고리별 backup도 넉넉히 골라라.
 
 [최근 7일 과거 보고서 참고]
 {recent_past_text[:3000]}
@@ -9441,14 +9435,8 @@ def v20_gemini_label_candidates(client, candidates, recent_past_text):
 [핵심 분류 철학]
 1. 카카오 직접 리스크: 노무/파업/임단협, 임원·조직개편, 서비스 개편 논란, 개인정보·보안·장애, 수사·제재·소송, 지배구조/M&A/실적.
 2. 자사 포함 업계 공통 규제: 네이버·카카오·구글 등 여러 사업자에게 차단·삭제·필터링·보고·공시·자료제출·준수 의무가 생기는 기사. 카카오 단독 기사가 아니어도 대관 관점에서 중요하다.
-3. 정부/국회 정책 변화:
-   한국 정부, 국회, 국내 규제기관, 국내 공공기관, 국내 법·제도·정책 변화 중 카카오 사업환경에 영향을 주는 것만 해당한다.
-   예: 공정위, 과기정통부, 방미통위, 개보위, 금융위/금감원, 행안부, 국회 상임위, 시행령, 입법예고, 가이드라인, 국내 플랫폼/AI/개인정보/디지털자산 규제.
-   미국, EU, 중국, 일본 등 해외 정부·의회·규제기관의 법안, 정책, 조사, 제재, 과징금, 가이드라인은 정부/국회가 아니라 경쟁사/해외로 분류한다.
-   단, 해외 정책이라도 한국 정부·국회·국내 규제기관의 대응, 국내 사업자 적용, 국내 플랫폼/AI/개인정보/디지털자산 정책 변화와 직접 연결되면 정부/국회로 볼 수 있다.
-4. 경쟁사/해외:
-   네이버·구글·오픈AI·MS·메타·애플·쿠팡·토스·배민·통신사 등의 전략/규제/보안/AI 변화와,
-   미국·EU·중국·일본 등 해외 정부·의회·규제기관의 빅테크/AI/플랫폼/개인정보/디지털자산 규제 이슈를 포함한다.
+3. 정부/국회 정책 변화: AI, 플랫폼, 디지털자산, 개인정보, 보안, 공정위, 과기정통부, 방미통위, 개보위, 금융위/금감원 중 카카오 사업환경에 영향을 주는 것.
+4. 경쟁사/해외: 네이버·구글·오픈AI·MS·메타·애플·쿠팡·토스·배민·통신사 등의 전략/규제/보안/AI 변화.
 5. 홍보/후원/스폰서/이벤트/축제/쿠폰/프로모션/수상은 원칙적으로 LOW_VALUE_PR로 제외.
 6. 개별 범죄·지역 사건·단순 주가 전망·오피니언·제품 루머는 OFF_TOPIC 또는 낮은 우선순위.
 
@@ -12243,9 +12231,7 @@ def v20_gemini_quality_check(client, final_report_data, final_briefing_text):
 아래 최종 브리핑이 다음 기준에 맞는지 점검하라.
 - 같은 이슈 중복 여부
 - 자사 섹션에 단순 홍보/기부/캠페인성 기사 포함 여부
-- 정부/국회 섹션에 일반 금융/비디지털 제재 기사 또는 한국 정부·국회·국내 규제기관·국내 공공기관과 직접 관련 없는 해외 정책/규제 기사 포함 여부
-- 정부/국회 섹션의 기사가 한국 정부·국회·국내 규제기관·국내 공공기관이 주체이거나 국내 법·제도·정책 변화와 직접 연결되는지
-- 미국·EU·중국·일본 등 해외 정부·의회·규제기관 주체의 법안·정책·규제·조사·제재 기사가 정부/국회가 아니라 경쟁사/해외이슈로 분류됐는지
+- 정부/국회 섹션에 일반 금융/비디지털 제재 기사 포함 여부
 - 경쟁사/해외 섹션이 국내 경쟁사 우선 원칙을 지켰는지. 국내 경쟁사/인접 플랫폼 2~3개, 해외 1개가 기본이다.
 - 해외 이슈가 단순 투자/IPO/주가/CAPEX만으로 들어왔는지
 - 본문추출실패 기사 과다 여부
@@ -12765,9 +12751,6 @@ V22_INDEX_DIR = V22_OUTPUT_ROOT / "index"
 V22_REVIEW_REQUIRED_TXT = ""
 V22_LABELING_LOCAL_BATCHES = 0
 V22_LABELING_RETRY_BATCHES = 0
-# 같은 날짜 재실행 시 index 중복 누적 방지
-REPLACE_SAME_DATE_INDEX_ROWS = True
-BACKUP_INDEX_BEFORE_REPLACE = True
 
 V22_OUTPUT_BASES = {
     "OUTPUT_TXT": ("CEO_Morning_Briefing", "txt"),
@@ -12793,7 +12776,7 @@ def v22_latest_path(base, ext):
 
 
 def v22_setup_output_paths(run_date=None):
-    """Set all output paths to data_news/daily/YYYY-MM-DD and prepare latest/index dirs."""
+    """Set all output paths to data_news_briefing/daily/YYYY-MM-DD and prepare latest/index dirs."""
     global V22_RUN_DATE, V22_DAILY_DIR, V22_LATEST_DIR, V22_INDEX_DIR, V22_REVIEW_REQUIRED_TXT
     global OUTPUT_TXT, OUTPUT_SELECTED_CSV, OUTPUT_CANDIDATES_CSV, OUTPUT_RANKED_CSV
     global OUTPUT_SKIPPED_DUP_CSV, OUTPUT_BODY_FAILED_CSV, OUTPUT_RUN_LOG_CSV
@@ -12846,105 +12829,9 @@ def v22_append_rows_csv(path, rows):
     header = not p.exists()
     df.to_csv(p, mode="a", header=header, index=False, encoding="utf-8-sig")
 
-def v25_backup_index_files_for_run_date():
-    """
-    같은 날짜 index 행을 삭제하기 전, 기존 index 파일을 백업한다.
-    백업 위치:
-    data_news/index_backup/YYYY-MM-DD_HHMMSS/
-    """
-    if not BACKUP_INDEX_BEFORE_REPLACE:
-        return
-
-    try:
-        backup_root = V22_OUTPUT_ROOT / "index_backup"
-        timestamp = datetime.now(KST).strftime("%Y%m%d_%H%M%S")
-        backup_dir = backup_root / f"{V22_RUN_DATE}_{timestamp}"
-        backup_dir.mkdir(parents=True, exist_ok=True)
-
-        for filename in [
-            "article_history.csv",
-            "issue_history.csv",
-            "report_history.csv",
-            "url_seen_history.csv",
-        ]:
-            src = V22_INDEX_DIR / filename
-            if src.exists():
-                shutil.copy2(src, backup_dir / filename)
-
-        print(f"  └ 🧷 index 백업 완료: {backup_dir}")
-
-    except Exception as e:
-        print(f"  └ ⚠️ index 백업 실패: {e}")
-
-
-def v25_remove_same_date_rows_from_index():
-    """
-    같은 날짜로 재실행할 때 index CSV에 같은 날짜 행이 계속 append되는 문제를 막는다.
-    index 4개 파일에서 date 컬럼이 V22_RUN_DATE와 같은 행을 제거한다.
-    """
-    if not REPLACE_SAME_DATE_INDEX_ROWS:
-        return
-
-    index_files = [
-        "article_history.csv",
-        "issue_history.csv",
-        "report_history.csv",
-        "url_seen_history.csv",
-    ]
-
-    v25_backup_index_files_for_run_date()
-
-    removed_summary = {}
-
-    for filename in index_files:
-        path = V22_INDEX_DIR / filename
-
-        if not path.exists():
-            removed_summary[filename] = 0
-            continue
-
-        try:
-            df = pd.read_csv(path, encoding="utf-8-sig")
-
-            if df.empty:
-                removed_summary[filename] = 0
-                continue
-
-            date_col = None
-            for candidate_col in ["date", "run_date", "report_date", "날짜"]:
-                if candidate_col in df.columns:
-                    date_col = candidate_col
-                    break
-
-            if not date_col:
-                print(f"  └ ⚠️ {filename}: 날짜 컬럼 없음. 같은 날짜 행 제거 건너뜀")
-                removed_summary[filename] = 0
-                continue
-
-            before = len(df)
-
-            # '2026-06-08 09:00:00'처럼 들어가도 앞 10자리만 비교
-            normalized_dates = df[date_col].astype(str).str.slice(0, 10)
-            df = df[normalized_dates != V22_RUN_DATE].copy()
-
-            removed = before - len(df)
-            removed_summary[filename] = removed
-
-            df.to_csv(path, index=False, encoding="utf-8-sig")
-
-        except Exception as e:
-            print(f"  └ ⚠️ {filename}: 같은 날짜 행 제거 실패: {e}")
-            removed_summary[filename] = "실패"
-
-    msg = ", ".join([f"{k}:{v}행" for k, v in removed_summary.items()])
-    print(f"  └ 🧹 같은 날짜 index 기존 행 제거 완료({V22_RUN_DATE}): {msg}")
 
 def v22_update_history_indices(final_report_data, issues, raw_articles, qa_overall=""):
     """Maintain structured daily history for future duplicate checks."""
-
-    # 같은 날짜로 재실행한 경우, 기존 index의 해당 날짜 행을 먼저 제거한 뒤 새 결과를 append한다.
-    v25_remove_same_date_rows_from_index()
-
     article_rows = []
     issue_rows = []
     report_rows = []
@@ -13002,10 +12889,35 @@ def v22_update_history_indices(final_report_data, issues, raw_articles, qa_overa
 _BASE_load_past_reports_v22 = load_past_reports
 
 def v22_parse_history_date(value):
-    try:
-        return datetime.fromisoformat(str(value)[:10]).date()
-    except Exception:
+    """
+    index CSV의 날짜를 date 객체로 변환한다.
+    기존 index에는 2026.6.5, 2026.06.05, 2026/6/5 형식이 섞일 수 있으므로
+    YYYY-MM-DD뿐 아니라 점/슬래시 날짜도 함께 처리한다.
+    """
+    s = str(value or "").strip().replace('"', "").replace("'", "")
+
+    if not s or s.lower() in {"nan", "none", "null"}:
         return None
+
+    # 시간이 붙어 있으면 날짜 앞부분만 사용
+    s = s.split()[0].strip()
+
+    # 1) 2026-06-09 같은 ISO 형식
+    try:
+        return datetime.fromisoformat(s[:10]).date()
+    except Exception:
+        pass
+
+    # 2) 2026.6.9 / 2026.06.09 / 2026/6/9 / 2026-6-9 처리
+    m = re.match(r"^(\d{4})[-./](\d{1,2})[-./](\d{1,2})\.?$", s)
+    if m:
+        try:
+            y, mo, d = map(int, m.groups())
+            return date(y, mo, d)
+        except Exception:
+            return None
+
+    return None
 
 
 def v22_history_items_from_index():
@@ -13313,7 +13225,7 @@ def main():
     run_log = []
     v22_setup_output_paths()
 
-    print(f"\n🧩 v22 실행: {V6_VERSION}")
+    print(f"\n🧩 v26 실행: {V6_VERSION}")
     print(f"   └ 출력 폴더: {V22_DAILY_DIR}")
     print(f"   └ 모델: labeling={GEMINI_MODEL_LABELING}, editor={GEMINI_MODEL_EDITOR}, summary={GEMINI_MODEL_SUMMARY}, qa={GEMINI_MODEL_QA}")
 
@@ -13420,6 +13332,27 @@ def main():
     final_report_data, removed_duplicates = v21_remove_obvious_final_duplicates(final_report_data)
     for rem, reason in removed_duplicates:
         add_duplicate_skip_row(post_body_duplicate_skips, rem, {"기사제목": "v22_final_duplicate", "링크": "", "대표선택점수": ""}, reason, stage="v22_final_repair")
+
+    if v26_1_should_refill_after_repair(final_report_data):
+        before_refill_count = len(final_report_data)
+        order_counter = v26_1_refill_after_final_repair(
+            decisions=decisions,
+            backup_decisions=backup_decisions,
+            issues=issues,
+            issue_by_id=issue_by_id,
+            article_by_id=article_by_id,
+            recent_past_items=recent_past_items,
+            final_report_data=final_report_data,
+            body_failed_rows=body_failed_rows,
+            skip_rows=post_body_duplicate_skips,
+            processed_article_ids=processed_article_ids,
+            order_counter=order_counter,
+            status_counts=status_counts,
+        )
+        if len(final_report_data) != before_refill_count:
+            final_report_data, removed_duplicates_refill = v21_remove_obvious_final_duplicates(final_report_data)
+            for rem, reason in removed_duplicates_refill:
+                add_duplicate_skip_row(post_body_duplicate_skips, rem, {}, reason, stage="v26_1_refill_repair")
 
     if skipped_duplicates or post_body_duplicate_skips:
         all_skips = skipped_duplicates + post_body_duplicate_skips
@@ -14537,6 +14470,3190 @@ _BASE_v20_gemini_quality_check_v24 = v20_gemini_quality_check
 def v20_gemini_quality_check(client, final_report_data, final_briefing_text):
     qa = _BASE_v20_gemini_quality_check_v24(client, final_report_data, final_briefing_text)
     return qa
+
+
+# =========================================================
+# v25 overrides: Korean government-section guardrail + flexible max fill
+# - 정부/국회 섹션은 한국 정부/국회/규제기관/공공정책 중심으로 제한한다.
+# - 해외 정부/의회/규제기관 이슈는 정부/국회가 아니라 경쟁사/해외 또는 산업동향으로 보낸다.
+# - 중복 제거와 이통3사 검색어는 v24 기준을 유지한다.
+# - 중요한 이슈가 충분하면 기존 상한선(V21_FINAL_MAX)까지 더 자연스럽게 채운다.
+# =========================================================
+
+V6_VERSION = "google_rss_v25_kr_gov_guardrail_flex_max_fill"
+
+# 사용자가 설정한 상한까지는 좋은 후보가 있으면 채운다. category max와 경쟁사 cap은 기존대로 유지.
+V21_FINAL_TARGET = V21_FINAL_MAX
+V20_FINAL_TARGET = V21_FINAL_TARGET
+MAX_SELECT_COUNT = V21_FINAL_MAX
+MIN_SELECT_COUNT = V21_FINAL_MIN
+
+# 한국 정부/국회/공공 정책 주체. v23보다 국내 공공·정책 분석 주체를 보강한다.
+V25_KOREAN_PUBLIC_ACTOR_RE = re.compile(
+    r"대한민국|한국|국내|정부|국회|대통령실|국무회의|당정|상임위|과방위|정무위|문체위|성평등위|"
+    r"의원|국회의원|더불어민주당|국민의힘|조국혁신당|위원회|TF|전담조직|공공기관|지자체|지방정부|"
+    r"과기정통부|과학기술정보통신부|방미통위|방송미디어통신위원회|공정위|공정거래위원회|개보위|개인정보보호위원회|"
+    r"금융위|금융위원회|금감원|금융감독원|행안부|행정안전부|중기부|중소벤처기업부|고용노동부|노동부|"
+    r"FIU|금융정보분석원|국정원|국가정보원|검찰|경찰청|KISA|한국인터넷진흥원|한국은행|금융연구원|한국금융연구원|"
+    r"국회입법조사처|KDI|KISDI|정보통신정책연구원|보험연구원|자본시장연구원|한국소비자원",
+    re.IGNORECASE,
+)
+
+# 해외 정책/규제 주체. 정부/국회 섹션에서 한국 정책으로 착각하면 안 되는 신호.
+V25_FOREIGN_PUBLIC_ACTOR_RE = re.compile(
+    r"미국|美\b|미\s*정부|미\s*의회|미\s*상원|미\s*하원|백악관|트럼프|바이든|상무부|FTC|FCC|SEC|"
+    r"주정부|州\b|캘리포니아|텍사스|뉴욕주|EU|유럽연합|유럽\s*집행위|EU\s*집행위|DMA|DSA|"
+    r"중국|일본|영국|프랑스|독일|캐나다|호주|싱가포르|인도|브라질|글로벌\s*규제|해외\s*규제",
+    re.IGNORECASE,
+)
+
+V25_FOREIGN_POLICY_ACTION_RE = re.compile(
+    r"법안|초안|발의|입법|규제|가이드라인|의무|의무화|감사|면허|벌금|제재|조사|감독|동결|모라토리엄|"
+    r"건설\s*제한|제한\s*조치|주\s*규제|연방|상무부|집행위|규제기관|지분\s*보유|국부펀드|정부\s*지분",
+    re.IGNORECASE,
+)
+
+# 해외 정책이라도 한국 정부/국회가 도입·검토하거나 국내 사업자 의무로 연결되면 정부/국회에 남길 수 있다.
+V25_KOREAN_POLICY_CONNECTION_RE = re.compile(
+    r"한국\s*정부|국내\s*도입|국내\s*적용|국내\s*기업|국내\s*사업자|한국\s*기업|한국\s*사업자|"
+    r"우리나라|국내에서도|한국도|도입\s*검토|국내\s*규제|국내\s*법안|국내\s*가이드라인|"
+    r"카카오|네이버|토스|쿠팡|배민|SKT|KT|LGU\+|LG유플러스|금융권|가상자산\s*거래소",
+    re.IGNORECASE,
+)
+
+# 국내 연구기관/싱크탱크의 정책 제언은 부처명이 없어도 정부/국회 정책 환경 기사로 볼 수 있다.
+V25_KOREAN_POLICY_ANALYSIS_RE = re.compile(
+    r"(한국금융연구원|금융연구원|한국은행|국회입법조사처|KDI|KISDI|정보통신정책연구원|보험연구원|자본시장연구원|"
+    r"한국인터넷진흥원|KISA|한국소비자원).{0,220}"
+    r"(규제|가이드라인|정책|법안|제도|위험관리|모형위험관리|감독|관리체계|프레임워크|보호|보안|AI|인공지능|금융권)",
+    re.IGNORECASE,
+)
+
+# 해외 정책/규제 흐름이지만 한국 정부·국회 기사로 분류하면 안 되는 경우.
+def v25_is_foreign_public_policy_issue(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    return bool(V25_FOREIGN_PUBLIC_ACTOR_RE.search(t) and V25_FOREIGN_POLICY_ACTION_RE.search(t))
+
+
+def v25_has_direct_korean_policy_connection(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    return bool(V25_KOREAN_POLICY_CONNECTION_RE.search(t))
+
+
+def v25_has_korean_policy_basis(text):
+    """한국 정부/국회 섹션에 들어갈 수 있는 최소 정책 근거.
+    특정 부처명 필수 방식이 아니라, 국내 공공 주체/정책행위/카카오 관련 도메인을 함께 본다.
+    """
+    t = clean_html_text(text)
+    if not t:
+        return False
+
+    # 해외 정책만 중심이고 국내 연결이 없으면 한국 정부/국회 섹션 근거가 아니다.
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return False
+
+    # 플랫폼 사업자 의무는 국내 플랫폼/국내 사업자/국내 공공 주체와 연결될 때만 한국 정부/국회로 인정.
+    if v20_is_platform_obligation_text(t):
+        if V25_KOREAN_PUBLIC_ACTOR_RE.search(t) or V25_KOREAN_POLICY_CONNECTION_RE.search(t):
+            return True
+        # 네이버·카카오 등이 의무 대상이면 국내 사업자 영향으로 봄.
+        if re.search(r"네이버|카카오|카톡|카카오페이|카카오뱅크|국내\s*사업자|국내\s*플랫폼", t, re.I):
+            return True
+
+    # 명시적 한국 공공 주체 + 정책 행위 + 카카오 관련 도메인.
+    if V25_KOREAN_PUBLIC_ACTOR_RE.search(t) and V23_POLICY_ACTION_RE.search(t) and V23_KAKAO_RELEVANT_DOMAIN_RE.search(t):
+        return True
+
+    # 한국 공공 AI/국가 AI/피지컬AI 특별법 등 핵심 AI 정책.
+    if V25_KOREAN_PUBLIC_ACTOR_RE.search(t) and V23_PUBLIC_AI_POLICY_RE.search(t):
+        return True
+
+    # 국내 정책 분석기관의 규제·가이드라인·위험관리 제언.
+    if V25_KOREAN_POLICY_ANALYSIS_RE.search(t):
+        return True
+
+    # 기관명이 없어도 국내 사업자 의무/제도 변화가 명확하면 인정.
+    if V23_POLICY_ACTION_WITHOUT_ACTOR_RE.search(t) and V23_KAKAO_RELEVANT_DOMAIN_RE.search(t):
+        if re.search(r"국내|한국|금융권|사업자|플랫폼|AI|인공지능|개인정보|광고|알고리즘|딥페이크|불법촬영|전자금융|가상자산|스테이블코인", t, re.I):
+            return True
+
+    return False
+
+
+def v25_foreign_policy_target_category(text):
+    """한국 정부/국회가 아닌 해외 정책/규제 이슈를 어느 섹션으로 보낼지 결정."""
+    t = clean_html_text(text)
+    # 해외 정부/규제/의회 흐름은 기본적으로 경쟁사/해외이슈가 가장 자연스럽다.
+    if v25_is_foreign_public_policy_issue(t):
+        return "경쟁사_해외이슈"
+    if v23_is_valid_industry(t):
+        return "산업동향"
+    return "경쟁사_해외이슈"
+
+# v23 guardrail 위에 한국 정부/국회 전용 guardrail을 덧씌운다.
+_BASE_v23_final_category_guardrail_v25 = v23_final_category_guardrail
+
+def v23_final_category_guardrail(item, requested_category):
+    requested = v19_normalize_category_key(requested_category, fallback="산업동향")
+    t = v23_text(item)
+
+    # 정부/국회는 한국 정부·국회·국내 공공정책 중심. 해외 법안/규제는 해외이슈로 이동.
+    if requested == "정부_국회":
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return "reassign", v25_foreign_policy_target_category(t), "foreign_policy_not_korean_gov_section"
+        if v25_has_korean_policy_basis(t):
+            return "pass", requested, "korean_government_policy_basis_pass"
+        # 한국 정책 근거가 없으면 기존 guardrail의 pass라도 한 번 더 보수적으로 처리한다.
+        action, cat, reason = _BASE_v23_final_category_guardrail_v25(item, requested)
+        if action == "pass":
+            # v23의 넓은 AI/정책 키워드 통과를 막는다. 단, 명백한 산업/경쟁사로 보낼 수 있으면 재배치.
+            suggested = v23_suggest_category(item, requested)
+            if suggested and suggested != requested:
+                return "reassign", suggested, f"government_without_korean_policy_basis:{reason}"
+            return "fail", requested, f"government_without_korean_policy_basis:{reason}"
+        return action, cat, reason
+
+    # 다른 카테고리에서 v23이 해외 정책을 정부/국회로 보내려 하면 경쟁사/해외로 보낸다.
+    action, cat, reason = _BASE_v23_final_category_guardrail_v25(item, requested)
+    if action == "reassign" and cat == "정부_국회":
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return "reassign", v25_foreign_policy_target_category(t), f"foreign_policy_not_korean_gov_section:{reason}"
+        if not v25_has_korean_policy_basis(t):
+            suggested = v23_suggest_category(item, requested)
+            if suggested and suggested != "정부_국회":
+                return "reassign", suggested, f"blocked_non_korean_gov_reassign:{reason}"
+            return "fail", requested, f"blocked_non_korean_gov_reassign:{reason}"
+    return action, cat, reason
+
+# v23_suggest_category도 해외 정책은 정부/국회가 아니라 경쟁사/해외로 제안하도록 보정한다.
+_BASE_v23_suggest_category_v25 = v23_suggest_category
+
+def v23_suggest_category(item, requested=None):
+    t = v23_text(item)
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return v25_foreign_policy_target_category(t)
+    return _BASE_v23_suggest_category_v25(item, requested)
+
+# issue-level allowed check에서도 정부/국회 저품질 해외정책 오배치를 줄인다.
+_BASE_v21_issue_allowed_basic_v25 = v21_issue_allowed_basic
+
+def v21_issue_allowed_basic(issue):
+    ok, reason = _BASE_v21_issue_allowed_basic_v25(issue)
+    if not ok:
+        return ok, reason
+    issue_text = clean_html_text(" ".join(str(x or "") for x in [
+        issue.get("issue_group"), issue.get("issue_family"), issue.get("internal_category"),
+        issue.get("label_reasons"), issue.get("company_impact"), issue.get("gov_tier"),
+    ]))
+    cat = v20_issue_to_output_category(issue)
+    if cat == "정부_국회":
+        if v25_is_foreign_public_policy_issue(issue_text) and not v25_has_direct_korean_policy_connection(issue_text):
+            # 제외하지는 않고, 최종 guardrail에서 해외이슈로 재배치될 수 있게 둔다.
+            issue["v25_gov_domestic_guardrail"] = "foreign_policy_should_not_stay_in_gov"
+        elif not v25_has_korean_policy_basis(issue_text):
+            # issue text가 짧아 불확실한 경우는 article-level guardrail에서 다시 판단하므로 막지 않는다.
+            issue["v25_gov_domestic_guardrail"] = "needs_article_level_check"
+    return True, reason
+
+# QA가 한국 정부/국회 기준을 다시 확인하도록 최종 QA 프롬프트에 실릴 item fields만 보강한다.
+_BASE_v20_attach_issue_fields_v25 = v20_attach_issue_fields
+
+def v20_attach_issue_fields(report_item, article_info, issue, decision, selection_source=""):
+    item = _BASE_v20_attach_issue_fields_v25(report_item, article_info, issue, decision, selection_source)
+    text = v23_text(item)
+    if item.get("카테고리") == "정부_국회":
+        item["v25한국정부국회근거"] = "Y" if v25_has_korean_policy_basis(text) else ""
+        if v25_is_foreign_public_policy_issue(text) and not v25_has_direct_korean_policy_connection(text):
+            item["v25한국정부국회근거"] = "N:foreign_policy"
+    return item
+
+
+# v25.1 patch: domestic security whitepaper/government report + updated editor prompt
+V25_KOREAN_SECURITY_WHITEPAPER_RE = re.compile(
+    r"(국가정보보호백서|정보보호백서|국가정보원|국정원|6개\s*부처|정부\s*백서|보안\s*가이드북|AI\s*보안\s*가이드북|국가인공지능안보센터)",
+    re.IGNORECASE,
+)
+
+_BASE_v25_has_korean_policy_basis_PREV = v25_has_korean_policy_basis
+
+def v25_has_korean_policy_basis(text):
+    t = clean_html_text(text)
+    if V25_KOREAN_SECURITY_WHITEPAPER_RE.search(t) and re.search(r"AI|인공지능|보안|정보보호|해킹|사이버|개인정보|클라우드", t, re.I):
+        return True
+    return _BASE_v25_has_korean_policy_basis_PREV(t)
+
+
+def v20_gemini_edit_issues(client, issues, recent_past_text):
+    if not client:
+        raise RuntimeError("Gemini client 없음")
+    visible_issues = [i for i in sorted(issues, key=lambda x: x.get("issue_score", 0), reverse=True) if not i.get("exclude") and not i.get("is_pr")]
+    visible_issues = visible_issues[:V20_MAX_ISSUES_FOR_EDITOR]
+    issue_text = "\n".join(v20_issue_line(i) for i in visible_issues)
+    prompt = f"""
+너는 카카오 대외협력팀 아침 뉴스 편집장이다.
+아래 이슈 후보는 기사 단위가 아니라 issue_group 단위로 묶인 후보들이다.
+최종 보고서는 카카오 경영진/대외협력/정책/커뮤니케이션/사업 담당자가 오늘 알아야 할 이슈를 담아야 한다.
+
+[전체 편집 원칙]
+- 같은 issue_group은 하나만 고른다.
+- 단순 홍보·후원·캠페인·기부·이벤트·수상은 선택하지 않는다.
+- 본문 추출 실패 시 같은 issue_group 안의 다른 기사로 대체될 수 있으므로, 중요한 이슈는 best/backup article_ids를 함께 준다.
+- 일반 금융/제약/건설/비디지털 공정위·금감원 기사는 카카오 연결 경로가 약하면 제외한다.
+- 중요한 이슈가 많은 날에는 전체 상한인 15개까지 골라도 된다. 단, 낮은 품질 기사로 억지로 채우지 말라.
+
+[자사/계열사 원칙]
+1. DIRECT_RISK와 RESPONSE_RELEVANT를 최우선으로 포함한다.
+2. STRATEGIC_REFERENCE는 카카오 AI agent, 카톡 AI, 결제/금융, 조직/거점, 지배구조, 핵심 서비스 변화처럼 현직자가 실질적으로 참고할 때만 포함한다.
+3. FILLER_REFERENCE는 자사 이슈가 3개 미만일 때만 고려한다.
+4. LOW_VALUE_PR은 절대 자사 슬롯 보충용으로 쓰지 않는다.
+
+[정부/국회 원칙: 한국 중심]
+1. 정부/국회 섹션은 원칙적으로 한국 정부·국회·규제기관·공공기관·국내 법/정책 이슈만 넣는다.
+2. 플랫폼 사업자 직접 의무/규제는 최우선이다. 단, 한국 사업자나 국내 제도 적용과 연결되어야 한다.
+3. AI 정책, 국가 AI 전략, AIDC, GPU, 공공 AI, 디지털플랫폼정부, AI 기본법/저작권/안전/거버넌스, AI 정책 컨트롤타워는 카카오 AI agent 전략과 연결되는 핵심 국내 정책 이슈로 본다.
+4. 국가정보보호백서, 국정원/정부 부처의 AI 보안·사이버보안·개인정보보호 백서/가이드북/대책은 정부/국회 정책 이슈로 본다.
+5. 스테이블코인, 전자금융, 디지털자산, 디지털트윈은 연결성이 있을 때 포함하되 AI·플랫폼 직접 이슈보다 후순위다.
+6. 미국·EU·중국·일본 등 해외 정부/의회/규제기관의 법안·정책·규제는 정부/국회가 아니라 경쟁사/해외이슈 또는 산업동향으로 분류한다.
+7. 단, 해외 정책이라도 한국 정부가 도입·검토 중이거나 국내 사업자 의무/국내 규제 변화로 직접 연결된 기사라면 정부/국회에 포함할 수 있다.
+8. 홍콩 ELS 같은 일반 금융 제재는 원칙적으로 제외한다.
+
+[경쟁사/해외 원칙]
+1. 국내 경쟁사/인접 플랫폼을 우선한다. 네이버·네이버페이·쿠팡·토스·배민·SKT·KT·LGU+·라인야후 등.
+2. 경쟁사/해외 섹션은 3~4개가 적절하며, 국내 경쟁사 이슈를 최소 2개, 가능하면 3개 포함한다.
+3. 해외 빅테크/글로벌 AI 이슈는 기본 1개만 포함한다. 카카오 AI·플랫폼·콘텐츠 데이터·앱마켓·개인정보·광고 전략에 직접 시사점이 매우 크면 2개까지 가능하다.
+4. 해외 법안/규제/정책, 미국 AI 법안, EU 규제, 트럼프 행정부 AI 정책 등은 이 섹션에서 다룬다. 단순 글로벌 AI 투자, IPO, 주가, CAPEX, 제품 루머는 후순위 또는 제외한다.
+
+[권장 분량]
+- 전체 11~15개. 중요한 이슈가 많은 날에는 15개까지 가능하다.
+- 자사 3~5개, 정부/국회 3~5개, 경쟁사/해외 3~4개, 산업 1~2개.
+
+반드시 JSON만 반환하라.
+{{
+  "selected_issues": [
+    {{
+      "issue_id": "I001",
+      "category": "자사_및_계열사_이슈/정부_국회/경쟁사_해외이슈/산업동향",
+      "priority": 5,
+      "best_article_id": 123,
+      "backup_article_ids": [124, 125],
+      "reason": "선정 이유"
+    }}
+  ],
+  "backup_issues": [
+    {{
+      "issue_id": "I050",
+      "category": "경쟁사_해외이슈",
+      "priority": 4,
+      "best_article_id": 555,
+      "backup_article_ids": [556],
+      "reason": "대체 후보 이유"
+    }}
+  ]
+}}
+
+[최근 과거 보고서 참고]
+{recent_past_text[:4500]}
+
+[이슈 후보]
+{issue_text}
+"""
+    text = gemini_generate_text(
+        client=client,
+        prompt=prompt,
+        task_name="v25 이슈 단위 최종 편집",
+        model=GEMINI_MODEL_EDITOR,
+    )
+    data = extract_json_object(text)
+    issue_by_id = {i["issue_id"]: i for i in issues}
+    article_by_id = {}
+    for issue in issues:
+        for art_id in issue.get("article_ids", []):
+            article_by_id[int(art_id)] = {"id": int(art_id)}
+    decisions, backup_decisions = v20_normalize_issue_editor_json(data, issue_by_id, article_by_id)
+    return decisions, backup_decisions
+
+
+
+# =========================================================
+# v26 overrides: index-history dedupe + today-first editorial guardrails
+# - past_reports.txt 대신 data_news_briefing/index/*.csv 최근 7일을 중복 판단 기준으로 사용
+# - 같은 날짜 재실행 시 index 오늘 날짜 행을 실행 초반/저장 직전 제거하되 백업은 1회만 생성
+# - index CSV 저장은 QUOTE_ALL + 컬럼 union rewrite로 깨짐 방지
+# - 자사 섹션: 카카오 직접 주체 + 오늘 새 사건/진전 우선, 분석/기획/시황성 후순위
+# - 정부/국회 섹션: 한국 정부·국회·규제기관이 실제 행위자인 정책/규제 기사만 허용
+# - 개인정보/보안/제재/플랫폼 의무 등 동일 사건은 섹션이 달라도 최종 1건만 유지
+# =========================================================
+
+import csv
+
+V6_VERSION = "google_rss_v26_1_soft_index_v24_feel_refill"
+
+# 중복 판단 소스 전환: 기본은 index 기반. 과도기 테스트가 필요하면 True로 바꾸면 past_reports도 같이 참고한다.
+DEDUP_USE_INDEX_HISTORY = True
+DEDUP_USE_PAST_REPORTS_FALLBACK = False
+DEDUP_EXCLUDE_RUN_DATE_FROM_HISTORY = True
+DEDUP_INDEX_LOOKBACK_DAYS = PAST_DUP_LOOKBACK_DAYS
+
+# 같은 날짜 재실행 안전장치
+V26_REPLACE_SAME_DATE_INDEX_ROWS = True
+V26_BACKUP_INDEX_BEFORE_REPLACE = True
+V26_INDEX_BACKUP_DONE = False
+V26_INDEX_START_CLEANUP_DONE = False
+
+# 분석/기획/시황성 기사 감점. 완전 배제가 아니라 직접 사건이 부족할 때만 보충되게 만드는 용도.
+V26_ANALYSIS_FEATURE_RE = re.compile(
+    r"\[?[^\]]*(성적표|대해부|리포트|분석|전망|짚어보니|관전포인트|시리즈|기획|주간|어디\?|모래\s*위|슈퍼\s*IPO)[^\]]*\]?|"
+    r"주주환원|실적\s*미리보기|밸류에이션|투자의견|목표가|증권가|상장사\s*\d+곳|분기보고서|영업이익\s*감소|적자\s*\d+배",
+    re.IGNORECASE,
+)
+V26_MARKET_COMMENTARY_RE = re.compile(
+    r"주가|목표가|투자의견|매수\s*의견|매도\s*의견|중립\s*의견|지지선|저항선|차트|밸류에이션|PER|PBR|EPS|"
+    r"ETF|수익률|증권가|어닝\s*(서프라이즈|쇼크)|실적\s*전망|주주환원\s*성적표",
+    re.IGNORECASE,
+)
+V26_TODAY_ACTION_RE = re.compile(
+    r"돌입|예고|착수|심의|의결|통과|부과|제재|감경|확정|결정|발표|공개|제기|고발|소송|기소|선고|판결|"
+    r"선임|내정|사임|퇴사|교체|출범|가동|시행|적용|확대|강화|중단|장애|오류|유출|해킹|차단|삭제|의무화|점검|회의|파업|조정",
+    re.IGNORECASE,
+)
+V26_DIRECT_SELF_EVENT_RE = re.compile(
+    r"노조|파업|임단협|쟁의권|노동부|근로감독|최저임금|임금체불|성과급|RSU|고용불안|"
+    r"장애|오류|먹통|개인정보|유출|해킹|피싱|보안|수사|조사|과징금|제재|소송|판결|고발|"
+    r"대표|임원|CPO|CTO|CFO|조직개편|퇴사|사임|해임|선임|내정|경영권|최대주주|지분|매각|인수|합병|상장|IPO|실적|영업손실|적자",
+    re.IGNORECASE,
+)
+V26_SELF_ENTITY_STRICT_RE = re.compile(
+    r"카카오(?!톡?\s*(제보|으로\s*제보|캡처|캡쳐|대화|내용|메시지|메세지|언급|조작|증거))|"
+    r"카톡\s*(개편|업데이트|장애|오류|먹통|피싱|보안|채널|오픈채팅|광고|선물하기|톡비즈|서비스|정책|이용자|공식|PC버전)|"
+    r"카카오톡\s*(개편|업데이트|장애|오류|먹통|피싱|보안|채널|오픈채팅|광고|선물하기|톡비즈|서비스|정책|이용자|공식|PC버전)|"
+    r"카카오페이|카카오뱅크|카카오모빌리티|카카오\s*T\b|카카오T\b|카카오택시|카카오게임즈|카카오엔터테인먼트|카카오엔터|"
+    r"카카오픽코마|카카오헬스케어|카카오엔터프라이즈|카카오클라우드|디케이테크인|엑스엘게임즈|카나나|정신아|김범수",
+    re.IGNORECASE,
+)
+
+# 한국 정부/국회/규제기관: '국내/한국' 같은 넓은 단어는 제외하고 실제 행위자를 본다.
+V26_KR_GOV_ACTOR_STRICT_RE = re.compile(
+    r"정부|국회|대통령실|국무회의|당정|상임위|과방위|정무위|문체위|성평등위|국회의원|의원|"
+    r"과기정통부|과학기술정보통신부|방미통위|방송미디어통신위원회|방통위|공정위|공정거래위원회|"
+    r"개보위|개인정보보호위원회|개인정보위|금융위|금융위원회|금감원|금융감독원|행안부|행정안전부|"
+    r"중기부|중소벤처기업부|고용노동부|노동부|FIU|금융정보분석원|국정원|국가정보원|검찰|경찰청|KISA|한국인터넷진흥원|"
+    r"한국은행|국회입법조사처|한국금융연구원|금융연구원|정보통신정책연구원|KISDI|KDI|한국소비자원",
+    re.IGNORECASE,
+)
+V26_GOV_ACTION_STRICT_RE = re.compile(
+    r"법안|발의|입법|입법예고|행정예고|개정안|시행령|시행규칙|고시|가이드라인|심사지침|특별법|기본법|"
+    r"국무회의\s*통과|의결|통과|시행|적용|확대|완화|강화|제도|정책|대책|전략|예산|공공조달|"
+    r"의무|의무화|표시\s*의무|차단\s*의무|삭제\s*의무|보고\s*의무|자료\s*제출|공시|인허가|허가|인가|"
+    r"조사|검사|감독|점검|심의|제재|과징금|과태료|시정명령|고발|협의|의견수렴|설명회|간담회|백서|가이드북",
+    re.IGNORECASE,
+)
+V26_GOV_MISCLASSIFIED_INDUSTRY_RE = re.compile(
+    r"상장사|영업이익|영업손실|적자|흑자|매출|실적|분기보고서|주가|목표가|투자의견|밸류에이션",
+    re.IGNORECASE,
+)
+V26_GOV_ALLOWED_ANALYSIS_RE = re.compile(
+    r"(국가정보보호백서|정보보호백서|AI\s*보안\s*가이드북|국정원|국가정보원|한국금융연구원|금융연구원|국회입법조사처|KISDI|정보통신정책연구원|한국은행).{0,260}"
+    r"(정책|규제|가이드라인|위험관리|보안|AI|인공지능|개인정보|금융권|플랫폼|디지털자산|스테이블코인)",
+    re.IGNORECASE,
+)
+
+V26_PORTAL_UI_NOISE_RE = re.compile(
+    r"글자크기\s*설정|파란원을\s*좌우로|음성재생\s*설정|이동\s*통신망에서\s*음성\s*재생|데이터\s*요금이\s*발생|"
+    r"광고\s*로드중|댓글\s*보기|공유하기|카카오톡에\s*공유|페이스북에\s*공유|기사\s*추천|본문\s*듣기|음성으로\s*듣기|"
+    r"닫기\s*글자크기|무단전재|재배포\s*금지|Copyright",
+    re.IGNORECASE,
+)
+
+V26_STAGE_ORDER = {
+    "rumor_or_report": 1,
+    "review_scheduled": 2,
+    "consultation": 3,
+    "investigation": 4,
+    "vote_or_mediation": 5,
+    "action_started": 6,
+    "decision": 7,
+    "penalty_or_sanction": 8,
+    "litigation": 9,
+    "implementation": 10,
+}
+
+
+def v26_run_date_obj():
+    try:
+        return datetime.fromisoformat(str(V22_RUN_DATE)[:10]).date()
+    except Exception:
+        return datetime.now(KST).date()
+
+
+def v26_safe_read_csv(path):
+    p = Path(path)
+    if not p.exists():
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(p, encoding="utf-8-sig", engine="python", on_bad_lines="skip", escapechar="\\")
+    except Exception:
+        try:
+            return pd.read_csv(p, encoding="utf-8-sig", engine="python", on_bad_lines="skip")
+        except Exception as e:
+            print(f"  └ ⚠️ index CSV 읽기 실패: {p.name} / {e}")
+            return pd.DataFrame()
+
+
+def v26_backup_index_files_once(stage=""):
+    global V26_INDEX_BACKUP_DONE
+    if not V26_BACKUP_INDEX_BEFORE_REPLACE or V26_INDEX_BACKUP_DONE:
+        return
+    try:
+        backup_root = V22_OUTPUT_ROOT / "index_backup"
+        timestamp = datetime.now(KST).strftime("%Y%m%d_%H%M%S")
+        suffix = f"_{stage}" if stage else ""
+        backup_dir = backup_root / f"{V22_RUN_DATE}_{timestamp}{suffix}"
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        copied = 0
+        for filename in ["article_history.csv", "issue_history.csv", "report_history.csv", "url_seen_history.csv"]:
+            src = V22_INDEX_DIR / filename
+            if src.exists():
+                shutil.copy2(src, backup_dir / filename)
+                copied += 1
+        V26_INDEX_BACKUP_DONE = True
+        print(f"  └ 🧷 index 백업 완료: {backup_dir}" if copied else f"  └ 🧷 index 백업 폴더 생성 완료(복사할 파일 없음): {backup_dir}")
+    except Exception as e:
+        print(f"  └ ⚠️ index 백업 실패: {e}")
+
+
+def v26_line_belongs_to_run_date(line, run_date):
+    """
+    index CSV 한 줄이 이번 실행일의 row인지 판정한다.
+    기존 index에는 2026.6.10 형식이 있을 수 있으므로,
+    첫 번째 컬럼을 날짜로 파싱해서 비교한다.
+    """
+    stripped = str(line or "").lstrip("\ufeff").lstrip()
+    if not stripped:
+        return False
+
+    # header는 삭제하지 않음
+    if re.match(r"^\"?(date|run_date|report_date|날짜)\"?\s*,", stripped):
+        return False
+
+    # CSV 첫 번째 컬럼만 대략 추출
+    first_col = stripped.split(",", 1)[0].strip().strip('"').strip("'")
+    line_date = v22_parse_history_date(first_col)
+    target_date = v22_parse_history_date(run_date)
+
+    if line_date and target_date:
+        return line_date == target_date
+
+    # 혹시 파싱 실패할 때를 위한 기존 방식 fallback
+    return (
+        stripped.startswith(f"{run_date},")
+        or stripped.startswith(f'"{run_date}",')
+        or stripped.startswith(f"{run_date} ")
+        or stripped.startswith(f'"{run_date} ')
+        or stripped.strip() == run_date
+        or stripped.strip() == f'"{run_date}"'
+    )
+
+
+def v26_remove_same_date_rows_from_index(stage=""):
+    if not V26_REPLACE_SAME_DATE_INDEX_ROWS:
+        return
+    V22_INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    v26_backup_index_files_once(stage=stage)
+    removed_summary = {}
+    for filename in ["article_history.csv", "issue_history.csv", "report_history.csv", "url_seen_history.csv"]:
+        path = V22_INDEX_DIR / filename
+        if not path.exists():
+            removed_summary[filename] = 0
+            continue
+        try:
+            with open(path, "r", encoding="utf-8-sig", errors="replace", newline="") as f:
+                lines = f.readlines()
+            if not lines:
+                removed_summary[filename] = 0
+                continue
+            kept = []
+            removed = 0
+            for idx, line in enumerate(lines):
+                # 첫 줄 header 보존
+                if idx == 0 and re.match(r"^\ufeff?\s*\"?(date|run_date|report_date|날짜)\"?\s*,", line):
+                    kept.append(line)
+                    continue
+                if v26_line_belongs_to_run_date(line, V22_RUN_DATE):
+                    removed += 1
+                    continue
+                kept.append(line)
+            with open(path, "w", encoding="utf-8-sig", newline="") as f:
+                f.writelines(kept)
+            removed_summary[filename] = removed
+        except Exception as e:
+            print(f"  └ ⚠️ {filename}: 같은 날짜 행 제거 실패: {e}")
+            removed_summary[filename] = "실패"
+    msg = ", ".join([f"{k}:{v}행" for k, v in removed_summary.items()])
+    print(f"  └ 🧹 같은 날짜 index 기존 행 제거 완료({V22_RUN_DATE}, {stage or 'cleanup'}): {msg}")
+
+
+_BASE_v22_setup_output_paths_v26 = v22_setup_output_paths
+
+def v22_setup_output_paths(run_date=None):
+    global V26_INDEX_START_CLEANUP_DONE
+    _BASE_v22_setup_output_paths_v26(run_date=run_date)
+    if DEDUP_USE_INDEX_HISTORY and not V26_INDEX_START_CLEANUP_DONE:
+        v26_remove_same_date_rows_from_index(stage="run_start")
+        V26_INDEX_START_CLEANUP_DONE = True
+
+
+def v26_append_rows_csv(path, rows):
+    """Append rows safely by rewriting with a union schema and full CSV quoting.
+    This avoids column drift and embedded comma/newline corruption in index CSVs.
+    """
+    if not rows:
+        return
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    new_df = pd.DataFrame(rows)
+    if p.exists() and p.stat().st_size > 0:
+        old_df = v26_safe_read_csv(p)
+        if not old_df.empty:
+            all_cols = list(dict.fromkeys(list(old_df.columns) + list(new_df.columns)))
+            old_df = old_df.reindex(columns=all_cols)
+            new_df = new_df.reindex(columns=all_cols)
+            out_df = pd.concat([old_df, new_df], ignore_index=True)
+        else:
+            out_df = new_df
+    else:
+        out_df = new_df
+    out_df.to_csv(
+        p,
+        index=False,
+        encoding="utf-8-sig",
+        quoting=csv.QUOTE_ALL,
+        escapechar="\\",
+        lineterminator="\n",
+    )
+
+
+# v22 base function looks up v22_append_rows_csv at call time, so overriding this name is enough too.
+v22_append_rows_csv = v26_append_rows_csv
+
+
+def v26_normalize_event_key(key):
+    key = clean_html_text(key)
+    key = re.sub(r"\s+", "_", key)
+    key = key.strip("_:")
+    return key[:180]
+
+
+def v26_text_for_event(item):
+    return clean_html_text(" ".join(str(item.get(k, "")) for k in [
+        "기사제목", "title", "본문요약", "summary", "RSS요약", "본문전문", "issue_group", "v20_issue_group", "Gemini이슈그룹", "언론사", "press"
+    ]))
+
+
+def v26_event_key_for_item(item):
+    """Build a stable event key using existing global/privacy incident detectors plus generic fallbacks."""
+    text = v26_text_for_event(item)
+    if not text:
+        return ""
+    try:
+        key = v15_privacy_security_base_key({"기사제목": item.get("기사제목") or item.get("title", ""), "본문전문": text})
+        if key:
+            return v26_normalize_event_key(key)
+    except Exception:
+        pass
+    try:
+        key = v16_global_incident_base_key({"기사제목": item.get("기사제목") or item.get("title", ""), "본문전문": text, "본문요약": text})
+        if key:
+            return v26_normalize_event_key(key)
+    except Exception:
+        pass
+    try:
+        if v20_is_platform_obligation_text(text):
+            obj = v16_detect_object(text, "platform_regulation") if "v16_detect_object" in globals() else "platform_operator_obligation"
+            return v26_normalize_event_key(f"platform_obligation:{obj}")
+    except Exception:
+        pass
+    entities = sorted(detect_entities(text))[:2]
+    tags = sorted(detect_event_tags(text) & STRONG_EVENT_TAGS)[:2]
+    if entities and tags:
+        return v26_normalize_event_key("event:" + "+".join(entities) + ":" + "+".join(tags))
+    return ""
+
+
+def v26_extract_development_stage(text):
+    t = clean_html_text(text)
+    if not t:
+        return ""
+    if re.search(r"집단소송|소송\s*제기|행정소송|가처분|손해배상|법적\s*대응", t):
+        return "litigation"
+    if re.search(r"과징금|과태료|제재|시정명령|처분|고발|검찰\s*고발|부과|감경|징계", t):
+        return "penalty_or_sanction"
+    if re.search(r"의결|국무회의\s*통과|통과|확정|결정|심의\s*결과|제재안\s*심의", t):
+        return "decision"
+    if re.search(r"파업\s*돌입|부분파업|총파업|시행|적용|가동|출범|개시|중단|장애\s*발생", t):
+        return "action_started"
+    if re.search(r"찬반투표|투표|조정|중노위|지노위|임단협|교섭", t):
+        return "vote_or_mediation"
+    if re.search(r"조사\s*착수|검사|수사\s*착수|현장점검|점검|민관합동조사|신고\s*접수", t):
+        return "investigation"
+    if re.search(r"의견수렴|간담회|공청회|설명회|협의|검토", t):
+        return "consultation"
+    if re.search(r"내일|오는|예정|예고|심판대|심의\s*예정|회의\s*예정", t):
+        return "review_scheduled"
+    if re.search(r"발표|공개|보도|분석", t):
+        return "rumor_or_report"
+    return "general"
+
+
+def v26_stage_is_update(new_stage, old_stage):
+    if not new_stage or not old_stage or new_stage == old_stage:
+        return False
+    return V26_STAGE_ORDER.get(new_stage, 0) > V26_STAGE_ORDER.get(old_stage, 0)
+
+
+def v26_parse_pubdate_date(published):
+    try:
+        dt = parse_pubdate_to_kst(published)
+        return dt.date() if dt else None
+    except Exception:
+        return None
+
+
+def v26_date_terms(run_date=None):
+    rd = run_date or v26_run_date_obj()
+    yesterday = rd - timedelta(days=1)
+    tomorrow = rd + timedelta(days=1)
+    return {
+        "today": ["오늘", "이날", "금일", f"{rd.day}일"],
+        "yesterday": ["전날", "어제", f"{yesterday.day}일"],
+        "tomorrow": ["내일", f"오는 {tomorrow.day}일", f"{tomorrow.day}일"],
+    }
+
+
+def v26_todayness_score_text(text, published=""):
+    t = clean_html_text(text)
+    rd = v26_run_date_obj()
+    score = 0.0
+    reasons = []
+    pub_d = v26_parse_pubdate_date(published)
+    if pub_d == rd:
+        score += 24; reasons.append("published_today")
+    elif pub_d == rd - timedelta(days=1):
+        score += 14; reasons.append("published_yesterday")
+    elif pub_d == rd + timedelta(days=1):
+        score += 8; reasons.append("published_tomorrow")
+
+    terms = v26_date_terms(rd)
+    action = V26_TODAY_ACTION_RE.pattern
+    for bucket, words in terms.items():
+        for w in words:
+            if not w:
+                continue
+            if re.search(rf"({re.escape(w)}).{{0,45}}({action})|({action}).{{0,45}}({re.escape(w)})", t, re.IGNORECASE):
+                add = 18 if bucket == "today" else 12
+                score += add
+                reasons.append(f"{bucket}_date_action")
+                break
+    if re.search(r"\[단독\]|단독|속보|종합", t):
+        score += 5; reasons.append("exclusive_breaking")
+    if V26_ANALYSIS_FEATURE_RE.search(t) and not V26_DIRECT_SELF_EVENT_RE.search(t):
+        score -= 12; reasons.append("analysis_without_direct_event")
+    return round(score, 2), "+".join(dict.fromkeys(reasons))
+
+
+def v26_article_form_from_text(text):
+    t = clean_html_text(text)
+    if v18_is_self_pr_promo_text(t) if "v18_is_self_pr_promo_text" in globals() else False:
+        return "pr_promo"
+    if V26_MARKET_COMMENTARY_RE.search(t) and not V26_DIRECT_SELF_EVENT_RE.search(t):
+        return "market_commentary"
+    if V26_ANALYSIS_FEATURE_RE.search(t):
+        if V26_DIRECT_SELF_EVENT_RE.search(t):
+            return "analysis_with_direct_risk"
+        return "analysis_feature"
+    if re.search(r"국무회의\s*통과|과징금|제재|심의|의결|법안|시행령|가이드라인|조사|점검|고발", t):
+        return "official_action"
+    if V26_DIRECT_SELF_EVENT_RE.search(t):
+        return "direct_risk"
+    if re.search(r"인수|합병|매각|지분|최대주주|대표|실적|영업이익|서비스\s*출시|전략|AI", t):
+        return "business_change"
+    return "general"
+
+
+def v26_has_strict_self_entity(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    if v13_is_private_kakaotalk_or_entertainment_noise(t) if "v13_is_private_kakaotalk_or_entertainment_noise" in globals() else False:
+        return False
+    if v13_is_self_low_value_ranking_article(t) if "v13_is_self_low_value_ranking_article" in globals() else False:
+        return False
+    return bool(V26_SELF_ENTITY_STRICT_RE.search(t))
+
+
+def v26_is_self_direct_today_event(text, published=""):
+    t = clean_html_text(text)
+    if not v26_has_strict_self_entity(t):
+        return False
+    today_score, _ = v26_todayness_score_text(t, published)
+    return bool(V26_DIRECT_SELF_EVENT_RE.search(t) and today_score >= 8)
+
+
+def v26_is_analysis_or_market_text(text):
+    t = clean_html_text(text)
+    return bool(V26_ANALYSIS_FEATURE_RE.search(t) or V26_MARKET_COMMENTARY_RE.search(t))
+
+
+def v26_has_korean_gov_action(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return False
+    if V26_GOV_ALLOWED_ANALYSIS_RE.search(t):
+        return True
+    if V26_KR_GOV_ACTOR_STRICT_RE.search(t) and V26_GOV_ACTION_STRICT_RE.search(t) and V23_KAKAO_RELEVANT_DOMAIN_RE.search(t):
+        return True
+    # 플랫폼 사업자 의무는 규제기관명이 제목에 약해도 국내 사업자 의무로 명확하면 통과.
+    if v20_is_platform_obligation_text(t) and V26_GOV_ACTION_STRICT_RE.search(t):
+        if V26_KR_GOV_ACTOR_STRICT_RE.search(t) or re.search(r"국내|한국|네이버|카카오|구글|메타|플랫폼\s*사업자|사업자|포털|SNS", t, re.I):
+            return True
+    return False
+
+
+def v26_is_gov_misclassified_industry(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    # 정부/규제 행위가 없는 보안/금융/상장사 실적 분석은 정부/국회가 아니다.
+    if V26_GOV_MISCLASSIFIED_INDUSTRY_RE.search(t) and not (V26_KR_GOV_ACTOR_STRICT_RE.search(t) and V26_GOV_ACTION_STRICT_RE.search(t)):
+        return True
+    return False
+
+
+def v26_suggest_category_from_text(text, requested=""):
+    t = clean_html_text(text)
+    if v26_has_strict_self_entity(t) and V26_DIRECT_SELF_EVENT_RE.search(t):
+        return "자사_및_계열사_이슈"
+    if v26_has_korean_gov_action(t):
+        return "정부_국회"
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return "경쟁사_해외이슈"
+    if v23_has_competitor_entity(t):
+        return "경쟁사_해외이슈"
+    if v23_is_valid_industry(t):
+        return "산업동향"
+    if v26_is_gov_misclassified_industry(t):
+        return "산업동향"
+    return ""
+
+
+def v26_is_same_event_update(candidate, past_item):
+    cand_text = v26_text_for_event(candidate)
+    past_text = v26_text_for_event(past_item)
+    cand_stage = v26_extract_development_stage(cand_text)
+    past_stage = past_item.get("event_stage") or v26_extract_development_stage(past_text)
+    if v26_stage_is_update(cand_stage, past_stage):
+        # 진행 단계가 올라갔고 오늘성/행위 동사가 있으면 후속 업데이트로 허용.
+        today_score, _ = v26_todayness_score_text(cand_text, candidate.get("게시일") or candidate.get("published") or "")
+        if today_score >= 8 or V26_TODAY_ACTION_RE.search(cand_text):
+            return True, f"same_event_but_new_stage:{past_stage}->{cand_stage}"
+    return False, ""
+
+
+def v26_index_duplicate_check(candidate, recent_past_items, mode="rss"):
+    cand_title = clean_html_text(candidate.get("기사제목") or candidate.get("title") or "")
+    cand_url = normalize_url(candidate.get("링크") or candidate.get("link") or candidate.get("url") or "")
+    cand_title_hash = title_fingerprint(cand_title)
+    cand_event_key = v26_event_key_for_item(candidate)
+
+    update_match = None
+    update_reason = ""
+    for past in recent_past_items or []:
+        past_url = normalize_url(past.get("link") or past.get("url") or "")
+        past_title = clean_html_text(past.get("title") or past.get("기사제목") or "")
+        past_title_hash = past.get("title_hash") or title_fingerprint(past_title)
+        past_event_key = past.get("event_key") or v26_event_key_for_item(past)
+
+        if cand_url and past_url and cand_url == past_url:
+            return True, past, {"is_duplicate": True, "reason": "index_same_url", "score": 1.0, "shared_entities": "", "shared_tags": ""}
+        if cand_title_hash and past_title_hash and cand_title_hash == past_title_hash:
+            return True, past, {"is_duplicate": True, "reason": "index_same_title_hash", "score": 1.0, "shared_entities": "", "shared_tags": ""}
+        if cand_title and past_title:
+            near, score = is_title_near_duplicate(cand_title, past_title)
+            if near and score >= 0.94:
+                return True, past, {"is_duplicate": True, "reason": f"index_near_title:{score:.2f}", "score": score, "shared_entities": "", "shared_tags": ""}
+        if cand_event_key and past_event_key and cand_event_key == past_event_key:
+            is_update, reason = v26_is_same_event_update(candidate, past)
+            if is_update:
+                update_match = past
+                update_reason = reason
+                continue
+            return True, past, {"is_duplicate": True, "reason": f"index_same_event:{cand_event_key}", "score": 0.9, "shared_entities": "", "shared_tags": cand_event_key}
+    if update_match:
+        return False, update_match, {"is_duplicate": False, "reason": update_reason, "score": 0.0, "shared_entities": "", "shared_tags": cand_event_key}
+    return False, None, None
+
+
+_BASE_find_past_duplicate_v26 = find_past_duplicate
+
+def find_past_duplicate(candidate, recent_past_items, mode="body"):
+    if DEDUP_USE_INDEX_HISTORY and recent_past_items:
+        is_dup, matched, sim = v26_index_duplicate_check(candidate, recent_past_items, mode=mode)
+        if is_dup:
+            return True, matched, sim
+        # 같은 사건 업데이트로 허용된 경우 기존 유사도 엔진이 다시 중복 처리하지 않도록 바로 통과.
+        if sim and str(sim.get("reason", "")).startswith("same_event_but_new_stage"):
+            return False, matched, sim
+    return _BASE_find_past_duplicate_v26(candidate, recent_past_items, mode=mode)
+
+
+def v26_history_items_from_index():
+    run_date = v26_run_date_obj()
+    cutoff = run_date - timedelta(days=DEDUP_INDEX_LOOKBACK_DAYS)
+    rows = []
+    seen = set()
+    for filename in ["report_history.csv", "article_history.csv"]:
+        df = v26_safe_read_csv(V22_INDEX_DIR / filename)
+        if df.empty:
+            continue
+        for _, row in df.iterrows():
+            d = v22_parse_history_date(row.get("date") or row.get("run_date") or row.get("report_date"))
+            if not d:
+                continue
+            if DEDUP_EXCLUDE_RUN_DATE_FROM_HISTORY and d >= run_date:
+                continue
+            if not (cutoff <= d < run_date):
+                continue
+            title = clean_html_text(row.get("title") or row.get("기사제목") or "")
+            url = normalize_url(row.get("url") or row.get("link") or "")
+            if not title and not url:
+                continue
+            key = (url, title_fingerprint(title), str(row.get("issue_group", "")))
+            if key in seen:
+                continue
+            seen.add(key)
+            summary = clean_html_text(row.get("summary") or row.get("RSS요약") or "")
+            text = f"{title} {summary} {row.get('issue_group','')} {row.get('issue_family','')}"
+            item = {
+                "date": d,
+                "category": clean_html_text(row.get("section") or row.get("category") or ""),
+                "title": title,
+                "link": url,
+                "press": clean_html_text(row.get("press") or row.get("언론사") or ""),
+                "summary": summary,
+                "text": text,
+                "entities": detect_entities(text),
+                "event_tags": detect_event_tags(text),
+                "issue_terms": tokenize_for_similarity(text),
+                "issue_group": clean_html_text(row.get("issue_group", "")),
+                "issue_family": clean_html_text(row.get("issue_family", "")),
+                "event_key": clean_html_text(row.get("event_key", "")) or v26_event_key_for_item({"기사제목": title, "본문요약": summary, "issue_group": row.get("issue_group", "")}),
+                "event_stage": clean_html_text(row.get("event_stage", "")) or v26_extract_development_stage(text),
+                "title_hash": clean_html_text(row.get("title_hash", "")) or title_fingerprint(title),
+                "source": f"index:{filename}",
+            }
+            rows.append(item)
+    print(f"📚 index 최근 {DEDUP_INDEX_LOOKBACK_DAYS}일 중복 판단 기준 기사: {len(rows)}건 ({cutoff.isoformat()}~{(run_date - timedelta(days=1)).isoformat()})")
+    return rows
+
+
+_BASE_load_past_reports_v26 = load_past_reports
+
+def load_past_reports():
+    if not DEDUP_USE_INDEX_HISTORY:
+        return _BASE_load_past_reports_v26()
+    index_items = v26_history_items_from_index()
+    content = "\n".join(
+        f"[{i['date'].month}월 {i['date'].day}일 / {i.get('category','')}] {i.get('title','')}\n{i.get('summary','')}"
+        for i in index_items[-120:]
+    ) or "최근 7일 index 이력 없음."
+    all_items = list(index_items)
+    recent_items = list(index_items)
+    if DEDUP_USE_PAST_REPORTS_FALLBACK:
+        base_content, base_all, base_recent = _BASE_load_past_reports_v26()
+        seen = {(normalize_url(i.get("link", "")), title_fingerprint(i.get("title", ""))) for i in recent_items}
+        for item in base_recent:
+            key = (normalize_url(item.get("link", "")), title_fingerprint(item.get("title", "")))
+            if key not in seen:
+                recent_items.append(item)
+                all_items.append(item)
+                seen.add(key)
+        content = content + "\n\n[past_reports fallback]\n" + base_content[-4000:]
+    if not index_items and not DEDUP_USE_PAST_REPORTS_FALLBACK:
+        print("📚 index 이력이 아직 없어 최근 7일 중복 판단 없이 진행합니다. 운영 누적 후 자동으로 사용됩니다.")
+    return content, all_items, recent_items
+
+
+_BASE_rank_score_article_v26 = rank_score_article
+
+def rank_score_article(article):
+    score = float(_BASE_rank_score_article_v26(article) or article.get("랭킹점수") or 0)
+    text = v20_article_text(article) if "v20_article_text" in globals() else v26_text_for_event(article)
+    published = article.get("게시일", "")
+    today_score, today_reason = v26_todayness_score_text(text, published)
+    article_form = v26_article_form_from_text(text)
+    article["오늘성점수"] = today_score
+    article["오늘성사유"] = today_reason
+    article["기사유형"] = article_form
+    article["v26이벤트키"] = v26_event_key_for_item(article)
+    article["v26진행단계"] = v26_extract_development_stage(text)
+
+    json_key = article.get("JSON카테고리", "")
+    if json_key == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(text):
+            score -= 80
+            article["v26가드레일사유"] = "self_without_direct_kakao_entity"
+        else:
+            score += min(25, today_score * 0.7)
+            if article_form in {"analysis_feature", "market_commentary"} and not v26_is_self_direct_today_event(text, published):
+                score -= 35 if article_form == "analysis_feature" else 65
+                article["v26가드레일사유"] = f"self_{article_form}_deprioritized"
+            elif article_form in {"direct_risk", "official_action", "analysis_with_direct_risk"}:
+                score += 12
+    elif json_key == "정부_국회":
+        if v26_is_gov_misclassified_industry(text):
+            score -= 75
+            article["v26가드레일사유"] = "government_misclassified_industry_earnings"
+        elif v26_has_korean_gov_action(text):
+            score += min(20, today_score * 0.4) + 8
+        elif v25_is_foreign_public_policy_issue(text) and not v25_has_direct_korean_policy_connection(text):
+            score -= 25
+            article["v26가드레일사유"] = "foreign_policy_should_be_competitor"
+    else:
+        score += min(10, today_score * 0.25)
+
+    article["랭킹점수"] = round(score, 3)
+    return article["랭킹점수"]
+
+
+_BASE_article_importance_score_v26 = article_importance_score
+
+def article_importance_score(title, body="", json_key="", keyword=""):
+    score = float(_BASE_article_importance_score_v26(title, body, json_key, keyword) or 0)
+    text = f"{clean_html_text(title)} {clean_html_text(body)[:2600]}"
+    today_score, _ = v26_todayness_score_text(text)
+    form = v26_article_form_from_text(text)
+    if json_key == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(text):
+            score -= 80
+        else:
+            score += min(28, today_score * 0.6)
+            if form in {"analysis_feature", "market_commentary"} and not V26_DIRECT_SELF_EVENT_RE.search(text):
+                score -= 35 if form == "analysis_feature" else 65
+    if json_key == "정부_국회":
+        if v26_is_gov_misclassified_industry(text):
+            score -= 80
+        elif v26_has_korean_gov_action(text):
+            score += 12
+    return round(score, 2)
+
+
+_BASE_v20_local_article_label_v26 = v20_local_article_label
+
+def v20_local_article_label(article):
+    label = _BASE_v20_local_article_label_v26(article)
+    text = v20_article_text(article) if "v20_article_text" in globals() else v26_text_for_event(article)
+    form = v26_article_form_from_text(text)
+    today_score, today_reason = v26_todayness_score_text(text, article.get("게시일", ""))
+    label["article_form"] = form
+    label["todayness_score"] = today_score
+    label["todayness_reason"] = today_reason
+    label["event_key"] = v26_event_key_for_item(article)
+
+    if label.get("primary_category") == "자사_및_계열사_이슈" or article.get("JSON카테고리") == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(text):
+            suggested = v26_suggest_category_from_text(text, "자사_및_계열사_이슈") or "산업동향"
+            label["primary_category"] = suggested
+            label["internal_category"] = "OFF_TOPIC" if not suggested else label.get("internal_category", "")
+            label["self_tier"] = "OFF_TOPIC"
+            label["ceo_priority"] = min(v20_int(label.get("ceo_priority"), 2), 2)
+            label["public_affairs_priority"] = min(v20_int(label.get("public_affairs_priority"), 2), 2)
+            label["reason"] = "v26: 카카오 직접 주체가 없어 자사 섹션 제외/재분류"
+        elif form in {"analysis_feature", "market_commentary"} and not v26_is_self_direct_today_event(text, article.get("게시일", "")):
+            label["self_tier"] = "FILLER_REFERENCE"
+            label["issue_family"] = "self_analysis_feature" if form == "analysis_feature" else "self_market_commentary"
+            label["ceo_priority"] = min(v20_int(label.get("ceo_priority"), 3), 3)
+            label["public_affairs_priority"] = min(v20_int(label.get("public_affairs_priority"), 3), 2)
+            label["relevance"] = min(v20_int(label.get("relevance"), 3), 3)
+            label["company_impact"] = "분석/기획성 자사 참고 기사로, 오늘 직접 사건이 부족할 때만 보충 가치"
+            label["reason"] = "v26: 자사 분석/기획/시황성 기사 후순위"
+        elif today_score >= 12 and V26_DIRECT_SELF_EVENT_RE.search(text):
+            label["ceo_priority"] = 5
+            label["public_affairs_priority"] = max(4, v20_int(label.get("public_affairs_priority"), 4))
+            label["relevance"] = 5
+            label["reason"] = (label.get("reason", "") + " / v26: 오늘 새 직접 사건·진전").strip(" /")
+
+    if label.get("primary_category") == "정부_국회" or article.get("JSON카테고리") == "정부_국회":
+        if v26_is_gov_misclassified_industry(text):
+            label["primary_category"] = "산업동향"
+            label["internal_category"] = "INDUSTRY_STRUCTURAL_CHANGE"
+            label["gov_tier"] = "OFF_TOPIC"
+            label["ceo_priority"] = min(v20_int(label.get("ceo_priority"), 2), 2)
+            label["reason"] = "v26: 정부/국회 행위가 아닌 기업 실적·산업 분석 기사"
+        elif not v26_has_korean_gov_action(text) and not (v25_is_foreign_public_policy_issue(text) and not v25_has_direct_korean_policy_connection(text)):
+            label["ceo_priority"] = min(v20_int(label.get("ceo_priority"), 3), 3)
+            label["reason"] = (label.get("reason", "") + " / v26: 한국 정부·국회 직접 행위자 근거 약함").strip(" /")
+        elif v25_is_foreign_public_policy_issue(text) and not v25_has_direct_korean_policy_connection(text):
+            label["primary_category"] = "경쟁사_해외이슈"
+            label["reason"] = "v26: 해외 정부·규제기관 이슈는 경쟁사/해외로 분류"
+    return label
+
+
+_BASE_v20_build_issues_v26 = v20_build_issues
+
+def v20_build_issues(candidates, labels):
+    issues, article_by_id = _BASE_v20_build_issues_v26(candidates, labels)
+    # id -> article lookup
+    art_lookup = {int(a.get("id")): a for a in candidates if str(a.get("id", "")).isdigit()}
+    for issue in issues:
+        arts = [art_lookup.get(int(aid)) for aid in issue.get("article_ids", []) if int(aid) in art_lookup]
+        texts = [v20_article_text(a) if a else "" for a in arts]
+        max_today = max([v26_todayness_score_text(t, (a or {}).get("게시일", ""))[0] for t, a in zip(texts, arts)] or [0])
+        forms = [v26_article_form_from_text(t) for t in texts]
+        event_keys = [v26_event_key_for_item(a or {}) for a in arts]
+        issue["v26_max_todayness"] = max_today
+        issue["v26_article_forms"] = ",".join(sorted(set(forms)))
+        issue["v26_event_key"] = next((k for k in event_keys if k), "")
+        score = float(issue.get("issue_score") or 0)
+        cat = issue.get("primary_category", "")
+        if cat == "자사_및_계열사_이슈":
+            if forms and all(f in {"analysis_feature", "market_commentary"} for f in forms):
+                score -= 26
+            score += min(18, max_today * 0.45)
+            if any(v26_is_self_direct_today_event(t, (a or {}).get("게시일", "")) for t, a in zip(texts, arts)):
+                score += 18
+        elif cat == "정부_국회":
+            joined = " ".join(texts)
+            if v26_is_gov_misclassified_industry(joined):
+                score -= 40
+            elif v26_has_korean_gov_action(joined):
+                score += 10
+        issue["issue_score"] = round(score, 3)
+    issues = sorted(issues, key=lambda x: x.get("issue_score", 0), reverse=True)
+    for idx, issue in enumerate(issues, 1):
+        issue["issue_id"] = f"I{idx:03d}"
+    return issues, article_by_id
+
+
+_BASE_v20_issue_rows_v26 = v20_issue_rows
+
+def v20_issue_rows(issues):
+    rows = _BASE_v20_issue_rows_v26(issues)
+    for row, issue in zip(rows, issues):
+        row["v26_max_todayness"] = issue.get("v26_max_todayness", "")
+        row["v26_article_forms"] = issue.get("v26_article_forms", "")
+        row["v26_event_key"] = issue.get("v26_event_key", "")
+    return rows
+
+
+_BASE_v20_issue_line_v26 = v20_issue_line
+
+def v20_issue_line(issue):
+    base = _BASE_v20_issue_line_v26(issue)
+    return base + f" todayness={issue.get('v26_max_todayness','')} forms={issue.get('v26_article_forms','')} event_key={v20_clip(issue.get('v26_event_key',''),80)}"
+
+
+_BASE_v23_suggest_category_v26 = v23_suggest_category
+
+def v23_suggest_category(item, requested=None):
+    t = v23_text(item)
+    suggested = v26_suggest_category_from_text(t, requested or "")
+    if suggested:
+        return suggested
+    return _BASE_v23_suggest_category_v26(item, requested)
+
+
+_BASE_v23_final_category_guardrail_v26 = v23_final_category_guardrail
+
+def v23_final_category_guardrail(item, requested_category):
+    requested = v19_normalize_category_key(requested_category, fallback="산업동향")
+    t = v23_text(item)
+
+    if requested == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(t):
+            suggested = v26_suggest_category_from_text(t, requested)
+            if suggested and suggested != requested:
+                return "reassign", suggested, "v26_self_without_direct_kakao_entity"
+            return "fail", requested, "v26_self_without_direct_kakao_entity"
+        # 여러 사업자 공통 플랫폼 의무/규제는 카카오가 포함돼도 자사가 아니라 정부/국회가 자연스럽다.
+        if v20_is_platform_obligation_text(t) and not V26_DIRECT_SELF_EVENT_RE.search(t):
+            if v26_has_korean_gov_action(t):
+                return "reassign", "정부_국회", "v26_self_included_platform_obligation_to_gov"
+        return _BASE_v23_final_category_guardrail_v26(item, requested)
+
+    if requested == "정부_국회":
+        if v26_is_gov_misclassified_industry(t):
+            return "fail", requested, "v26_government_misclassified_industry_or_earnings"
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return "reassign", "경쟁사_해외이슈", "v26_foreign_policy_not_korean_gov_section"
+        if v26_has_korean_gov_action(t):
+            return "pass", requested, "v26_korean_gov_actor_action_pass"
+        # 기존 v25가 pass라고 해도, 한국 정부 실제 행위자 근거가 약하면 재검토/재분류한다.
+        action, cat, reason = _BASE_v23_final_category_guardrail_v26(item, requested)
+        if action == "pass":
+            suggested = v26_suggest_category_from_text(t, requested)
+            if suggested and suggested != requested:
+                return "reassign", suggested, f"v26_government_without_strict_actor_action:{reason}"
+            return "fail", requested, f"v26_government_without_strict_actor_action:{reason}"
+        return action, cat, reason
+
+    action, cat, reason = _BASE_v23_final_category_guardrail_v26(item, requested)
+    if action == "reassign" and cat == "정부_국회":
+        if not v26_has_korean_gov_action(t):
+            suggested = v26_suggest_category_from_text(t, requested)
+            if suggested and suggested != "정부_국회":
+                return "reassign", suggested, f"v26_blocked_weak_gov_reassign:{reason}"
+            return "fail", requested, f"v26_blocked_weak_gov_reassign:{reason}"
+    return action, cat, reason
+
+
+_BASE_is_report_item_relevant_v26 = is_report_item_relevant
+
+def is_report_item_relevant(report_item, json_key):
+    t = v23_text(report_item)
+    requested = v19_normalize_category_key(json_key, fallback="산업동향")
+    if requested == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(t):
+            return False, "v26_self_without_direct_kakao_entity"
+        if v20_is_platform_obligation_text(t) and not V26_DIRECT_SELF_EVENT_RE.search(t) and v26_has_korean_gov_action(t):
+            return False, "v26_self_included_platform_obligation_should_be_gov"
+    if requested == "정부_국회":
+        if v26_is_gov_misclassified_industry(t):
+            return False, "v26_government_misclassified_industry_or_earnings"
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return False, "v26_foreign_policy_not_korean_gov_section"
+        if not v26_has_korean_gov_action(t):
+            return False, "v26_government_without_strict_actor_action"
+    return _BASE_is_report_item_relevant_v26(report_item, json_key)
+
+
+_BASE_v24_topic_key_v26 = v24_topic_key
+
+def v24_topic_key(item):
+    key = v26_event_key_for_item(item)
+    if key:
+        return "v26:" + key
+    return _BASE_v24_topic_key_v26(item)
+
+
+_BASE_v24_duplicate_survivor_score_v26 = v24_duplicate_survivor_score
+
+def v24_duplicate_survivor_score(item):
+    score = float(_BASE_v24_duplicate_survivor_score_v26(item) or 0)
+    t = v24_item_text(item)
+    cat = item.get("카테고리", "")
+    form = v26_article_form_from_text(t)
+    today_score, _ = v26_todayness_score_text(t, item.get("게시일", ""))
+    score += min(18, today_score * 0.35)
+    if cat == "자사_및_계열사_이슈":
+        if not v26_has_strict_self_entity(t):
+            score -= 150
+        elif V26_DIRECT_SELF_EVENT_RE.search(t):
+            score += 30
+        if form in {"analysis_feature", "market_commentary"} and not v26_is_self_direct_today_event(t, item.get("게시일", "")):
+            score -= 35 if form == "analysis_feature" else 70
+    if cat == "정부_국회":
+        if v26_has_korean_gov_action(t):
+            score += 35
+        if v26_is_gov_misclassified_industry(t):
+            score -= 120
+    if cat == "경쟁사_해외이슈":
+        if v23_has_competitor_entity(t):
+            score += 8
+    return score
+
+
+def v26_final_item_priority_score(item):
+    t = v23_text(item)
+    cat = item.get("카테고리", "")
+    form = v26_article_form_from_text(t)
+    today_score, _ = v26_todayness_score_text(t, item.get("게시일", ""))
+    score = v20_float(item.get("대표선택점수"), 0) + today_score
+    if cat == "자사_및_계열사_이슈":
+        if V26_DIRECT_SELF_EVENT_RE.search(t):
+            score += 70
+        if form in {"analysis_feature", "market_commentary"} and not v26_is_self_direct_today_event(t, item.get("게시일", "")):
+            score -= 80 if form == "analysis_feature" else 140
+    elif cat == "정부_국회":
+        if v26_has_korean_gov_action(t):
+            score += 45
+        if v26_is_gov_misclassified_industry(t):
+            score -= 140
+    elif cat == "경쟁사_해외이슈":
+        if v21_competitor_scope(t) in {"domestic", "mixed"}:
+            score += 20
+    elif cat == "산업동향":
+        if form == "analysis_feature":
+            score -= 20
+    return round(score, 2)
+
+
+def v26_dedupe_by_event_key(items):
+    groups = {}
+    for item in items:
+        key = v26_event_key_for_item(item)
+        if key:
+            groups.setdefault(key, []).append(item)
+    removed = []
+    remove_ids = set()
+    for key, group in groups.items():
+        if len(group) <= 1:
+            continue
+        winner = max(group, key=v24_duplicate_survivor_score)
+        for item in group:
+            if item is winner:
+                item["v26중복대표선택"] = f"kept:{key}:score={v24_duplicate_survivor_score(item):.1f}"
+                continue
+            remove_ids.add(id(item))
+            item["v26중복대표선택"] = f"removed:{key}:winner={winner.get('기사제목','')[:80]}"
+            removed.append((item, f"v26_cross_section_event_duplicate:{key}:winner={winner.get('기사제목','')[:100]}"))
+    return [item for item in items if id(item) not in remove_ids], removed
+
+
+_BASE_v21_remove_obvious_final_duplicates_v26 = v21_remove_obvious_final_duplicates
+
+def v21_remove_obvious_final_duplicates(final_items):
+    repaired = []
+    removed = []
+    for item in final_items:
+        requested = item.get("카테고리", "")
+        action, cat, reason = v23_final_category_guardrail(item, requested)
+        if action == "fail":
+            item["v26최종수리결과"] = f"removed:{reason}"
+            removed.append((item, f"v26_final_guardrail_removed:{reason}"))
+            continue
+        if action == "reassign" and cat:
+            v23_set_final_category(item, cat, reason)
+            item["v26최종수리결과"] = f"reassigned:{reason}"
+        else:
+            item["v26최종수리결과"] = f"pass:{reason}"
+        item["v26기사유형"] = v26_article_form_from_text(v23_text(item))
+        item["v26오늘성점수"] = v26_todayness_score_text(v23_text(item), item.get("게시일", ""))[0]
+        item["v26이벤트키"] = v26_event_key_for_item(item)
+        item["v26최종우선점수"] = v26_final_item_priority_score(item)
+        repaired.append(item)
+
+    kept, removed_base = _BASE_v21_remove_obvious_final_duplicates_v26(repaired)
+    removed.extend(removed_base)
+    kept, removed_event = v26_dedupe_by_event_key(kept)
+    removed.extend(removed_event)
+
+    # 카테고리 내부 순서 재정렬: 자사는 오늘 직접 사건 우선, 분석/시황성은 뒤로.
+    order_base = {key: idx * 1000 for idx, key in enumerate(JSON_KEYS_ORDER, 1)}
+    for key in JSON_KEYS_ORDER:
+        bucket = [x for x in kept if x.get("카테고리") == key]
+        bucket_sorted = sorted(bucket, key=v26_final_item_priority_score, reverse=True)
+        for idx, item in enumerate(bucket_sorted, 1):
+            item["선정순서"] = order_base.get(key, 9000) + idx
+    return kept, removed
+
+
+_BASE_clean_extracted_body_v6_v26 = clean_extracted_body_v6
+
+def clean_extracted_body_v6(body):
+    text = _BASE_clean_extracted_body_v6_v26(body)
+    if not text:
+        return text
+    # 포털 UI 문구는 마침표 없이 본문 사이에 섞이는 경우가 많아 문장 단위로 제거한다.
+    parts = re.split(r"(?<=[.!?다요임음됨함])\s+", text)
+    cleaned = []
+    for part in parts:
+        p = clean_html_text(part)
+        if not p:
+            continue
+        if V26_PORTAL_UI_NOISE_RE.search(p):
+            continue
+        cleaned.append(p)
+    out = " ".join(cleaned) if cleaned else text
+    out = V26_PORTAL_UI_NOISE_RE.sub(" ", out)
+    out = re.sub(r"\s+", " ", out).strip()
+    return out
+
+
+_BASE_convert_to_report_ending_v26 = convert_to_report_ending
+
+def convert_to_report_ending(sentence):
+    s = clean_html_text(sentence).rstrip(". ")
+    # 자주 깨지는 '습니다/됩니다/했습니다' 계열을 먼저 처리한다.
+    direct = [
+        (r"했습니다$", "했음"), (r"하였습니다$", "했음"), (r"밝혔습니다$", "밝힘"),
+        (r"했습니다만$", "했음"), (r"됩니다$", "됨"), (r"됐습니다$", "됐음"),
+        (r"있습니다$", "있음"), (r"없습니다$", "없음"), (r"계획입니다$", "계획임"),
+        (r"예정입니다$", "예정임"), (r"상황입니다$", "상황임"), (r"수준입니다$", "수준임"),
+        (r"입니다$", "임"), (r"합니다$", "함"), (r"습니다$", "음"),
+    ]
+    for pat, repl in direct:
+        if re.search(pat, s):
+            return re.sub(pat, repl, s) + "."
+    return _BASE_convert_to_report_ending_v26(sentence)
+
+
+_BASE_v22_update_history_indices_v26 = v22_update_history_indices
+
+def v22_update_history_indices(final_report_data, issues, raw_articles, qa_overall=""):
+    # 저장 직전에 오늘 날짜 행을 다시 제거해, 중간 실패/재실행에도 index가 중복 누적되지 않게 한다.
+    v26_remove_same_date_rows_from_index(stage="before_index_append")
+
+    article_rows = []
+    issue_rows = []
+    report_rows = []
+    url_rows = []
+    for idx, item in enumerate(final_report_data, 1):
+        title = clean_html_text(item.get("기사제목", ""))
+        url = normalize_url(item.get("링크", ""))
+        issue_group = clean_html_text(item.get("v20_issue_group") or item.get("Gemini이슈그룹", ""))
+        body = item.get("본문전문", "") or ""
+        summary = summarize_body_locally(title, body, max_chars=250) if item.get("본문상태") == "본문추출성공" else clean_html_text(item.get("RSS요약", ""))[:250]
+        event_key = v26_event_key_for_item(item)
+        event_stage = v26_extract_development_stage(v23_text(item))
+        today_score, today_reason = v26_todayness_score_text(v23_text(item), item.get("게시일", ""))
+        common = {
+            "date": V22_RUN_DATE,
+            "section": item.get("카테고리", ""),
+            "rank": idx,
+            "title": title,
+            "press": item.get("언론사", ""),
+            "url": url,
+            "canonical_url": normalize_url(url),
+            "issue_group": issue_group,
+            "issue_family": item.get("v20_issue_family", ""),
+            "event_key": event_key,
+            "event_stage": event_stage,
+            "article_form": item.get("v26기사유형") or v26_article_form_from_text(v23_text(item)),
+            "todayness_score": today_score,
+            "todayness_reason": today_reason,
+            "body_status": item.get("본문상태", ""),
+            "qa_overall": qa_overall,
+            "title_hash": title_fingerprint(title),
+            "url_hash": normalize_url(url),
+            "summary": summary,
+            "source_version": V6_VERSION,
+        }
+        article_rows.append(dict(common, selected=True, article_id=item.get("브리핑ID", "")))
+        report_rows.append(common)
+        if url:
+            url_rows.append({
+                "date": V22_RUN_DATE,
+                "url": url,
+                "canonical_url": normalize_url(url),
+                "title": title,
+                "press": item.get("언론사", ""),
+                "issue_group": issue_group,
+                "event_key": event_key,
+                "event_stage": event_stage,
+                "title_hash": title_fingerprint(title),
+                "source_version": V6_VERSION,
+            })
+
+    selected_issue_ids = {x.get("v20_issue_id") for x in final_report_data if x.get("v20_issue_id")}
+    for issue in issues or []:
+        if issue.get("issue_id") not in selected_issue_ids:
+            continue
+        issue_text = clean_html_text(f"{issue.get('issue_group','')} {issue.get('issue_family','')}")
+        issue_rows.append({
+            "date": V22_RUN_DATE,
+            "issue_id": issue.get("issue_id"),
+            "issue_group": issue.get("issue_group"),
+            "issue_family": issue.get("issue_family"),
+            "category": v20_issue_to_output_category(issue),
+            "priority": max(issue.get("max_ceo_priority", 0) or 0, issue.get("max_pa_priority", 0) or 0),
+            "top_title": issue.get("top_title", ""),
+            "top_url": issue.get("top_url", ""),
+            "selected": True,
+            "issue_hash": v20_issue_group_key(issue.get("issue_group", "")),
+            "event_key": issue.get("v26_event_key", "") or v26_event_key_for_item({"기사제목": issue.get("issue_group", ""), "본문요약": issue_text}),
+            "max_todayness": issue.get("v26_max_todayness", ""),
+            "article_forms": issue.get("v26_article_forms", ""),
+            "source_version": V6_VERSION,
+        })
+
+    v26_append_rows_csv(V22_INDEX_DIR / "article_history.csv", article_rows)
+    v26_append_rows_csv(V22_INDEX_DIR / "issue_history.csv", issue_rows)
+    v26_append_rows_csv(V22_INDEX_DIR / "report_history.csv", report_rows)
+    v26_append_rows_csv(V22_INDEX_DIR / "url_seen_history.csv", url_rows)
+
+
+def v20_gemini_edit_issues(client, issues, recent_past_text):
+    if not client:
+        raise RuntimeError("Gemini client 없음")
+    visible_issues = [i for i in sorted(issues, key=lambda x: x.get("issue_score", 0), reverse=True) if not i.get("exclude") and not i.get("is_pr")]
+    visible_issues = visible_issues[:V20_MAX_ISSUES_FOR_EDITOR]
+    issue_text = "\n".join(v20_issue_line(i) for i in visible_issues)
+    prompt = f"""
+너는 카카오 대외협력팀 아침 뉴스 편집장이다.
+아래 이슈 후보는 기사 단위가 아니라 issue_group 단위로 묶인 후보들이다.
+최종 보고서는 카카오 경영진/대외협력/정책/커뮤니케이션/사업 담당자가 오늘 알아야 할 이슈를 담아야 한다.
+
+[전체 편집 원칙]
+- 같은 issue_group 또는 event_key는 원칙적으로 하나만 고른다.
+- 최근 7일 index 이력에 있던 이슈와 실질적으로 같으면 제외한다. 단, 예고→돌입, 검토→확정, 심의 예정→심의/제재, 조사→과징금처럼 단계가 오른 후속 진전은 허용한다.
+- 중요한 이슈가 많은 날에는 전체 상한인 15개까지 골라도 된다. 단, 낮은 품질 기사나 분석성 보충 기사로 억지로 채우지 말라.
+- 단순 홍보·후원·캠페인·기부·이벤트·수상·주가전망·목표가·투자의견은 제외한다.
+
+[자사/계열사 원칙: 오늘성 + 직접성 우선]
+1. 자사 섹션은 카카오/카카오톡/카카오페이/카카오뱅크/카카오모빌리티/카카오게임즈 등 직접 주체가 명확한 기사만 넣는다.
+2. 오늘 새로 발생했거나 오늘 새 단계로 진전된 직접 사건을 최우선으로 둔다. 노무/파업/임단협, 장애/보안/개인정보, 소송/수사/제재, 임원/조직개편, 경영권/M&A/실적 변화가 우선이다.
+3. '성적표', '대해부', '리포트', '전망', '주주환원', '목표가', '투자의견', '주간동향' 같은 분석/기획/시황성 기사는 직접 사건이 부족할 때만 보충으로 사용한다.
+4. 카카오가 아닌 기업의 개인정보·제재·보안 이슈는 자사 섹션에 넣지 말라.
+
+[정부/국회 원칙: 한국 행위자 기준]
+1. 정부/국회 섹션은 한국 정부·국회·규제기관·공공기관이 실제 행위자인 정책/규제/제도 기사만 넣는다.
+2. 공정위·금융위·금감원·개인정보위·과기정통부·방미통위·국회·국무회의 등의 심의/의결/통과/시행/조사/제재/가이드라인은 우선한다.
+3. 기업 실적, 보안 상장사 영업이익, 산업 분석, 민간기업 내부 조직 뉴스는 검색어가 정부기관이어도 정부/국회에 넣지 말라.
+4. 미국·EU·중국·일본 등 해외 정부/의회/규제기관 정책은 정부/국회가 아니라 경쟁사/해외이슈로 분류한다. 한국 정부 도입 검토나 국내 사업자 의무로 직접 연결될 때만 예외다.
+
+[경쟁사/해외 원칙]
+1. 국내 경쟁사/인접 플랫폼을 우선한다. 네이버·네이버페이·쿠팡·토스·배민·SKT·KT·LGU+·라인야후 등.
+2. 해외 빅테크/글로벌 AI 이슈는 기본 1개, 매우 중요하면 2개까지 가능하다.
+3. 해외 법안/규제/정책, 미국 AI 법안, EU 규제, 트럼프 행정부 AI 정책 등은 이 섹션에서 다룬다.
+
+[권장 분량]
+- 전체 11~15개. 자사 3~5개, 정부/국회 3~5개, 경쟁사/해외 3~4개, 산업 1~2개.
+
+반드시 JSON만 반환하라.
+{{
+  "selected_issues": [
+    {{
+      "issue_id": "I001",
+      "category": "자사_및_계열사_이슈/정부_국회/경쟁사_해외이슈/산업동향",
+      "priority": 5,
+      "best_article_id": 123,
+      "backup_article_ids": [124, 125],
+      "reason": "선정 이유"
+    }}
+  ],
+  "backup_issues": [
+    {{
+      "issue_id": "I050",
+      "category": "경쟁사_해외이슈",
+      "priority": 4,
+      "best_article_id": 555,
+      "backup_article_ids": [556],
+      "reason": "대체 후보 이유"
+    }}
+  ]
+}}
+
+[최근 7일 index 이력 참고]
+{recent_past_text[:4500]}
+
+[이슈 후보]
+{issue_text}
+"""
+    text = gemini_generate_text(
+        client=client,
+        prompt=prompt,
+        task_name="v26 이슈 단위 최종 편집",
+        model=GEMINI_MODEL_EDITOR,
+    )
+    data = extract_json_object(text)
+    issue_by_id = {i["issue_id"]: i for i in issues}
+    article_by_id = {}
+    for issue in issues:
+        for art_id in issue.get("article_ids", []):
+            article_by_id[int(art_id)] = {"id": int(art_id)}
+    decisions, backup_decisions = v20_normalize_issue_editor_json(data, issue_by_id, article_by_id)
+    return decisions, backup_decisions
+
+
+
+# =========================================================
+# v26.1 patch: same-date index cleanup continuation-line safe
+# - 기존 index CSV가 이미 깨져 있어 한 기사 행이 여러 줄로 쪼개졌을 때도
+#   오늘 날짜 행과 그 continuation line을 함께 제거한다.
+# =========================================================
+
+def v26_line_starts_date(line):
+    s = str(line or "").lstrip("\ufeff").lstrip().strip()
+    return bool(re.match(r'^"?\d{4}-\d{2}-\d{2}"?(,|$)', s))
+
+
+def v26_line_starts_run_date(line):
+    s = str(line or "").lstrip("\ufeff").lstrip().strip()
+    return (
+        s.startswith(f"{V22_RUN_DATE},")
+        or s.startswith(f'"{V22_RUN_DATE}",')
+        or s == V22_RUN_DATE
+        or s == f'"{V22_RUN_DATE}"'
+    )
+
+
+def v25_remove_same_date_rows_from_index():
+    """같은 날짜 재실행 시 index에서 오늘 날짜 행을 제거한다.
+    CSV가 깨져서 본문 줄바꿈이 행으로 분리된 경우에도 다음 날짜 행이 나오기 전까지 함께 제거한다.
+    """
+    if not REPLACE_SAME_DATE_INDEX_ROWS:
+        return
+    index_files = ["article_history.csv", "issue_history.csv", "report_history.csv", "url_seen_history.csv"]
+    v25_backup_index_files_for_run_date()
+    removed_summary = {}
+    for filename in index_files:
+        path = V22_INDEX_DIR / filename
+        if not path.exists():
+            removed_summary[filename] = 0
+            continue
+        try:
+            with open(path, "r", encoding="utf-8-sig", errors="replace", newline="") as f:
+                lines = f.readlines()
+            kept = []
+            removed = 0
+            skipping_run_row = False
+            for i, line in enumerate(lines):
+                stripped = line.lstrip("\ufeff").lstrip()
+                if i == 0 and re.match(r'"?(date|run_date|report_date|날짜)"?\s*,', stripped):
+                    kept.append(line)
+                    skipping_run_row = False
+                    continue
+                if v26_line_starts_run_date(line):
+                    removed += 1
+                    skipping_run_row = True
+                    continue
+                if skipping_run_row:
+                    if v26_line_starts_date(line):
+                        skipping_run_row = False
+                    else:
+                        removed += 1
+                        continue
+                kept.append(line)
+            with open(path, "w", encoding="utf-8-sig", newline="") as f:
+                f.writelines(kept)
+            removed_summary[filename] = removed
+        except Exception as e:
+            print(f"  └ ⚠️ {filename}: 같은 날짜 행 제거 실패: {e}")
+            removed_summary[filename] = "실패"
+    msg = ", ".join([f"{k}:{v}행" for k, v in removed_summary.items()])
+    print(f"  └ 🧹 같은 날짜 index 기존 행 제거 완료({V22_RUN_DATE}): {msg}")
+
+
+# =========================================================
+# v26.1 operational/editorial patch
+# - Keep v26 index-based history and strict self/gov guardrails.
+# - Relax index same-event handling at RSS stage so follow-up developments are not lost.
+# - Restore v24-like editorial balance by refilling after final guardrails remove weak items.
+# - Re-rank self section by direct/today event priority so labor/incidents outrank analysis.
+# =========================================================
+
+V6_VERSION = "google_rss_v26_1_soft_index_v24_feel_refill"
+V26_1_FINAL_MIN = 12
+V26_1_FINAL_TARGET = 13
+V21_FINAL_MIN = max(V21_FINAL_MIN, V26_1_FINAL_MIN)
+V20_FINAL_MIN = V21_FINAL_MIN
+MIN_SELECT_COUNT = V21_FINAL_MIN
+
+# Unicode-escaped Korean regexes keep this patch portable while matching Korean titles/body.
+V26_1_SELF_LABOR_RE = re.compile(
+    r"\ub178\uc870|\ud30c\uc5c5|\uc784\ub2e8\ud611|\uc7c1\uc758\uad8c|\uc7c1\uc758|\ub178\ub3d9\ubd80|\uace0\uc6a9\ubd88\uc548|\ubcf4\uc0c1\uccb4\uacc4|\uc131\uacfc\uae09|RSU",
+    re.IGNORECASE,
+)
+V26_1_SELF_INCIDENT_RE = re.compile(
+    r"\uc7a5\uc560|\uc624\ub958|\uba39\ud1b5|\uac1c\uc778\uc815\ubcf4|\uc720\ucd9c|\ud574\ud0b9|\ud53c\uc2f1|\ubcf4\uc548|\uacfc\uc9d5\uae08|\uc81c\uc7ac|\uc18c\uc1a1|\uc218\uc0ac|\uc870\uc0ac|\uace0\ubc1c|\ud310\uacb0|\ud589\uc815\uc18c\uc1a1",
+    re.IGNORECASE,
+)
+V26_1_SELF_LEADERSHIP_RE = re.compile(
+    r"\ub300\ud45c|\uc784\uc6d0|CPO|CTO|CFO|\uc870\uc9c1\uac1c\ud3b8|\ud1f4\uc0ac|\uc0ac\uc784|\ud574\uc784|\uc120\uc784|\ub0b4\uc815|\uad50\uccb4|\uacbd\uc601\uc9c4",
+    re.IGNORECASE,
+)
+V26_1_SELF_GOVERNANCE_RE = re.compile(
+    r"\uc900\uc2e0\uc704|\uc900\ubc95|\uc2e0\ub8b0\uacbd\uc601|AI\s*\uac70\ubc84\ub10c\uc2a4|\uae30\uc220\s*\uc724\ub9ac|\uc0ac\ud68c\uc801\s*\uc2e0\ub8b0",
+    re.IGNORECASE,
+)
+V26_1_SELF_INVESTMENT_RE = re.compile(
+    r"\ub450\ub098\ubb34|\uc5c5\ube44\ud2b8|\uc9c0\ubd84|\ub9e4\uac01|\ud22c\uc790\ud68c\uc218|\uc8fc\uc2dd\uad50\ud658|\ud569\ubcd1|\ub124\uc774\ubc84\ud30c\uc774\ub0b8\uc15c|\uad6c\uc8fc",
+    re.IGNORECASE,
+)
+V26_1_ANALYSIS_TITLE_RE = re.compile(
+    r"\uc131\uc801\ud45c|\ub300\ud574\ubd80|\ub9ac\ud3ec\ud2b8|\uc804\ub9dd|\uc9da\uc5b4\ubcf4\ub2c8|\uc2dc\ub9ac\uc988|\uae30\ud68d|\uc8fc\uac04|\ubaa8\ub798\s*\uc704|\uc8fc\uc8fc\ud658\uc6d0|\ud22c\uc790\uc758\uacac|\ubaa9\ud45c\uac00",
+    re.IGNORECASE,
+)
+V26_1_OVERSEAS_HINT_RE = re.compile(
+    r"EU|\uc720\ub7fd|\ubbf8\uad6d|\ubbf8\s*\uc815\ubd80|\ubbf8\s*\uc758\ud68c|\ubc31\uc545\uad00|\ud2b8\ub7fc\ud504|\uc911\uad6d|\uc77c\ubcf8|\uae00\ub85c\ubc8c|\uad6c\uae00|\uc624\ud508AI|OpenAI|MS|\uba54\ud0c0|\uc560\ud50c|Anthropic|\uc564\ud2b8\ub85c\ud53d",
+    re.IGNORECASE,
+)
+
+
+def v26_1_section_minima():
+    return {
+        JSON_KEYS_ORDER[0]: 3,
+        JSON_KEYS_ORDER[1]: 3,
+        JSON_KEYS_ORDER[2]: 3,
+        JSON_KEYS_ORDER[3]: 1,
+    }
+
+
+def v26_1_final_item_text(item):
+    try:
+        return v23_text(item)
+    except Exception:
+        return v26_text_for_event(item)
+
+
+def v26_1_self_bucket(text):
+    t = clean_html_text(text)
+    if V26_1_SELF_LABOR_RE.search(t):
+        return "self_labor", 170
+    if V26_1_SELF_INCIDENT_RE.search(t):
+        return "self_incident", 150
+    if V26_1_SELF_LEADERSHIP_RE.search(t):
+        return "self_leadership", 125
+    if V26_1_SELF_GOVERNANCE_RE.search(t):
+        return "self_governance", 80
+    if V26_1_SELF_INVESTMENT_RE.search(t):
+        return "self_investment", 45
+    if V26_DIRECT_SELF_EVENT_RE.search(t):
+        return "self_direct_other", 90
+    return "self_reference", 35
+
+
+def v26_1_similarity_for_event(candidate, past):
+    cand_title = clean_html_text(candidate.get("기사제목") or candidate.get("title") or "")
+    past_title = clean_html_text(past.get("title") or past.get("기사제목") or "")
+    cand_text = v26_text_for_event(candidate)
+    past_text = v26_text_for_event(past)
+    title_score = sequence_ratio(cand_title, past_title)
+    token_score = jaccard(tokenize_for_similarity(cand_text), tokenize_for_similarity(past_text))
+    text_score = jaccard(char_ngrams(cand_text[:1400], 5), char_ngrams(past_text[:1400], 5))
+    return title_score, token_score, text_score
+
+
+def v26_index_duplicate_check(candidate, recent_past_items, mode="rss"):
+    """v26.1: index history duplicate check.
+    Strong URL/title duplicates are excluded. Same event keys are soft at RSS stage and
+    only excluded after body-level similarity is high enough. This preserves updates.
+    """
+    cand_title = clean_html_text(candidate.get("기사제목") or candidate.get("title") or "")
+    cand_url = normalize_url(candidate.get("링크") or candidate.get("link") or candidate.get("url") or "")
+    cand_title_hash = title_fingerprint(cand_title)
+    cand_event_key = v26_event_key_for_item(candidate)
+
+    update_match = None
+    update_reason = ""
+    soft_match = None
+    soft_reason = ""
+
+    for past in recent_past_items or []:
+        past_url = normalize_url(past.get("link") or past.get("url") or "")
+        past_title = clean_html_text(past.get("title") or past.get("기사제목") or "")
+        past_title_hash = past.get("title_hash") or title_fingerprint(past_title)
+        past_event_key = past.get("event_key") or v26_event_key_for_item(past)
+
+        if cand_url and past_url and cand_url == past_url:
+            return True, past, {"is_duplicate": True, "reason": "index_same_url", "score": 1.0, "shared_entities": "", "shared_tags": ""}
+        if cand_title_hash and past_title_hash and cand_title_hash == past_title_hash:
+            return True, past, {"is_duplicate": True, "reason": "index_same_title_hash", "score": 1.0, "shared_entities": "", "shared_tags": ""}
+        if cand_title and past_title:
+            near, score = is_title_near_duplicate(cand_title, past_title)
+            if near and score >= 0.95:
+                return True, past, {"is_duplicate": True, "reason": f"index_near_title:{score:.2f}", "score": score, "shared_entities": "", "shared_tags": ""}
+
+        if cand_event_key and past_event_key and cand_event_key == past_event_key:
+            is_update, reason = v26_is_same_event_update(candidate, past)
+            if is_update:
+                update_match = past
+                update_reason = reason
+                continue
+            if mode == "rss":
+                # Keep for Gemini/body extraction. RSS snippets are too weak for same-event deletion.
+                soft_match = past
+                soft_reason = f"index_same_event_soft_keep_rss:{cand_event_key}"
+                continue
+            title_score, token_score, text_score = v26_1_similarity_for_event(candidate, past)
+            if (title_score >= 0.76 and token_score >= 0.16) or (token_score >= 0.32 and text_score >= 0.38):
+                return True, past, {
+                    "is_duplicate": True,
+                    "reason": f"index_same_event_body_similar:{cand_event_key}",
+                    "score": round(max(title_score, token_score, text_score), 4),
+                    "shared_entities": "",
+                    "shared_tags": cand_event_key,
+                }
+            soft_match = past
+            soft_reason = f"index_same_event_soft_keep_body:{cand_event_key}"
+
+    if update_match:
+        return False, update_match, {"is_duplicate": False, "reason": update_reason, "score": 0.0, "shared_entities": "", "shared_tags": cand_event_key}
+    if soft_match:
+        return False, soft_match, {"is_duplicate": False, "reason": soft_reason, "score": 0.0, "shared_entities": "", "shared_tags": cand_event_key}
+    return False, None, None
+
+
+def find_past_duplicate(candidate, recent_past_items, mode="body"):
+    if DEDUP_USE_INDEX_HISTORY and recent_past_items:
+        is_dup, matched, sim = v26_index_duplicate_check(candidate, recent_past_items, mode=mode)
+        if is_dup:
+            return True, matched, sim
+        reason = str((sim or {}).get("reason", ""))
+        if reason.startswith("same_event_but_new_stage") or reason.startswith("index_same_event_soft_keep"):
+            return False, matched, sim
+    return _BASE_find_past_duplicate_v26(candidate, recent_past_items, mode=mode)
+
+
+def v26_final_item_priority_score(item):
+    t = v26_1_final_item_text(item)
+    cat = item.get("카테고리", "")
+    form = v26_article_form_from_text(t)
+    today_score, _ = v26_todayness_score_text(t, item.get("게시일", ""))
+    base = v20_float(item.get("대표선택점수"), 0)
+    score = base + min(35, today_score * 1.1)
+    if cat == JSON_KEYS_ORDER[0]:
+        if not v26_has_strict_self_entity(t):
+            return -999
+        bucket, bonus = v26_1_self_bucket(t)
+        item["v26_1_self_bucket"] = bucket
+        score += bonus
+        if form == "analysis_with_direct_risk":
+            score += 25
+        elif form == "analysis_feature" and bucket in {"self_reference", "self_investment"}:
+            score -= 35
+        elif form == "market_commentary":
+            score -= 120
+        # Investment/M&A analysis is useful, but it should not outrank a same-day strike or incident.
+        if bucket == "self_investment" and not re.search(r"\uacf5\uc2dc|\ud655\uc815|\uacb0\uc815|\uad6d\ubb34\ud68c\uc758|\uc81c\uc7ac|\uacfc\uc9d5\uae08", t):
+            score -= 15
+    elif cat == JSON_KEYS_ORDER[1]:
+        if v26_has_korean_gov_action(t):
+            score += 60
+        if v26_is_gov_misclassified_industry(t):
+            score -= 180
+    elif cat == JSON_KEYS_ORDER[2]:
+        scope = v21_competitor_scope(t)
+        if scope in {"domestic", "mixed"}:
+            score += 35
+        elif scope == "overseas":
+            score += 22
+    elif cat == JSON_KEYS_ORDER[3]:
+        if form == "analysis_feature":
+            score -= 5
+    return round(score, 2)
+
+
+def v26_1_should_refill_after_repair(final_report_data):
+    counts, comp_domestic, comp_overseas = v21_final_counts(final_report_data)
+    if len(final_report_data) < V26_1_FINAL_MIN:
+        return True
+    for cat, min_count in v26_1_section_minima().items():
+        if counts.get(cat, 0) < min_count:
+            return True
+    if counts.get(JSON_KEYS_ORDER[2], 0) >= 2 and comp_overseas <= 0:
+        return True
+    return False
+
+
+def v26_1_decision_category(decision, issue):
+    return v19_normalize_category_key(decision.get("category"), fallback=v20_issue_to_output_category(issue))
+
+
+def v26_1_is_overseas_competitor_decision(decision, issue):
+    cat = v26_1_decision_category(decision, issue)
+    if cat != JSON_KEYS_ORDER[2]:
+        return False
+    if issue.get("competitor_scope") == "overseas":
+        return True
+    text = clean_html_text(f"{issue.get('issue_group','')} {issue.get('top_title','')} {issue.get('issue_family','')}")
+    if V26_1_OVERSEAS_HINT_RE.search(text) and v21_competitor_scope(text) == "overseas":
+        return True
+    return False
+
+
+def v26_1_is_good_refill_candidate(decision, issue, cat=None):
+    cat = cat or v26_1_decision_category(decision, issue)
+    if not issue:
+        return False
+    ok, _ = v21_issue_allowed_basic(issue)
+    if not ok:
+        return False
+    if issue.get("self_tier") in {"LOW_VALUE_PR", "OFF_TOPIC"}:
+        return False
+    if cat == JSON_KEYS_ORDER[0] and issue.get("self_tier") == "FILLER_REFERENCE":
+        # Allow only as a last resort; general refill will usually skip this.
+        return False
+    if issue.get("gov_tier") in {"GOV_GENERAL_LOW_RELEVANCE", "OFF_TOPIC"}:
+        return False
+    if issue.get("competitor_tier") in {"COMP_GENERAL_LOW_RELEVANCE", "OFF_TOPIC"}:
+        return False
+    return True
+
+
+def v26_1_candidate_pool(decisions, backup_decisions, issues):
+    pool = []
+    seen = set()
+    for source, iterable in [("selected", decisions), ("backup", backup_decisions), ("local", v21_candidate_decisions_from_issues(issues))]:
+        for d in iterable:
+            iid = d.get("issue_id")
+            if not iid or iid in seen:
+                continue
+            d2 = dict(d)
+            d2["v26_1_pool_source"] = source
+            pool.append(d2)
+            seen.add(iid)
+    def sort_key(d):
+        issue = globals().get("_v26_1_issue_by_id_for_sort", {}).get(d.get("issue_id"), {})
+        return (v20_int(d.get("priority"), 1), v20_float(issue.get("issue_score"), 0), v20_float(issue.get("max_ceo_priority"), 0))
+    return sorted(pool, key=sort_key, reverse=True)
+
+
+def v26_1_refill_after_final_repair(decisions, backup_decisions, issues, issue_by_id, article_by_id, recent_past_items, final_report_data, body_failed_rows, skip_rows, processed_article_ids, order_counter, status_counts):
+    globals()["_v26_1_issue_by_id_for_sort"] = issue_by_id
+    candidate_pool = v26_1_candidate_pool(decisions, backup_decisions, issues)
+    represented_issue_ids = {x.get("v20_issue_id") for x in final_report_data if x.get("v20_issue_id")}
+
+    def try_decision(d, source):
+        nonlocal order_counter
+        if len(final_report_data) >= V21_FINAL_MAX:
+            return False
+        iid = d.get("issue_id")
+        if not iid or iid in represented_issue_ids:
+            return False
+        issue = issue_by_id.get(iid, {})
+        if not issue:
+            return False
+        item, order_counter, status = v20_process_issue(
+            d,
+            issue_by_id,
+            article_by_id,
+            recent_past_items,
+            final_report_data,
+            body_failed_rows,
+            skip_rows,
+            processed_article_ids,
+            order_counter,
+        )
+        status_counts[status] = status_counts.get(status, 0) + 1
+        represented_issue_ids.add(iid)
+        if item:
+            item["v26_1_refill_source"] = source
+            print(f"  -> v26.1 refill added({source}): {v20_clip(issue.get('issue_group',''), 42)} / {v20_clip(item.get('기사제목',''), 42)}...")
+            return True
+        return False
+
+    # 1) If no overseas item survived, try to add one overseas/global big-tech issue.
+    counts, comp_domestic, comp_overseas = v21_final_counts(final_report_data)
+    if comp_overseas <= 0 and len(final_report_data) < V21_FINAL_MAX:
+        for d in candidate_pool:
+            issue = issue_by_id.get(d.get("issue_id"), {})
+            if v26_1_is_overseas_competitor_decision(d, issue):
+                if try_decision(d, "overseas_competitor_refill"):
+                    break
+
+    # 2) Restore section minima after final guardrails/duplicate repair.
+    for cat, min_count in v26_1_section_minima().items():
+        while v21_final_counts(final_report_data)[0].get(cat, 0) < min_count and len(final_report_data) < V21_FINAL_MAX:
+            added = False
+            for d in candidate_pool:
+                issue = issue_by_id.get(d.get("issue_id"), {})
+                if v26_1_decision_category(d, issue) != cat:
+                    continue
+                if not v26_1_is_good_refill_candidate(d, issue, cat=cat):
+                    continue
+                if try_decision(d, f"section_min_refill:{cat}"):
+                    added = True
+                    break
+            if not added:
+                break
+
+    # 3) Fill total minimum/target with strong remaining candidates, without forcing weak filler.
+    while len(final_report_data) < V26_1_FINAL_MIN and len(final_report_data) < V21_FINAL_MAX:
+        added = False
+        for d in candidate_pool:
+            issue = issue_by_id.get(d.get("issue_id"), {})
+            cat = v26_1_decision_category(d, issue)
+            if not v26_1_is_good_refill_candidate(d, issue, cat=cat):
+                continue
+            if try_decision(d, "total_min_refill"):
+                added = True
+                break
+        if not added:
+            break
+
+    return order_counter
+
+
+
+# =========================================================
+# v26.2 overrides: generic daily editorial profile
+# - Avoid one-off keyword patching. Classify article structure: public actor/action,
+#   single-issue vs roundup, structural industry vs market/stock commentary.
+# - Government/National Assembly requires a real Korean public actor + official action.
+#   Public-private MOU/project participation is allowed only when the public actor/project
+#   is central, not when it is one line inside a roundup.
+# - If Industry has no strong item, promote one structural overseas/global big-tech item
+#   from Competitor/Overseas to Industry.
+# - Exclude stock/target-price/feature-stock articles from final report.
+# =========================================================
+
+V6_VERSION = "google_rss_v26_2_generic_profile_gov_industry_pivot"
+V26_2_FINAL_MIN = 12
+V21_FINAL_MIN = max(V21_FINAL_MIN, V26_2_FINAL_MIN)
+V20_FINAL_MIN = V21_FINAL_MIN
+MIN_SELECT_COUNT = V21_FINAL_MIN
+
+V26_2_PUBLIC_ACTOR_EXTRA_RE = re.compile(
+    r"\uc9c0\uc790\uccb4|\uc9c0\ubc29\uc790\uce58\ub2e8\uccb4|\uc2dc\uccad|\ub3c4\uccad|\uad6c\uccad|\uad70\uccad|\uacf5\uacf5\uae30\uad00|"
+    r"[\uAC00-\uD7A3]{2,6}\uc2dc(?:\uac00|\ub294|\uc640|\uacfc|\uc758|\uc5d0\uc11c|\uc5d0|\ub97c|\uc744|\ub3c4)",
+    re.IGNORECASE,
+)
+V26_2_PUBLIC_PROJECT_RE = re.compile(
+    r"\uad6d\uac00\uc0ac\uc5c5|\uacf5\uacf5\uc0ac\uc5c5|\uc815\ubd80\uc0ac\uc5c5|\uc9c0\uc790\uccb4\uc0ac\uc5c5|\uacf5\ubaa8|\uc120\uc815|\ucc29\uc218|\uad6c\ucd95|\uc2e4\uc99d|"
+    r"\ucee8\uc18c\uc2dc\uc5c4|\ucc38\uc5ec|\uc608\uc0b0|\ud22c\uc785|\uacf5\uacf5\uc870\ub2ec|\ubc1c\uc8fc|\uc9c0\uc6d0\uc0ac\uc5c5|\ub3c4\uc2dc\uc548\uc804\ub9dd|"
+    r"\uc5c5\ubb34\ud611\uc57d|MOU|\ud611\uc57d|\ud611\ub825",
+    re.IGNORECASE,
+)
+V26_2_OFFICIAL_ACTION_RE = re.compile(
+    r"\ubc1c\ud45c|\uc2dc\ud589|\uc758\uacb0|\ud1b5\uacfc|\uc2ec\uc758|\uc81c\uc7ac|\uacfc\uc9d5\uae08|\uacfc\ud0dc\ub8cc|\uc870\uc0ac|\uc810\uac80|\uac80\uc0ac|\uac10\ub3c5|"
+    r"\uc2dc\uc815\uba85\ub839|\uace0\ubc1c|\uac00\uc774\ub4dc\ub77c\uc778|\ubc95\uc548|\ubc1c\uc758|\uc785\ubc95|\uc2dc\ud589\ub839|\uac1c\uc815\uc548|"
+    r"\uc785\ubc95\uc608\uace0|\ud589\uc815\uc608\uace0|\uad6d\ubb34\ud68c\uc758|\uc804\uc6d0\ud68c\uc758|\ud611\uc758\uccb4|\ucd9c\ubc94|\uac04\ub2f4\ud68c|\uc124\uba85\ud68c",
+    re.IGNORECASE,
+)
+V26_2_ROUNDUP_TITLE_RE = re.compile(
+    r"\uc8fc\uac04|\uc6d4\uac04|\uc774\uc8fc\uc758|\uc624\ub298\uc758|\ub3d9\ud5a5|\ub2e8\uc2e0|\ubaa8\uc74c|\uc885\ud569|\ub77c\uc6b4\ub4dc\uc5c5|\uc18c\uc2dd|\u5916|\uc678$",
+    re.IGNORECASE,
+)
+V26_2_MARKET_STOCK_RE = re.compile(
+    r"\ud2b9\uc9d5\uc8fc|\uc8fc\uac00|\uc99d\uc2dc|\uc7a5\uc911|\uc7a5\ub9c8\uac10|\ubaa9\ud45c\uac00|\ud22c\uc790\uc758\uacac|\ub9e4\uc218|\ub9e4\ub3c4|"
+    r"\uae09\ub4f1|\uae09\ub77d|\uc0c1\uc2b9|\ud558\ub77d|\u25b2|\u25bc|\u2191|\u2193|\u2192|%",
+    re.IGNORECASE,
+)
+# 산업동향은 "AI/보안/클라우드" 단어만으로 통과시키지 않고,
+# 시장 구조 변화/산업 재편/대형 인프라 변화 같은 구조 신호가 함께 있어야 한다.
+V26_2_INDUSTRY_STRUCTURE_SIGNAL_RE = re.compile(
+    r"시장\s*구조|산업\s*구조|산업\s*재편|시장\s*재편|생태계|패러다임|표준|"
+    r"확산|전환|대전환|대형\s*투자|인프라\s*투자|데이터센터\s*증설|AI\s*팩토리|"
+    r"수요\s*증가|도입\s*확산|상용화|공급망|글로벌\s*경쟁|규제\s*환경|"
+    r"플랫폼화|클라우드\s*전환|보안\s*수요|AI\s*인프라",
+    re.IGNORECASE,
+)
+
+# 개별 기업/기관 홍보·제품·간담회·대학 발표는 기본적으로 산업동향에서 제외한다.
+# 단, 기사 자체가 산업 구조 변화/대형 인프라 변화로 설명될 때는 예외적으로 허용한다.
+V26_2_WEAK_INDUSTRY_PROMO_RE = re.compile(
+    r"기자간담회|신제품|출시|솔루션|전략\s*공개|시장\s*공략|사업\s*확대|"
+    r"업무협약|MOU|협약|대학교|대학|건학|캠퍼스|교수|연구팀|논문|학회|"
+    r"제품\s*3종|포트폴리오\s*강화|국내\s*시장\s*확대",
+    re.IGNORECASE,
+)
+V26_2_STRUCTURAL_INDUSTRY_RE = re.compile(
+    r"AI|\uc778\uacf5\uc9c0\ub2a5|\uc5d0\uc774\uc804\ud2b8|\ud53c\uc9c0\uceec\s*AI|\uc628\ub514\ubc14\uc774\uc2a4|\ud504\ub77c\uc774\ubc84\uc2dc|\ubcf4\uc548|"
+    r"\ub370\uc774\ud130\uc13c\ud130|AI\s*\ud329\ud1a0\ub9ac|GPU|NPU|\ud074\ub77c\uc6b0\ub4dc|\ud50c\ub7ab\ud3fc|\ub9dd\s*\uc0ac\uc6a9\ub8cc|\uc800\uc791\uad8c|"
+    r"\ub514\uc9c0\ud138\uc790\uc0b0|\uc2a4\ud14c\uc774\ube14\ucf54\uc778|\ub370\uc774\ud130\s*\ud65c\uc6a9|\uc571\ub9c8\ucf13|\uac80\uc0c9|\uad11\uace0|\uc0dd\ud0dc\uacc4|\uc0b0\uc5c5\s*\uc7ac\ud3b8",
+    re.IGNORECASE,
+)
+V26_2_OVERSEAS_STRUCTURAL_RE = re.compile(
+    r"\uc560\ud50c|Apple|\uad6c\uae00|Google|\uc624\ud508AI|OpenAI|\ucc57GPT|ChatGPT|MS|Microsoft|\ub9c8\uc774\ud06c\ub85c\uc18c\ud504\ud2b8|"
+    r"\uba54\ud0c0|Meta|\uc564\ud2b8\ub85c\ud53d|Anthropic|\ud074\ub85c\ub4dc|Claude|\uc624\ub77c\ud074|Oracle|EU|\uc720\ub7fd|\ubbf8\uad6d|\uc911\uad6d|\uc77c\ubcf8|\ube45\ud14c\ud06c",
+    re.IGNORECASE,
+)
+V26_2_ROUNDUP_ACTION_TERMS = [
+    "\uc778\uc218", "\uc5c5\ubb34\ud611\uc57d", "MOU", "\ucd9c\uc2dc", "\uc120\ubcf4", "\ucc38\uc5ec", "\ud22c\uc790", "\uc720\uce58",
+    "\ud611\ub825", "\uacf5\uac1c", "\uac1c\ucd5c", "\ucc29\uc218", "\uc120\uc815", "\uccb4\uacb0", "\ubc1c\ud45c", "\ucd9c\ubc94", "\uacf5\ubaa8",
+]
+
+
+def v26_2_text(obj):
+    if isinstance(obj, dict):
+        try:
+            return v23_text(obj)
+        except Exception:
+            return clean_html_text(f"{obj.get('기사제목','')} {obj.get('title','')} {obj.get('본문요약','')} {obj.get('summary','')} {obj.get('본문전문','')[:2400]} {obj.get('issue_group','')} {obj.get('top_title','')}")
+    return clean_html_text(obj)
+
+
+def v26_2_title(obj):
+    if isinstance(obj, dict):
+        return clean_html_text(obj.get('기사제목') or obj.get('title') or obj.get('top_title') or obj.get('issue_group') or '')
+    return clean_html_text(str(obj or ''))[:220]
+
+
+def v26_2_public_actor_found(text):
+    t = clean_html_text(text)
+    return bool(V26_KR_GOV_ACTOR_STRICT_RE.search(t) or V26_2_PUBLIC_ACTOR_EXTRA_RE.search(t))
+
+
+def v26_2_roundup_score(text, title=''):
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:260]
+    front = t[:2200]
+    title_marker = bool(V26_2_ROUNDUP_TITLE_RE.search(title))
+    transition_count = len(re.findall(r"\ub610\ud55c|\uc774\uc5b4|\ud55c\ud3b8|\uc774\uc640\s*\ud568\uaed8|\uac01\uac01|\ubcc4\ub3c4\ub85c|\u5916|\uc678\b", front))
+    action_count = sum(1 for term in V26_2_ROUNDUP_ACTION_TERMS if term and term in front)
+    semicolon_like = front.count('...') + front.count('·') + front.count(';')
+    score = 0
+    if title_marker:
+        score += 3
+    if transition_count >= 2:
+        score += 2
+    if action_count >= 4:
+        score += 2
+    if semicolon_like >= 3:
+        score += 1
+    return score
+
+
+def v26_2_is_roundup(text, title=''):
+    return v26_2_roundup_score(text, title) >= 5
+
+
+def v26_2_is_stock_market_text(text, title=''):
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:260]
+    if re.search(r"\ud2b9\uc9d5\uc8fc|\ubaa9\ud45c\uac00|\ud22c\uc790\uc758\uacac|\uc99d\uc2dc", title, re.IGNORECASE):
+        return True
+    if re.search(r"\uc8fc\uac00", title) and re.search(r"%|\uae09\ub4f1|\uae09\ub77d|\uc0c1\uc2b9|\ud558\ub77d|\u2191|\u2193|\u25b2|\u25bc", title, re.IGNORECASE):
+        return True
+    if re.search(r"\uc8fc\uac00\s*\d+(?:\.\d+)?%|\d+(?:\.\d+)?%\s*(?:\uc0c1\uc2b9|\ud558\ub77d|\uae09\ub4f1|\uae09\ub77d|\u2191|\u2193|\u25b2|\u25bc)", t[:900], re.IGNORECASE):
+        return True
+    return False
+
+
+def v26_2_public_policy_basis(text, title=''):
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:280]
+    if not t:
+        return False, 'empty'
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return False, 'foreign_public_policy'
+
+    front = t[:2200]
+    title_front = title[:360]
+    has_actor = v26_2_public_actor_found(front)
+    has_title_actor = v26_2_public_actor_found(title_front)
+    has_action = bool(V26_GOV_ACTION_STRICT_RE.search(front) or V26_2_OFFICIAL_ACTION_RE.search(front))
+    has_domain = bool(V23_KAKAO_RELEVANT_DOMAIN_RE.search(front) or V23_PUBLIC_AI_POLICY_RE.search(front) or DIGITAL_STRATEGIC_PATTERN.search(front))
+    is_roundup = v26_2_is_roundup(front, title)
+
+    # Platform/legal obligation can pass even if the exact agency is only weakly shown.
+    if v20_is_platform_obligation_text(front) and has_action:
+        if has_actor or re.search(r"\uad6d\ub0b4|\ud55c\uad6d|\uc0ac\uc5c5\uc790|\ud50c\ub7ab\ud3fc\s*\uc0ac\uc5c5\uc790|\ub124\uc774\ubc84|\uce74\uce74\uc624|\uad6c\uae00|\ud3ec\ud138|SNS", front, re.IGNORECASE):
+            return True, 'platform_obligation'
+
+    public_project = bool(has_actor and V26_2_PUBLIC_PROJECT_RE.search(front) and has_domain)
+    official_policy = bool(has_actor and has_action and has_domain)
+
+    if is_roundup:
+        # A roundup may mention a city/ministry in one item; keep it out of Government unless the public actor/action is central in the title/lead.
+        if has_title_actor and (V26_GOV_ACTION_STRICT_RE.search(front[:900]) or V26_2_OFFICIAL_ACTION_RE.search(front[:900]) or public_project):
+            return True, 'roundup_but_public_actor_central'
+        return False, 'roundup_without_central_public_actor'
+
+    if official_policy:
+        return True, 'public_actor_official_action'
+    if public_project:
+        return True, 'public_private_project'
+    return False, 'no_public_actor_action_domain'
+
+
+def v26_2_is_structural_industry_text(text, title=''):
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:260]
+
+    if not t:
+        return False
+
+    if v26_2_is_stock_market_text(t, title):
+        return False
+
+    if v26_2_is_roundup(t, title):
+        return False
+
+    # 개별 회사/대학/연구팀/제품/간담회 성격은 산업동향에서 제외.
+    # 단, 시장 구조 변화나 대형 인프라 변화가 명확하면 예외적으로 허용.
+    weak_promo = bool(V26_2_WEAK_INDUSTRY_PROMO_RE.search(t))
+    has_domain = bool(V26_2_STRUCTURAL_INDUSTRY_RE.search(t))
+    has_structure = bool(V26_2_INDUSTRY_STRUCTURE_SIGNAL_RE.search(t))
+
+    if weak_promo and not has_structure:
+        return False
+
+    # AI/보안/클라우드 단어만으로는 부족하고, 구조 변화 신호가 같이 있어야 산업동향으로 인정.
+    if has_domain and has_structure:
+        return True
+
+    # 기존 v23 산업동향 판단은 보조적으로만 사용하되,
+    # 개별 회사 발표/대학 홍보/기초 연구성 기사는 제외.
+    if v23_is_valid_industry(t) and has_structure and not weak_promo:
+        return True
+
+    return False
+
+def v26_2_is_overseas_structural_text(text, title=''):
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:260]
+    if v26_2_is_stock_market_text(t, title):
+        return False
+    return bool(V26_2_OVERSEAS_STRUCTURAL_RE.search(t) and V26_2_STRUCTURAL_INDUSTRY_RE.search(t))
+
+
+def v26_2_article_profile(obj):
+    t = v26_2_text(obj)
+    title = v26_2_title(obj)
+    gov_ok, gov_reason = v26_2_public_policy_basis(t, title)
+    return {
+        'text': t,
+        'title': title,
+        'is_roundup': v26_2_is_roundup(t, title),
+        'is_market_stock': v26_2_is_stock_market_text(t, title),
+        'gov_ok': gov_ok,
+        'gov_reason': gov_reason,
+        'industry_structural': v26_2_is_structural_industry_text(t, title),
+        'overseas_structural': v26_2_is_overseas_structural_text(t, title),
+        'competitor_scope': v21_competitor_scope(t) if 'v21_competitor_scope' in globals() else '',
+        'has_self': v26_has_strict_self_entity(t) if 'v26_has_strict_self_entity' in globals() else bool(SELF_KAKAO_PATTERN.search(t)),
+    }
+
+
+# Override v26 government validators with the generic profile logic.
+def v26_has_korean_gov_action(text):
+    ok, _ = v26_2_public_policy_basis(text)
+    return ok
+
+
+def v26_is_gov_misclassified_industry(text):
+    p = v26_2_article_profile(text)
+    if p['is_market_stock']:
+        return True
+    if p['is_roundup'] and not p['gov_ok']:
+        return True
+    if V26_GOV_MISCLASSIFIED_INDUSTRY_RE.search(p['text']) and not p['gov_ok']:
+        return True
+    return False
+
+
+def v26_suggest_category_from_text(text, requested=''):
+    p = v26_2_article_profile(text)
+    t = p['text']
+    if p['has_self'] and V26_DIRECT_SELF_EVENT_RE.search(t):
+        return JSON_KEYS_ORDER[0]
+    if p['gov_ok']:
+        return JSON_KEYS_ORDER[1]
+    if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+        return JSON_KEYS_ORDER[2]
+    if p['competitor_scope'] in {'domestic', 'mixed', 'overseas'} or v23_has_competitor_entity(t):
+        return JSON_KEYS_ORDER[2]
+    if p['industry_structural']:
+        return JSON_KEYS_ORDER[3]
+    return ''
+
+
+_BASE_v23_final_category_guardrail_v262 = v23_final_category_guardrail
+
+def v23_final_category_guardrail(item, requested_category):
+    requested = v19_normalize_category_key(requested_category, fallback=JSON_KEYS_ORDER[3])
+    p = v26_2_article_profile(item)
+    t = p['text']
+
+    if p['is_market_stock']:
+        return 'fail', requested, 'v26_2_market_stock_commentary_excluded'
+
+    if requested == JSON_KEYS_ORDER[0]:
+        if not p['has_self']:
+            suggested = v26_suggest_category_from_text(t, requested)
+            if suggested and suggested != requested:
+                return 'reassign', suggested, 'v26_2_self_without_direct_kakao_entity'
+            return 'fail', requested, 'v26_2_self_without_direct_kakao_entity'
+        if v20_is_platform_obligation_text(t) and not V26_DIRECT_SELF_EVENT_RE.search(t) and p['gov_ok']:
+            return 'reassign', JSON_KEYS_ORDER[1], 'v26_2_platform_obligation_to_gov'
+        return _BASE_v23_final_category_guardrail_v262(item, requested)
+
+    if requested == JSON_KEYS_ORDER[1]:
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return 'reassign', JSON_KEYS_ORDER[2], 'v26_2_foreign_policy_to_competitor_overseas'
+        if p['gov_ok']:
+            return 'pass', requested, 'v26_2_public_actor_action_pass:' + p['gov_reason']
+        return 'fail', requested, 'v26_2_government_without_central_public_actor_action:' + p['gov_reason']
+
+    if requested == JSON_KEYS_ORDER[3]:
+        if p['industry_structural'] or p['overseas_structural']:
+            return 'pass', requested, 'v26_2_structural_industry_pass'
+        if p['is_roundup']:
+            return 'fail', requested, 'v26_2_roundup_not_structural_industry'
+
+    action, cat, reason = _BASE_v23_final_category_guardrail_v262(item, requested)
+    if action == 'reassign' and cat == JSON_KEYS_ORDER[1] and not p['gov_ok']:
+        suggested = v26_suggest_category_from_text(t, requested)
+        if suggested and suggested != JSON_KEYS_ORDER[1]:
+            return 'reassign', suggested, 'v26_2_blocked_weak_gov_reassign:' + reason
+        return 'fail', requested, 'v26_2_blocked_weak_gov_reassign:' + reason
+    return action, cat, reason
+
+
+_BASE_is_report_item_relevant_v262 = is_report_item_relevant
+
+def is_report_item_relevant(report_item, json_key):
+    requested = v19_normalize_category_key(json_key, fallback=JSON_KEYS_ORDER[3])
+    p = v26_2_article_profile(report_item)
+    t = p['text']
+    if p['is_market_stock']:
+        return False, 'v26_2_market_stock_commentary_excluded'
+    if requested == JSON_KEYS_ORDER[1]:
+        if v25_is_foreign_public_policy_issue(t) and not v25_has_direct_korean_policy_connection(t):
+            return False, 'v26_2_foreign_policy_not_korean_gov'
+        if not p['gov_ok']:
+            return False, 'v26_2_government_without_central_public_actor_action:' + p['gov_reason']
+    if requested == JSON_KEYS_ORDER[3]:
+        if not (p['industry_structural'] or p['overseas_structural']):
+            return False, 'v26_2_industry_without_structural_basis'
+    return _BASE_is_report_item_relevant_v262(report_item, json_key)
+
+
+_BASE_rank_score_article_v262 = rank_score_article
+
+def rank_score_article(article):
+    score = float(_BASE_rank_score_article_v262(article) or 0)
+    p = v26_2_article_profile(article)
+    cat = article.get('JSON카테고리', '')
+    if p['is_market_stock']:
+        score -= 160
+        article['v26_2_profile_reason'] = 'market_stock_excluded'
+    if cat == JSON_KEYS_ORDER[1]:
+        if p['gov_ok']:
+            score += 18
+        else:
+            score -= 90
+            article['v26_2_profile_reason'] = 'weak_gov_basis:' + p['gov_reason']
+    if cat == JSON_KEYS_ORDER[3]:
+        if p['industry_structural'] or p['overseas_structural']:
+            score += 18
+        elif p['is_roundup']:
+            score -= 45
+            article['v26_2_profile_reason'] = 'roundup_deprioritized'
+    if cat == JSON_KEYS_ORDER[2] and p['overseas_structural']:
+        score += 16
+    article['랭킹점수'] = round(score, 3)
+    return article['랭킹점수']
+
+
+_BASE_article_importance_score_v262 = article_importance_score
+
+def article_importance_score(title, body='', json_key='', keyword=''):
+    score = float(_BASE_article_importance_score_v262(title, body, json_key, keyword) or 0)
+    text = f"{clean_html_text(title)} {clean_html_text(body)[:2200]}"
+    p = v26_2_article_profile(text)
+    if p['is_market_stock']:
+        score -= 120
+    if json_key == JSON_KEYS_ORDER[1]:
+        score += 14 if p['gov_ok'] else -55
+    if json_key == JSON_KEYS_ORDER[3]:
+        if p['industry_structural'] or p['overseas_structural']:
+            score += 16
+        elif p['is_roundup']:
+            score -= 35
+    return round(score, 2)
+
+
+_BASE_v20_local_article_label_v262 = v20_local_article_label
+
+def v20_local_article_label(article):
+    label = _BASE_v20_local_article_label_v262(article)
+    p = v26_2_article_profile(article)
+    if p['is_market_stock']:
+        label['primary_category'] = '산업동향'
+        label['internal_category'] = 'OFF_TOPIC'
+        label['ceo_priority'] = min(v20_int(label.get('ceo_priority'), 2), 1)
+        label['public_affairs_priority'] = min(v20_int(label.get('public_affairs_priority'), 2), 1)
+        label['reason'] = 'v26.2: market/stock commentary excluded from final'
+        return label
+    if label.get('primary_category') == JSON_KEYS_ORDER[1] or article.get('JSON카테고리') == JSON_KEYS_ORDER[1]:
+        if not p['gov_ok']:
+            if p['overseas_structural'] or p['competitor_scope'] == 'overseas':
+                label['primary_category'] = JSON_KEYS_ORDER[2]
+            elif p['industry_structural']:
+                label['primary_category'] = JSON_KEYS_ORDER[3]
+            label['gov_tier'] = 'OFF_TOPIC'
+            label['ceo_priority'] = min(v20_int(label.get('ceo_priority'), 3), 2)
+            label['reason'] = 'v26.2: no central Korean public actor/action for Government section: ' + p['gov_reason']
+    if p['overseas_structural'] and label.get('primary_category') == JSON_KEYS_ORDER[2]:
+        label['ceo_priority'] = max(v20_int(label.get('ceo_priority'), 3), 4)
+        label['reason'] = (label.get('reason', '') + ' / v26.2: overseas structural industry candidate').strip(' /')
+    return label
+
+
+_BASE_v20_build_issues_v262 = v20_build_issues
+
+def v20_build_issues(candidates, labels):
+    issues, article_by_id = _BASE_v20_build_issues_v262(candidates, labels)
+    art_lookup = {int(a.get('id')): a for a in candidates if str(a.get('id', '')).isdigit()}
+    for issue in issues:
+        texts = []
+        for aid in issue.get('article_ids', []):
+            a = art_lookup.get(int(aid)) if str(aid).isdigit() else None
+            if a:
+                texts.append(v20_article_text(a) if 'v20_article_text' in globals() else v26_2_text(a))
+        joined = ' '.join(texts) or clean_html_text(f"{issue.get('issue_group','')} {issue.get('top_title','')}")
+        p = v26_2_article_profile(joined)
+        issue['v26_2_profile_roundup'] = p['is_roundup']
+        issue['v26_2_profile_gov_ok'] = p['gov_ok']
+        issue['v26_2_profile_gov_reason'] = p['gov_reason']
+        issue['v26_2_profile_market_stock'] = p['is_market_stock']
+        issue['v26_2_profile_industry_structural'] = p['industry_structural'] or p['overseas_structural']
+        score = float(issue.get('issue_score') or 0)
+        cat = issue.get('primary_category', '')
+        if p['is_market_stock']:
+            score -= 110
+        if cat == JSON_KEYS_ORDER[1] and not p['gov_ok']:
+            score -= 55
+        if cat == JSON_KEYS_ORDER[3] and p['is_roundup'] and not (p['industry_structural'] or p['overseas_structural']):
+            score -= 35
+        if cat == JSON_KEYS_ORDER[2] and p['overseas_structural']:
+            score += 12
+        issue['issue_score'] = round(score, 3)
+    issues = sorted(issues, key=lambda x: x.get('issue_score', 0), reverse=True)
+    for idx, issue in enumerate(issues, 1):
+        issue['issue_id'] = f"I{idx:03d}"
+    return issues, article_by_id
+
+
+_BASE_v20_issue_rows_v262 = v20_issue_rows
+
+def v20_issue_rows(issues):
+    rows = _BASE_v20_issue_rows_v262(issues)
+    for row, issue in zip(rows, issues):
+        row['v26_2_roundup'] = issue.get('v26_2_profile_roundup', '')
+        row['v26_2_gov_ok'] = issue.get('v26_2_profile_gov_ok', '')
+        row['v26_2_gov_reason'] = issue.get('v26_2_profile_gov_reason', '')
+        row['v26_2_market_stock'] = issue.get('v26_2_profile_market_stock', '')
+        row['v26_2_industry_structural'] = issue.get('v26_2_profile_industry_structural', '')
+    return rows
+
+
+_BASE_v20_issue_line_v262 = v20_issue_line
+
+def v20_issue_line(issue):
+    base = _BASE_v20_issue_line_v262(issue)
+    return base + f" profile_roundup={issue.get('v26_2_profile_roundup','')} gov_ok={issue.get('v26_2_profile_gov_ok','')} gov_reason={v20_clip(issue.get('v26_2_profile_gov_reason',''),70)} market_stock={issue.get('v26_2_profile_market_stock','')} industry_structural={issue.get('v26_2_profile_industry_structural','')}"
+
+
+# Make overseas refill structural, not stock/feature-stock.
+def v26_1_is_overseas_competitor_decision(decision, issue):
+    cat = v26_1_decision_category(decision, issue)
+    if cat != JSON_KEYS_ORDER[2]:
+        return False
+    text = clean_html_text(f"{issue.get('issue_group','')} {issue.get('top_title','')} {issue.get('issue_family','')}")
+    return v26_2_is_overseas_structural_text(text, issue.get('top_title', ''))
+
+
+def v26_1_is_good_refill_candidate(decision, issue, cat=None):
+    cat = cat or v26_1_decision_category(decision, issue)
+    if not issue:
+        return False
+    text = clean_html_text(f"{issue.get('issue_group','')} {issue.get('top_title','')} {issue.get('issue_family','')}")
+    p = v26_2_article_profile(text)
+    if p['is_market_stock']:
+        return False
+    if cat == JSON_KEYS_ORDER[1] and not p['gov_ok']:
+        return False
+    if cat == JSON_KEYS_ORDER[3] and not (p['industry_structural'] or p['overseas_structural']):
+        return False
+    ok, _ = v21_issue_allowed_basic(issue)
+    if not ok:
+        return False
+    if issue.get('self_tier') in {'LOW_VALUE_PR', 'OFF_TOPIC'}:
+        return False
+    if cat == JSON_KEYS_ORDER[0] and issue.get('self_tier') == 'FILLER_REFERENCE':
+        return False
+    if issue.get('gov_tier') in {'GOV_GENERAL_LOW_RELEVANCE', 'OFF_TOPIC'} and cat == JSON_KEYS_ORDER[1]:
+        return False
+    if issue.get('competitor_tier') in {'COMP_GENERAL_LOW_RELEVANCE', 'OFF_TOPIC'} and cat == JSON_KEYS_ORDER[2]:
+        return False
+    return True
+
+
+def v26_2_industry_pivot_score(item):
+    p = v26_2_article_profile(item)
+    if not (p['overseas_structural'] or p['industry_structural']):
+        return -9999
+    if p['is_market_stock'] or p['is_roundup']:
+        return -9999
+    score = v20_float(item.get('대표선택점수'), 0) * 0.35
+    if p['overseas_structural']:
+        score += 120
+    if p['competitor_scope'] == 'overseas':
+        score += 50
+    if re.search(r"\ud504\ub77c\uc774\ubc84\uc2dc|\ubcf4\uc548|\uc628\ub514\ubc14\uc774\uc2a4|\ub370\uc774\ud130\uc13c\ud130|AI\s*\ud329\ud1a0\ub9ac|\uc218\uc775\uc131|IPO|\uaddc\uc81c|\uc0dd\ud0dc\uacc4", p['text'], re.IGNORECASE):
+        score += 30
+    return round(score, 2)
+
+
+def v26_2_pivot_industry_from_competitor(items):
+    counts, _, _ = v21_final_counts(items)
+    if counts.get(JSON_KEYS_ORDER[3], 0) > 0:
+        return items, []
+    candidates = [x for x in items if x.get('카테고리') == JSON_KEYS_ORDER[2]]
+    candidates = sorted(candidates, key=v26_2_industry_pivot_score, reverse=True)
+    if not candidates or v26_2_industry_pivot_score(candidates[0]) < 0:
+        return items, []
+    chosen = candidates[0]
+    old_cat = chosen.get('카테고리', '')
+    if 'v23_set_final_category' in globals():
+        v23_set_final_category(chosen, JSON_KEYS_ORDER[3], 'v26_2_industry_empty_promote_structural_overseas')
+    else:
+        chosen['카테고리'] = JSON_KEYS_ORDER[3]
+        chosen['카테고리명'] = JSON_KEY_TO_DISPLAY.get(JSON_KEYS_ORDER[3], JSON_KEYS_ORDER[3])
+    chosen['v26_2_industry_pivot'] = f"from:{old_cat}:score={v26_2_industry_pivot_score(chosen)}"
+    return items, [(chosen, 'v26_2_promoted_competitor_overseas_to_industry')]
+
+
+_BASE_v26_final_item_priority_score_v262 = v26_final_item_priority_score
+
+def v26_final_item_priority_score(item):
+    p = v26_2_article_profile(item)
+    t = p['text']
+    cat = item.get('카테고리', '')
+    if p['is_market_stock']:
+        return -9999
+    base = v20_float(item.get('대표선택점수'), 0) * 0.25
+    today_score, _ = v26_todayness_score_text(t, item.get('게시일', ''))
+    score = base + today_score * 2
+    if cat == JSON_KEYS_ORDER[0]:
+        if not p['has_self']:
+            return -9999
+        bucket, bonus = v26_1_self_bucket(t) if 'v26_1_self_bucket' in globals() else ('self_reference', 0)
+        # Strong editorial ordering: today labor/incidents outrank investment analysis.
+        if bucket == 'self_labor':
+            score += 420
+        elif bucket == 'self_incident':
+            score += 330
+        elif bucket == 'self_leadership':
+            score += 260
+        elif bucket == 'self_governance':
+            score += 150
+        elif bucket == 'self_investment':
+            score += 60
+        else:
+            score += bonus
+        form = v26_article_form_from_text(t)
+        if form == 'analysis_with_direct_risk':
+            score += 35
+        elif form == 'analysis_feature':
+            score -= 80
+        elif form == 'market_commentary':
+            score -= 180
+        if bucket == 'self_investment' and not re.search(r"\uacf5\uc2dc|\ud655\uc815|\uacb0\uc815|\ucc98\ubd84|\ub9e4\uac01\s*\uc644\ub8cc|\uc81c\uc7ac|\uacfc\uc9d5\uae08|\uc2ec\uc0ac", t):
+            score -= 70
+    elif cat == JSON_KEYS_ORDER[1]:
+        score += 170 if p['gov_ok'] else -500
+    elif cat == JSON_KEYS_ORDER[2]:
+        if p['competitor_scope'] in {'domestic', 'mixed'}:
+            score += 120
+        elif p['competitor_scope'] == 'overseas':
+            score += 65
+        if p['overseas_structural']:
+            score += 35
+    elif cat == JSON_KEYS_ORDER[3]:
+        score += 160 if (p['industry_structural'] or p['overseas_structural']) else -120
+    return round(score, 2)
+
+
+_BASE_v21_remove_obvious_final_duplicates_v262 = v21_remove_obvious_final_duplicates
+
+def v21_remove_obvious_final_duplicates(final_items):
+    kept, removed = _BASE_v21_remove_obvious_final_duplicates_v262(final_items)
+    cleaned = []
+    for item in kept:
+        p = v26_2_article_profile(item)
+        cat = item.get('카테고리', '')
+        if p['is_market_stock']:
+            item['v26_2_final_repair'] = 'removed:market_stock'
+            removed.append((item, 'v26_2_market_stock_commentary_excluded'))
+            continue
+        if cat == JSON_KEYS_ORDER[1] and not p['gov_ok']:
+            item['v26_2_final_repair'] = 'removed:weak_gov:' + p['gov_reason']
+            removed.append((item, 'v26_2_government_without_central_public_actor_action:' + p['gov_reason']))
+            continue
+        if cat == JSON_KEYS_ORDER[3] and not (p['industry_structural'] or p['overseas_structural']):
+            item['v26_2_final_repair'] = 'removed:weak_industry'
+            removed.append((item, 'v26_2_industry_without_structural_basis'))
+            continue
+        cleaned.append(item)
+
+    cleaned, pivot_notes = v26_2_pivot_industry_from_competitor(cleaned)
+    removed.extend(pivot_notes)
+
+    order_base = {key: idx * 1000 for idx, key in enumerate(JSON_KEYS_ORDER, 1)}
+    for key in JSON_KEYS_ORDER:
+        bucket = [x for x in cleaned if x.get('카테고리') == key]
+        bucket_sorted = sorted(bucket, key=v26_final_item_priority_score, reverse=True)
+        for idx, item in enumerate(bucket_sorted, 1):
+            item['선정순서'] = order_base.get(key, 9000) + idx
+            item['v26_2_final_priority'] = v26_final_item_priority_score(item)
+    return cleaned, removed
+
+
+_BASE_v26_1_should_refill_after_repair_v262 = v26_1_should_refill_after_repair
+
+def v26_1_should_refill_after_repair(final_report_data):
+    if _BASE_v26_1_should_refill_after_repair_v262(final_report_data):
+        return True
+    counts, _, comp_overseas = v21_final_counts(final_report_data)
+    if counts.get(JSON_KEYS_ORDER[3], 0) <= 0:
+        return True
+    if any(v26_2_article_profile(x)['is_market_stock'] for x in final_report_data):
+        return True
+    if any(x.get('카테고리') == JSON_KEYS_ORDER[1] and not v26_2_article_profile(x)['gov_ok'] for x in final_report_data):
+        return True
+    if counts.get(JSON_KEYS_ORDER[2], 0) >= 2 and comp_overseas <= 0:
+        return True
+    return False
+
+
+_BASE_v20_gemini_edit_issues_v262 = v20_gemini_edit_issues
+
+def v20_gemini_edit_issues(client, issues, recent_past_text):
+    if not client:
+        raise RuntimeError('Gemini client 없음')
+    visible_issues = [i for i in sorted(issues, key=lambda x: x.get('issue_score', 0), reverse=True) if not i.get('exclude') and not i.get('is_pr')]
+    visible_issues = visible_issues[:V20_MAX_ISSUES_FOR_EDITOR]
+    issue_text = '\n'.join(v20_issue_line(i) for i in visible_issues)
+    prompt = f"""
+You are editing a daily Korean CEO/public-affairs briefing for Kakao.
+Select issue groups, not just articles. Return JSON only.
+
+Core principles:
+- Do not patch by a single title keyword. Judge the structure: main actor, official action, single issue vs roundup, structural industry change vs stock/market commentary.
+- Same URL/title is duplicate. Same event from the recent 7-day index can be kept only when it has a new stage or new official action.
+
+Self/Kakao:
+- Kakao direct entity is required.
+- Today's direct events outrank analysis: labor/strike, service incidents, privacy/security, lawsuits/regulatory action, leadership/organization, M&A/control.
+- Analysis/feature/investment-structure articles are allowed only after direct events.
+
+Government/National Assembly:
+- Requires a Korean public actor plus an official action or central public project.
+- Public-private MOU/project participation is allowed when the public actor/project is central.
+- A roundup that only mentions a public body in one item is not Government/National Assembly.
+- Foreign/EU/US/China/Japan policy goes to Competitor/Overseas unless directly connected to Korean obligations.
+
+Competitor/Overseas:
+- Prefer domestic competitors first, plus one structural overseas/global AI/big-tech issue when available.
+- Exclude stock/feature-stock/target-price articles.
+
+Industry:
+- Use for structural AI/platform/security/cloud/data-center/digital-asset trends.
+- If the pure industry pool is weak, an overseas/global big-tech structural trend may be placed here.
+- Do not use generic roundup as Industry unless it is the only meaningful structural item.
+
+Recommended size: 12-15 total; Self 3-5, Gov 3-5, Competitor/Overseas 3-4, Industry 1.
+
+JSON format:
+{{
+  "selected_issues": [
+    {{"issue_id": "I001", "category": "자사_및_계열사_이슈/정부_국회/경쟁사_해외이슈/산업동향", "priority": 5, "best_article_id": 123, "backup_article_ids": [124], "reason": "why"}}
+  ],
+  "backup_issues": [
+    {{"issue_id": "I050", "category": "경쟁사_해외이슈", "priority": 4, "best_article_id": 555, "backup_article_ids": [], "reason": "backup reason"}}
+  ]
+}}
+
+Recent 7-day index history:
+{recent_past_text[:4500]}
+
+Issue candidates:
+{issue_text}
+"""
+    text = gemini_generate_text(
+        client=client,
+        prompt=prompt,
+        task_name='v26.2 issue editor',
+        model=GEMINI_MODEL_EDITOR,
+    )
+    data = extract_json_object(text)
+    issue_by_id = {i['issue_id']: i for i in issues}
+    article_by_id = {}
+    for issue in issues:
+        for art_id in issue.get('article_ids', []):
+            article_by_id[int(art_id)] = {'id': int(art_id)}
+    decisions, backup_decisions = v20_normalize_issue_editor_json(data, issue_by_id, article_by_id)
+    return decisions, backup_decisions
+
+
+
+# =========================================================
+# v27 overrides: generic cross-section dedupe + industry basis guardrail
+# - 산업동향은 blacklist가 아니라 "디지털 산업 주체 + 구조 변화 + 카카오 영향 경로" 기준으로 판단
+# - '플랫폼' 단어 하나만으로 식품/교육/의료/관리 플랫폼을 산업동향으로 오인하지 않음
+# - 공정위/개보위/방미통위/금융위 등 공식 제재 사건은 actor+object 기반 사건키로 묶어
+#   정부/국회와 경쟁사/해외이슈에 중복 노출되는 것을 방지
+# =========================================================
+
+V6_VERSION = "google_rss_v27_generic_event_industry_guardrails"
+
+# 산업동향 2개까지 허용하는 기존 운영 원칙은 유지한다.
+CATEGORY_MAX[JSON_KEYS_ORDER[3]] = max(CATEGORY_MAX.get(JSON_KEYS_ORDER[3], 2), 2)
+CATEGORY_TARGET[JSON_KEYS_ORDER[3]] = max(CATEGORY_TARGET.get(JSON_KEYS_ORDER[3], 1), 1)
+
+V27_DIGITAL_COMPANY_RE = re.compile(
+    r"카카오|네이버|NAVER|쿠팡|Coupang|토스|비바리퍼블리카|배민|배달의민족|우아한형제들|"
+    r"구글|Google|오픈AI|OpenAI|챗GPT|ChatGPT|MS|Microsoft|마이크로소프트|메타|Meta|"
+    r"애플|Apple|앤트로픽|Anthropic|클로드|Claude|엔비디아|NVIDIA|오라클|Oracle|"
+    r"SKT|SK텔레콤|KT|LGU\+|LG유플러스|알리바바|Alibaba|우버|Uber",
+    re.IGNORECASE,
+)
+
+# 'AI 기반'처럼 기술이 수식어로만 붙는 경우는 actor로 보지 않기 위해
+# 기업/인프라/서비스 주체성 있는 표현을 별도 기준으로 둔다.
+V27_DIGITAL_INDUSTRY_ACTOR_RE = re.compile(
+    r"빅테크|AI\s*기업|AI\s*스타트업|인공지능\s*기업|LLM\s*기업|소프트웨어\s*기업|"
+    r"클라우드\s*(기업|사업자|서비스|플랫폼)|데이터센터|AI\s*데이터센터|AI\s*팩토리|"
+    r"GPU|NPU|AI\s*반도체|반도체\s*(기업|업계|생태계)|보안\s*(기업|업체|스타트업|솔루션)|"
+    r"사이버보안\s*(기업|업체|솔루션)|SaaS|오픈소스\s*(프로젝트|생태계|공급망)|개발자\s*도구",
+    re.IGNORECASE,
+)
+
+# 디지털 플랫폼은 '플랫폼' 단어만으로 인정하지 않고, 사업자/서비스/운영 영역이 같이 있어야 한다.
+V27_DIGITAL_PLATFORM_ACTOR_RE = re.compile(
+    r"플랫폼\s*사업자|온라인\s*플랫폼|디지털\s*플랫폼|앱마켓|포털|검색\s*(서비스|사업자|플랫폼)|"
+    r"SNS|소셜미디어|커머스\s*플랫폼|이커머스|배달앱|핀테크\s*플랫폼|광고\s*플랫폼|"
+    r"부가통신사업자|정보통신서비스\s*제공자",
+    re.IGNORECASE,
+)
+
+V27_PLATFORM_OPERATION_RE = re.compile(
+    r"이용자|판매자|입점|광고|추천|알고리즘|검색|정산|수수료|콘텐츠|게시물|개인정보|보안|"
+    r"결제|리뷰|다크패턴|자사우대|앱마켓|인앱결제|계정|로그인|오픈소스|개발자|API",
+    re.IGNORECASE,
+)
+
+V27_STRUCTURAL_CHANGE_RE = re.compile(
+    r"인수|합병|투자|투자\s*유치|전략적\s*투자|제휴|연동|출시|공개|도입|확대|증설|구축|"
+    r"상용화|표준|표준화|재편|전환|대전환|확산|수요\s*증가|비용\s*구조|수익\s*구조|"
+    r"시장\s*점유율|시장\s*구조|산업\s*구조|생태계|공급망|인프라|보안\s*수요|"
+    r"해킹|공격|취약점|악성코드|침해|리스크\s*부각|공급망\s*리스크|규제|법안|시행|의무화|가이드라인",
+    re.IGNORECASE,
+)
+
+V27_KAKAO_IMPACT_ROUTE_RE = re.compile(
+    r"카카오|네이버|쿠팡|토스|배민|배달의민족|구글|오픈AI|MS|마이크로소프트|메타|애플|앤트로픽|"
+    r"광고|커머스|콘텐츠|메신저|카카오톡|검색|추천|알고리즘|결제|핀테크|디지털자산|"
+    r"개인정보|보안|사이버보안|클라우드|데이터센터|GPU|NPU|AI\s*개발|AI\s*도구|오픈소스|"
+    r"개발자\s*도구|공급망|플랫폼\s*규제|이용자\s*보호|앱마켓|인앱결제|LLM|에이전트",
+    re.IGNORECASE,
+)
+
+V27_WEAK_NONSTRUCTURAL_FORM_RE = re.compile(
+    r"기자간담회|단순\s*소개|제품\s*소개|행사\s*소개|수상|브랜드\s*대상|특강|교육\s*실시|"
+    r"대학교|대학|교수|연구팀|논문|학회|캠퍼스|기관\s*홍보|신제품\s*출시|솔루션\s*출시",
+    re.IGNORECASE,
+)
+
+V27_KOREAN_ENFORCEMENT_ACTOR_RE = re.compile(
+    r"공정위|공정거래위원회|개보위|개인정보보호위원회|방미통위|방송미디어통신위원회|"
+    r"과기정통부|과학기술정보통신부|금융위|금융위원회|금감원|금융감독원|FIU|금융정보분석원|"
+    r"정부|국회|검찰|경찰|KISA|한국인터넷진흥원",
+    re.IGNORECASE,
+)
+
+V27_ENFORCEMENT_ACTION_RE = re.compile(
+    r"과징금|과태료|시정명령|제재|처분|고발|조사|직권조사|심의|전원회의|제재안|위반|"
+    r"표시광고법|공정거래법|개인정보보호법|전자상거래법|정보통신망법|약관법|동의의결",
+    re.IGNORECASE,
+)
+
+V27_PLATFORM_ENFORCEMENT_ACTOR_ALIASES = [
+    ("coupang", r"쿠팡|쿠팡이츠|Coupang"),
+    ("naver", r"네이버|NAVER"),
+    ("kakao", r"카카오톡|카카오페이|카카오뱅크|카카오모빌리티|카카오게임즈|카카오|Kakao"),
+    ("baemin", r"배달의민족|배민|우아한형제들"),
+    ("toss", r"토스|비바리퍼블리카"),
+    ("google", r"구글|Google|알파벳|Alphabet"),
+    ("apple", r"애플|Apple"),
+    ("meta", r"메타|Meta|페이스북|인스타그램|Instagram|Facebook"),
+    ("openai", r"오픈AI|OpenAI|챗GPT|ChatGPT"),
+    ("microsoft", r"MS|Microsoft|마이크로소프트"),
+]
+
+
+def v27_text(item):
+    if isinstance(item, dict):
+        return clean_html_text(
+            f"{item.get('기사제목','')} {item.get('title','')} {item.get('본문요약','')} "
+            f"{item.get('summary','')} {item.get('RSS요약','')} {item.get('본문전문','')[:3000]} "
+            f"{item.get('issue_group','')} {item.get('top_title','')} {item.get('Gemini이슈그룹','')} "
+            f"{item.get('v20_issue_group','')} {item.get('언론사','')}"
+        )
+    return clean_html_text(item)
+
+
+def v27_is_digital_platform_context(text):
+    t = clean_html_text(text)
+    if not t:
+        return False
+    if V27_DIGITAL_COMPANY_RE.search(t) and V27_PLATFORM_OPERATION_RE.search(t):
+        return True
+    if V27_DIGITAL_PLATFORM_ACTOR_RE.search(t) and V27_PLATFORM_OPERATION_RE.search(t):
+        return True
+    return False
+
+
+def v27_industry_basis(text, title=''):
+    """산업동향 통과 여부를 blacklist가 아니라 3요소 기준으로 판단한다.
+
+    통과 기준:
+    - 디지털 산업 주체성(actor)
+    - 구조 변화(change)
+    - 카카오/플랫폼 사업환경 영향 경로(bridge)
+    위 3개 중 최소 2개, 그리고 actor 또는 bridge 중 하나는 반드시 있어야 한다.
+    """
+    t = clean_html_text(text)
+    title = clean_html_text(title) or t[:260]
+    if not t:
+        return False, "empty", 0
+    if v26_2_is_stock_market_text(t, title):
+        return False, "market_stock", 0
+    if v26_2_is_roundup(t, title):
+        return False, "roundup", 0
+
+    front = t[:3200]
+    actor = bool(
+        V27_DIGITAL_COMPANY_RE.search(front)
+        or V27_DIGITAL_INDUSTRY_ACTOR_RE.search(front)
+        or v27_is_digital_platform_context(front)
+    )
+    change = bool(V27_STRUCTURAL_CHANGE_RE.search(front) or V26_2_INDUSTRY_STRUCTURE_SIGNAL_RE.search(front))
+    bridge = bool(V27_KAKAO_IMPACT_ROUTE_RE.search(front))
+
+    score = int(actor) + int(change) + int(bridge)
+
+    # 약한 개별 발표/연구/홍보 형식은 3요소가 모두 강할 때만 허용한다.
+    weak_form = bool(V27_WEAK_NONSTRUCTURAL_FORM_RE.search(front) or V26_2_WEAK_INDUSTRY_PROMO_RE.search(front))
+    if weak_form and score < 3:
+        return False, f"weak_form_without_full_basis:actor={actor},change={change},bridge={bridge}", score
+
+    # '플랫폼'이라는 일반명사만 있고 디지털 플랫폼 운영 맥락이 없으면 actor로 보지 않는다.
+    generic_platform_only = bool(re.search(r"플랫폼", front, re.I)) and not v27_is_digital_platform_context(front) and not V27_DIGITAL_COMPANY_RE.search(front)
+    if generic_platform_only and not (V27_DIGITAL_INDUSTRY_ACTOR_RE.search(front) and bridge):
+        # AI/플랫폼 단어가 있어도 카카오 사업환경과 연결되는 구조 변화가 아니면 제외.
+        if score < 3:
+            return False, f"generic_platform_without_digital_business_context:actor={actor},change={change},bridge={bridge}", score
+
+    if score >= 2 and (actor or bridge):
+        return True, f"industry_basis_pass:actor={actor},change={change},bridge={bridge}", score
+    return False, f"insufficient_industry_basis:actor={actor},change={change},bridge={bridge}", score
+
+
+_BASE_v26_2_is_structural_industry_text_v27 = v26_2_is_structural_industry_text
+
+def v26_2_is_structural_industry_text(text, title=''):
+    ok, _reason, _score = v27_industry_basis(text, title)
+    return ok
+
+
+_BASE_v26_2_is_overseas_structural_text_v27 = v26_2_is_overseas_structural_text
+
+def v26_2_is_overseas_structural_text(text, title=''):
+    t = clean_html_text(text)
+    if not t or v26_2_is_stock_market_text(t, title) or v26_2_is_roundup(t, title):
+        return False
+    ok, _reason, _score = v27_industry_basis(t, title)
+    if not ok:
+        return False
+    return bool(V26_2_OVERSEAS_STRUCTURAL_RE.search(t) or V27_DIGITAL_COMPANY_RE.search(t))
+
+
+_BASE_v26_2_article_profile_v27 = v26_2_article_profile
+
+def v26_2_article_profile(obj):
+    p = _BASE_v26_2_article_profile_v27(obj)
+    text = p.get('text') or v26_2_text(obj)
+    title = p.get('title') or v26_2_title(obj)
+    ok, reason, score = v27_industry_basis(text, title)
+    p['industry_structural'] = ok
+    p['overseas_structural'] = v26_2_is_overseas_structural_text(text, title)
+    p['v27_industry_ok'] = ok
+    p['v27_industry_reason'] = reason
+    p['v27_industry_score'] = score
+    p['v27_platform_enforcement_key'] = v27_platform_enforcement_key(obj, include_stage=False)
+    return p
+
+
+def v27_detect_enforcement_actor(text):
+    t = clean_html_text(text)
+    for key, pat in V27_PLATFORM_ENFORCEMENT_ACTOR_ALIASES:
+        if re.search(pat, t, re.IGNORECASE):
+            return key
+    return ""
+
+
+def v27_detect_enforcement_object(text):
+    t = clean_html_text(text)
+    if re.search(r"와우회원가|회원가|멤버십|쿠폰|할인가|상시\s*가격|기만\s*광고|허위\s*광고|표시광고|가격\s*광고", t, re.IGNORECASE):
+        return "deceptive_membership_price_ad"
+    if re.search(r"최혜대우|MFN|배달앱|쿠팡이츠|배민|수수료|정산|입점", t, re.IGNORECASE):
+        return "delivery_platform_fee_mfn"
+    if re.search(r"자사우대|검색\s*알고리즘|추천\s*알고리즘|노출\s*순위|검색\s*결과", t, re.IGNORECASE):
+        return "self_preferencing_algorithm"
+    if re.search(r"다크패턴|해지|환불|소비자\s*기만|기만\s*행위", t, re.IGNORECASE):
+        return "consumer_dark_pattern"
+    if re.search(r"개인정보|정보\s*유출|회원정보|고객정보|동의|제3자\s*제공|처리방침", t, re.IGNORECASE):
+        return "privacy_data_violation"
+    if re.search(r"인앱결제|앱마켓|수수료|결제\s*방식", t, re.IGNORECASE):
+        return "app_market_payment_fee"
+    if re.search(r"유해정보|불법정보|딥페이크|불법촬영|콘텐츠\s*차단|삭제\s*의무|필터링", t, re.IGNORECASE):
+        return "content_moderation_obligation"
+    return ""
+
+
+def v27_detect_enforcement_stage(text):
+    t = clean_html_text(text)
+    if re.search(r"과징금|과태료|시정명령|제재|처분|부과|법정\s*최고", t, re.IGNORECASE):
+        return "sanction_penalty"
+    if re.search(r"동의의결", t, re.IGNORECASE):
+        return "consent_decree"
+    if re.search(r"조사|직권조사|현장조사|심의|전원회의|제재안", t, re.IGNORECASE):
+        return "investigation_review"
+    if re.search(r"소송|행정소송|집단소송|고발|검찰", t, re.IGNORECASE):
+        return "litigation"
+    return "general"
+
+
+def v27_platform_enforcement_key(item, include_stage=True):
+    t = v27_text(item)
+    if not t:
+        return ""
+    # 공식 규제기관 또는 공식 제재/조사 액션이 없으면 단순 경쟁사 기사로 둔다.
+    if not (V27_KOREAN_ENFORCEMENT_ACTOR_RE.search(t) or V27_ENFORCEMENT_ACTION_RE.search(t)):
+        return ""
+    actor = v27_detect_enforcement_actor(t)
+    obj = v27_detect_enforcement_object(t)
+    if not actor or not obj:
+        return ""
+    stage = v27_detect_enforcement_stage(t)
+    if include_stage:
+        return f"platform_enforcement:{actor}:{obj}:{stage}"
+    return f"platform_enforcement:{actor}:{obj}"
+
+
+def v27_is_korean_official_enforcement(item):
+    t = v27_text(item)
+    return bool(v27_platform_enforcement_key(item, include_stage=False) and V27_KOREAN_ENFORCEMENT_ACTOR_RE.search(t))
+
+
+_BASE_v16_global_incident_key_v27 = v16_global_incident_key
+
+def v16_global_incident_key(item):
+    key = v27_platform_enforcement_key(item, include_stage=True)
+    if key:
+        parts = key.split(":")
+        # global_incident:platform_enforcement:actor:object:stage
+        if len(parts) == 4:
+            return f"global_incident:{parts[0]}:{parts[1]}:{parts[2]}:{parts[3]}"
+    return _BASE_v16_global_incident_key_v27(item)
+
+
+_BASE_v16_global_incident_base_key_v27 = v16_global_incident_base_key
+
+def v16_global_incident_base_key(item):
+    key = v27_platform_enforcement_key(item, include_stage=False)
+    if key:
+        parts = key.split(":")
+        # global_incident:platform_enforcement:actor:object
+        if len(parts) == 3:
+            return f"global_incident:{parts[0]}:{parts[1]}:{parts[2]}"
+    return _BASE_v16_global_incident_base_key_v27(item)
+
+
+_BASE_v26_event_key_for_item_v27 = v26_event_key_for_item
+
+def v26_event_key_for_item(item):
+    key = v27_platform_enforcement_key(item, include_stage=False)
+    if key:
+        return v26_normalize_event_key("v27:" + key)
+    return _BASE_v26_event_key_for_item_v27(item)
+
+
+_BASE_v24_topic_key_v27 = v24_topic_key
+
+def v24_topic_key(item):
+    key = v27_platform_enforcement_key(item, include_stage=False)
+    if key:
+        return "v27:" + key
+    return _BASE_v24_topic_key_v27(item)
+
+
+def v27_category_precedence_bonus(item):
+    if not v27_platform_enforcement_key(item, include_stage=False):
+        return 0
+    cat = item.get('카테고리') or item.get('JSON카테고리') or item.get('Gemini카테고리') or ''
+    t = v27_text(item)
+    # 국내 공식 제재/조사 사건은 정부/국회 대표를 우선한다.
+    if V27_KOREAN_ENFORCEMENT_ACTOR_RE.search(t):
+        if cat == JSON_KEYS_ORDER[1]:
+            return 140
+        if cat == JSON_KEYS_ORDER[2]:
+            return 35
+        if cat == JSON_KEYS_ORDER[3]:
+            return 10
+    return 0
+
+
+_BASE_v24_duplicate_survivor_score_v27 = v24_duplicate_survivor_score
+
+def v24_duplicate_survivor_score(item):
+    return float(_BASE_v24_duplicate_survivor_score_v27(item) or 0) + v27_category_precedence_bonus(item)
+
+
+_BASE_v26_final_item_priority_score_v27 = v26_final_item_priority_score
+
+def v26_final_item_priority_score(item):
+    return float(_BASE_v26_final_item_priority_score_v27(item) or 0) + v27_category_precedence_bonus(item)
+
+
+_BASE_final_duplicate_reason_v27 = final_duplicate_reason
+
+def final_duplicate_reason(new_item, existing_items):
+    new_key = v27_platform_enforcement_key(new_item, include_stage=False)
+    if new_key:
+        for old in existing_items:
+            old_key = v27_platform_enforcement_key(old, include_stage=False)
+            if old_key and old_key == new_key:
+                return old, f"v27_platform_enforcement_duplicate:{new_key}"
+    return _BASE_final_duplicate_reason_v27(new_item, existing_items)
+
+
+_BASE_should_replace_duplicate_representative_v27 = should_replace_duplicate_representative
+
+def should_replace_duplicate_representative(new_item, old_item, reason=""):
+    if str(reason).startswith("v27_platform_enforcement_duplicate"):
+        new_score = v20_float(new_item.get('대표선택점수'), 0) + v27_category_precedence_bonus(new_item)
+        old_score = v20_float(old_item.get('대표선택점수'), 0) + v27_category_precedence_bonus(old_item)
+        return new_score > old_score
+    return _BASE_should_replace_duplicate_representative_v27(new_item, old_item, reason)
+
+
+_BASE_v20_build_issues_v27 = v20_build_issues
+
+def v20_build_issues(candidates, labels):
+    issues, article_by_id = _BASE_v20_build_issues_v27(candidates, labels)
+    art_lookup = {int(a.get('id')): a for a in candidates if str(a.get('id', '')).isdigit()}
+    for issue in issues:
+        issue_text_parts = [clean_html_text(f"{issue.get('issue_group','')} {issue.get('top_title','')} {issue.get('issue_family','')}")]
+        event_keys = []
+        industry_reasons = []
+        for aid in issue.get('article_ids', []):
+            try:
+                a = art_lookup.get(int(aid))
+            except Exception:
+                a = None
+            if not a:
+                continue
+            issue_text_parts.append(v20_article_text(a) if 'v20_article_text' in globals() else v27_text(a))
+            key = v27_platform_enforcement_key(a, include_stage=False)
+            if key:
+                event_keys.append(key)
+            ok, reason, score = v27_industry_basis(v27_text(a), a.get('기사제목', ''))
+            industry_reasons.append(f"{ok}:{score}:{reason}")
+        joined = clean_html_text(' '.join(issue_text_parts))
+        if not event_keys:
+            key = v27_platform_enforcement_key({'기사제목': issue.get('top_title',''), '본문전문': joined}, include_stage=False)
+            if key:
+                event_keys.append(key)
+        ok, reason, score = v27_industry_basis(joined, issue.get('top_title', ''))
+        issue['v27_event_key'] = event_keys[0] if event_keys else ''
+        issue['v27_industry_ok'] = ok
+        issue['v27_industry_reason'] = reason
+        issue['v27_industry_score'] = score
+        # 산업동향 후보가 v27 기준 미달이면 issue score를 낮춘다. 단, 삭제는 최종 guardrail에서 수행.
+        if issue.get('primary_category') == JSON_KEYS_ORDER[3] and not ok:
+            issue['issue_score'] = round(float(issue.get('issue_score') or 0) - 70, 3)
+        if issue.get('v27_event_key') and issue.get('primary_category') == JSON_KEYS_ORDER[2] and V27_KOREAN_ENFORCEMENT_ACTOR_RE.search(joined):
+            issue['issue_score'] = round(float(issue.get('issue_score') or 0) - 25, 3)
+    issues = sorted(issues, key=lambda x: x.get('issue_score', 0), reverse=True)
+    for idx, issue in enumerate(issues, 1):
+        issue['issue_id'] = f"I{idx:03d}"
+    return issues, article_by_id
+
+
+_BASE_v20_issue_rows_v27 = v20_issue_rows
+
+def v20_issue_rows(issues):
+    rows = _BASE_v20_issue_rows_v27(issues)
+    for row, issue in zip(rows, issues):
+        row['v27_event_key'] = issue.get('v27_event_key', '')
+        row['v27_industry_ok'] = issue.get('v27_industry_ok', '')
+        row['v27_industry_reason'] = issue.get('v27_industry_reason', '')
+        row['v27_industry_score'] = issue.get('v27_industry_score', '')
+    return rows
+
+
+_BASE_v20_issue_line_v27 = v20_issue_line
+
+def v20_issue_line(issue):
+    base = _BASE_v20_issue_line_v27(issue)
+    return (
+        base
+        + f" v27_event_key={v20_clip(issue.get('v27_event_key',''),90)}"
+        + f" v27_industry_ok={issue.get('v27_industry_ok','')}"
+        + f" v27_industry_reason={v20_clip(issue.get('v27_industry_reason',''),90)}"
+    )
+
+
+_BASE_v23_final_category_guardrail_v27 = v23_final_category_guardrail
+
+def v23_final_category_guardrail(item, requested_category):
+    requested = v19_normalize_category_key(requested_category, fallback=JSON_KEYS_ORDER[3])
+    key = v27_platform_enforcement_key(item, include_stage=False)
+    if key and requested == JSON_KEYS_ORDER[2] and v27_is_korean_official_enforcement(item):
+        return 'reassign', JSON_KEYS_ORDER[1], 'v27_korean_official_platform_enforcement_to_gov:' + key
+    if requested == JSON_KEYS_ORDER[3]:
+        ok, reason, _score = v27_industry_basis(v27_text(item), v26_2_title(item))
+        if not ok:
+            return 'fail', requested, 'v27_industry_without_two_of_three_basis:' + reason
+    return _BASE_v23_final_category_guardrail_v27(item, requested_category)
+
+
+_BASE_is_report_item_relevant_v27 = is_report_item_relevant
+
+def is_report_item_relevant(report_item, json_key):
+    requested = v19_normalize_category_key(json_key, fallback=JSON_KEYS_ORDER[3])
+    if requested == JSON_KEYS_ORDER[3]:
+        ok, reason, _score = v27_industry_basis(v27_text(report_item), v26_2_title(report_item))
+        if not ok:
+            return False, 'v27_industry_without_two_of_three_basis:' + reason
+    if requested == JSON_KEYS_ORDER[2] and v27_platform_enforcement_key(report_item, include_stage=False) and v27_is_korean_official_enforcement(report_item):
+        return False, 'v27_korean_official_enforcement_should_be_gov'
+    return _BASE_is_report_item_relevant_v27(report_item, json_key)
+
+
+_BASE_rank_score_article_v27 = rank_score_article
+
+def rank_score_article(article):
+    score = float(_BASE_rank_score_article_v27(article) or 0)
+    key = v27_platform_enforcement_key(article, include_stage=False)
+    if key:
+        article['v27_event_key'] = key
+        if article.get('JSON카테고리') == JSON_KEYS_ORDER[1]:
+            score += 16
+        elif article.get('JSON카테고리') == JSON_KEYS_ORDER[2] and v27_is_korean_official_enforcement(article):
+            score -= 10
+    ok, reason, industry_score = v27_industry_basis(v27_text(article), article.get('기사제목', ''))
+    article['v27_industry_ok'] = 'Y' if ok else ''
+    article['v27_industry_reason'] = reason
+    article['v27_industry_score'] = industry_score
+    if article.get('JSON카테고리') == JSON_KEYS_ORDER[3]:
+        if ok:
+            score += 12
+        else:
+            score -= 55
+    article['랭킹점수'] = round(score, 3)
+    return article['랭킹점수']
+
+
+_BASE_v21_remove_obvious_final_duplicates_v27 = v21_remove_obvious_final_duplicates
+
+def v21_remove_obvious_final_duplicates(final_items):
+    kept, removed = _BASE_v21_remove_obvious_final_duplicates_v27(final_items)
+    # 같은 국내 공식 플랫폼 제재 사건이 섹션을 달리해 남아 있으면 한 번 더 병합한다.
+    groups = {}
+    for item in kept:
+        key = v27_platform_enforcement_key(item, include_stage=False)
+        if key:
+            groups.setdefault(key, []).append(item)
+    remove_ids = set()
+    for key, group in groups.items():
+        if len(group) <= 1:
+            continue
+        winner = max(group, key=lambda x: v20_float(x.get('대표선택점수'), 0) + v27_category_precedence_bonus(x))
+        for item in group:
+            if item is winner:
+                item['v27중복대표선택'] = f"kept:{key}"
+                continue
+            item['v27중복대표선택'] = f"removed:{key}:winner={winner.get('기사제목','')[:80]}"
+            removed.append((item, f"v27_cross_section_platform_enforcement_duplicate:{key}"))
+            remove_ids.add(id(item))
+    kept = [item for item in kept if id(item) not in remove_ids]
+
+    # 산업동향은 최대 2개 허용하되, v27 기준 미달은 최종에서 제거한다.
+    cleaned = []
+    for item in kept:
+        if item.get('카테고리') == JSON_KEYS_ORDER[3]:
+            ok, reason, _score = v27_industry_basis(v27_text(item), v26_2_title(item))
+            if not ok:
+                item['v27최종수리결과'] = 'removed:weak_industry:' + reason
+                removed.append((item, 'v27_industry_without_two_of_three_basis:' + reason))
+                continue
+        cleaned.append(item)
+    order_base = {key: idx * 1000 for idx, key in enumerate(JSON_KEYS_ORDER, 1)}
+    for key in JSON_KEYS_ORDER:
+        bucket = [x for x in cleaned if x.get('카테고리') == key]
+        bucket_sorted = sorted(bucket, key=v26_final_item_priority_score, reverse=True)
+        for idx, item in enumerate(bucket_sorted, 1):
+            item['선정순서'] = order_base.get(key, 9000) + idx
+            item['v27_final_priority'] = v26_final_item_priority_score(item)
+    return cleaned, removed
+
+
+# Final editor prompt override: teaches Gemini the generic rules before code guardrails run.
+def v20_gemini_edit_issues(client, issues, recent_past_text):
+    if not client:
+        raise RuntimeError('Gemini client 없음')
+    visible_issues = [i for i in sorted(issues, key=lambda x: x.get('issue_score', 0), reverse=True) if not i.get('exclude') and not i.get('is_pr')]
+    visible_issues = visible_issues[:V20_MAX_ISSUES_FOR_EDITOR]
+    issue_text = '\n'.join(v20_issue_line(i) for i in visible_issues)
+    prompt = f"""
+You are editing a daily Korean CEO/public-affairs briefing for Kakao.
+Select issue groups, not just articles. Return JSON only.
+
+Core principles:
+- Do not patch by a single title keyword. Judge the structure: main actor, official action, single issue vs roundup, structural industry change vs stock/market commentary.
+- Same URL/title is duplicate. Same event from the recent 7-day index can be kept only when it has a new stage or new official action.
+- If two issues share the same v27_event_key, select only one. If the shared event is a Korean regulator's official enforcement/action, keep it in Government/National Assembly rather than Competitor/Overseas.
+
+Self/Kakao:
+- Kakao direct entity is required.
+- Today's direct events outrank analysis: labor/strike, service incidents, privacy/security, lawsuits/regulatory action, leadership/organization, M&A/control.
+- Analysis/feature/investment-structure articles are allowed only after direct events.
+
+Government/National Assembly:
+- Requires a Korean public actor plus an official action or central public project.
+- Public-private MOU/project participation is allowed when the public actor/project is central.
+- A roundup that only mentions a public body in one item is not Government/National Assembly.
+- Foreign/EU/US/China/Japan policy goes to Competitor/Overseas unless directly connected to Korean obligations.
+- A Korean regulator action against a platform/company, such as a fine, corrective order, investigation, consent decree, or formal review, belongs here. Do not duplicate the same event in Competitor/Overseas.
+
+Competitor/Overseas:
+- Prefer domestic competitors first, plus one structural overseas/global AI/big-tech issue when available.
+- Exclude stock/feature-stock/target-price articles.
+- If a competitor article is mainly a Korean regulator's official enforcement action, it should be Government/National Assembly, not a duplicate competitor item.
+
+Industry:
+- Industry may have 1-2 items when genuinely useful.
+- Do not treat the word "platform" alone as Industry. A management/safety/research platform is not enough.
+- Select Industry only when at least two of these are clear: (1) digital/AI/platform/cloud/security/data-center actor, (2) structural change such as investment, adoption, market shift, supply-chain/security risk, regulation, infrastructure expansion, (3) impact route to Kakao's business environment such as ads, commerce, content, messenger, fintech, privacy/security, cloud/data-center, AI tools, open-source supply chain, or platform regulation.
+- Do not use generic roundup as Industry unless it is the only meaningful structural item.
+
+Recommended size: 12-15 total; Self 3-5, Gov 3-5, Competitor/Overseas 3-4, Industry 1-2.
+
+JSON format:
+{{
+  "selected_issues": [
+    {{"issue_id": "I001", "category": "자사_및_계열사_이슈/정부_국회/경쟁사_해외이슈/산업동향", "priority": 5, "best_article_id": 123, "backup_article_ids": [124], "reason": "why"}}
+  ],
+  "backup_issues": [
+    {{"issue_id": "I050", "category": "경쟁사_해외이슈", "priority": 4, "best_article_id": 555, "backup_article_ids": [], "reason": "backup reason"}}
+  ]
+}}
+
+Recent 7-day index history:
+{recent_past_text[:4500]}
+
+Issue candidates:
+{issue_text}
+"""
+    text = gemini_generate_text(
+        client=client,
+        prompt=prompt,
+        task_name='v27 issue editor',
+        model=GEMINI_MODEL_EDITOR,
+    )
+    data = extract_json_object(text)
+    issue_by_id = {i['issue_id']: i for i in issues}
+    article_by_id = {}
+    for issue in issues:
+        for art_id in issue.get('article_ids', []):
+            article_by_id[int(art_id)] = {'id': int(art_id)}
+    decisions, backup_decisions = v20_normalize_issue_editor_json(data, issue_by_id, article_by_id)
+    return decisions, backup_decisions
+
+
 
 if __name__ == "__main__":
     main()
