@@ -7,10 +7,17 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-NEWS_SCRIPT = os.getenv("NEWS_SCRIPT", "ceo_news_briefing_google_rss_v24.py")
-REPORT_TXT = os.path.join(BASE_DIR, "CEO_Morning_Briefing.txt")
+NEWS_SCRIPT = os.getenv("NEWS_SCRIPT", "ceo_news_briefing_google_rss_v27.py")
 DATA_DIR = os.path.join(BASE_DIR, "data_news")
 
+def get_report_txt_path():
+    date_key = datetime.now().strftime("%Y-%m-%d")
+    return os.path.join(
+        DATA_DIR,
+        "daily",
+        date_key,
+        f"CEO_Morning_Briefing_{date_key}.txt"
+    )
 CATEGORY_ORDER = [
     "자사 및 계열사 이슈",
     "정부/국회",
@@ -182,7 +189,10 @@ def push_to_github(date_key):
 
 def main():
     run_news_crawler()
-    parsed = parse_briefing_txt(REPORT_TXT)
+
+    report_txt = get_report_txt_path()
+    parsed = parse_briefing_txt(report_txt)
+
     date_key, _ = save_news_json(parsed)
     push_to_github(date_key)
 
