@@ -2497,13 +2497,156 @@ def build_fallback_briefing(final_report_data):
             lines.append(f"{num} {title}")
             lines.append(link)
             lines.append(f"({press})")
+
+            tag_line = build_display_tag_line(item)
+            if tag_line:
+                lines.append(tag_line)
+
             lines.append(summarize_body_locally(title, body))
             lines.append("")
 
     return "\n".join(lines).strip()
 
 
+# ==========================================
+# Display tags for briefing UI
+# ==========================================
 
+DISPLAY_TAG_MAP = {
+    # Gemini internal/category style
+    "SELF_DIRECT_RISK": "#자사리스크",
+    "SELF_AFFILIATE_BUSINESS": "#자사계열",
+    "SELF_INCLUDED_REGULATION": "#자사관련규제",
+    "GOV_PLATFORM_REGULATION": "#플랫폼규제",
+    "GOV_AI_DIGITAL_POLICY": "#AI정책",
+    "GOV_FINANCIAL_DIGITAL_POLICY": "#디지털금융",
+    "COMPETITOR_PLATFORM_RISK": "#경쟁사리스크",
+    "COMPETITOR_AI_STRATEGY": "#경쟁사전략",
+    "INDUSTRY_STRUCTURAL_CHANGE": "#산업구조변화",
+
+    # issue/event tags
+    "labor_dispute": "#노사갈등",
+    "labor_negotiation": "#임단협",
+    "labor_law_complaint": "#노무리스크",
+    "privacy_security_reliability": "#개인정보",
+    "legal_regulatory_enforcement": "#규제제재",
+    "platform_obligation": "#플랫폼의무",
+    "ai_infrastructure_security": "#AI인프라",
+    "policy_legislation": "#정책입법",
+    "digital_asset_stablecoin": "#디지털자산",
+    "market_power_platform": "#플랫폼경쟁",
+    "strategy_mna_governance": "#지배구조",
+    "financial_performance": "#실적",
+
+    # common issue families
+    "self_labor": "#노사갈등",
+    "self_legal_regulatory": "#자사리스크",
+    "self_privacy_security": "#개인정보",
+    "self_governance_mna": "#지배구조",
+    "government_platform_regulation": "#플랫폼규제",
+    "government_ai_policy": "#AI정책",
+    "government_digital_finance_policy": "#디지털금융",
+    "competitor_ai_strategy": "#경쟁사전략",
+    "competitor_security_risk": "#경쟁사리스크",
+    "competitor_business_strategy": "#경쟁사전략",
+    "industry_ai_infrastructure": "#AI인프라",
+}
+
+DISPLAY_ENTITY_TAGS = [
+    "카카오", "카카오페이", "카카오뱅크", "카카오모빌리티", "카카오게임즈",
+    "네이버", "쿠팡", "SKT", "KT", "LGU+", "구글", "오픈AI", "MS", "메타",
+    "애플", "앤트로픽", "엔비디아", "토스", "배달의민족", "배민",
+    "공정위", "금융위", "금감원", "과기정통부", "방미통위", "개보위",
+]
+
+def normalize_display_tag(value):
+    value = clean_html_text(value)
+    if not value:
+        return ""
+    if value.startswith("#"):
+        return value
+
+    mapped = DISPLAY_TAG_MAP.get(value)
+    if mapped:
+        return mapped
+
+    # 너무 긴 설명형 값은 태그로 쓰지 않음
+    if len(value) > 18:
+        return ""
+
+    # 영문 코드형인데 매핑이 없으면 화면에 노출하지 않음
+    if re.fullmatch(r"[A-Z0-9_]+", value) or re.fullmatch(r"[a-z0-9_]+", value):
+        return ""
+
+    value = re.sub(r"\s+", "", value)
+    value = re.sub(r"[^0-9A-Za-z가-힣+]", "", value)
+    if not value:
+        return ""
+    return f"#{value}"
+
+def split_tag_values(value):
+    value = clean_html_text(value)
+    if not value:
+        return []
+    parts = re.split(r"[,;/|]+", value)
+    return [p.strip() for p in parts if p.strip()]
+
+def build_display_tags(item, max_tags=4):
+    tags = []
+
+    def add_tag(tag):
+        tag = normalize_display_tag(tag)
+        if tag and tag not in tags:
+            tags.append(tag)
+
+    # 1) 관점 태그: 최우선
+    for col in ["Gemini내부카테고리", "internal_category", "Gemini카테고리"]:
+        val = item.get(col, "")
+        if val:
+            add_tag(val)
+            break
+
+    # 카테고리 fallback
+    if not tags:
+        cat = item.get("카테고리", "")
+        if cat == "자사_및_계열사_이슈":
+            add_tag("#자사이슈")
+        elif cat == "정부_국회":
+            add_tag("#정부정책")
+        elif cat == "경쟁사_해외이슈":
+            add_tag("#경쟁사해외")
+        elif cat == "산업동향":
+            add_tag("#산업동향")
+
+    # 2) 사건/이슈 유형 태그
+    for col in ["사건태그", "issue_family", "이슈패밀리", "v20_issue_family", "Gemini이슈유형"]:
+        for val in split_tag_values(item.get(col, "")):
+            add_tag(val)
+            if len(tags) >= max_tags:
+                return tags
+
+    # 3) 주요 주체 태그
+    entity_text = " ".join(str(item.get(col, "")) for col in [
+        "주요주체", "Gemini이슈그룹", "v20_issue_group", "기사제목", "본문전문"
+    ])
+    for entity in DISPLAY_ENTITY_TAGS:
+        if entity in entity_text:
+            add_tag(f"#{entity}")
+            if len(tags) >= max_tags:
+                return tags
+
+    # 4) 규제의무 보조 태그
+    if item.get("정책규제의무") == "Y":
+        add_tag("#규제의무")
+
+    if item.get("자사홍보성") == "Y":
+        add_tag("#홍보성")
+
+    return tags[:max_tags]
+
+def build_display_tag_line(item):
+    tags = build_display_tags(item)
+    return " ".join(tags)
 
 def build_structured_briefing(final_report_data, summary_map=None):
     """Gemini에는 요약문만 맡기고, 최종 레이아웃은 코드가 고정 생성."""
@@ -2533,6 +2676,11 @@ def build_structured_briefing(final_report_data, summary_map=None):
             lines.append(f"{num} {item.get('기사제목', '')}")
             lines.append(item.get("링크", ""))
             lines.append(f"({item.get('언론사', '') or guess_press_name_from_url(item.get('링크', ''))})")
+
+            tag_line = build_display_tag_line(item)
+            if tag_line:
+                lines.append(tag_line)
+
             lines.append(summary)
             lines.append("")
 
