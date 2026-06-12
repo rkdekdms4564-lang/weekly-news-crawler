@@ -2514,6 +2514,19 @@ def build_fallback_briefing(final_report_data):
 
 DISPLAY_TAG_MAP = {
     # Gemini internal/category style
+    "자사_및_계열사_이슈": "#자사이슈",
+    "정부_국회": "#정부정책",
+    "경쟁사_해외이슈": "#경쟁사해외",
+    "산업동향": "#산업동향",
+    "platform_operator_obligation": "#플랫폼의무",
+    "self:platform_obligation": "#플랫폼의무",
+    "government:platform_obligation": "#플랫폼규제",
+    "competitor:platform_obligation": "#플랫폼의무",
+    "자사 직접 리스크": "#자사리스크",
+    "플랫폼 사업자 의무/규제": "#플랫폼규제",
+    "경쟁사 전략": "#경쟁사전략",
+    "산업 구조 변화": "#산업구조변화",
+    "홍보/후원/프로모션": "#홍보성",
     "SELF_DIRECT_RISK": "#자사리스크",
     "SELF_AFFILIATE_BUSINESS": "#자사계열",
     "SELF_INCLUDED_REGULATION": "#자사관련규제",
