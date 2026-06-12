@@ -64,6 +64,23 @@
   .briefing-title a { color: #1a3a5c; text-decoration: none; }
   .briefing-title a:hover { text-decoration: underline; }
   .briefing-meta { font-size: 0.78rem; color: #6b7280; margin-bottom: 0.55rem; }
+  .briefing-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.15rem 0 0.7rem 0;
+  }
+  .briefing-tag {
+    display: inline-block;
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    background: #eef3f8;
+    border: 1px solid #d6e0ea;
+    color: #3f5872;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
   .briefing-summary { font-size: 0.85rem; line-height: 1.7; color: #333; }
   .briefing-empty { background: white; border: 1px solid #eee; color: #999; padding: 2rem; text-align: center; border-radius: 4px; }
   .briefing-header-row { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -445,10 +462,11 @@ function parseBriefingText(text) {
     const articleMatch = line.match(/^(?:\d+️⃣|🔟|\d+[.)])\s*(.+)$/);
     if (articleMatch && currentCategory) {
       flushItem();
-      currentItem = {
+        currentItem = {
         title: articleMatch[1].trim(),
         link: "",
         source: "",
+        tags: [],
         summaryLines: []
       };
       continue;
@@ -464,6 +482,14 @@ function parseBriefingText(text) {
     const sourceMatch = line.match(/^\((.+)\)$/);
     if (sourceMatch && !currentItem.source) {
       currentItem.source = sourceMatch[1].trim();
+      continue;
+    }
+
+    if (/^#\S+/.test(line)) {
+      currentItem.tags = line
+        .split(/\s+/)
+        .map(t => t.trim())
+        .filter(t => /^#\S+/.test(t));
       continue;
     }
 
@@ -514,6 +540,9 @@ function renderDailyNews(dateKey, parsed) {
       const link = escapeHtml(rawLink);
       const source = escapeHtml(item.source || "");
       const summary = formatNewsText(item.summary || "");
+      const tags = (item.tags || [])
+        .map(tag => `<span class="briefing-tag">${escapeHtml(tag)}</span>`)
+        .join("");
 
       html += `
         <div class="briefing-item">
@@ -521,6 +550,7 @@ function renderDailyNews(dateKey, parsed) {
             ${rawLink ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${idx + 1}. ${title}</a>` : `${idx + 1}. ${title}`}
           </div>
           <div class="briefing-meta">${source ? `(${source})` : ""}</div>
+          ${tags ? `<div class="briefing-tags">${tags}</div>` : ""}
           <div class="briefing-summary">${summary || "요약문이 없습니다."}</div>
         </div>
       `;
