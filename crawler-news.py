@@ -7,7 +7,7 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-NEWS_SCRIPT = os.getenv("NEWS_SCRIPT", "ceo_news_briefing_google_rss_v33.py")
+NEWS_SCRIPT = os.getenv("NEWS_SCRIPT", "ceo_news_briefing_google_rss_v40.py")
 DATA_DIR = os.path.join(BASE_DIR, "data_news")
 
 def get_report_txt_path():
