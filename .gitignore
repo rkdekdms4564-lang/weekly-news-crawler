@@ -1,2 +1,5 @@
 secret.txt
 secret_naver.txt
+__pycache__/
+*.pyc
+.DS_Store
