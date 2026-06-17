@@ -2680,20 +2680,20 @@ def build_structured_briefing(final_report_data, summary_map=None):
             num = number_emojis[idx - 1] if idx <= len(number_emojis) else f"{idx}."
             brief_id = str(item.get("브리핑ID", ""))
             summary = clean_html_text(summary_map.get(brief_id, ""))
+
             if not summary:
-                summary = summarize_body_locally(item.get("기사제목", ""), item.get("본문전문", ""))
+                if str(item.get("본문상태", "")).startswith("본문추출실패"):
+                    summary = ""
+                else:
+                    summary = summarize_body_locally(item.get("기사제목", ""), item.get("본문전문", ""))
+
             # 마침표와 종결어미 보정
-            if not summary.endswith("."):
+            if summary and not summary.endswith("."):
                 summary = summary.rstrip() + "."
 
             lines.append(f"{num} {item.get('기사제목', '')}")
             lines.append(item.get("링크", ""))
             lines.append(f"({item.get('언론사', '') or guess_press_name_from_url(item.get('링크', ''))})")
-
-            tag_line = build_display_tag_line(item)
-            if tag_line:
-                lines.append(tag_line)
-
             lines.append(summary)
             lines.append("")
 
@@ -13340,9 +13340,7 @@ def v20_create_bodyless_report_item(article_info, issue, decision, json_key, rea
 
 
 def v20_bodyless_summary(item):
-    if item.get("링크상태") == "bad":
-        return "원문 본문과 링크 접근이 모두 제한되어 세부 요약은 생략함. 제목·발행사 기준으로만 포함했으며 별도 원문 확인이 필요함."
-    return "원문 본문 자동 추출 및 동일 이슈 대체 기사 확인이 제한되어 세부 요약은 생략함. 제목·발행사·링크 기준으로 포함했으며 원문 확인이 필요함."
+    return ""
 
 
 # More explicit QA prompt and JSON parser/gate.
