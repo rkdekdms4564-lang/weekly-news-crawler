@@ -40,9 +40,15 @@ jobs:
 
       - name: Create secret files
         run: |
-          printf '%s' "${{ secrets.GEMINI_API_KEY }}" > secret.txt
-          printf '%s\n%s\n' "${{ secrets.NAVER_CLIENT_ID }}" "${{ secrets.NAVER_CLIENT_SECRET }}" > secret_naver.txt
-
+          printf "%s" "${GEMINI_API_KEY}" > secret.txt
+          printf "%s\n%s\n" "${NAVER_CLIENT_ID}" "${NAVER_CLIENT_SECRET}" > secret_naver.txt
+      
+          test -s secret.txt
+          test -s secret_naver.txt
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
