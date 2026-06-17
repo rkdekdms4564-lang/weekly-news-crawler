@@ -2,17 +2,15 @@
   "overall": "주의",
   "warnings": [
     "QA failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing. Learn more at https://ai.google.dev/gemini-api/docs/billing#prepay. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-    "자사/계열사 섹션이 1개로 v28 기준 최소 2개보다 적음",
     "경쟁사/해외 섹션 부적합 가능: 美 앤스로픽 '차단' 속…과기정통부, 오픈AI와 'AI 안전' 협력 강화 / v28_korean_regulator_action_not_competitor_duplicate",
-    "v43 품질통과 후보 부족: 자사 및 계열사 이슈 1건 / hard minimum 2건",
-    "v43 품질통과 후보 부족: 정부/국회 2건 / hard minimum 3건"
+    "섹션 부적합 가능: 정부_국회 / 美 '미토스5' 빗장 걸자 노 젓는 구글…韓 AI 보안 플랫폼 시장 '정조준'(종합) / korean_regulator_enforcement_against_competitor_as_competitor_risk",
+    "v43 품질통과 후보 부족: 정부/국회 2건 / hard minimum 3건",
+    "v43 품질통과 후보 부족: 산업동향 0건 / hard minimum 1건"
   ],
   "suggested_human_checks": [
-    "자사/계열사 섹션이 1개로 v28 기준 최소 2개보다 적음",
     "경쟁사/해외 섹션 부적합 가능: 美 앤스로픽 '차단' 속…과기정통부, 오픈AI와 'AI 안전' 협력 강화 / v28_korean_regulator_action_not_competitor_duplicate",
-    "자사 직접 리스크가 적은 날에는 v40 기준으로 MOU/사업확장/소프트 홍보 후보까지 검토했으나 충분한 후보가 없었음",
-    "v41: 자사 직접 리스크가 없으면 실제 카카오 행위 주체가 있는 MOU/사업확장/소프트 홍보 후보만 추가 검토함",
-    "v42: daily-safe rescue counts self=1, gov=2, comp=5, industry=1",
-    "v43: hard_min self=1/2, gov=2/3, comp=5/3, industry=1/1; soft_target self=3, gov=5, comp=4, industry=1"
+    "섹션 부적합 가능: 정부_국회 / 美 '미토스5' 빗장 걸자 노 젓는 구글…韓 AI 보안 플랫폼 시장 '정조준'(종합) / korean_regulator_enforcement_against_competitor_as_competitor_risk",
+    "v42: daily-safe rescue counts self=2, gov=2, comp=5, industry=0",
+    "v43: hard_min self=2/2, gov=2/3, comp=5/3, industry=0/1; soft_target self=3, gov=5, comp=4, industry=1"
   ]
 }
