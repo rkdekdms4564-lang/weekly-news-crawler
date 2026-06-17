@@ -1,0 +1,57 @@
+name: Daily crawlers
+
+on:
+  schedule:
+    # KST 월~금 09:00 실행
+    # GitHub cron은 UTC 기준이라, UTC 일~목 22:30 = KST 월~금 07:30
+    - cron: "0 0 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-crawlers
+  cancel-in-progress: false
+
+jobs:
+  run-daily-crawlers:
+    runs-on: ubuntu-latest
+
+    env:
+      TZ: Asia/Seoul
+      NEWS_SCRIPT: ceo_news_briefing_google_rss_v44.py
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 urllib3 pandas feedparser newspaper3k trafilatura googlenewsdecoder google-generativeai google-genai lxml_html_clean
+
+      - name: Create secret files
+        run: |
+          printf '%s' "${{ secrets.GEMINI_API_KEY }}" > secret.txt
+          printf '%s\n%s\n' "${{ secrets.NAVER_CLIENT_ID }}" "${{ secrets.NAVER_CLIENT_SECRET }}" > secret_naver.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run personnel crawler
+        run: |
+          python crawler-personnel.py
+
+      - name: Run news crawler
+        run: |
+          python crawler-news.py

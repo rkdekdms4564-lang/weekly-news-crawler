@@ -188,13 +188,29 @@ def fetch_naver_news_and_summarize(agency, keyword, start_date, end_date, prev_i
 def push_to_github(file_name):
     try:
         print("\n🚀 깃허브로 인사/부고 데이터를 배달합니다...")
-        subprocess.run(["git", "add", "."], check=True)
+
+        subprocess.run(["git", "add", "data_personnel"], cwd=BASE_DIR, check=True)
+
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "data_personnel"],
+            cwd=BASE_DIR,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+
+        if not status.stdout.strip():
+            print("✨ 변경된 인사/부고 데이터가 없습니다.")
+            return
+
         commit_msg = f"Update personnel: {file_name}"
-        subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-        subprocess.run(["git", "push", "origin", "main"], check=True)
+        subprocess.run(["git", "commit", "-m", commit_msg], cwd=BASE_DIR, check=True)
+        subprocess.run(["git", "push", "origin", "main"], cwd=BASE_DIR, check=True)
+
         print("✅ 배달 완료!")
+
     except Exception as e:
-        print("✨ 변경된 내역이 없거나 배달을 건너뜁니다.")
+        print(f"✨ 변경된 내역이 없거나 배달을 건너뜁니다: {e}")
 
 def main():
     now = datetime.now()
