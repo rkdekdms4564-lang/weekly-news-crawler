@@ -1,0 +1,98 @@
+{
+  "date": "2026-06-30",
+  "generated_at": "2026-06-30 12:18",
+  "header": "[6월 30일(화) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "카카오, KT클라우드와 안전한 AI생태계 구축 ‘맞손’",
+        "link": "https://www.itbiznews.com/news/articleView.html?idxno=217652",
+        "source": "IT비즈뉴스",
+        "summary": "김소현 기자 입력 2026.06.29 09:41 댓글 0 가 가 기사의 본문 내용은 이 글자크기로 변경됨. 카카오는 KT클라우드와 이같은 내용의 양해각서를 체결하고 양사 기술을 결합해 안전한 AI생태계 구축을 위한 협력에 나선다고 밝힘."
+      },
+      {
+        "title": "카카오게임즈 매각김태환 체제 첫 과제는 '자회사 재편'…4Q가 분수령 : 네이버 블로그",
+        "link": "https://blog.naver.com/dealsite/224329113429?viewType=pc",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "카카오페이證 MTS 접속장애…\"현재는 정상화\"",
+        "link": "https://mobile.newsis.com/view_amp.html?ar_id=NISX20260630_0003688695",
+        "source": "뉴시스",
+        "summary": "카카오페이證 MTS 접속장애…\"현재는 정상화\" 기사등록 2026/06/30 08:06:17 최종수정 2026/06/30 09:12:24 [서울=뉴시스] 김진아 기자 = 카카오페이증권 모바일트레이딩시스템(MTS)에서 30일 오전 시스템 장애로 인한 서비스 이용 차질이 빚어진 것으로 확인됐음."
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "KISA, 딥페이크 억제 등 AI 개인정보 활용 연구 착수",
+        "link": "https://www.msn.com/ko-kr/news/other/kisa-%EB%94%A5%ED%8E%98%EC%9D%B4%ED%81%AC-%EC%96%B5%EC%A0%9C-%EB%93%B1-ai-%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4-%ED%99%9C%EC%9A%A9-%EC%97%B0%EA%B5%AC-%EC%B0%A9%EC%88%98/ar-AA26MhYY",
+        "source": "MSN",
+        "summary": ""
+      },
+      {
+        "title": "이강일 의원, 글로벌 빅테크 조세회피 차단법 대표발의",
+        "link": "https://www.dtoday.co.kr/news/articleView.html?idxno=777832",
+        "source": "일간투데이",
+        "summary": "국외 특수관계자 거래 공시 의무화…과세 형평성 강화 디지털서비스세 도입 근거 마련…국부 유출 차단 추진 [일간투데이 신형수 기자]더불어민주당 이강일 의원(국회 정무위원회)이 국내에서 막대한 수익을 올리면서도 국외 특수관계자를 활용해 세금을 회피하는 글로벌 플랫폼 기업의 조세회피를 막기 위한 '국제조세조정에 관한 법률 일부개정법률안'을 대표발의했다고 29일 밝힘. 이 의원은 \"글로벌 빅테크 기업의 조세회피 구조를 더 이상 방치할 수 없다\"며 \"국부 유출을 막고 국내 기업과의 과세 형평성을 확보해 디지털 경제 시대에 맞는 공정한 조세 질서를 확립하겠다\"고 말했음."
+      },
+      {
+        "title": "정부, '제조 AX'에 20조원 투입…숙련공 노하우 AI로 바꿔 글로벌 선도",
+        "link": "https://www.ebn.co.kr/news/articleView.html?idxno=1714322",
+        "source": "ebn.co.kr",
+        "summary": "배경훈 부총리겸 과학기술정보통신부 장관 [출처=과학기술정보통신부] 정부가 제조 인공지능 전환(AX)에 총 20조원을 투입하며 전방위적인 제조업 대전환에 나선음. ◆숙련 명장 '노하우' 데이터화…국가 주도 '데이터 라이브러리' 설립 이번 전략은 제조 데이터 확보와 보안을 국가가 직접 책임지는 구조로 설계됐음."
+      },
+      {
+        "title": "美 규제가 중국 키웠나…앤트로픽 턱밑까지 쫓아온 中 보안AI",
+        "link": "https://news.nate.com/view/20260629n21363",
+        "source": "네이트",
+        "summary": "한국일보 원문 기사전송 2026-06-29 14:55 최종수정 2026-06-29 15:49 기사 제목과 본문 내용을 자동 요약한 내용임. 미국 AI를 묶는 규제가 오히려 중국 AI 경쟁력을 키우고 있다는 비판이 나온음."
+      },
+      {
+        "title": "정부, ‘제조AI 2030 전략’ 공개…산업단지 중심 제조업 AI 전환 추진",
+        "link": "https://www.hellot.net/news/article.html?no=113495",
+        "source": "헬로티",
+        "summary": "산업통상자원부는 29일 ‘대한민국 제조업 대전환의 길: 제조AI 2030 전략’의 주요임. 내용을 공개하고, 제조데이터 관리 체계 구축과 제조업 특화 AI 모델 개발, 산업단지 중심의 확산 정책을 단계적으로 추진하겠다고 밝힘."
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "공공 AI 생태계 풀스택 파트너 되겠다…네이버클라우드, AX 시장 정조준",
+        "link": "https://www.msn.com/ko-kr/news/other/%EA%B3%B5%EA%B3%B5-ai-%EC%83%9D%ED%83%9C%EA%B3%84-%ED%92%80%EC%8A%A4%ED%83%9D-%ED%8C%8C%ED%8A%B8%EB%84%88-%EB%90%98%EA%B2%A0%EB%8B%A4-%EB%84%A4%EC%9D%B4%EB%B2%84%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-ax-%EC%8B%9C%EC%9E%A5-%EC%A0%95%EC%A1%B0%EC%A4%80/ar-AA26pAUv?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+        "source": "MSN",
+        "summary": ""
+      },
+      {
+        "title": "[프리미엄 픽] LG유플러스, 유튜브 프리미엄·구글 AI 프로 결합 상품 출시",
+        "link": "https://www.dt.co.kr/article/12070102",
+        "source": "dt.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "KT, 5G 업무망 ‘거점형 서비스’ 선봬…공공기관 디지털 전환·보안 강화",
+        "link": "https://www.nanumy.co.kr/news/articleView.html?idxno=4007780",
+        "source": "나눔경제뉴스",
+        "summary": "KT, 5G 업무망 ‘거점형 서비스’ 선봬…공공기관 디지털 전환·보안 강화 가 가 기사의 본문 내용은 이 글자크기로 변경됨. 스크롤 이동 상태바 KT, 5G 업무망 ‘거점형 서비스’ 선봬…공공기관 디지털 전환·보안 강화 가 가 기사의 본문 내용은 이 글자크기로 변경됨."
+      },
+      {
+        "title": "KT, AX 연계한 ESG 경영 전략 공개…데이터센터 효율화·보안 강화",
+        "link": "https://www.fnnews.com/news/202606300932020131",
+        "source": "파이낸셜뉴스",
+        "summary": "[파이낸셜뉴스] KT가 인공지능(AI) 전환(AX)과 탄소중립, 정보보호 등을 아우르는 환경·사회·지배구조(ESG) 경영 전략을 공개했음. AI 기반 네트워크 안정화와 데이터센터 에너지 효율화, 정보보호 강화 등을 앞세워 지속가능경영과 AI 경쟁력을 함께 강화하겠다는 구상임."
+      },
+      {
+        "title": "KT, KT클라우드 재합병 거론되는데…FI 논의 있었을까",
+        "link": "https://contents.premium.naver.com/thebell/stock/contents/260629165413452mv",
+        "source": "네이버 프리미엄콘텐츠",
+        "summary": "KT, KT클라우드 재합병 거론되는데…FI 논의 있었을까 KT가 분사한 KT클라우드를 다시 품을 가능성이 거론되고 있음. 하지만 최근 당국 기류 등을 볼 때 KT클라우드의 상장은 현실적으로 쉽지 않을 것으로 보임."
+      }
+    ],
+    "산업동향": []
+  }
+}
