@@ -1,0 +1,98 @@
+{
+  "date": "2026-07-09",
+  "generated_at": "2026-07-09 12:04",
+  "header": "[7월 9일(목) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "허위정보법 대상 사업자 공개…네이버·카카오·구글 등 8곳",
+        "link": "http://www.newskr.kr/news/articleView.html?idxno=105054",
+        "source": "한국농어촌방송",
+        "summary": "[한국농어촌방송=임리아 기자] 개정 정보통신망법 시행에 따라 허위조작정보 대응 의무를 적용받는 대형 온라인 플랫폼 8곳이 확정됐음. 대상 사업자는 국내 플랫폼인 네이버, 카카오, 네이트, 디시인사이드와 해외 플랫폼인 구글, 메타, 엑스(X), 틱톡 등 총 8곳임."
+      },
+      {
+        "title": "지분가치 높인다, 카카오게임즈 자사주 50만 주 소각",
+        "link": "https://m.gamemeca.com/amp/view.php?gid=1777562",
+        "source": "게임메카",
+        "summary": "지분가치 높인다, 카카오게임즈 자사주 50만 주 소각 2026.07.08 17:47 게임메카 김미희 기자 카카오게임즈는 8일 자사주 50만 주를 소각한다고 밝힘. 회사가 보유한 자사주 85만 4,009주 중 약 60%에 해당하는 규모음."
+      },
+      {
+        "title": "카카오페이증권, 해외 실적발표 실시간 번역·요약…\"매매까지 끊김없이\"",
+        "link": "https://news.nate.com/view/20260708n15844",
+        "source": "네이트",
+        "summary": "‘AI 어닝콜’ 서비스 본격 도입 이달 말 1000개 종목까지 대상 확대 “투자 정보 접근성 높일 것” 이달 말 1000개 종목까지 대상 확대 “투자 정보 접근성 높일 것” [카카오페이증권 제공] [헤럴드경제=김지윤 기자] 카카오페이증권은 해외 기업 어닝콜(실적 발표 설명회)을 실시간으로 번역·요약해주는 ‘인공지능(AI) 어닝콜’ 서비스를 시작했다고 8일 밝힘. 해외 기업 경영진의 실적 발표를 한국어로 실시간 번역하고, AI가 발표 내용을 구간별로 나눠 요약해준음."
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "싱가포르 정부 AI 책임자, 딥엑스 방문…온디바이스 AI 협력 논의",
+        "link": "https://news.nate.com/view/20260708n22639",
+        "source": "네이트",
+        "summary": "피지컬 AI 협력 가능성 논의 온디바이스 AI 반도체 기술 동향 및 글로벌 적용 사례 공유 싱가포르 정부 AI 전략과 협력 가능성 모색 온디바이스 AI 반도체 기술 동향 및 글로벌 적용 사례 공유 싱가포르 정부 AI 전략과 협력 가능성 모색 싱가포르 정부의 최고인공지능책임자(CAIO)가 국내 인공지능(AI) 반도체 스타트업 딥엑스를 찾아 온디바이스 AI 기술과 향후 협력 가능성을 논의했음."
+      },
+      {
+        "title": "보도: 트럼프 행정부가 앤트로픽 모델에 대한 규제를 가하자 미국 기업들이 중국산 AI로 눈을 돌리고 있다",
+        "link": "https://news.bitcoin.com/ko/bodo-teureompeu-haengjeongbuga-aenteuropik-model-e-daehan-gyuje-reul-gahaja-miguk-gi-eopdeuri-jungguksan-ai-ro-nuneul-dolligo-itda",
+        "source": "Bitcoin News",
+        "summary": "Technology 게시일: 2026년 7월 8일 AM 3:45 보도: 트럼프 행정부가 앤트로픽 모델에 대한 규제를 가하자 미국 기업들이 중국산 AI로 눈을 돌리고 있음. 내용 6월 12일, 미국 상무부는 앤트로픽(Anthropic)의 ‘클로드(Claude)’ AI 모델에 대해 갑작스러운 수출 통제를 부과했음."
+      },
+      {
+        "title": "개보위 \"API 통한 개인정보 유출 주의…설계부터 최소화·권한 관리 강화\"",
+        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=466794",
+        "source": "핀포인트뉴스",
+        "summary": "개인정보보호위원회는 8일 플랫폼 연계 과정에서 API를 통한 데이터 처리가 늘어남에 따라 사업자들에게 권한 관리와 개인정보 최소 전송 등 보호조치를 강화할 것을 강조했음. 최근 국내외를 막론하고 보안 및 권한 검증이 느슨한 API의 취약점을 노린 대규모 개인정보 유출 사고가 빈발하고 있다는 판단에 따른 조치로 풀이됐음."
+      },
+      {
+        "title": "쿠팡, 행정소송 앞두고 법률대리인 세종·광장 선임",
+        "link": "https://www.etnews.com/20260709000187",
+        "source": "전자신문",
+        "summary": "AI·SW 보안 쿠팡, 행정소송 앞두고 법률대리인 세종·광장 선임. 9일 업계에 따르면 쿠팡은 개인정보보호위원회 처분에 대응하기 위한 행정소송 법률 대리인으로 법무법인 세종과 광장을 각각 선임했음."
+      },
+      {
+        "title": "디지털자산기본법 입법 시계 재가동, 22대 국회 하반기 쟁점 부각",
+        "link": "https://blockchaintoday.co.kr/news/articleView.html?idxno=64517",
+        "source": "블록체인투데이",
+        "summary": "1년 넘게 멈춰 선 2단계 입법 시계와 정무위의 현안 채택 가상자산 업계의 숙원이자 생태계 육성 및 규제 인프라의 완성판으로 불리는 '디지털자산기본법'의 입법 논의가 22대 국회 후반기 상임위 출범과 동시에 마침내 재점화될 조짐을 보이고 있음. 국회 정무위원회는 임시회의를 통해 디지털자산기본법을 후반기 국회의 주요임."
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "KT, UN·ITU 글로벌 AI 행사 참가…'책임감 있는 AI'·신뢰 인프라 구축 논의",
+        "link": "https://www.gokorea.kr/news/articleView.html?idxno=871623",
+        "source": "공감신문",
+        "summary": "KT가 UN 및 ITU 주관 글로벌 행사에 참여해 책임감 있는 AI(Responsible AI)와 글로벌 AI 표준 협력 방안 등을 논의했음. [공감신문] 이혜정 기자=KT가 유엔(UN)과 국제전기통신연합(ITU)이 공동 주관한 글로벌 AI 행사에 참가해 책임감 있는 인공지능(AI) 구현과 디지털 신뢰 인프라 구축 방안을 제시했음."
+      },
+      {
+        "title": "주가 누른 네이버 데이터센터… “완공 땐 13조 가치”",
+        "link": "https://www.ilovepc.co.kr/news/articleView.html?idxno=59981",
+        "source": "",
+        "summary": "(디지털포스트(PC사랑)) NH투자증권 \"그래도 남는 장사\" EV 64조, 차입 51조, 기업가치 13조 추정 AI 인프라 사업자 재평가 여지 2분기 실적은 소폭 하회 사진=네이버 [디지털포스트(PC사랑)=이백현 기자] 네이버의 1GW 규모 데이터센터 투자 계획을 두고 비용 부담 우려가 커지는 가운데, 증권가에서는 중장기 기업가치 확대 요인으로 볼 필요가 있다는 분석이 나왔음. 이어 “2027년 이후 데이터센터 관련 매출이 발생하면 우려보음."
+      },
+      {
+        "title": "네이버클라우드, 미스트랄 AI와 제조 AX 위한 '소버린 AI' 동맹",
+        "link": "https://www.aitimes.com/news/articleView.html?idxno=212527",
+        "source": "AI타임스",
+        "summary": ""
+      },
+      {
+        "title": "“日서도 무료로 통화하세요”... LGU+ ‘익시오 로밍콜’ 출시",
+        "link": "https://www.msn.com/ko-kr/news/other/%E6%97%A5%EC%84%9C%EB%8F%84-%EB%AC%B4%EB%A3%8C%EB%A1%9C-%ED%86%B5%ED%99%94%ED%95%98%EC%84%B8%EC%9A%94-lgu-%EC%9D%B5%EC%8B%9C%EC%98%A4-%EB%A1%9C%EB%B0%8D%EC%BD%9C-%EC%B6%9C%EC%8B%9C/ar-AA27eQof?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+        "source": "MSN",
+        "summary": ""
+      },
+      {
+        "title": "유출 사고 딛고 4.8조 회복한 쿠팡···경쟁사는 적자 속 '반격 카드'",
+        "link": "https://www.jabon.co.kr/news/articleView.html?idxno=4767",
+        "source": "자본시장뉴스",
+        "summary": "개인정보 유출 사고의 충격을 쿠팡이 빠르게 털어냈음. 개인정보 유출 사고가 있었던 지난해 11월 4조4735억원보음."
+      }
+    ],
+    "산업동향": []
+  }
+}
