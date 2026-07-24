@@ -1,0 +1,104 @@
+{
+  "date": "2026-07-24",
+  "generated_at": "2026-07-24 11:37",
+  "header": "[7월 24일(금) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "카카오엔터프라이즈 '꼬리 자르기'(?)…이원주 사임에 의혹도 덮이나",
+        "link": "https://news.nate.com/view/20260724n02663",
+        "source": "네이트",
+        "summary": "협력사 선정·해외 출장 향응·인사평가 개입 의혹 제기 준신위 사각지대 속 자체 진상 규명마저 외면한다는 비판 이원주 카카오엔터프라이즈 대표가 디케이테크인(DKT)에 이어 카카오엔터프라이즈 수장에서도 물러나기로 했지만 그를 둘러싼 경영 의혹은 해소되지 않았음. 자진 사임만으로 사안을 마무리할 경우 '꼬리 자르기'라는 비난을 면하기 어려울 전망이다.카카오엔터프라이즈는 지난 22일 오전 이사회를 열고 이재한 사업부문장을 신임."
+      },
+      {
+        "title": "\"원화 스테이블코인 인프라 확대\" 카카오그룹, 글로벌 핀테크기업 서클과 '맞손'",
+        "link": "https://www.catchnews.kr/news/articleView.html?idxno=126470",
+        "source": "catchnews.kr",
+        "summary": "카카오·카카오페이·카카오뱅크 등 카카오그룹이 글로벌 스테이블코인 인프라 기업 서클 인터넷 그룹과 원화 기반 디지털 자산과 블록체인 결제 분야의 협력 가능성을 모색한음."
+      },
+      {
+        "title": "서클, 카카오·토스와 스테이블코인 MOU 체결… 한국 결제 인프라 구축",
+        "link": "https://cryptonews.com/kr/news/stablecoin-payment-infrastructure-kakao-toss-circle",
+        "source": "Cryptonews",
+        "summary": "서클(Circle)이 7월 23일 카카오그룹(카카오·카카오페이·카카오뱅크)과 비바리퍼블리카(토스·토스뱅크)와 각각 별도의 전략적 MOU를 체결하며 한국 스테이블코인 결제 인프라 구축에 본격적으로 나섰음. 양측 MOU 모두 특정 상품 출시나 토큰 발행을 약속하는 구속력 있는 계약이 아닌, 블록체인 기반 결제 인프라와 스테이블코인 기술 공동 연구를 위한 비구속적 합의음."
+      },
+      {
+        "title": "‘원화 스테이블코인’ 협력 나선 카카오…글로벌 결제 혁신 이끈다",
+        "link": "https://www.cwn.kr/news/articleView.html?idxno=51065",
+        "source": "cwn.kr",
+        "summary": "카카오, 카카오페이, 카카오뱅크 등 카카오그룹은 23일 서클과 전략적 업무협약을 체결하며 디지털 자산 기술 및 결제 인프라 분야에서 폭넓은 협력을 시작한다고 밝힘. 카카오는 카카오톡을 중심으로 카카오페이와 카카오뱅크의 결제·금융 역량을 융합해 원화 스테이블코인 생태계 조성을 본격 추진 중임."
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "리벨리온, 국산 NPU로 SKT 독자 모델 'A.X K1' 구동 성공",
+        "link": "https://www.aitimes.com/news/articleView.html?idxno=213074",
+        "source": "AI타임스",
+        "summary": "리벨리온(대표 박성현)은 SK텔레콤의 독자 AI 파운데이션 모델 '에이닷엑스 케이원(A.X K1)'을 자체 신경망처리장치(NPU) 서버에서 구동하는 데 성공했다고 23일 밝힘. 키워드 #AI #인공지능 #리벨리온 #NPU #GPU #SK텔레콤 #SKT #독파모 #독자 AI 파운데이션 모델 #A.X K1 #메가프로젝트 #모두의 AI #에이닷임."
+      },
+      {
+        "title": "“공정위가 액수 산정 잘못”… 법원, ‘5G 과장광고’ SKT 168억 과징금 취소 - 조선비즈",
+        "link": "https://biz.chosun.com/topics/law_firm/2026/07/23/732CHYSCHBG57JXLCPUTIKVVBU?outputType=amp",
+        "source": "Chosunbiz",
+        "summary": "공정거래위원회가 '5G 과장 광고'로 SK텔레콤(017670) 에게 부과한 과징금 168억원을 취소하라는 법원 판단이 나왔음. 문제의 광고가 과장돼 있다는 사실은 인정하지만 공정위가 과징금 액수 산정 자체를 잘못했다는 이유에서음."
+      },
+      {
+        "title": "\"미토스 쇼크\" 대통령 주문에…정부, 보안 특화 AI 모델 개발 착수",
+        "link": "http://www.hitech.co.kr/news/articleView.html?idxno=59653",
+        "source": "하이테크정보",
+        "summary": "정부가 인공지능(AI)이 기존 보안 패러다임을 뒤흔들 거라는 '미토스 쇼크'에 대응해 보안 특화 AI 모델 개발에 나선음. 과학기술정보통신부는 정보통신산업진흥원(NIPA)과 '사이버 보안 특화 AI 파운데이션 모델 개발' 사업 공모에 착수했다고 23일 밝힘."
+      },
+      {
+        "title": "개인정보 몰래 빼돌린 틱톡, 과징금 103억원 철퇴",
+        "link": "https://m.news.nate.com/view/20260723n11783?mid=m05&list=recent&cpcd=",
+        "source": "네이트",
+        "summary": "텍스트 활용 이미지 크게 보기 개인정보보호위원회가 사용자의 개인정보를 동의 없이 활용한 틱톡과 애플에게 과징금을 부과했음. 뉴시스 [더팩트｜우지수 기자] 사용자의 개인정보를 동의 없이 몰래 빼돌려 해외로 보낸 글로벌 빅테크 기업들이 제재를 받았음."
+      },
+      {
+        "title": "가상자산 법인시장 개방...금융위 \"디지털자산법 입법돼야\"",
+        "link": "https://zdnet.co.kr/view?no=20260723123936",
+        "source": "지디넷코리아",
+        "summary": "김성진 금융위 가상자산과장은 23일 국회의원회관에서 안도걸·김현정 더불어민주당 의원실 주최로 열린 법인시장 개방 학술 컨퍼런스에 참석해 “가이드라인은 계속해서 논의를 하고 있는 상황”이라며 “발표 시점은 2단계(디지털자산기본법) 입법과 연계된 사항이 많아서 내부적으로, 관계기관과 고민해 조율해보겠다”고 밝힘. 김성진 금융위 가상자산과장은 23일 국회에서 안도걸 김현정 더불어민주당 의원실 주최로 열린 법인시장 개방 학술 컨퍼런스에 참여했음."
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "AI 팩토리 글로벌 투자 기대감에…네이버 주가 22만원선 회복",
+        "link": "https://www.news1.kr/it-science/internet-platform/6237067",
+        "source": "뉴스1",
+        "summary": ""
+      },
+      {
+        "title": "SK텔레콤, AI 글래스 ‘레이밴 메타’ 6종 출시…온라인몰 등서 판매 개시",
+        "link": "http://www.bizwnews.com/news/articleView.html?idxno=141389",
+        "source": "비즈월드",
+        "summary": ""
+      },
+      {
+        "title": "HD현대·네이버클라우드, '피지컬 AI 조선소' 구축 맞손",
+        "link": "https://www.msn.com/ko-kr/news/other/hd%ED%98%84%EB%8C%80-%EB%84%A4%EC%9D%B4%EB%B2%84%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%ED%94%BC%EC%A7%80%EC%BB%AC-ai-%EC%A1%B0%EC%84%A0%EC%86%8C-%EA%B5%AC%EC%B6%95-%EB%A7%9E%EC%86%90/ar-AA28fzBL?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+        "source": "MSN",
+        "summary": ""
+      },
+      {
+        "title": "네이버 쇼핑 가구매, 정말 안전할까? 연매출 200억 광고사 지사장이 말하는 현실",
+        "link": "https://www.i-boss.co.kr/ab-2987-556118",
+        "source": "아이보스",
+        "summary": ""
+      },
+      {
+        "title": "박윤영 KT 대표 “MS 협력 성과 뚜렷… 특정 기업 의존 탈피”",
+        "link": "https://www.msn.com/ko-kr/news/other/%EB%B0%95%EC%9C%A4%EC%98%81-kt-%EB%8C%80%ED%91%9C-ms-%ED%98%91%EB%A0%A5-%EC%84%B1%EA%B3%BC-%EB%9A%9C%EB%A0%B7-%ED%8A%B9%EC%A0%95-%EA%B8%B0%EC%97%85-%EC%9D%98%EC%A1%B4-%ED%83%88%ED%94%BC/ar-AA27hhgh?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+        "source": "MSN",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
