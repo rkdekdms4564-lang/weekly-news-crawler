@@ -1,0 +1,98 @@
+{
+  "date": "2026-08-10",
+  "generated_at": "2026-08-10 10:58",
+  "header": "[8월 10일(월) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "네이버·카카오, AI 인프라 전략 '차별화'…해외·B2C 집중",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=596242",
+        "source": "cbci.co.kr",
+        "summary": "재판매 및 DB 금지] 네이버-엔비디아, AI 팩토리 구축 관련 전략적 투자협약 최수연 네이버 대표 이해진 의장 등 네이버 경영진과 젠슨 황 엔비디아 CEO 회동 네이버와 카카오가 인공지능(AI) 인프라 사업에서 각기 다른 전략을 펼치고 있음. 네이버는 엔비디아, 브룩필드 등과 협력해 'AI 팩토리'를 중심으로 대규모 인프라 확장에 나서고 있으며, 카카오는 카카오톡을 기반으로 일반 이용자 대상(B2C) 서비스에 집중하는 방향을 택했음."
+      },
+      {
+        "title": "\"카톡 인프라 설계\" 카카오엔터프라이즈, 이재한 신임 대표 선임",
+        "link": "https://www.kcloudnews.co.kr/news/articleViewAmp.html?idxno=16483",
+        "source": "한국클라우드신문",
+        "summary": "\"카톡 인프라 설계\" 카카오엔터프라이즈, 이재한 신임. 카카오톡 인프라 설계·운영 담당한 기술 전문가 2026-08-08 김동환 [한국클라우드신문=김동환 기자] 카카오엔터프라이즈는 지난 6일 임시 주주총회와 이사회를 열어 이재한 대표이사를 신규 선임했다고 밝힘."
+      },
+      {
+        "title": "카카오 첫 파업 부른 ‘성과보상 갈등’ 3개월 만에 봉합...임금협상 타결",
+        "link": "https://www.newsspirit.kr/news/articleView.html?idxno=31604",
+        "source": "뉴스피릿",
+        "summary": "카카오 노사가 창사 이후 첫 파업까지 불러온 성과 보상갈등을 3개월 만에 봉합했음. 노조는 연봉 인상률 6.9%와 함께 영업이익의 13~14% 수준에 해당하는 명확한 성과급 지급 기준 마련을 요구했음."
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "위기의 ‘K-석화’, 검찰 ‘담합’ 수사 착수…“LG·한화·롯데 등 7개 업체, 8개 제품 가격 담합”",
+        "link": "https://m.ceoscoredaily.com/page/view/2026080613250123215",
+        "source": "ceoscoredaily.com",
+        "summary": ""
+      },
+      {
+        "title": "[AI 정책] 응급실 공백 메울 ‘AI 닥터’…정부 “게임체인저로 키운다”",
+        "link": "http://www.aifnlife.co.kr/news/articleViewAmp.html?idxno=27542",
+        "source": "AI라이프경제",
+        "summary": "[AI 정책] 응급실 공백 메울 ‘AI 닥터’…정부 “게임체인저로 키운다” 지역필수의료 공백 해소 위한 ‘AI 기본의료 전략’ 확정, 응급 이송·공공병원·신약개발까지 전주기 적용 방침 오진 책임·데이터 편향·개인정보 보호 쟁점 부상, ‘한국형 소버린 의료 AI’·디지털헬스케어법으로 제도 장치 마련 추진 정부가 응급실과 지역 필수의료 공백을 메우기 위해 의료 인공지능(AI)을 전면에 배치한음. 전략의 1차 목표는 지역필수공공의료의 공백 해소음."
+      },
+      {
+        "title": "응우옌 티 투 하 국회의원(꽝닌): 출판 및 배포 분야에서 중개 플랫폼의 책임을 법제화하고 AI 애플리케이션에 대한 법적 인증 제도를 확립해야 합니다.",
+        "link": "https://www.vietnam.vn/ko/dbqh-nguyen-thi-thu-ha-quang-ninh-luat-hoa-trach-nhiem-nen-tang-trung-gian-dinh-danh-phap-ly-ung-dung-ai-trong-xuat-ban-phat-hanh",
+        "source": "Vietnam.vn",
+        "summary": ""
+      },
+      {
+        "title": "[심층] AI 개발 개인정보 특례 개정안, 8월 국회 처리 임박…동의 없는 원본학습 어디까지",
+        "link": "https://www.pedien.com/html/view.php?idx=1129822",
+        "source": "피디언뉴스",
+        "summary": ""
+      },
+      {
+        "title": "과기정통부, UKC서 한미 과학협력 논의…AI·우주·양자 교류 확대",
+        "link": "https://www.newswhoplus.com/news/articleView.html?idxno=66535",
+        "source": "뉴스후플러스",
+        "summary": "과기정통부는 지난 9일 박인규 과학기술혁신본부장이 미국 올랜도에서 열린 '2026년도 한미과학기술학술대회'에 참석해 한미 과학기술 협력과 과학기술 혁신 방안을 논의했다고 밝힘. 이번 일정에서는 AI, 우주, 양자 등 전략기술 분야의 협력 필요성이 집중적으로 다뤄졌음."
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "[IR]네이버 \"엔비디아와 AI 팩토리 구축…내년 상반기 매출 발생 예상\"",
+        "link": "https://www.news1.kr/it-science/internet-platform/6251977",
+        "source": "뉴스1",
+        "summary": ""
+      },
+      {
+        "title": "네이버, AI 수익화 본격화…물류 강화·AI 팩토리로 성장 잇는다",
+        "link": "https://www.g-enews.com/article/ICT/2026/08/2026080709420620213d7a510102_1",
+        "source": "글로벌이코노믹",
+        "summary": "AI 브리핑 광고 클릭률·구매전환율 상승 10월 반품센터·새벽배송 도입…멤버십 경쟁력 강화 내년 상반기 55MW AI 팩토리 가동…수익화도 전망 네이버, AI 수익화 본격화…물류 강화·AI 팩토리로 성장 잇는음. 이미지 확대보기 네이버 데이터센터 '각 세종'임."
+      },
+      {
+        "title": "네이버, 2분기 역대 최대 매출…AI 광고 첫 수익화 통했다(종합2보)",
+        "link": "https://www.yna.co.kr/view/AKR20260807022052527",
+        "source": "연합뉴스",
+        "summary": ""
+      },
+      {
+        "title": "[퇴근길 7분 뉴스] 서울40도·프리마켓·네이버·오픈AI",
+        "link": "https://news.dealsitetv.com/articles/174451",
+        "source": "news.dealsitetv.com",
+        "summary": ""
+      },
+      {
+        "title": "미토스 전철 밟나?…오픈AI, ‘아스트라’ 개발 제동 “사이버공격 능력 최고 수준”",
+        "link": "https://m.ddaily.co.kr/page/view/2026080812060609423",
+        "source": "디지털데일리",
+        "summary": "샘 올트먼이 2월3일(현지시간) 시스코 시스템즈가 샌프란시스코에서 연 인공지능 컨퍼런스에서 얘기하고 있음. 내부 평가에서 아스트라의 사이버공격 능력이 자체 안전 기준상 최고 위험 수준에 근접한 것으로 나타나면서음."
+      }
+    ],
+    "산업동향": []
+  }
+}
