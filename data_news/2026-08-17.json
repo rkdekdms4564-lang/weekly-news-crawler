@@ -1,0 +1,105 @@
+{
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17 10:28",
+  "header": "[8월 17일(월) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "\"이래서 파업했나\"...카카오 대표, 영업이익 줄었는데 성과급 더 받아",
+        "link": "https://www.chosun.com/economy/tech_it/2026/08/16/ZKPA2YVXRRD7BMLR3CJMF7GMJE?outputType=amp",
+        "source": "조선일보",
+        "summary": "14:34 정신아 카카오 대표가 올해 상반기 성과급을 지난해보음. 카카오 노조는 소수 임원에게 보상이 집중되고 있다고 지적하며 지난 6월 창사 후 처음으로 파업을 했음."
+      },
+      {
+        "title": "카카오뱅크 임원 12명, 4억6천만원어치 자사주 사들였다",
+        "link": "http://www.newsroad.co.kr/news/articleView.html?idxno=62931",
+        "source": "뉴스로드",
+        "summary": "강동준 기자 newsroad01@newsroad.co.kr 정용진·정유경, 나란히 상반기 보수 22억…이명희는 15억 수령 두나무 송치형, 상반기 보수 39억…직원 평균도 1억4천만원 육박 ‘AI 국민비서’ 앞세운 네카오, CEO 연봉도 고공행진…최수연 26.7억·정신아 12.1억 ‘불닭’이 달렸다…삼양식품, 2분기 해외매출 첫 6천억 돌파 카카오뱅크 임원 12명, 4억6천만원어치 자사주 사들였음."
+      },
+      {
+        "title": "[IT라운지] 인크루트 '채용 소식'·데이원 '스페이스와이 인수'·박세용 대표 '신간 출간'·카카오엔터 '자회사 통합'·뉴아이디 '투자유치'·베베핀 '넷플 2억 시청'·잡코-캔바 '공채 부스터'·\"최저임금 모두 불만족\"·'쓰봉클럽 창원'",
+        "link": "https://www.newsworks.co.kr/news/articleView.html?idxno=850361",
+        "source": "뉴스웍스",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "정부·통신사, 불법스팸 차단 위해 뭉친다···추석 앞서 AI 필터링 강화",
+        "link": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2459541",
+        "source": "이뉴스투데이",
+        "summary": ""
+      },
+      {
+        "title": "정부 ‘보안 특파모’ 참여경쟁 시작…LG CNS 확정, SKT·네이버클라우드 검토",
+        "link": "https://byline.network/2026/08/14-614",
+        "source": "바이라인네트워크",
+        "summary": ""
+      },
+      {
+        "title": "\"AI 큰손 잡아라\"…정부 수주전에 네이버클라우드·삼성SDS 격돌",
+        "link": "https://news.nate.com/view/20260815n05106",
+        "source": "네이트",
+        "summary": "남은 30곳 놓고 2라운드…세종시 광고·공공 세미나 영업전 GPU·국가AI컴퓨팅센터 등 대형 사업에서도 양사 존재감 [서울=뉴시스] 삼성SDS·네이버클라우드 로고임. (사진=삼성SDS·네이버클라우드 제공) *재판매 및 DB 금지 승부가 선명하게 드러나는 곳은 중앙행정기관의 AI 업무환경 구축 사업임."
+      },
+      {
+        "title": "조정식 국회의장과 빌 게이츠 이사장의 회동이 글로벌 보건·AI 협력에 미칠 파급효과는?",
+        "link": "https://www.news33.net/news/articleView.html?idxno=117386",
+        "source": "창업일보",
+        "summary": ""
+      },
+      {
+        "title": "한화 KAI 지분 15.89%로 확대…공정위 기업결합 심사대에",
+        "link": "https://www.jabon.co.kr/news/articleView.html?idxno=5948",
+        "source": "자본시장뉴스",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "송언석 의원, 정책서민금융 재원 공백 막는다…서금원 출연의무 5년 연장 추진",
+        "link": "https://www.kmsnews.co.kr/news/articleView.html?idxno=29721",
+        "source": "kmsnews.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "LG유플러스, 알닷서 토스모바일 제휴 요금제 확대",
+        "link": "https://www.newspim.com/news/view/20260816000053",
+        "source": "뉴스핌",
+        "summary": ""
+      },
+      {
+        "title": "LG유플러스, 토스모바일과 ‘페이스페이’ 알뜰폰 요금제 출시",
+        "link": "https://www.dailian.co.kr/news/view/1678781/LG%EC%9C%A0%ED%94%8C%EB%9F%AC%EC%8A%A4-%ED%86%A0%EC%8A%A4%EB%AA%A8%EB%B0%94%EC%9D%BC%EA%B3%BC-%E2%80%98%ED%8E%98%EC%9D%B4%EC%8A%A4%ED%8E%98%EC%9D%B4-2026",
+        "source": "데일리안",
+        "summary": ""
+      },
+      {
+        "title": "[밸류업-KT] ‘AICT→AX’ 목표 조정…AIDC 품고 매출 2배 노린다",
+        "link": "https://www.fetv.co.kr/news/articleView.html?idxno=308464",
+        "source": "fetv.co.kr",
+        "summary": "[FETV=이신형 기자] KT가 올해 기업가치 제고 계획에서 기존 ‘2028년 AI/IT 매출 비중 19% 이상’ 목표를 ‘2025년 대비 2028년 AX 매출 2배 이상’으로 변경했음. 다만 기존 ‘AICT 구조전환’은 ‘AX 추진’으로 변경했고 기존 AI/IT 매출 비중 목표 대신 2025년 대비 2028년 AX 매출을 두 배 이상 확대한다는 새로운 성장 KPI가 제시됐음."
+      },
+      {
+        "title": "과기장관회의, 쿠팡사태 긴급논의…개인정보 유출 범부처 TF 가동 | 1min요약",
+        "link": "https://www.joongang.co.kr/sum-article/25390995",
+        "source": "중앙일보",
+        "summary": ""
+      }
+    ],
+    "산업동향": [
+      {
+        "title": "대한민국 국부펀드가 이번 분기에 처음 담은 종목, 비트코인이 아니라 스테이블코인 발행사였음",
+        "link": "https://contents.premium.naver.com/joosikstudy/coinschool/contents/260814151852002nx",
+        "source": "네이버 프리미엄콘텐츠",
+        "summary": ""
+      }
+    ]
+  }
+}
