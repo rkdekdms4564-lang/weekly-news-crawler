@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-14",
+  "generated_at": "2026-09-14 12:46",
+  "header": "[9월 14일(월) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "[IT라운지] 마리트 '크리에이트립 인수'·카카오툴즈 '파트너 추가'·카카오맵 '옥토버페스트 지도'·이스트-K몬스터 'MOU'·알바천국 '채용지원'",
+        "link": "https://www.newsworks.co.kr/news/articleView.html?idxno=853391",
+        "source": "newsworks.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "카카오 노조, 소액주주와 손잡나…\"소규모합병 반대 동참을\"",
+        "link": "https://www.yna.co.kr/view/AKR20260911073300017",
+        "source": "연합뉴스",
+        "summary": ""
+      },
+      {
+        "title": "개발비 없이 만든 수성구 민원 챗봇…카카오 공공혁신 우수사례",
+        "link": "https://www.edaily.co.kr/News/Read?newsId=02053286645579792&mediaCodeNo=257",
+        "source": "edaily.co.kr",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "'개인정보 유출' 홍역 치른 KT…정부 참여 TF로 '모두의 AI' 보안 배수진",
+        "link": "https://www.dailian.co.kr/news/view/1689469/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4-%EC%9C%A0%EC%B6%9C-%ED%99%8D%EC%97%AD-%EC%B9%98%EB%A5%B8-KT%EC%A0%95%EB%B6%80-%EC%B0%B8-2026",
+        "source": "데일리안",
+        "summary": "이날 KT는 과학기술정보통신부가 추진하는 '모두의 AI' 사업을 위해 공공·교육·금융·쇼핑 등 국민이 일상적으로 이용하는 다양한 서비스를 하나의 AI 경험으로 연결하는 대국민 AI 서비스 전략을 공개했음. 인사이드로 MAU 시너지 극대화\" KT는 ‘모두의 AI’를 별도 서비스 형태로 출시하는 동시에 기존 서비스 이용자를 흡수하기 위한 확산 전략으로 ‘이음."
+      },
+      {
+        "title": "정부, 개인정보 대규모·반복 유출 시 매출액 최대 10% 과징금 부과",
+        "link": "http://www.nbnnews.co.kr/news/articleViewAmp.html?idxno=1055394",
+        "source": "내외뉴스통신",
+        "summary": ""
+      },
+      {
+        "title": "쿠팡은 출입 막고 한화는 소송… 시험대 오른 공정위 ‘임의조사’",
+        "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000011098",
+        "source": "국민일보",
+        "summary": ""
+      },
+      {
+        "title": "류제명 과기정통부 2차관, 보츠와나 부통령 면담…AI·디지털 협력 논의",
+        "link": "http://www.thekorean.today/57409",
+        "source": "thekorean.today",
+        "summary": ""
+      },
+      {
+        "title": "미소정보기술, 과기정통부 에이전틱 AI 국가 R&D 사업 착수",
+        "link": "https://www.datanet.co.kr/news/articleView.html?idxno=214449",
+        "source": "데이터넷",
+        "summary": "MCP 기반 멀티에이전트 협업형 물리해석 시뮬레이션 자동화 기술 개발 CAE 기획·설정·실행·결과 분석 자동화 ··· 자동차·반도체·배터리·조선·방산 등 확산 목표 [데이터넷] 미소정보기술(대표 남상도)이 과학기술정보통신부와 정보통신기획평가원(IITP)이 추진하는 ‘실세계 능동 행동형 에이전틱 AI 기술개발 사업’에 선정돼 차세대 에이전틱 AI 국가 연구개발(R&D) 사업에 착수한다고 14일 밝힘. 미소정보기술은 사업에서 MCP 표준 기반 멀티에이전트 협업형 물리해석 시뮬레이션 자동 수행 에이전틱 AI 기술 개발을 담당한음."
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "18년 네이버 보안 맡은 ‘카티스’, 1GW AI 팩토리 보안 정조준",
+        "link": "https://www.sentv.co.kr/article/view/sentv202609140038",
+        "source": "서울경제TV",
+        "summary": "18년 네이버 보안 맡은 ‘카티스’, 1GW AI 팩토리 보안 정조준 경제·산업 입력 2026-09-14 09:41:50 수정 2026-09-14 09:41:50 정창신 기자 0개 [서울경제TV=정창신기자] 시가총액 321억원 규모의 보안 기업 카티스가 네이버의 초대형 인프라 투자 국면에서 주목받고 있음. 카티스는 2008년부터 18년간 네이버의 핵심 시설 보안을 전담해 왔음."
+      },
+      {
+        "title": "공격하는 LG, 막아서는 네이버…실전서 다져지는 'K-보안 AI'",
+        "link": "https://www.newsis.com/view/NISX20260910_0003784772",
+        "source": "뉴시스",
+        "summary": ""
+      },
+      {
+        "title": "KT, 아이폰 18 프로·애플워치 시리즈 12·애플워치 울트라 4·에어팟 5 등 출시",
+        "link": "https://www.yna.co.kr/amp/view/PYH20260911098400013",
+        "source": "연합뉴스",
+        "summary": ""
+      },
+      {
+        "title": "KT, 세계 미디어 전시회서 협력사 글로벌 판로 연다",
+        "link": "https://www.yna.co.kr/amp/view/AKR20260913015200017",
+        "source": "연합뉴스",
+        "summary": "앰로직과 미디어 단말용 칩셋 공급망 구축 협력 KT글로벌상생성장관 운영…협력사 8곳 IBC 참가 (서울=연합뉴스) 권하영 기자 = KT[030200]가 세계 최대 미디어 전시회에서 글로벌 칩셋 기업과 손잡고 협력사의 해외 진출을 지원한음. KT는 11일부터 14일까지 네덜란드 암스테르담 'RAI'에서 열리는 미디어 전문 전시회 '국제방송전시회(IBC) 2026'에서 글로벌 팹리스 반도체 기업 '앰로직'과 미디어 단말용 핵심 칩셋의 안정적인 공급체계 구축을 위한 업무협약(MOU)을 체결했다고 13일 밝힘."
+      },
+      {
+        "title": "쿠팡·티빙 지금 유출됐으면 매출 10% 과징금…오늘부터 제재강화",
+        "link": "https://www.mk.co.kr/news/it/12150025",
+        "source": "매일경제",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
