@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-21",
+  "generated_at": "2026-09-21 12:17",
+  "header": "[9월 21일(월) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "‘딜 메이커’ 김태환의 승부수…'적자 늪' 카카오게임즈, 미투온 인수하며 체질개선 박차",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Xc0JEbEQxT3M5R3kyX3BNX2JGWGpFSGt5b053ZWp2ZFNtMGxiV1R2b1NtNlptWF9yaFVwOUU4QzBWbW56OHdBMHJmdy1KSS0yMnRsandfMVdhdHZMZFBtYjlUV2I3T2labVkzdm5qV0pnRzg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "소비자가 만드는 신문",
+        "summary": ""
+      },
+      {
+        "title": "카카오게임즈, 시스템 취약점 해킹으로 이용자 140명 개인정보 유출 공식 사과",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5uaS1peW9vQWU2ZklIZ2F6S1psWEFSdno4RnM0TnVtWDlwVHYwV2RfWGRKb0JOdDFKVk9WUVZqY1Y4VVU3RVRQbGdHc3U4cTFjU3FMVkhPQ0tJd192djM2Z1JDcFZWbE1k?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "CBC뉴스",
+        "summary": ""
+      },
+      {
+        "title": "카카오엔터, 장애인 문화 접근성 확대 공로로 서울시장 표창",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNX0lrc3FRbzZNVlFqd1Vkd19LR3JmOUMtNGQ1a2tpUEl5VDNiR204andkWklQUUdvLVZQVVJqTERjWDd5NERnam4zeEdHZmpUamppeGgtR2VCVXZ2YzZKdk8yNUphYlJ0REVkbmxJa00yWmd3eGJITEhVWTVsS0w2ZQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "edaily.co.kr",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "JW중외제약, 공정위 299억 과징금 취소소송 승소 : 네이버 블로그",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPWFVUZUFQb0xzdWtpNjM5dldiZEc3NF9YRE1vY3VCbWFrMnNucG4yTy1xSjFZNWVkc2kxVVNValVSSTNKRTFaU2tQNnlvcnNXQjJ2ZEk5eDU2S21CWFo3MWg4eVNTV2lVVzBDZTlidzNnUkV2Rjd3MVJldTFKQm9EM1JCbkhzZDc2TE5wN3dnRQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "\"PG사도 AI 해킹 대비해야\"…금융위, PG업권 보안 리스크 점검",
+        "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBZeFFMeFRnVHBGWTg3U3Vsa3N2WmM4dkFqUmhuMDIzczEyRTVzdEpQTk5ldjhYU2dPQmM3cVAtYmZRRG1oeGtsR0lIVTh6TXJYM2pMRjJYcTRCaEx5Z2tKNWZn0gFnQVVfeXFMUFpfZ2RBLUt0YzhkUFg2bjE0TlJMdnI2dnVKcnBFTTBGWkVQQnplaHpXaEhaR1hzWThad3ZjcXNXNXk5N0pqM2JfNkx0eFV3YkEzSURuaXJjVFhzd0pDZ2N2SU16RGRwZw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스1",
+        "summary": ""
+      },
+      {
+        "title": "\"통보도 영장도 없이 왜 옵니까?\"… 쿠팡·한화의 정면 반격에 조사 단계부터 발 묶인 공정위",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0xUC1pRnZpMkVXRjZuTXBPOFJlWjloalg5UklZWnl1cVdHZl93REZzVF9MXzZlODZRY2J6Z3BROFlCRE1ET0lmdXpLbU9ENDRkaHFYWUQxQnl5b25saEFzS09oRXQtY2J6?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "CBC뉴스",
+        "summary": ""
+      },
+      {
+        "title": "신기술금융 ‘연대책임’ 논쟁…금융위, 투자자·벤처업계 의견 청취",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE02Qm0xam90SDlOejNKMUQ5MUdrNzJCRkdjYU1GcU1SYXhZYmNlR1U4Vm5HZk5NZEd5Y3gxVUFjbWZDT0ZZTFBJYnc4U0VOZmxYZTNwa3hNZHVqNjk2NG9jSHFkeUFSVEtNMm5TX0t0NEE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "thedailyeconomy.kr",
+        "summary": ""
+      },
+      {
+        "title": "정부 예산자료, AI가 읽기 쉽게 바뀐다…예산분석 활용도 제고",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5PYk9BU3hKS3g1LXIwdU44R3c5SWtHNzNKOXh1YVNQWW9JRWFCWWhDcnRDcWJLeUZmZ1RrdlJmTDFCTGlWNklMSWFTM1BsZw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "선 넘는 AI…오픈AI·앤트로픽서 잇단 이상행동",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA2NUJwWlp1N1NMZDJCLUJNSkp5eFktaWE5MXdsdlNGb2ozdUFPT2k3dVZyMERsNmVqZjZzRERwUG5qd2JXVFlCTDJ6dE0zSG5hcHh4UHg1Z0pFZU5UbzVwWnlDRjI3OWJScWJJOW5CQlJIMmo3UUVZbTd5dkllTGs?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "네이버클라우드, 국방 AX 협력 모델 제시 \"군이 AI 통제권 갖고 민간기술로 신속 전력화\"",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9pQS0yRklSczlKYmpXMmNkOWNUNVZVX3pnZkI1TXNBZ0xkS3dhMjRQd3dKZFlLUDhzQnBwaXNrdVdYT0loSE1Bal84aTRlNnVXbzRHUlRrMFkxZzlqbWZwUDdhZGdTWVhrb1RQa3J2S1FvZw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "NAVERCorp.",
+        "summary": ""
+      },
+      {
+        "title": "SK텔레콤, 아이폰 신제품 출시 기념 개통 행사… 구글 AI 구독권 증정",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14a3pLVWdyRkw0STBPOHdVYl80Y25Cd2ctN2UxMDlUaEtmMHEteFFkS0YtQVlNX2FGZWhKNWlsQVYxWXIxWG9qSUxTNjhUSTNaeFBSdUVJOW5XR0RUUC0xTTJrNjZfazlQZGc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "pointe.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "KT, ITU 국제표준회의서 정보보호 논의 주도…글로벌 보안 리더십 강화",
+        "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB1NUlIb1Vqc3c4amVqMnFydmVOd21FRXBZdWdRT3pucnBoR1ZsdU0weFh5ZHdabEM4WjhfMm56R0w2Rk9KYllfSVkwY3VISDRnUzlBWThUbE5BSV8tLVY5ZVZpVjloc2c?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아이티비즈",
+        "summary": ""
+      },
+      {
+        "title": "나이키, RTFKT 메타버스 운동화 출시",
+        "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPNE5NSGs5NU5ncnJjU3daazNvbnJ6cDdNVF8xXzBlSzBOWGR4SmtpYXB5Qy12cFRKM0dtWXZUb0pOdU0wYmszU24zbmxza1ZOLW16SHhPSVFmZnp2bU5JQ0J0dFM3WFRqWXl2Qmx3WVVBWU83dnZCWTByalpwb2o3ZDNEY3hlNHk0ZnFzMFpfRzdFQTNTT0I4Ym53MERCUjZUWFlQTkxpU25nUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "fpost.co.kr",
+        "summary": ""
+      }
+    ],
+    "산업동향": [
+      {
+        "title": "\"테슬라 제치고 데이터센터가 효자\"… 파나소닉, AI 백업 배터리 매출 EV 역전",
+        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMXBNU1dKUGVYa3MwcU5lNG96eTBhdnJYOERZRnIxVU1uWGVNZjdNREp3UXl5OGNvbE5Cck5yNVJuWkFWc0psQVpTQUtDS2dtWmw0SzhsdU0tbDUwYTNtWnlfaGJ5MzQ0b0hwdW9DT2ZLMFBjWDZJUEVsVThXVXIyeEw2WlNfVkY2?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "글로벌이코노믹",
+        "summary": ""
+      }
+    ]
+  }
+}
