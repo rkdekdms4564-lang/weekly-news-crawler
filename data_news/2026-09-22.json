@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-22",
+  "generated_at": "2026-09-22 12:31",
+  "header": "[9월 22일(화) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "[단독]카카오게임즈 개인정보 유출 103명 추가 확인…총 243명 - 머니투데이",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1vc1d2SDRnTy1iNnJOMmtSZ3lGZHZfQ25FQUFQNThnbk84eDllSjk4VzE5SFVQclBOS1VnR0ZDUXdacDlndTlKNk1RRzRhTnUyNU9lNFBNTWhXRzBuUkhrMVRYS1kxSTUxVVJVZNIBbEFVX3lxTE1vc1d2SDRnTy1iNnJOMmtSZ3lGZHZfQ25FQUFQNThnbk84eDllSjk4VzE5SFVQclBOS1VnR0ZDUXdacDlndTlKNk1RRzRhTnUyNU9lNFBNTWhXRzBuUkhrMVRYS1kxSTUxVVJVZA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "머니투데이",
+        "summary": ""
+      },
+      {
+        "title": "카카오, 임원 지분 변동·미확정 공시 속 하락세 지속 : 기업주식정보",
+        "link": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBVY1dUV1hIa0EtZFdTNXYxOWNtSGxQVFNtbGUtLTFOZ3ZpZldpbnV1by1DVW90LURlaEZLT0tPSjRHRkxUdURJcEdB?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "재경일보",
+        "summary": ""
+      },
+      {
+        "title": "카카오엔터, 서울시장 표창 수상…\"문화 향유권 증진·장애인 인식 개선\"",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0zT0haRURxTTFlZThpZzlma3hVRkpQU2RDLVdmNDc1RTFDa0xaV2lMN3QwT3FzOEVlU0tvbEIySEcxQzhMQlBadnRVWnI2RDlwR05UeW5vMDlrbE1CZmJ1Y3ZLbjU?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털데일리",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "공정위원장 \"쿠팡 현장조사 무력화 유감…소상공인 최후의 보루\"",
+        "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1fbFRZaGVWakhRQ25NWTZuLWNFUjVZcW1PREwtdlFXbnhqakNrMWlJXy15N29oMkRMdGN5TjdwSi1HenpCLXNCdjFuMjc3RWo1NFkzNU9KS2Q4Nmd6NmR5a1JCLTNxeEU?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "연합뉴스TV",
+        "summary": ""
+      },
+      {
+        "title": "[단독]정무위, 30일 디지털자산기본법 공청회 개최",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPWUhiNy1wM0FCR0FwejZMdE42ZEhJdXJ1Z3Zqd0YtODgxaDVUNTRZODV5Q3FIb1JxSUJzT25FTmtBX21UMFJTdEs3Si04SUI0X1haTV9vLUZtU1R3NjBOb24yOVlMMHFVN3B2T1FSdXkzNjF4S1RYbXlEanZaMkxyMg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "edaily.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "쿠팡·한화 잇단 공정위 제재에 불복 확산 \"법원 판단 받겠다\" : 과징금부터 현장조사·자료제출까지 전방위 법적 대응",
+        "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9UY0FtSm9LSHQtb0RNSG9BSWc0bVBYV3pBOWFsb1E3VnlrMlBERmFaNUZDdHQzeTBfOHZoRll6SEE3VUMxaVNDa1RxcmlvMU5oQW9rZVZoaw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "허프포스트코리아",
+        "summary": ""
+      },
+      {
+        "title": "KT, 펨토셀 과징금 행정소송 본격 검토...개인정보위 의결서 수령",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE90czlGR0FuRmRUZ1RkdmZXNFhGRzdQaENzY21Gb0lnQ0ZsamVMOU1yNnBEWVN2ZE9lZl9IRmswa1RNS1NncnJmTGk2RXA0UQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      },
+      {
+        "title": "경실련 \"공정위 과징금, 평균 44.8% 깎여…집단소송법 제정해야\"",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObnJBdHZnQzVYa1FfaDdRUk9xLTFPVFFnRVdqcjk2QVlfbGVqbzNMVU9WSUU4dHU0UGJ1blc0THd1WUJlRklOcXJHNEk0R2FibXNIcFFRcEk1ZVlIeFJnSjUycDQ0UngwYmFrNENhV1JLUXJWb21seUMtTHp5TFZ5Mg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "edaily.co.kr",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "KT, 글로벌 무대서 AI 보안·디지털 신뢰 기준 수립 나선다",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5tWVA3XzZqcXhwOEEyNU0tTXJNNWo3QkVOQmZfcVFRWFM2V2lUdFhhS1M2YU5MX2FqcFhRX2pRUGpzZTlXVTRoal8teVNtOVM5UG1PNEVVdUloRGpFSjJoNkEyeWFiMnhoSTlBbmdwa1g?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "시장경제신문",
+        "summary": ""
+      },
+      {
+        "title": "네이버클라우드 “군이 AI 통제권 확보”…국방 AX 협력 모델 제시 : 네이버 블로그",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNWl9yNWZrQWdfMXlvekJyQWVsdUNVMnBKa3NfY2txV09WeUttRzhEVS1nMXJ4OHAwWmxsVUJtMHBhczdoSTRXUlhVWDROd19qdVp6VDVnY2VZeTFvVDFjYjZEbDJfMGNrUTk3cEtsVVNEVmUzY3gtZlp2TnpndURrbFB3Zl8yVFJfaWxDNXFaUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "LGU+, 소도몰과 소상공인 AX 협력...상권·판매데이터 결합",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4ydGw0N2FtWHB2VDJWTFNaLUV1R1RtaWk1NTVaaGo4NEVNWHgxeENTVDg4czUyOWdkUUN0dGR4bzk0MXVuWEpXMEZkX1p6Y1hubjdkdy1OcXB2VzdQWTBEa21Pd3pHTW5OV0JtbG13c05YMDA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털투데이",
+        "summary": ""
+      },
+      {
+        "title": "개인정보 유출 CEO 줄줄이 국감장으로…티빙·메타·배민·듀오·토스 소환",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5oMHQyaGMzWjNlM3p5MGpLdTh0Vm13R3lBQUdpbERoSURjdHowb0xDYzBOWEVGUjIwRXJOeksyX2hSQ0RrQlhDb2lETXI5bHQtQm4zNm1R?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "지디넷코리아",
+        "summary": ""
+      },
+      {
+        "title": "네이버클라우드, DB·서버 접근제어 통합 보안 서비스 출시 “개인정보보호법 준수 부담 낮춰”",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5jWV91THhJVVVGX3JYUkVTQW56MzNXbGp1clVncHMzbkpMU29xVDU1T3Itbkstc3h0ZFhGOHlUU0g2b1VOdGlyQm8zRlEzQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
