@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-02",
+  "generated_at": "2026-10-02 13:08",
+  "header": "[10월 2일(금) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "돈도 사람도 늘렸는데 제재·사고…카카오페이·토스 보안 '엇박자'",
+        "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE94bnFudWpGNmFzNGI0RjNsV0JNakw2cWhpNkhoY0l3dG9GaTZJbE5vYnlqN1BqTnIwVmFfYXM2OFhILURRTW1RX3k3WWhnN2M?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "딜사이트",
+        "summary": ""
+      },
+      {
+        "title": "카카오게임은 시작…'인적분할' 카카오, 계열사 매각 판 커지나",
+        "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9iME16OTllcTBSeXYyMW5jUm9iYjEyeGhCdk5IMG44VDNUS25YNWFMdjdFdjVDckttR2pXMkJiaENKUWxPNWc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "v.daum.net",
+        "summary": ""
+      },
+      {
+        "title": "카카오엔터 13억뷰 대표 IP ‘템빨’, 애니메이션으로 탄생! ‘원펀맨’ J.C.STAFF 제작·‘주술회전’ 세토 아사미 등 인기 성우진 참여 10/2 한국·일본 동시 방영… 넷플릭스·애니플러스 등 주요 플랫폼 공개",
+        "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1OUDI1NHBZaDhZSG10Yi1panBKNGpWaTVxcm0waFoxcER0NHhfdGp3SW01QmZTbWZEeTRnQVY0YS1oNFh1SzlSUGRQSktkazhIQkZIemxJRGtWREx4WncwRnYxWWVDSWs?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "dhns.co.kr",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "네이버, 멕시코 정부·기업과 AI 협력 확대 방안 논의",
+        "link": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxOejVMaTVqNXhkZ3U3Q1NuR1VnbzlBWFdQNmV3V0JlWExpYnFqVTdqRVJoTzBPN2RBdFp4b3ZsUW9UZkVVdjA3d2JjdUlKaHJLQ2ZkR1Y2MVlsbTgzaDBZRVBueGVtV0luQUp5RXlOZ0RIMjh2azN6MTl6dEVTUXhKWmZJRk5mMnJybWFWcnZ2NWNBdlNZcHFtcGdLSkNXckZPR0Y1ZHJERkdyMU1PQVF1X0VGckFCTG9PRktEN0I4bzVZTGt0YXgyVHlKaWZmcUhnVktCYXNLNHZPSV94ekxkaDY5V1lPczVyaktGS2oyaDg1eHZrc1pYNzZScTJ5OFk0VThWTFlucjhzdElWcmRKU1FVU0RiOGRJWGFUSWpOdS1OTVhnbEVZRHl2MFpTOU8xZllLbkRFYnQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "데일리뉴스",
+        "summary": ""
+      },
+      {
+        "title": "공정위, 쿠팡에 ‘조사방해’ 제재 절차 돌입…심사보고서 송부",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02M2g4Z3JXWG16LWJEWjRyZTZzOGN4VGdfb0s1ZUF0WEVjTXB6VzZJNzFyanUyQzU0eklvWlh5eWxZM2N4WnpxZlA4SkZscDEwYjl4SktoQ2hXQjA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "KBS 뉴스",
+        "summary": ""
+      },
+      {
+        "title": "금융위, 국민 체감도 높인 정책 담당자 3명 포상…자살예방·청년적금·AI보안",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1FdFF2MVRDbFNLaXFQT3FZSXFHR1FBTGM1Q21SbDJHSWNyVF9oTzNqRlk5M2g2UWZjQTFudFhSc0stME9FNFpwSXJRb09ReFBQNkJFRjNZNGw0OXFZcWl3WFJhQ3Z5QU1sMkE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "intn.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "금융위, 원화 스테이블코인 제도화 속도…‘발행사·준비자산·이용자’ 전방위 규율",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBYNEg0YXlVWmhpVGVaZHBPcTBMZ3RfckdZMjFaYVJaZm5zZC1tUFFJZ3BSVDlzSWowTWNmQnZua1FoZ2ZXZVZ1a2hiY0p6UFpCcXVhRzJkeFI1TWREeTBkN2E1TEhsRllteVBqcEtNazg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "thedailyeconomy.kr",
+        "summary": ""
+      },
+      {
+        "title": "켄텍, 과기정통부 AI 분야 국가사업 3개 잇단 선정",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE94X2RtaUZLUVlkNTRqcTY2X2tnUXNDWkk5WldKdmYyWlRlWlBtcDVEbTNJVXBvdy1QSHdWNjVqeW9VVVQxdUpFbGxEMG9vcXhzUnpienY2NDRadnB6UVFDX1VnMGRGZ0lmMGYxdmVYVkpYZDDSAXNBVV95cUxPeF9kbWlGS1FZZDU0anE2Nl9rZ1FzQ1pJOVpXSnZmMlpUZVpQbXA1RG0zSVVwb3ctUEh3VjY1anlvVVVUMXVKRWxsRDBvb3F4c1J6Ynp2NjQ0WnZwelFRQ19VZzBkRmdJZjBmMXZlWFZKWGQw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "현장뉴스",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "네이버, 하반기 비용 부담에 수익성 '주춤'…AI 팩토리가 반전 열쇠",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBMeV9ucWRCYy0xRUEtTTk1SUlFeTNDTXVEeTBSTTBLMVVpOEU2TTJSalUwV3hMaC1PLTVtN3NZOW52Y1d2UHVOTGRRMGNHM3dnajhrUVloa3p2NUkwel82N1RfNS1aRzBzLXQ3RWVKN2ZpUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "newsprime.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "네이버클라우드, AI 팩토리 승부수는 '풀스택' [현장+]",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9PdmJDNzMwQ19FSEVDRjFGSEpNbU1CVHNhUFRRT3VmU0NXcm5iaF9HNzRWMmNlWEZEdi0zWk5SYkhlMFFYa2dqY2hDRDAyTW9SeFZjVmZfTmRTYWNCRXB1QVlGZ0drV3hGb2dyWNIBbEFVX3lxTE9PdmJDNzMwQ19FSEVDRjFGSEpNbU1CVHNhUFRRT3VmU0NXcm5iaF9HNzRWMmNlWEZEdi0zWk5SYkhlMFFYa2dqY2hDRDAyTW9SeFZjVmZfTmRTYWNCRXB1QVlGZ0drV3hGb2dyWA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "블로터",
+        "summary": ""
+      },
+      {
+        "title": "[경제일보] 데이터센터도 찍어낸다…LG유플러스가 PMDC에 꽂힌 이유[LGU+, AI 팩토리를 짓다③]",
+        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1iTUw5aGRBR1ZmWTNpWmFJc2Z3bzlCVmhBRUVoUlFscWFva3VzakVxM082NVNLcU02d2p2Q3p4WHM3ZHZGaEs1TzRIeXYyQ0JwbnlQM2pWamXSAVhBVV95cUxNYk1MOWhkQUdWZlkzaVphSXNmd285QlZoQUVFaFJRbHFhb2t1c2pFcTNPNjVTS3FNNndqdkN6eFhzN2R2RmhLNU80SHl2MkNCcG55UDNqVmpl?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아주경제",
+        "summary": ""
+      },
+      {
+        "title": "엘리스그룹, 코스닥 출사표…민간·해외 AI 클라우드 시장 공략 : 네이버 블로그",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOdUd0N09UckhQZDd2ckxjcWNDM1ZYc05NTmNiai1nMmFmVFp6cl9ublM0aUNqWE5UYWtMeXRTbGNIUl9Xb0U5STFoR0pMTGd4V2hkT2pweGY5UGpQbENVY2NhUTItZC1oUjJwY2ZtcW9yaWUyRkRjVmVUM2s2UFlhWURvVlRTaWRtdElEYUY1Zw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "구글 AI칩 우주로…'우주 데이터센터' 첫 궤도 실험",
+        "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1Edi0xXzBtUXVqTV96azFPVmVEd1pyVjN1MlBadUtPUzdyVEdLWVZ1cmMyQlZxOE12QmlEajNwcGJQQzRJRTlSX1dvUEpWLVRtV05tSG52RDRfaXRkMy1vUGdfSUZtTHJNYjM3TDdONElfTHhfMUQzctIBeEFVX3lxTE1Edi0xXzBtUXVqTV96azFPVmVEd1pyVjN1MlBadUtPUzdyVEdLWVZ1cmMyQlZxOE12QmlEajNwcGJQQzRJRTlSX1dvUEpWLVRtV05tSG52RDRfaXRkMy1vUGdfSUZtTHJNYjM3TDdONElfTHhfMUQzcg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴시스",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
