@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-07",
+  "generated_at": "2026-10-07 13:02",
+  "header": "[10월 7일(수) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "케이·카카오·토스뱅크도 해킹 IP 접근 흔적…정보 유출은 막았다",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB4S05DakZBdDcyX09IWmdFQllPNzlxM2ZpTXNSa0ZaM2l5Umc5ZlBRUjA1LTYxcmpZOFpfWVpMOFYxeVhVU1J0U0VwUWpaUEJHUUFxcGZn?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스21 통신",
+        "summary": ""
+      },
+      {
+        "title": "[IT돋보기] 인수 6년만⋯카카오엔터테인먼트 美 타파스, 내년 3월 말 종료",
+        "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1CNENSemJQbHhNclpRUEpyd3ozd09UckwyV3BqLVBNYXNJRFIxeGFvTWk0UUZSSGs0MXQ2TG1IM0Myel9oeWFDdzRWUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아이뉴스24",
+        "summary": ""
+      },
+      {
+        "title": "[IT라운지] 인포시즈 '고스 출시'·카카오 '매거진 곳곳 공주'·카모-고려대 'MOU'·네이버 '소비자 분쟁 조정 성과'-'BIFF 후원'-'모두의 한글 캠페인'·마키나락스 '포항함 AI참모'",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5rd3NKTXE3V2E2WU1tcXFDazNEMXJQdTU5TXlKSDN1VThIUTBYUlRNd1FWM2FLT1Zib0pYc29pc0VIVWVvNG5kU0V2ZHBpcnVtV0JQTzdhMkI3ZmszeDBLVEtISDJ2czBmTVhueGUxNNIBc0FVX3lxTE9IcFpKQjFybjBqMjIzYjlwRzU2RXdMS240bFBQcXpTXzJtdi16MGxweFdPV0xMa29PZFlKeDJ5UXo0OWU5MmpYR1VFQ1lGcmlsdUFGaWh2czFib1Z6bXR4NDRrVUp0eFZZMkxaUUNFUTJ4alE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스웍스",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "국가AI전략위 \"정부 AI 도입, 기술보다 제도가 발목…공공 AX 규칙 다시 짠다\"",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBTenJISDZ6TE9yaXBNcDg0dXFpS0sxY2prQm1NaHdmUjJlTnRvWmdJamhPT2xBWlhCNnI3cHZwTktxQTVhNEVrS19iRGZhcDA2VEFJc2RR?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "지디넷코리아",
+        "summary": ""
+      },
+      {
+        "title": "과기정통부, AMD와 국산 AI 반도체 협력 확대…14개사 글로벌 진출 지원",
+        "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE14U2dxVkxVeWtFUzNsWU5RQ1JHbnJ6X2lGUktwcmpJT2JoVlhCZWNaYlhrRkxoTThHN2dyNzJPOXdBZWdFVUlGR1hFQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아이뉴스24",
+        "summary": ""
+      },
+      {
+        "title": "쿠팡·다이소 조사 때마다 “중국 편들기”...낭설에 정부 ‘골머리’",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOS2NkdEFVVlk0Vm0teWk5UG9JTjVaX0pVS2d2czRIR3dEbUw1R0ZHX3B0a0pHcTBmR0ZIemYta1FGMUlDSVlXampwSTFwUWI4YW1kOFBPZ1ZoWFlsczBrdU1ueUZFVF9maXJaSWNOdm9CNjJpdzN5X2pZMmUzalNHUg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "이데일리",
+        "summary": ""
+      },
+      {
+        "title": "행정안전부, 혈세 새는 공공시스템 체질 개선한다… 12일 6대 민간 클라우드와 맞손",
+        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE01SkFtbHBzSUVJbDlrbXdOQUdBSUVGNDBnOU05elR1eC1aSlEyUXhFZUFwSWN0dmhLOS1MM1VqYkQyUFdsWUZBZkNfSVlVaFRxdkUwX1pyYUhsQmZVQlE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "커넥트이천",
+        "summary": ""
+      },
+      {
+        "title": "서천호 의원, “AI 인재 해외 유출···정부 실태조사는 3년에 한 번”",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ZSldMQmlsYm9VMUhmMS15UWVVdjlwMEJVbVFfSUdmSzlsdnd5SmduMUtqNkxmSnFwTGY4NjhOa1libTdoY3pJb0o3TFB2dmFHUTZlOVJ3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "선데이타임즈",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "[출근길 포인트] 엔비디아 대항마 리사 수 AMD 회장 방한…삼성·네이버·정부와 'AI 협력' 확대",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5RdFBmSzlMVVdNSW5wbWsxaVlkVk1Id2VoN2FyOS1OX28xUXZ6MDVKWUxTMDJZcUJXZk5nbVRfQmlqU1dlRUNyaE1WSldvYkRZV0hyU2xpbUJSWEs5U045dUJaaExtOV9ZUU50MVJFbTfSAXRBVV95cUxQSjhqalpOMzNPSmw5ZjRyTlVDczJDZE0zQzdCMThMZnFqXzBpeXRHb0FMN3RTRXRSaF9jRm1HQW8yRkdUalU1QjY5MmFUbjFPWV9ZY1RlaGhFZFNldWJmVkJ4bnpmUXpMczMwR1R0Nlc4NXFMNA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "포인트데일리",
+        "summary": ""
+      },
+      {
+        "title": "[2026 국감] 첫날부터 통신·플랫폼 정조준…“LGU+ 해킹 은폐·쿠팡 개인정보 유출 따진다”",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9zVmZPWTVmVlZSYXNCa0h3bXN1bk92REtUN1hCZW1SSS0wczRxRUFneXZLUkNwRkc4UmgtVlBIbmtXYnptN2FXbzNXbi1WdGtkcFo5bVE5WnFwX2lxdl8wN1BQU2J1YkZJSkE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "월요신문",
+        "summary": ""
+      },
+      {
+        "title": "[InLEX 2026] 국방 AI 참전한 네이버, AI 참모·국방 데이터센터로 승부",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5VMHVpb253SzExM1dyTnpEMGhONXZsUVR2VHdPcTBGbEFWeHItS01ya2NLZUpzbmR0WG1OMjJWZXVHa2RIWVZTeEpOZ2ZpZE1ZX1hidElja081YVBhbHpZ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "MTN 머니투데이방송",
+        "summary": ""
+      },
+      {
+        "title": "네이버, 파워링크에 AI 탑재…광고 매출 성장 이끌까",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBtcDl5STFiNk5yejBKV0xHdUtfSjkzZDRaZlNsbTlCd3o1SXFlN3RkSWlLOHdNc0xwaHB3LXJhc2lmRzFwM2Y1NGI0ZXdSRXp0MUlIRFZVaEhpdndDZkgxZTNDemI?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "서울경제TV",
+        "summary": ""
+      },
+      {
+        "title": "KT, ‘AI 페스타 2026’서 AX 인프라·에이전틱 AI·피지컬 AI 전략 공개한다",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB0OGdTVURBMmx1dS1PaGhtWlpmaEtaektKTmIzZHpuaGpSa0RLbXZFMjFoNzZQNlducUhmNi1WUkIxWU0ySWVOWjJrVU1DRW5UWGhpVDY0b2ZCRFM4TVUwdlpYb3dzalRB?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "테크월드",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
