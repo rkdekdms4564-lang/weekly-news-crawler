@@ -1,0 +1,16 @@
+{
+  "overall": "주의",
+  "warnings": [
+    "QA failed: 401 UNAUTHENTICATED. {'error': {'code': 401, 'message': 'Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.', 'status': 'UNAUTHENTICATED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'ACCESS_TOKEN_TYPE_UNSUPPORTED', 'metadata': {'method': 'google.ai.generativelanguage.v1beta.GenerativeService.Gener",
+    "본문추출실패 기사가 8개로 v29 상한 1개를 초과함",
+    "v43 품질통과 후보 부족: 정부/국회 0건 / hard minimum 3건",
+    "v43 품질통과 후보 부족: 산업동향 0건 / hard minimum 1건"
+  ],
+  "suggested_human_checks": [
+    "본문추출실패 기사가 8개로 v29 상한 1개를 초과함",
+    "v41: 월요일 수집기간 적용(2026-10-09 00:00~2026-10-12 13:05 KST)",
+    "v42: daily-safe rescue counts self=3, gov=0, comp=5, industry=0",
+    "v42: 월요일 금요일~당일 수집기간 적용(2026-10-09 00:00~2026-10-12 13:05 KST)",
+    "v43: hard_min self=3/2, gov=0/3, comp=5/3, industry=0/1; soft_target self=3, gov=5, comp=4, industry=1"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-12",
+  "generated_at": "2026-10-12 13:05",
+  "header": "[10월 12일(월) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "‘골프 예약 앱’까지 줄줄이... 골프몬 이어 카카오 VX, 개인정보 3만 4천명 털렸다",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9lTkJoOFR6MzR3dnQxYU10LTd1R01Qbkx4OE91T0FBNXg2TVZWclBYbEtxLVRteHd1QmFnZERRMEV2cXNHYlpDLW1raV9tcGQwUFhGQlNJZEo1TXBObWdkaUJsMFp3eTlDT1BJ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "보안뉴스",
+        "summary": ""
+      },
+      {
+        "title": "카카오 노조 \"'무늬만 제주 본사' 행태 중단하고 지역사회에 책임 다하라\"",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9idWlvWXlpbno2RXVpMUtQU2FwTW9QYXhUejFIRTBTeUdCa3BlLUs1c01ZQmdXR1I5SFNfWE1NY3drNUh5OE9lcEFka0FyMmN1dWNHSUo4VHl2NTJ6bnRBdlZrSVozVHhSeHhMWg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "삼다일보",
+        "summary": ""
+      },
+      {
+        "title": "카톡 광고 스팸 신고 13만건에 \"정부 규제 필요\"…개인정보위 신고 - 머니투데이",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1kaGxaNVNWcmRodlZWY09TN3Y5NnJfVHpyUFFLMTFXN21jQ0VDUHByeDdHVkJlMDBTR3Y4aUNraGJiXzE2TEpGZDF2TW5uR2x1Sk9mcWVMSjBncmhJYzlhMko4b3ZqZHkzbmJTeNIBbEFVX3lxTE1kaGxaNVNWcmRodlZWY09TN3Y5NnJfVHpyUFFLMTFXN21jQ0VDUHByeDdHVkJlMDBTR3Y4aUNraGJiXzE2TEpGZDF2TW5uR2x1Sk9mcWVMSjBncmhJYzlhMko4b3ZqZHkzbmJTeA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "머니투데이",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "주병기, 쿠팡 겨냥 \"공정위 조사불응, 경제제재 강화할 것\"",
+        "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE4zbkgyaU9YVm9ZVGNMUmUzeC05UUJCTGN1X0VDNUQ3WVJvajRET0g2ODVINDlYU3RHaFpZZW5hTkI0MkhGSkpSSVVnRFExYzRLRTVybmlwU2R1ZjlzZWZhdlRXZVJrSkdNbTl3cG40ZGt5OFg5Rm45em1sOA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "부산일보",
+        "summary": ""
+      },
+      {
+        "title": "여야, 정무위 국감서 '쿠팡 현장조사 거부' 맹폭…\"법 집행 무력화\"",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAyYW5LdHhxTVFLWXZHelFhTnNjbEFPVi1CMHdvWEhzU0UtV3VjaE1CTjROclZlR0t0RWNuUDZfRi1PeEhoOUR0VVAxQmZIRU5uclRTREU2TFJHVHNvWUNLbnBCeF9yZG1wLXM0?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "한강타임즈",
+        "summary": ""
+      },
+      {
+        "title": "금융위원장 \"가상자산 거래소 대주주 제한, 개인 지시 아냐\" 공공성 강화 목적",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE53cUpFc1hJMXJ3cUxfWGQyY2t4bUg2NkR0dmV1a3hSU2VORnlMSF9WRE4wZUxnaUh4dVhNbkUtZkZaaC1wSENlODZpMDBNWng3a29QdGtMa29QTWh6UG51OHhxb3gyU3VI?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "공감신문",
+        "summary": ""
+      },
+      {
+        "title": "김종철 방미통위원장 AI 챗봇 청소년 과몰입 문제 공감...입법 지원 노력할 것",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5LWXctMTZMMzNIS04wUTZuZnpwbUtDOUE1am5vWV91Y1hpbTdrSmw2eTNpRGx3ZHhtZmkySGhrOXJsdmZMU3RxOXBfNC1TNXZnbVlZa1V1eXJ6d9IBWEFVX3lxTE15WFUxQ2Z4MlFRdkJzRm8xTUs2YWhYWEtIaC1fbm9SRk5XRlgtNDBuTGRGMGVvbW1aMTdWbUo5QVhIRTVkYk9sQmZzc2JLRXpEWmh2NkZXQ3k?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아주경제",
+        "summary": ""
+      },
+      {
+        "title": "YTN 민영화·구글·텔레그램까지…과방위, 방송·플랫폼 책임성 집중 점검 - 머니투데이",
+        "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE4xOUhVTTItM1hLbDNwcUdiV0RZNXpDdnZvdWZvTGRVU294WFMtYWZxbVlvWmxuTjFhTkd5SWYwbmJhWUxqNW9KaGxwdHdIOU96ZXZsdUJ2S2FBanc3QkZ2TXJkS3dHOThaRDFfcFFNeHo2N2FORU81eFJB0gF_QVVfeXFMTnpPd3ZwN1BSTXZORFBCVG1xck9MMnhSdHIxYzNybG1FUHN1YmNSZERxVHlyUG81Y0owT0lScHFfUlE2VHVkUW9iTmF2VHFKR0RqX0I1Q3EwZHBTMXUtUXlQUTVnMU5JRjBEVEpDbFk0RWZmcy1qaUZ5c0Y1UzBPWQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "머니투데이",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "정부 조사 과정서 KT 해킹 은폐 민낯드러나다…조경태 의원, 강력한 행정제재 촉구",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9zV3lLZWtRVno5dGRNd1A2SVhDRE1LOWU3OFoweXdJd0FTUzk1Y2M0OE9oR0ZfMXlXRDhFQzJEeVZGdklpMGh2LVZJeFoxUkVqcE9Xa3QzXzNVUktkeVNZeHpXZkZ2eG4x?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "테크월드",
+        "summary": ""
+      },
+      {
+        "title": "네이버, AI 수익화 본 궤도…내년 엔비디아와 ‘AI 팩토리’ 띄운다 [컨콜]",
+        "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9mcnUwS2ZsLWY2Vm15OW50NWdZNmtOcllRZzI4LXJwVk5VTWJsT0VUajk4NU53ZjlPcEhFZmJvMzFRVnlPVXpfWTRGaVNhNENLdlZCOTAxMF84NzBLelp4RUNPRQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "쿠키뉴스",
+        "summary": ""
+      },
+      {
+        "title": "네이버지도, 구글·삼성·메타 AI 글래스 연동…전용 음성호출 기능 도입",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9hZWRvUFNkLWVnNUdKa3hUMlJzZ3J0ZkpvZ3RCRnE0RG9ZeHBrWmphSHVKSl94MWxiV2VtVW9tcnlnMWZzN2FGX3hoWENEQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      },
+      {
+        "title": "정보책임자 일제히 국감행..SKT·KT·LGU+, 전방위 해킹 사고 지적",
+        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBxY1NDQm9ZZmpSTEVJUnFrUzJXVmFLektTR2YtcEJLeTFiY3E5dGQ5MWJPLUoxZ3BBbGNzTUtKRU01Nmk1azl4cXREZ3EyTXBRelE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "한국정경신문",
+        "summary": ""
+      },
+      {
+        "title": "인도네시아 명단 포함, Meta 플랫폼에서 TikTok 광고 중단",
+        "link": "https://news.google.com/rss/articles/CBMixgJBVV95cUxNeVBjRkdHYmk4Y2g1aXFNTGs3alFoM0twemZvTzdHdTUwYjB4MmdFSUtNYnFGZV85NDU2N1R4WldDZWp6cGJVc2ZMUENhclpHdFRVbTU2Tm5wZnB2ZDItLUFpS3I4anVwdG5xRG9QaWNSVmY4Tno4N0hPU0VIVWw2NHZQNTJfVVg4ZVNmS002UjVOVHM4V09vMWhxZ3VidTFYcktYNG9NS3FNdTN5RjdhRFBWR25Qd2hOVXFVejVFbE04MTVrUFdwSmxYa2Z4UnJkY25wX2R6b1JneVN1RHZHcG9jVmxLMHUtSW85NFdyZ2Z2RTZFUW1ORDAzQ2I1cFdBc1NWRHBJQUJKVUtpZFBidGV2VUpaQURzTFJCalZpd3lEeWNtSzVUNnRURDhpMGxIeVZ6NHAzdlg1RFd4ZmE4am12MTBEdw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "IDNFinancials",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
