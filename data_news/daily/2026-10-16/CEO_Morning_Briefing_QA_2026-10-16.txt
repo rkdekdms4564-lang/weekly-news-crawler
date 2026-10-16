@@ -1,0 +1,15 @@
+{
+  "overall": "주의",
+  "warnings": [
+    "QA failed: 401 UNAUTHENTICATED. {'error': {'code': 401, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'UNAUTHENTICATED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'ACCESS_TOKEN_TYPE_UNSUPPORTED', 'metadata': {'service': 'generativelanguage.googleapis.com', 'method': 'google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent'}}]}}",
+    "본문추출실패 기사가 10개로 v29 상한 1개를 초과함",
+    "섹션 부적합 가능: 정부_국회 / 방미통위, 국힘 추천 공영방송 이사 6명 인선 의결 / korean_regulator_enforcement_against_competitor_as_competitor_risk",
+    "v43 품질통과 후보 부족: 산업동향 0건 / hard minimum 1건"
+  ],
+  "suggested_human_checks": [
+    "본문추출실패 기사가 10개로 v29 상한 1개를 초과함",
+    "섹션 부적합 가능: 정부_국회 / 방미통위, 국힘 추천 공영방송 이사 6명 인선 의결 / korean_regulator_enforcement_against_competitor_as_competitor_risk",
+    "v42: daily-safe rescue counts self=2, gov=4, comp=4, industry=0",
+    "v43: hard_min self=2/2, gov=4/3, comp=4/3, industry=0/1; soft_target self=3, gov=5, comp=4, industry=1"
+  ]
+}

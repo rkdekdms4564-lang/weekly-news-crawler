@@ -1,2 +1,2 @@
 ﻿버전,실행일,출력폴더,모델_라벨링,모델_편집,모델_요약,전체_RSS_후보,Gemini_기사라벨_후보,이슈그룹수,Gemini라벨링성공,Gemini라벨링_로컬대체배치,Gemini라벨링_재시도배치,Gemini이슈편집성공,선택이슈수,백업이슈수,최종_자사,최종_정부,최종_경쟁사,최종_산업,최종_경쟁사_국내,최종_경쟁사_해외,본문성공,본문실패_중요이슈_제한포함,제외_총합,본문품질미달_관련성미달,QA결과,최종기사수,실행분
-google_rss_v44_final_artifact_sync_only,2026-10-14,/home/runner/work/weekly-news-crawler/weekly-news-crawler/data_news/daily/2026-10-14,gemini-2.5-flash,gemini-2.5-pro,gemini-2.5-flash,3679,380,182,True,11,22,False,15,30,2,1,4,0,4,0,0,0,16144,191,주의,7,25.98
+google_rss_v44_final_artifact_sync_only,2026-10-16,/home/runner/work/weekly-news-crawler/weekly-news-crawler/data_news/daily/2026-10-16,gemini-2.5-flash,gemini-2.5-pro,gemini-2.5-flash,3455,380,224,True,11,22,False,15,30,2,4,4,0,2,2,0,0,13501,153,주의,10,18.27
