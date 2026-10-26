@@ -1,0 +1,20 @@
+{
+  "overall": "주의",
+  "warnings": [
+    "QA failed: 401 UNAUTHENTICATED. {'error': {'code': 401, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'UNAUTHENTICATED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'ACCESS_TOKEN_TYPE_UNSUPPORTED', 'metadata': {'service': 'generativelanguage.googleapis.com', 'method': 'google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent'}}]}}",
+    "경쟁사/해외 섹션 부적합 가능: LGU+ 자가설치형 우리집지킴이 도어캠 가정용 현관CCTV 클라우드 사용료X / v28_competitor_without_direct_action",
+    "경쟁사/해외 섹션 부적합 가능: 이형훈 제2차관, 의료AI 본격 추진 대비 네이버 데이터센터 '각(GAK) 세종' 방문 / v28_competitor_without_direct_action",
+    "본문추출실패 기사가 9개로 v29 상한 1개를 초과함",
+    "v43 품질통과 후보 부족: 정부/국회 1건 / hard minimum 3건",
+    "v43 품질통과 후보 부족: 산업동향 0건 / hard minimum 1건"
+  ],
+  "suggested_human_checks": [
+    "경쟁사/해외 섹션 부적합 가능: LGU+ 자가설치형 우리집지킴이 도어캠 가정용 현관CCTV 클라우드 사용료X / v28_competitor_without_direct_action",
+    "경쟁사/해외 섹션 부적합 가능: 이형훈 제2차관, 의료AI 본격 추진 대비 네이버 데이터센터 '각(GAK) 세종' 방문 / v28_competitor_without_direct_action",
+    "본문추출실패 기사가 9개로 v29 상한 1개를 초과함",
+    "v41: 월요일 수집기간 적용(2026-10-23 00:00~2026-10-26 12:02 KST)",
+    "v42: daily-safe rescue counts self=3, gov=1, comp=5, industry=0",
+    "v42: 월요일 금요일~당일 수집기간 적용(2026-10-23 00:00~2026-10-26 12:02 KST)",
+    "v43: hard_min self=3/2, gov=1/3, comp=5/3, industry=0/1; soft_target self=3, gov=5, comp=4, industry=1"
+  ]
+}
