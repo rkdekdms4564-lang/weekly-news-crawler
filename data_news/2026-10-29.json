@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-29",
+  "generated_at": "2026-10-29 13:22",
+  "header": "[10월 29일(목) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "[카카오엔터 해부] 경영권 쥐고도 473억 더 썼다…카카오엔터, 스타쉽 풋옵션 '발목' : 네이버 블로그",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxONXBkZURZOUFMWXZXSnJIZEhuSU8tV01rMFFNMi02MWw4TjFoUmZmVklnb010QlU5NzhCZXFtaXRCQ0RWYk9sU2R0X04xTzZRTE1GanVFTmxiMFl3djlKUm9QMVE3TUtzWV8wMVZ2bU5pTGg5dDJiQWdMVV9OOHZuNzNiNzdKQ21UN2RHaVR6RQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "카카오뱅크 장애 배상 6만9천명…은행권 최다 기록 : 금융",
+        "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9yX1J3cW1GT1FjeTJETmZKb3c1TFJ1c2hrSHoxS0ZDRHQ5MGVRN294cFc5MVhxWDc3dXpmRWVxSjdPQ1hfQUQ0Wk1UVQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "재경일보",
+        "summary": ""
+      },
+      {
+        "title": "[카카오엔터 해부] 임원 주식 197억 사고 50억 빌려주고…카카오엔터, 스타쉽 경영진과 '돈거래'",
+        "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5lN3Y0cjM0eG40bWIzS0htUHotUDFZd1hOSGU2UnRfXzdISjRRS0d0MU1kUFllQ1JybmtNS1BjVVBUeGp0b21RWmNBaDNXMEU?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "딜사이트",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "방미통위, 전기통신사업법 과징금 상향 추진…유럽 수준 맞춘다",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FODlwRTJqYUc5eVU4blBuZXB1aWlOdmlYQ2VxYmpJai1OVERELU5yczgzZ2VMSGxIRHlQdDRoOVV4d0tISjRoS2NPV2RjYlpfYUliazJrNkVCaF9DcG9pedIBeEFVX3lxTE9BTXR0Qm44ZHJjWm9LMk5scGVfOG1ERnVxb3hzaGc5WnpaTjQ5T3FjRVpEVm5SaWNPVHR1anhIRVlYUWhkUXZMdHVpbmlHeUVMUVg2MGlfclhZbWtzVFlvTlNyM1liWjU2VDBSSmFfcVpRRzhKWkNmRQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴시스",
+        "summary": ""
+      },
+      {
+        "title": "방미통위, 구글·애플에 과징금 637억…외부결제 허용·수수료 개선 명령",
+        "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE4zSEVXM0FGSTFSVnFtQ3RMTmNuRlZTS2dXMkFwOHpJVVEybS1ialliOEJpMXFpOHljV1Q5Z25wSzBBTDQzUWZKQkNsU0dKd3QwX1JFNDREM2ZCVmhqblZ3elRsaXdUODVZeHJ1aUhB?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아시아투데이",
+        "summary": ""
+      },
+      {
+        "title": "이름 넣으니 개인정보 우수수…개보위, 고객센터 보안강화 권고",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5TVjdGTU5WVEdNaG15a3dCa3NKVE13enNLVUljQUpvSjN6NTJUVjNLOW9oUHpGVnNweGpWS256eEQ3WThMZzBrUFpMOEYzVktVV0FVczNqcUNmRzM5NngwMW5hVlltQ0l4LVE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전파신문",
+        "summary": ""
+      },
+      {
+        "title": "금융위, 빗썸 해킹 사고 긴급점검… 은행 수준 보안 강화",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1TGduZ0pqUWdvSEs2YnB6Z251M1ZVc2toUGZ2SVZyTjNaQ0ZacmVwbEJJdTd1YzZydDMxWTZ6M0JQWEdOMVdQU1g2d2lnMWtLMlMyYnhqbVlxaDZYNG90WlpVdUJXS1Q1cnpRd0ZKa3fSAXRBVV95cUxPeTNNYTRhMXVIem5GaG1ZT01iRFlTTG1PSEF5V1F1YjBJdG9vcUdJMXhJOURFVXRlcDFqQkJ6eUdEOEhBN1R2NjJyZl81RFhNT0NUVi1ob0NRNkpjUTk3Y1RzeUxlVThIRW05MEZZWWJGa09IZA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "IT조선",
+        "summary": ""
+      },
+      {
+        "title": "“안전 인증수단 미적용”…개보위, 쿠팡·G마켓 등 고객센터 9곳 실태 점검, ‘시정 권고’",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE02TnlhNzVVZDFjQU5hTmJLXzZuSHdWc19VZ0toeGRNaG9LUWlzdnIwRmxCZ19HSjNucV8xcEp5bHJUT3BnSEpEaWJJQjdWR2pxemZGa3p3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "헤럴드경제",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "SKT, 앤트로픽 지분가치 상승 기대감…AI 협력 확대 모색",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBLZWxzdV93cXBadmF5bl9YaldyR1BSWmdYTVFvMjQ4bkQ3bHRCR2x1bnhNN19GVmQ0dzBCX2tGYkliOGNSNjFxajZfYUZIWXlVVU9FQng0cERUZVBLOEJKbUY4Mi0?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "서울경제TV",
+        "summary": ""
+      },
+      {
+        "title": "네이버, AI 팩토리·엔비디아 투자 본격화…실적 성장 기대 속 '재무 부담'은 변수",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE56Zk5jOWkyN2x3WEhUWkhJMktETmhXZE5xSEU3Z1l1cWc1SEphcUUxQWszbjZNRkJpbzdheEd6NzRIS2lpLXVBVEZnMzdhblZvOFBjTXZZeXg0U2xOMnhF?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "MTN 머니투데이방송",
+        "summary": ""
+      },
+      {
+        "title": "\"코어위브와는 다른 구조\"…네이버 AI팩토리, 브룩필드·엔비디아 시너지 기대",
+        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFA2ejFobVNsU2p4VjZVSjFIN29Venhpeks1b0VROC1LSmZXUjVTaVVDWjRjTDZ0NVZueGdoQTU4R2ZKNVJUcndGQThuSHNmNUtQSnc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "노컷뉴스",
+        "summary": ""
+      },
+      {
+        "title": "네이버페이, '우리 가게 리포트' 출시…매출 비교부터 상권 분석까지",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5pYm9lUV94VDV2QnlQSWpGblFDTmZQa3ZnOWxyMlZvRzdCdk9JZ1ZSZU94Qmlyd2ZQcTVNZ1RJUU9sbVlxNjBfb3Qyc0g1UQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      },
+      {
+        "title": "SKT, 해킹사고로 치솟은 해지율 1년 만에 회복… 학계 \"고객보상, 정보보호 투자 성과\"",
+        "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQV1FXTW84ckN2MVR6VGVlWWVQS3RaM2tJWmV2anVJbEg4TFNUNzlyc1pEQmlMNXdWWFhjakwyc1ExQmx6ZGdLZEk4MEhSS0xhZ0xNS2QyX0xvVWhmQ3hOVUlCVFAtX1pWZmhXQTJaY1BSeFVnVHBQdnJrMzN1WkxOODAzNA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "조선일보",
+        "summary": ""
+      }
+    ],
+    "산업동향": [
+      {
+        "title": "인천시, ‘ICNX 2026’ 개최… 글로벌 첨단미디어·콘텐츠 산업 교류 확대",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1fTGVsaDdBN0F6RVZobDFmaERMUGxybGpNd1FubnplVV81SUlVNTM1NlBTcGJiSHdJbXdnczlpZTNySjdtOTRBdFJPSlVrd2llMjhqYTZsbW1vMVBDNFJma2UxR3dIYmlCbXRVTGU4WUbSAXRBVV95cUxPcVMza3FsVWlFdVVnS3lqM1RpTkNHTE9DUkhFSURRS0ZKajZFMXdZOExVdFBITHgteGYyX1RUVkJsNzF5RFh5Y01YVjIxYkQ2VVpsSDhWc3BTTE1ib2Z5RFQtTDQ5OXA4cW94dkxkZHJUUHJHbw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "포인트데일리",
+        "summary": ""
+      }
+    ]
+  }
+}
