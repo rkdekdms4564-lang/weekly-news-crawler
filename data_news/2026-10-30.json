@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-30",
+  "generated_at": "2026-10-30 13:31",
+  "header": "[10월 30일(금) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "수원특례시, 교차로 70곳에 실시간 교통신호 정보 제공…티맵·네이버지도·카카오내비 연동",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8tRXdHa1owZXFQVUNYZWR1SDZOZG84R3Z1ODZ4NTdZNW1BWjA4Zi1kaldsRmdXY19oUXdKem1ITXVOd2tkWGwyT04wNE5GY0oyb3l3by1VVXdpTUdwbWQtb3NGU09JVmlpY211OFNxaw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "월드장애인사랑뉴스",
+        "summary": ""
+      },
+      {
+        "title": "김범수 지분만으론 부족...카카오 인적분할 '주총 표심' 계산해보니",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1PTWRTOHdVRElCSGpKR01Ca0ljMk5DSHpPa2pFdGc4SFp0Q3N3Vkw1SjZYNUtQXzZ2YXdvZ2c2SUNyUW85WHFlRGRIa1A1UlFRWVJMbUZjUkE5b0pvYnBrSmZST3pYOWJSM3V6LWw4dmxKWWM?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털투데이",
+        "summary": ""
+      },
+      {
+        "title": "[카카오뱅크 인사 전망] 윤호영 6연임 앞두고 노사 갈등…임원 17명 임기 만료",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56bjc5ZXFLTXlaTnRQZS1jVnJNRFFPN2lkME40SUZuV0RNWUtYSW1ZZTZPeUQ2WFNxWVJLaEpIc29vVkxfdXZfbzQ0SkE5U3dXQXJjQnl4VE1QQjMwcmJFQWhmVTNGTVJNa3J3RXctcUvSAXRBVV95cUxNYTlUdVdHaTN0TldmejVxcC13a2Y3UElNZEJZejFFREw3dks0eU50blRIMERud0ZaRzZjdXV2QzlvSG05Q1dUMzNkWmJwRzgyd2pKZXZpbldFemJWaHVTRWoyV09xT0s0WVNiVTFfUkdaUEVMaw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스클레임",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "쿠팡 \"6200억 과징금 부담 과도\"…개보위 \"납부 여력 충분\"",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRURFYnc0cXJid09rc09ENUJaNWoza0Rvekx6TUpqMDBGd3BUT01KQ1BUQ3ZVZmNiaHdJRnBMalBITEIycVRXVHV2bjVITm5xbzdXRmcwaENnams5c3R5dzE5U0g3Q2FTWjJHUTQxSUNHaXJsSTlNWnpJY3M5VlpnbA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "이데일리",
+        "summary": ""
+      },
+      {
+        "title": "개보위, 고객센터 개인정보 조회 통제 강화…이름·전화번호 마스킹 권고",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB5Zjd4dTAwMFNJcEc5SUNXNExKRHprNEhjX3NUM0RRSzdaTzhuN2k0RVhmcFNMbDY2RGNnZ3VZSzFFRUhNc05lX1NVMkZnUXRhaXVUZXRKYi1YaTIxZFQybXczWG5fUUhS?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "www.ebn.co.kr",
+        "summary": ""
+      },
+      {
+        "title": "방미통위, 쿠팡 납치광고 심의·의결 준비…국회선 금지 법안",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE04bXRzU0hDNUNHbjJ4U3BwNl9iMDJ5Z0hGQTN1Y2RyRU9qZjVJTy1jWXo3bkRMMVdQbThBWE5YSldiQmcyM1ZobXBhTEFEMWY2S2ZVcGNwM1BSd9IBWEFVX3lxTE9nb0Q5bGVKTzhCd0RxSW00WlBIaExoWmRFbzUxZkJQUDNqeU9WMnEwT0haR3U5OUxBTHNON2tWR2JFY1MycDZ4TjlxeUlNd2gzTnVzdE9FNU8?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아주경제",
+        "summary": ""
+      },
+      {
+        "title": "방미통위 ‘인앱 결제 강제’ 과징금 반발한 구글·애플… “제3자 결제 어렵게 해”vs“결제 유연성 확대”",
+        "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOazdsbUdFSG5zSW1DYVhzSEJGUlhyYXRSZEFHeVQycC1jZS1RTEsyenp5SXBZbTNTWkRSRlJfWHdOU2I1d0dva1hFS1RzWjNzWUtSQk11VUl0enAzZU56akctdUVieWd6bkVfdHRjNGd3aUpKRzQ2WWxTUUI5bm95NlRR0gGWAUFVX3lxTFB3aVRuUEI5d09yY3h5SlhUdHdzbDd2YS16Uk9RWWExSEZfRW4wTGJuTGUzNzhRcGphejl6ZXMyR2VoT200Sk16cEtLa3JhRmM0cmxJbW5EdmNmc3BBMFhoeE56cVNOcjYwemdoZVRPaGdmQkVKQmpGbHd4ZktDcFMzNEI0cVVTUHN1STVjc0NUenBkWGw4QQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Chosunbiz",
+        "summary": ""
+      },
+      {
+        "title": "이억원 금융위원장, 내달 AI 보안 점검…금융권 소집",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE53MkhVQXJTRFJIejU5OWZfck9JaTBDVEhiT3NHaWxVOTBBTDBBcU9EenVndzVEQXhqaElOUDQ2dk9WQ0tONU9UTXZpOWxWTUxEQkxRMFVsVy00WHZXQVhtZQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "NSP통신",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "네이버 지분구도 바꾸는 엔비디아..AI 인프라 동맹에 1조원대 베팅",
+        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9hdklEV0JJcmVWc3RYVGNEN0lUeGNEYmNhNDdhNWpTUnRhcWd2R1JDTWkydGJLSmtHZUdxYnZyVFRlLTJPZlNYeEVIY1F5TU16VEE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "한국정경신문",
+        "summary": ""
+      },
+      {
+        "title": "SK텔레콤·쿠팡 개인정보 소송·분쟁조정, 어떻게 진행되고 있나",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE52TXVVWEdWX1BjUjdicmVxekFMY19FM29fT3FVMHJsc09sWUVpNjE1ZzFnaTNPMjF4QUJpeEo1OXhPNWVoVldMajFDem5EV3BiOWVJM0V1ZDNkNDdRSklzbg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아시아경제",
+        "summary": ""
+      },
+      {
+        "title": "업무현장에 딱 맞는 AI 찾아 전사 도입… LGU+ '1팀 1AX' 효과적",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9zUkEyM3d6TXhVRDlaek5tb1VRdlFKQ2pCNWZBMUIxUm01MG80LUlKcld5VXJtMUh4aHJQOXNKMUlWWE9TNVZCRTFCTmdpclZVLVY0MDNrYWhsUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "파이낸셜뉴스",
+        "summary": ""
+      },
+      {
+        "title": "유튜브, AI에 얼마나 인용되나… 구글 AI 개요 42%, 네이버는 0건",
+        "link": "https://news.google.com/rss/articles/CBMisgJBVV95cUxPdy1CZ2tGQ2pFZ1RLNVItemhDNFFYRDQyemRRWDc0RVZ6UzJhTmxMcURuRlp0TDJHY1hGSWdNcUNpQ2ZTM2std0tBYngyZzlvR0V5NW1CVXVoaTB5UEN3VGRvSk9sdl9hOTJHNHkySkNiNGhZbzNXVmJ2a2Zhb2RTUTJBSkpzV0lESGxGcDJ1YXhMWG5LWlpfOFoxTTJOTGh6VUlkVDRxX0d4ZHVPVmY3SlNRSmw0NVo3RzlPY2xBR0ZBZ3pqcE1aRC1yOTE4YzRnZjdNdFJ3amhWZVhjWl8wcFdJdkVqUDc3cDUyZWkxLUlhUEpBN3Z6b1RwT3lOdFJsNU90LWNzMXdWMF9raFNocV81T3p0TXh1ZVJpTzd5RG5CdkF1OVJPU3U0SmFNN3lybmc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털 인사이트 DIGITAL iNSIGHT",
+        "summary": ""
+      },
+      {
+        "title": "핀란드 경찰, 구글 데이터센터 부지 조성사업 수사 착수",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBCZkJ0Zy00S1Z6aFV4bDJNZmtNNUdIMjZ3bC12NGtwMGF0RXdkMHRFMFBOb1RpOS1jTFhzSGZLcEFadzZHS3FaaTltZENCOE1UUGNudlJ2bENoeGvSAWBBVV95cUxNSHRTMWFIYlR5a1luWl9mTEV5d1ZsWlE0WjBlYW4tOTExOW5jOGZVcmxhaGViN0VEbFpmYzV0STZlSTRqamRaY3N3aWF6UlpDamxBTm1tdmdIQW5BcTdfWTk?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "연합뉴스",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
