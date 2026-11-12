@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-12",
+  "generated_at": "2026-11-12 14:55",
+  "header": "[11월 12일(목) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "외국인 지분 29% 잡아라…카카오, 국내 넘어 해외서 '분할 설득전'",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxONFRqeGF1Y3dtYmdBZVVLU0NLUDlYbDBiVWFWME1MSGlKMHJVbVlKR1RxZEdNbWZVR0E4cXBISUVtNk1hOG1rMnJid01IeDM2Z3FqcFJ5WEkwZjlRbW5UYmgwYk8taGI4R3B4Y1NxUVRRMC1idGFybzZPQ3VKZWQxeA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "이데일리",
+        "summary": ""
+      },
+      {
+        "title": "카카오게임즈, 청각장애 학생 문화체험 지원…ESG나눔기업패 4년 연속 수상",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE40WHVPYzJadml4LXNrdDdTdkc2Wks3QjNQM0tBSU9oMXhDM2FGMWxfNXQ1bHYyMWo0bkpoTXhkZENvb1h0TTNVb202NkZhaFFrdjU5RDRyRHFSVU4zR2MxRUlQN0RtandITG9nT2cwdw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스퀘스트",
+        "summary": ""
+      },
+      {
+        "title": "카카오뱅크·한국장총, 이공계 장애대학생 진로개발 모두’ 4기 성과 공유회 성료",
+        "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE8yYXpTWklOamZ1bXd6a0t0MFQ1b3A1Y3c0NVZkSUZMV2FUdGhycEpmdHczdlV1NlNSWUpKVHZyWXBpVGI4d01OU3hFaU1UclZhVXRmTE1xVkMtekpnR2wyYmJvLVlaRTB0MEM5TU9R0gFyQVVfeXFMUFIwY2JTZHdZaEJvczJpTy1Ub0o5WkNBMkxHXzV1VV9nbEpuZGZ6b2ViVnpSMU1xSjlSc2poRDRUNTBGQTk1dW9qRFRrajhLckZvN2RIQ2sxdW5TLXdtWmlweksxTDJUR29vZC1zcVhwOVl3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "에이블뉴스",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "개보위, 서버 방치했다 15만명 개인정보 유출한 삼양그룹에 과징금·과태료 5억6천만원",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ZUDNqd0FGOVRZNkZfdjE3VEJnRVdKdGVLd3gtandfN1R3V1hES2RheV9lNDZYbVhaekN6XzRtc3lRNW5FYlNHdnB3UXVqY3VxbVV6SzZFbF9YdkNMQWpTM1drVmdLY0x5SUdnTQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "생생비즈플러스",
+        "summary": ""
+      },
+      {
+        "title": "구글 429억·애플 208억…방미통위, ‘앱마켓 갑질’ 과징금 부과",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB5VjNBSzA3eC1JRVQyVFltZG5nVkdGZ3lndzFLaDZLSkxEQjQzRy1UQnE4VVZwb0g2MXU1SE5uZ040dDNhekZ5czZNU25CYXBidkt0cTQyRnpPeUxyNUt6emlRM044UERNNGc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "JTBC",
+        "summary": ""
+      },
+      {
+        "title": "공정위 사무처 “네이버파이낸셜·두나무 결합, 경쟁제한 우려”…심의절차 개시",
+        "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1xdnBQaEtPWjF2SWpHWG53NFRBSXhodEdDd3VyT0oxeVZLSXNFMWNmb0d1Qmtqa3N2SW0ybGplUHptcE5mV3NlRmRBcDBTOEo3dnhr?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "산업종합저널",
+        "summary": ""
+      },
+      {
+        "title": "금융위 \"디지털자산기본법에 기관 참여·해킹 책임 규율 검토\"",
+        "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE94V1MxUkF0UG4ySjJ1YzZfZDQ5RU1iYkdJSWI4WjRUUjJ1ZENzTmRSQmtsejBsRHBDTE4xaUdXb2NYTmxxYmQwemxJRVNPbjU5YlFoVmd2TjlzOG93TUExRnN3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스1",
+        "summary": ""
+      },
+      {
+        "title": "비댁스, 국회서 원화 스테이블코인 제도화 논의…준비자산 분리·독립 검증 중요성 강조",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5qdnQ1Tk1ORGk3YjhqSE01X1RwMHZJS0h0WExPbGItOWkyQmQyT2tCZGZwY3hTNFgtbDBIdUpfQlgtSTRqMEZEcDgtX0tHcUtKVjFyNEdtVG1XQVFDYzJlSEpzZW5VN3Y4VDlKaA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스탭",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "네이버 6분기 연속 매출 신기록…AI 팩토리 2조원 공급계약(종합2보)",
+        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9xZTNGSFNRMXpBbUZQMTNHX1E3VFlxZllYYTlJZTdMb21JMGEyQ0lKRjJyeWpJNE1hTzFkUWJtX2doS19UMlBMT3BZcmZjdDF0d3RiX2NCMHItZ1dFMkxSOG0tQWZMYzU5aktzakJrbER1VFVT?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "연합뉴스 한민족센터",
+        "summary": ""
+      },
+      {
+        "title": "구글 최강 AI '카본', 11일 일반 전격 공개…누구나 쓴다 : 네이버 블로그",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQTDdNS2FFU3NBdlZyOGEtTFFmSk5tOHVNUURiT1hSbWNOcTB4ZktQWnRqd3VWZzdORmhiVlY1aUd3XzNWOUQwSGhYdUtzTnY1VlFOcXFpSVpCYkpwU1FJQ09tc0hTV0lnUVR1S0xlTDV4TlN5UFAtbUhzLV9ZUEFGamF1UDlrVGhhNzFKTGdHWQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "Naver Blog",
+        "summary": ""
+      },
+      {
+        "title": "SKT, 해킹 사고 이후 성실평가 90% 회복…“보안 개선 성과 고객 체감해야”",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9CNG1yY3FPRUdicDVQSEt0TDdEVGNIdDJPbHRjQzRsQnMxcEYyb1ZmLTNQVjVjN2lmVnN4dXFTWVdTYjlBNUdDVFA1UGZkQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "전자신문",
+        "summary": ""
+      },
+      {
+        "title": "네이버, 美 데이터센터 규제 '반사이익' … 두산에너빌과 시총 20위 각축",
+        "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1BYkxUbzBOOGdTQ0FBSUFPNWFQSDVkNktvWWIwNnB4NVpYTXpjWENfcVRvRVpKN2NrcUY5UnZvcEV1TGFoc2c?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "매일경제",
+        "summary": ""
+      },
+      {
+        "title": "앤트로픽 상장에 아마존·구글 지분가치↑…클라우드 매출도 기대",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9iX1RxN2V2cG4zdkVudll0M3N2eHpHZUVNQXNkRDYwU3FXYU9QdTNIRm1mcVcxTjF0dWk2cDAzYjdEOW5qTmVwdWh5WTU1eHpZb1JwZzliaWZfamhwWG9XUg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "메트로신문",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
