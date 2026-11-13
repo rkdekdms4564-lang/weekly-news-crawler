@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-13",
+  "generated_at": "2026-11-13 13:59",
+  "header": "[11월 13일(금) 주요 이슈]",
+  "category_order": [
+    "자사 및 계열사 이슈",
+    "정부/국회",
+    "경쟁사/해외이슈",
+    "산업동향"
+  ],
+  "categories": {
+    "자사 및 계열사 이슈": [
+      {
+        "title": "업무용 메신저 '카카오워크' 해킹···이메일·첨부파일까지 유출",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE11alJUamctX0VKYnAya1pVWGpLQWtXTVkzRExoVW9Gc19LYy13QXBlODZqNHFKaU9BTW9acU9TVmxLUl9rWGtoNkR4bHNQdEJsNTNPUVFCU3ZreE01b2l2M3FWcVMxYXE3VWxJ0gFvQVVfeXFMTjlzNXJ3YkVRWWhDOFBYQmxCMDRvWEJnSm14dEh5S0FQOVpCMG1ldXVvb3ktTEZCcTZNUWtXVGFkM0toeEo2OG5ZNkRPd3dIWEViSDJySWN5X1hDeElndXp2VE9RbFQ2MFdvbDlsQzlF?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "글로벌E",
+        "summary": ""
+      },
+      {
+        "title": "[K유니콘 리포트] 지분매각·美상장 사사건건 충돌… 카카오모빌리티 IPO 표류",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9RYXNHUEstNjk2M3hfVVN5dWZ0WFRHMGFoZnBOaUExRnM5bC1pUzh5amdIYXM5VDNYay1oWUpVemg5UFRZVV9rbEh4TWdpbjhpUnhmWU9CMkpsZ0JwVkhJWjBFejFGZjV6Z0J2MjNDdw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "뉴스톱",
+        "summary": ""
+      },
+      {
+        "title": "카카오 인적분할 반대 서명 첫날 1000명 참여… 노조 “졸속 추진 중단해야”",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBmbWZodE5HRnM3ZjFDSHBRdkNrWEl5OFFqaWRiZUljSVNBdk5MQ0NraWNZYlVRYWFQYjBjbC04emFKd2VqS2FYSjJ3NGtzWmlQNFR6eDlfbXU2V2dwa2FoRk1wVzlZRHBnMGdB?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "CEO스코어데일리",
+        "summary": ""
+      }
+    ],
+    "정부/국회": [
+      {
+        "title": "공정거래위원회, 배민·쿠팡에 과징금 6319억 원",
+        "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBfTXFWeUNNZFpEdFNFVnZYYkVxTzZOX0JFSTh4a2Y3OGdBUWNlVjRqVlNxcXpMYkdGVGhIVVdsalNnejBCUWt2dWM2aTc5UUVCbGVTbDlvVGZ2SU1lSzNLRmhvdUhNT0hKZ0JSbjd3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "엔디엔뉴스",
+        "summary": ""
+      },
+      {
+        "title": "과기정통부, AI·ICT 국제공동연구 컨퍼런스 개최…글로벌 협력 확대",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBFY1dDR0hLYTE3TzhpX0VPRi12d3c3QzQ5a3k2V0tpMGVRX19nRVZLN2Jsc0hPMDdJcUpzUHNEdU90N2hyWUQ4MHh1ZENGbFR4aFpWMWlMV1FKMnlGbG9MZ0I4RnRLdW8yZmZIVkNrN0RoS3c?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털투데이",
+        "summary": ""
+      },
+      {
+        "title": "금융위원회, 가상자산사업자에 대한 최고 수준의 보안 강화 조치를 통해 이용자의 자산과 정보를 철저히 지켜나가겠습니다",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1rTWJiSl9oWTZuNmtJemlEUzFwV1RjQm1IbGNxbEVINEh4ejdIMnFpUzFFVF9ydFpHQngtLTRFbHJTc2ExRWpDdU9mYWt4Rlp6a09veE53bmJ5Y3hERVpPeUk0ZVVubHF6SUgxdmdERQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "영남연합뉴스",
+        "summary": ""
+      },
+      {
+        "title": "구글, 고정밀 지도 반출 보안조건 이행…정부 준수 여부 지속 점검",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5raEgxamZVVm9jZXhwZHJVWncwajh1NWM2QzNLWlFjLU9mU0Y1U2h2N3NSVXBYaXRIV1pPN0dLWkNoTDNyU0NRZ3hTQjBaaDJLNFJXYmIxNEVPUdIBWEFVX3lxTE5CVURSa2FoVk5vd2xMTUY3SGl6M1o2T0U5UWZwRHAzNzJtQVIwUzJIMVU2a21kaERCV3FIYklxcTEyTllGX1Q5OEg4R1RRdl94VkZSUy00d3c?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "아주경제",
+        "summary": ""
+      },
+      {
+        "title": "“원화 스테이블코인 준비금, 독립기관이 보관해야”…국회서 제도화 논의",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBfUUphbkE1dTloTUFHS1VaMWNZSG9JZjdIdXE3c0E1NTVXdnFmMEw4TTNfY1RPdFAxVFpMdGZBZnhoZXdrSkk2QTJ5QUhyVGV0S3FQUWx4N3c5UzBONnZjRDJHdWk?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "디지털데일리",
+        "summary": ""
+      }
+    ],
+    "경쟁사/해외이슈": [
+      {
+        "title": "네이버 \"AI 팩토리 내년 흑자 전환\"…10여개사와 추가 계약 협상 중",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBWUUxQX2xtT2YxTk54VGpoUUhWVDJEdlg5bjZpVXN5SGR1b0w0eUZZU2hJalJDTkVnYXpXZk1RWE1sQmc5SmFZYXloZjRhZHFKYVFRVk1md0hieHNHdEl4NURadnlTbGl6bWdfZWZhUFhoQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "KB Think",
+        "summary": ""
+      },
+      {
+        "title": "네이버, 본업 성장 둔화에 수익성 부담…AI 팩토리 성과 주목-유진",
+        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPM25reGU4SlN2UXEwdEJ5Q09GMHhsZzdkUUZTaDliN2JVWi04M1A2bUlVNTQyRng1UzZGNHQ3aGRyX09wOUtHUUNHM3lVRC1CTDlidjVxdGRBbXFVYkhmMzRwc0hpZGZQQmJYUWlubF9xRjZEWHZHMzlTYjRWX2lYQw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "이데일리",
+        "summary": ""
+      },
+      {
+        "title": "앤트로픽 IPO 상장일 및 주가 1편 : 공모가와 기업가치 분석, 오픈AI와 차이점은?",
+        "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPbnBSNDdWZmRoYV82d1oyelh1YWZmTUFZdFNBMkdOQmJic1dsNmYxdTcwSVZzd3JWWUJTU2tkX0FRc0NWRXFyc2Y0VldxVUZlelZuM19kbGQyZHVweEtWQmdiNjlsbUVmUEVTd3lLTDktNUFQbWQtVXVNWFp0QkxHU1V4dw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "네이버 프리미엄콘텐츠",
+        "summary": ""
+      },
+      {
+        "title": "네이버, 3분기 매출 3조4724억원…AI 투자 확대로 영업이익 20.9% 감소",
+        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5HSUs1VnFFRWt6WmhWLV9KX2lfZl9NZU1Wd25RQlowUGZvTXdmZGFSWERweDdlNUxudFVENllSSGNtNXIxOUFjSkZmQUtnenNEQ0RQZHZfQl9iWHhYT0RnWllkSFl1a0IxdGRULVNQemU?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "헬스조선",
+        "summary": ""
+      },
+      {
+        "title": "\"연료비·요금 개편 부담\" 한국전력, 4분기 적자 전망…\"네이버, 내년에도 투자비 부담\" [株토피아]",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9fYkhfUlhNZnQzTVBuZHVCaEI0ZXpxRzdFdEZ4QW0zZDdLWEdaVDJZNlBmTUgxek1zMW1uaDVaVW9pNGtQUTlzcVlBalZvd3lnZzIxVUZ0d09qUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako",
+        "source": "파이낸셜뉴스",
+        "summary": ""
+      }
+    ],
+    "산업동향": []
+  }
+}
