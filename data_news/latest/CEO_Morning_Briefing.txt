@@ -1,71 +1,71 @@
-[11월 23일(월) 주요 이슈]
+[11월 24일(화) 주요 이슈]
 
 ☑️ 자사 및 계열사 이슈
 
-1️⃣ AI 해킹 범람하는데 네이버·카카오 보안투자 '미흡', 국민 플랫폼에도 정보유출 사고 터질라
-https://news.google.com/rss/articles/CBMic0FVX3lxTE91QVQ4RzJBbGg1T1pxOWwyZnRKTTlIMllDbk1hMG9lWGFBY0pBQkdMeV9PSG5rTHJSWWozNTlGcndYSHA2T3ZQLUV4YkhOOW5mY0dMUThUckxlVmRjVmFxS05lYnZWWUcydVdPRU80ZU5WTHM?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(비즈니스포스트)
+1️⃣ 중복상장 규제 후폭풍…1.5조 국제소송 당한 카카오
+https://news.google.com/rss/articles/CBMiWkFVX3lxTE03b2IwZDV5SlRmLVRZMTVTUnA1MHJpY19CemhFVmFvcVFFZUxOYklvbmVRVmhmcnU3ZktVUWJkY0pqYnFEZkc5NFlkNmFlZGRvUXMxVkJtMzE1UQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(한국경제)
 
 
-2️⃣ 정신아 카카오 대표 "김범수 무죄 판결, 사회적 신뢰 회복 계기 되길"
-https://news.google.com/rss/articles/CBMidEFVX3lxTE9xY2xhSWNOblFjcVB1VElsQXdRMlhiNkpHeDRGZW5QdjgxQW5VdU96MHE5UFgzdkRBQlE1SUZrTU1WVHRNZ3paaWRmeS0yZy1VTXNlSng4ZkRnTVZ2ME9WRWVlTXdLQWNXLWpMank1VTJRTXVW?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(파이낸셜포스트)
+2️⃣ 개인정보 유출 뒤 판매 광고 허위글 확산…카카오페이 허위 판명
+https://news.google.com/rss/articles/CBMic0FVX3lxTE5VbVB1cEJiTllidHVSRnFUX2g5TXJSaEZJaG5QZGo5OXB5bHRCV3RINklhUnFabVlIb2g4RDJjQ0NZRkJMUGRmdmFPdW8wQ0VWRnJOMUs4VUtOWGhGaEJlR0dFQmdHSXRBZTNOY0Z6Z0pSLXM?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(데이터투자)
 
 
-3️⃣ 2대주주 TPG, 카카오에 1.5조 국제소송…인적분할 여파는?
-https://news.google.com/rss/articles/CBMidEFVX3lxTE1SZzh5aHZIM2g0TTlEbVEyaENvSG5ZUC01b1pGZ1lsQk4zdC1Ta0RfQjlVWkhsUldLUlNYY000NDBOeHdSU3ZaV3U4ZmZRUkhjWkZacm9aQkxiQ2ZrdllNSG1TRnZuZE9PTUtZNl9wZGJ2Tlgx?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(파이낸셜리뷰)
+3️⃣ 택시노조, 카카오모빌리티 교섭 시정신청 취하···노동위 판단 없이 종결
+https://news.google.com/rss/articles/CBMickFVX3lxTE45bTE0QlAwR2NXbjRwa1dOWHdhM1c3eEd3c3lGd3J2X1JhNmVkTmlTYjVpWi1QS25LemNrSmNmOWVoRGllMGwtaXBROE0tWFVCNGk3eWhNRzNqdms4a1NTMUluRmRMM0hPdTBUV1BEOEgxUdIBdkFVX3lxTE5CZHR1ZzRpOVQ4aWp4M0xBVFh1UVhhZ2lxb1RFQzgxaHpuRzVKdmxLWEdlWnB5dXNPZl9TUEd5YkhsYVJBM3ltN3FPTWNwSldOLUE2YVYxcEVmc0JhMU1Ic2dqQnV5M05nYTZjTmxkb2M4Y3RwWHc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(시사저널e)
 
 
 ☑️ 정부/국회
 
-1️⃣ 과기정통부, AI반도체 공급망 점검…글로벌 빅테크 협력 확대 추진
-https://news.google.com/rss/articles/CBMic0FVX3lxTE9naDdDQlpROVA2WVNOS0dqQ1NVRFRBSWtYb2RXTXBiTnQwQ25TWkJMVmxzaThfZ2FrZnFONS1NR3MzZzlCODAtdjFXRkdmaHZ1bkhFVHFMem1SSG1felotQVdjTFhZZ3FaMUhYVVotZTcyQmc?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(디지털투데이)
+1️⃣ [AI픽] 정부, AI반도체 글로벌 협력 확대·공급망 안정화 논의
+https://news.google.com/rss/articles/CBMiYEFVX3lxTFB5SkpyeXJ1Tk51NmVFYmdLS2h5SG9iaDhueHBwaktGcVEzUHNGV0tMOTlzNm5LbWRDMjc0dmM2TlNEY3FVOXFxdXZTbHBqcHh2b1lCYVpZeXVHdi1ZeGFMV9IBYEFVX3lxTFB5SkpyeXJ1Tk51NmVFYmdLS2h5SG9iaDhueHBwaktGcVEzUHNGV0tMOTlzNm5LbWRDMjc0dmM2TlNEY3FVOXFxdXZTbHBqcHh2b1lCYVpZeXVHdi1ZeGFMVw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(연합뉴스)
 
 
-2️⃣ 공정위, 쿠팡Inc 해외법인 4곳 첫 제재…통신판매업 미신고로 '경고'
-https://news.google.com/rss/articles/CBMiS0FVX3lxTE9oejFlbzNNclVxSjZ3V2wzYkw5QzlNVU1PcnlBQ01vM2FDcFJWbFZVSUUxSTR5ZDd3UHVLWEtEUmp4aHVxbFhMbDctUQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(아이뉴스24)
+2️⃣ 과기정통부, 인공지능 반도체 업계 현안 점검…국제 협력·공급망 대응 모색
+https://news.google.com/rss/articles/CBMiX0FVX3lxTE51LVBqb1BuMmFKTmNPV09keXQtaTExLWY3d3Q1Y2MxZm1wRVlDZTFnQ0pRVzJTLUNzd0RDM0lhUzZuVnBhYjJORjBZeUlVRlppV3ZkWVVqbmhLRlBaSjdv?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(헬로티)
 
 
-3️⃣ 정부, 엔비디아·AMD·인텔과 국산 AI 반도체 협력 확대…HBM 공급망 안정화 추진
-https://news.google.com/rss/articles/CBMickFVX3lxTE1ubkJSb05Xd2pmRktuQURMcW00dXNIbjhFWE5ramM3WU9OWlBvWHdQdFVSZXl5cm1PSGt2cDN6VnJEWWJ0QW5WcWNXa2Q4VEZRRVc3LXhlcXZRUmZSS2JyWlVXNjR5NndrOHVBbFZTRm45QQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(중앙이코노미뉴스)
+3️⃣ [크립토레이더]정부, 가상자산거래소 지분 34%까지 예외 허용…신고·공시 의무하에 ICO 허용
+https://news.google.com/rss/articles/CBMiYkFVX3lxTFA1bzEyWEpNTlJONk1tV0VzTnBkUklFc3AyUF9WSkhncS0xWnNqS3VsWGpXbHhDVmFCVWE2R3pkTG5hWHRYbjdrQkpTdkRZU2ZZdHhTSlZmOGtRQWIyWTNpWVR3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(아시아경제)
 
 
-4️⃣ [글로벌 금융협력] 이억원 금융위원장, 유럽서 AI·스테이블코인 금융위험 대응 논의
-https://news.google.com/rss/articles/CBMibkFVX3lxTE01SWczV3dGZl84bWdvOFoteUNTay1Ta2ozekxUbV9FcFdhZUsyOHRVdGFxVFk3RGlkWGl1VzNVZGh3NUd0Z000aGI5UnppaThuaTc1dGFRZ241OTJEMGExZ2MwUnFwV3piZGFKbzh3?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(코리아포스트 한글판)
+4️⃣ 금융위, '디지털자산법' 제정안 입법 추진… 스테이블코인 은행 과반 컨소시엄부터, 국내 ICO 허용
+https://news.google.com/rss/articles/CBMicEFVX3lxTE9VX0Y1M3k1NkZtQmRkdlloV1FJdHZKbkt2VWgzWjBNcXdNVlRTS0hQeUpKbGpEdVRMSmg4SkR6WDNmRkRwUnZZdmM0TUJxSlNhWHBQekZoV29fejV6VGlxczZuX1JqRVBiRmRkcy1nSG0?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(블록체인투데이)
 
 
-5️⃣ “엔비디아·AMD 손잡았지만 메모리 구하기 어렵다”…정부, AI반도체 공급망 점검
-https://news.google.com/rss/articles/CBMigAFBVV95cUxQdUUzanloZkwzc1psODhoNk9YQlF6OGFER0I5czZqVURrZEpRdUV6Rkl1anZIMkF5RTB5aklvZjhKcEx5X093eHhwajlhS21ockRCeFBHNUMwb001ZUk0dkprbVhLbXAtTXBiaGMwY29CNDJ5QmxJeURiY1lYVlBSaA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(이데일리)
+5️⃣ 24일 가상자산위원회 개최…디지털자산기본법 정부안 공개 예정
+https://news.google.com/rss/articles/CBMiVkFVX3lxTE9GTl9IZDFDVy0yeXhqanBIV2tXeUQ1YVJlcUtmQkNOX2FtUDdwMnZsVDI2RDBleGo0UExOLUJTNTBJQmZNbHpNUlRLbV9XOXM5TkhZZ2ZB0gFbQVVfeXFMTUV6ZHpYb1RjSlVpOWlQd1pFQzhPdFZXbDhrVDlCbUVCYWNSUU1PWktPUHYxeDJtVDBxcU5paTctM0VlY1ZaWFEyb3NZN2xNMGhyRFRUbjhGSHY3Yw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(토큰포스트)
 
 
 ☑️ 경쟁사/해외이슈
 
-1️⃣ [인더컴퍼니] 네이버, 본업 둔화에 낮아진 눈높이…AI 팩토리가 반전 이끌까
-https://news.google.com/rss/articles/CBMiZEFVX3lxTE5MckZFdnY3X0tERy1aOTBnQ0Zna0JVYkJvSGpGWkY5UGVEVmNxajBrT21oNzh4NGJucEJtRkNJRUFZRW50dDNQb0w2OWhycWNqd0pPN1l2NFZaZ0FPVTNKX3ZEeV8?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(인더뉴스)
+1️⃣ KT, 행정안전부와 사회연대경제 AX 협력...K-water와 '물관리 Physical AI' 구축 협력
+https://news.google.com/rss/articles/CBMiZkFVX3lxTE5LejV3Z21wb05jLUFzTW4wM091Q3FPRzZYSHBkOFJtUjBSXzdZZnA5cHZVMlVtUFowRFFTRXJ6aG1YeGoySHBfNmlPaGxVaGJqQzZieDhGYmNPMDc5eWROV2s3MDNRdw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(여성소비자신문)
 
 
-2️⃣ 앤트로픽 상장에 투자자도 '잭팟'···SKT 지분 5조원, 아마존·구글은 479조원
-https://news.google.com/rss/articles/CBMiakFVX3lxTE9zczFUa1czYXRHOUJUU19QMTlCb3JIeXdGVUpoNTZ4TFJudUg5enBTUHhaNVJtNGJSR2JySzdjWUJNbUVIVTFwazFsRmNYS0Y0c3BjMzNvak1oLTJrTkJxNS1qSFkxRE1tM1E?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(뉴스웨이)
+2️⃣ [AI서머리] 우나스텔라, 글로벌 팁스 선정‧네이버페이 페이스사인, 단국대 출입인증 도입
+https://news.google.com/rss/articles/CBMiV0FVX3lxTE44SG45Q2dYam1CTlZkdVBiajF2VG1DSHh5U0Z6N3A1NUF0S2M5ZWpuNEVoSnU4TGUyemQ5cnRoejl3SjJWZko1c1BlYjhDdkFKeWFJc3I4dw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(스타트업레시피)
 
 
-3️⃣ 역대 최대 규모의 앤트로픽 IPO, 그러나 AI 투심은 여전히 제자리
-https://news.google.com/rss/articles/CBMiUkFVX3lxTE1lby1INFNwblZMTHRDUU5sVzk5SFhNdzNjWjhqcGpRLVFzbmFMNWVpZnM5Ym5QR3Y0OUlpR2h5S1lWYnNxSmdvMjJWMUw2UTV0QUE?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(네이버페이 머니스토리)
-
-
-4️⃣ LGU+, 협력사 160곳 보안 취약점 점검…공급망 보안 강화
-https://news.google.com/rss/articles/CBMiTkFVX3lxTFBQNnV4UnYtQ0RZWWY5TDJkV3dGUDc4RzNOYUZKOWJKempxN0lnQU1zNkJUTV9fd0YtY1ZNNU0zLWdiU1hVamNYUzRhV3V4Zw?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+3️⃣ KT, 개보위 과징금 불복소송 확정…법률대리인 태평양 선임
+https://news.google.com/rss/articles/CBMiTkFVX3lxTE4tb1hPVlBIeFA0MWxRM0lrbjB2bml4dkZPQmlkWHk4R1hjZGxHaWNfbGNlNm9PWThDQWxqZTZEOGQ0cjhfNGhWb3VHRmpDQQ?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
 (전자신문)
 
 
-5️⃣ “AI만 새먹거리 아니다” LGU+, 보안·전기차 충전 사업 지평 확대
-https://news.google.com/rss/articles/CBMiaEFVX3lxTE5wbmdVQ2p2OHdfYVpZSi1UYXh0M0pGLVd3QkNCbUZQa1h6VFFOU3YzME5IREFSc1k2YjY2dnE1ZTBTTkt2dDdvanJWNlh6bHNoUkRBNVJ1UmRNS0NQZnFyWVM3RUE5RmVk?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
-(아이티데일리)
+4️⃣ 공급망 해킹 막는다…LGU+, 협력사 160곳 보안 취약점 점검
+https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5xRjNKSFQzV1VvREx3T3o2bnBVd2NsUHV3MnFRSC1YeVlGNWpZYlA2Z0R1MThXNlN3V2ZUVjN6WVZzTi1kdHNiU3FlZ3ZLcXpRek5Wclp1dDM5eDBnRjZPNGdVRDRPTUXSAWtBVV95cUxPNTZFWmtSRktGSXhfSGtjU0R1V3FWQ29YeEdFYk9YTkdJQkJKb2JpRzN1czRJOUNuY0pXd0phS0REeThDbzdKVl94dzJmN0ZmdEd0aTBoMEZiMEMyTERvc3pTV3RGT01YNmVfMA?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(SR타임스)
+
+
+5️⃣ 안산시, 네이버클라우드와 제조업 AX 지원 협약
+https://news.google.com/rss/articles/CBMigAFBVV95cUxOeVc2TnE2cmxKSlRkcEJhZ1Y3ay1iNVA3dGlXanBRZFk5QWhPYTEySXQ0THVnSmM0WXM5U2h2LXpxVXlpSzRreW5hWEpvaFdXNGNGOFRLUjFSMEVENE5maG9Ua3ZURUU5Y3ZtTHF6MzdPcUh2UlphSEx4aGdjNXZrRg?oc=5&hl=ko&gl=KR&ceid=KR%3Ako
+(이데일리)
